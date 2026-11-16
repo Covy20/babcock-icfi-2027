@@ -1,0 +1,651 @@
+"""Generate the 390px Mobile Responsive SVG synced with ICFI 2027 Desktop design."""
+
+SVG_MOBILE = '''<svg width="390" height="10510" viewBox="0 0 390 10510" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="buMobileHeroSky" x1="0" y1="92" x2="390" y2="1128" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#CDE2FE"/>
+      <stop offset="48%" stop-color="#E4F0FE"/>
+      <stop offset="100%" stop-color="#F2F7FF"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="390" height="10510" fill="#FFFFFF"/>
+
+  <!-- ================================================================= -->
+  <!-- 1. GOLD UTILITY STRIP & BABCOCK NAVY NAVBAR (y = 0..92)           -->
+  <!-- ================================================================= -->
+  <g id="01_Mobile_Utility_and_Navbar">
+    <rect x="0" y="0" width="390" height="32" fill="#B58C0D"/>
+    <text x="195" y="20" fill="#FFFFFF" font-family="Inter, sans-serif" font-size="10.5" font-weight="600" text-anchor="middle">Abstracts (Mar 24)  |  IJFI Portal  |  icfi@babcock.edu.ng</text>
+
+    <rect x="0" y="32" width="390" height="60" fill="#004182"/>
+    <line x1="0" y1="92" x2="390" y2="92" stroke="#FFFFFF" stroke-opacity="0.16"/>
+
+    <rect id="PHOTO_M_LOGO_COMBINED" x="16" y="42" width="154" height="38" fill="none"/>
+
+    <rect x="236" y="45" width="96" height="34" rx="6" fill="#B58C0D"/>
+    <text x="284" y="66" fill="#FFFFFF" font-family="Inter, sans-serif" font-size="10.5" font-weight="700" text-anchor="middle">REGISTER →</text>
+
+    <rect x="340" y="45" width="34" height="34" rx="6" fill="#FFFFFF" fill-opacity="0.12" stroke="#FFFFFF" stroke-opacity="0.25"/>
+    <line x1="349" y1="56" x2="365" y2="56" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="349" y1="62" x2="365" y2="62" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="349" y1="68" x2="365" y2="68" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round"/>
+  </g>
+
+  <!-- ================================================================= -->
+  <!-- 2. HERO + KEY FIGURES BAND (y = 92..1490)                         -->
+  <!-- ================================================================= -->
+  <g id="02_Mobile_Hero_and_Key_Figures">
+    <rect x="0" y="92" width="390" height="1036" fill="url(#buMobileHeroSky)"/>
+
+    <!-- Date Badge -->
+    <rect x="16" y="114" width="296" height="26" rx="13" fill="#FFFFFF" fill-opacity="0.9" stroke="#004182" stroke-opacity="0.14"/>
+    <circle cx="29" cy="127" r="3.5" fill="#B58C0D"/>
+    <text x="40" y="131" fill="#1B2D5B" font-family="Inter, sans-serif" font-size="10" font-weight="600">7th Biennial Conference • Jul 27 – Aug 1, 2027</text>
+
+    <!-- Headline -->
+    <text x="16" y="176" fill="#212121" font-family="Georgia, serif" font-size="27" font-style="italic" font-weight="700">International Conference</text>
+    <text x="16" y="212" fill="#212121" font-family="Georgia, serif" font-size="27" font-style="italic" font-weight="700">on Faith Integration</text>
+    <text x="16" y="248" fill="#212121" font-family="Georgia, serif" font-size="27" font-style="italic" font-weight="700">2027</text>
+
+    <!-- Theme & Location -->
+    <text x="16" y="280" fill="#004182" font-family="Inter, sans-serif" font-size="13.5" font-weight="700">“Driving a Sustainable Faith-Based Ecosystem</text>
+    <text x="16" y="298" fill="#004182" font-family="Inter, sans-serif" font-size="13.5" font-weight="700">in a Changing World.”</text>
+    <text x="16" y="322" fill="#2D3748" font-family="Inter, sans-serif" font-size="12.5">Hosted by ICFI &amp; Babcock University</text>
+    <text x="16" y="340" fill="#2D3748" font-family="Inter, sans-serif" font-size="12.5">(Main Amphitheater &amp; Global Zoom worldwide).</text>
+
+    <!-- Side-by-side CTAs -->
+    <rect x="16" y="362" width="168" height="44" rx="10" fill="#0048E0"/>
+    <text x="100" y="388" fill="#FFFFFF" font-family="Inter, sans-serif" font-size="12.5" font-weight="600" text-anchor="middle">Reserve Your Seat</text>
+
+    <rect x="196" y="362" width="178" height="44" rx="10" fill="#383C42"/>
+    <text x="285" y="388" fill="#FFFFFF" font-family="Inter, sans-serif" font-size="12" font-weight="600" text-anchor="middle">Submit 250-Word Abstract</text>
+
+    <!-- Hero Showcase Card -->
+    <rect x="16" y="424" width="358" height="678" rx="18" fill="#FFFFFF" stroke="#004182" stroke-opacity="0.16"/>
+    <rect id="PHOTO_M_HERO_MAIN" x="16" y="424" width="358" height="224" rx="18" fill="#CBD5E1"/>
+
+    <rect x="28" y="438" width="194" height="24" rx="12" fill="#FFFFFF" fill-opacity="0.95"/>
+    <text x="125" y="454" fill="#004182" font-family="Inter, sans-serif" font-size="10" font-weight="700" text-anchor="middle">Amphitheater • Ilishan-Remo</text>
+
+    <rect x="268" y="438" width="94" height="24" rx="12" fill="#B58C0D"/>
+    <text x="315" y="454" fill="#FFFFFF" font-family="Inter, sans-serif" font-size="10" font-weight="700" text-anchor="middle">▶ 2023 Recap</text>
+
+    <!-- 2x2 Mini Leadership Grid (6:5 Portrait Tiles) -->
+    <rect x="16" y="648" width="358" height="406" fill="#EEF4FC"/>
+
+    <rect x="28" y="662" width="161" height="182" rx="10" fill="#FFFFFF" stroke="#004182" stroke-opacity="0.12"/>
+    <rect id="PHOTO_M_HERO_VC" x="34" y="668" width="149" height="124" rx="8" fill="#CBD5E1"/>
+    <text x="108" y="810" fill="#004182" font-family="Inter, sans-serif" font-size="10.5" font-weight="700" text-anchor="middle">Prof. A. Ojewole</text>
+    <text x="108" y="828" fill="#7A5C00" font-family="Inter, sans-serif" font-size="9" font-weight="700" text-anchor="middle">CHIEF HOST</text>
+
+    <rect x="201" y="662" width="161" height="182" rx="10" fill="#FFFFFF" stroke="#004182" stroke-opacity="0.12"/>
+    <rect id="PHOTO_M_HERO_AMANZE" x="207" y="668" width="149" height="124" rx="8" fill="#CBD5E1"/>
+    <text x="281" y="810" fill="#004182" font-family="Inter, sans-serif" font-size="10.5" font-weight="700" text-anchor="middle">Prof. J. C. Nwosu</text>
+    <text x="281" y="828" fill="#7A5C00" font-family="Inter, sans-serif" font-size="9" font-weight="700" text-anchor="middle">HOST • SVP</text>
+
+    <rect x="28" y="856" width="161" height="182" rx="10" fill="#FFFFFF" stroke="#004182" stroke-opacity="0.12"/>
+    <rect id="PHOTO_M_HERO_NWOSU" x="34" y="862" width="149" height="124" rx="8" fill="#CBD5E1"/>
+    <text x="108" y="1004" fill="#004182" font-family="Inter, sans-serif" font-size="10.5" font-weight="700" text-anchor="middle">Prof. C. Nwosu</text>
+    <text x="108" y="1022" fill="#7A5C00" font-family="Inter, sans-serif" font-size="9" font-weight="700" text-anchor="middle">CONVENER</text>
+
+    <rect x="201" y="856" width="161" height="182" rx="10" fill="#FFFFFF" stroke="#004182" stroke-opacity="0.12"/>
+    <rect id="PHOTO_M_HERO_TAYLOR" x="207" y="862" width="149" height="124" rx="8" fill="#CBD5E1"/>
+    <text x="281" y="1004" fill="#004182" font-family="Inter, sans-serif" font-size="10.5" font-weight="700" text-anchor="middle">Prof. J. Taylor V</text>
+    <text x="281" y="1022" fill="#7A5C00" font-family="Inter, sans-serif" font-size="9" font-weight="700" text-anchor="middle">GLOBAL KEYNOTE</text>
+
+    <!-- Showcase Footer -->
+    <rect x="16" y="1054" width="358" height="48" rx="10" fill="#003068"/>
+    <text x="195" y="1074" fill="#EEC25A" font-family="Inter, sans-serif" font-size="10" font-weight="700" text-anchor="middle">PHYSICAL &amp; VIRTUAL • JULY 27 – AUG 1, 2027</text>
+    <text x="195" y="1091" fill="#FFFFFF" font-family="Inter, sans-serif" font-size="10.5" font-weight="500" text-anchor="middle">Ilishan-Remo &amp; Zoom Worldwide</text>
+
+    <!-- Gold Quick Information Strip -->
+    <rect x="0" y="1128" width="390" height="74" fill="#B98D3B"/>
+    <text x="16" y="1153" fill="#FFFFFF" font-family="Georgia, serif" font-size="15" font-weight="700">QUICK INFORMATION</text>
+    <text x="16" y="1174" fill="#FFFFFF" font-family="Inter, sans-serif" font-size="10.5" font-weight="600">Call for abstracts open until March 24, 2027</text>
+    <text x="16" y="1190" fill="#FFFFFF" font-family="Inter, sans-serif" font-size="10.5" font-weight="500">Email abstracts to icfi@babcock.edu.ng • Free IJFI Review</text>
+
+    <!-- Dark Navy Key Figures Band -->
+    <rect x="0" y="1202" width="390" height="288" fill="#0B2545"/>
+    <text x="16" y="1238" fill="#FFFFFF" font-family="Georgia, serif" font-size="22" font-weight="700">7th ICFI 2027 in key figures</text>
+
+    <text x="16" y="1282" fill="#EEC25A" font-family="Georgia, serif" font-size="23" font-weight="700">252d : 16h : 28m : 44s</text>
+    <text x="16" y="1302" fill="#CBD5E1" font-family="Inter, sans-serif" font-size="11">Countdown to July 27, 2027 opening plenary</text>
+
+    <line x1="16" y1="1320" x2="374" y2="1320" stroke="#FFFFFF" stroke-opacity="0.16"/>
+    <line x1="195" y1="1332" x2="195" y2="1468" stroke="#FFFFFF" stroke-opacity="0.16"/>
+    <line x1="16" y1="1398" x2="374" y2="1398" stroke="#FFFFFF" stroke-opacity="0.16"/>
+
+    <text x="16" y="1362" fill="#EEC25A" font-family="Georgia, serif" font-size="24" font-weight="700">8 Tracks</text>
+    <text x="16" y="1384" fill="#CBD5E1" font-family="Inter, sans-serif" font-size="11">Academic disciplines</text>
+
+    <text x="211" y="1362" fill="#EEC25A" font-family="Georgia, serif" font-size="24" font-weight="700">₦40,000</text>
+    <text x="211" y="1384" fill="#CBD5E1" font-family="Inter, sans-serif" font-size="11">Early Bird &amp; Member</text>
+
+    <text x="16" y="1434" fill="#EEC25A" font-family="Georgia, serif" font-size="24" font-weight="700">₦10,000 Off</text>
+    <text x="16" y="1456" fill="#CBD5E1" font-family="Inter, sans-serif" font-size="11">Year-round discount</text>
+
+    <text x="211" y="1434" fill="#EEC25A" font-family="Georgia, serif" font-size="24" font-weight="700">Free IJFI</text>
+    <text x="211" y="1456" fill="#CBD5E1" font-family="Inter, sans-serif" font-size="11">Journal publication</text>
+  </g>
+
+  <!-- ================================================================= -->
+  <!-- 3. AN OPPORTUNITY & 8 FIELDS GRID (y = 1490..2896)                -->
+  <!-- ================================================================= -->
+  <g id="03_Mobile_Opportunity_Eight_Fields">
+    <text x="16" y="1532" fill="#B98D3B" font-family="Inter, sans-serif" font-size="10.5" font-weight="700" letter-spacing="1.2">CALL FOR PAPERS !!</text>
+    <text x="16" y="1566" fill="#004182" font-family="Georgia, serif" font-size="26" font-weight="700">An Opportunity To</text>
+    <text x="16" y="1598" fill="#004182" font-family="Georgia, serif" font-size="26" font-weight="700">Integrate Faith &amp; Learning</text>
+    <text x="16" y="1626" fill="#4E5D78" font-family="Inter, sans-serif" font-size="12.5">Submit empirical research or case studies across</text>
+    <text x="16" y="1644" fill="#4E5D78" font-family="Inter, sans-serif" font-size="12.5">any of these eight interdisciplinary tracks.</text>
+    <rect x="16" y="1664" width="166" height="40" rx="10" fill="#B98D3B"/>
+    <text x="99" y="1688" fill="#FFFFFF" font-family="Inter, sans-serif" font-size="12.5" font-weight="700" text-anchor="middle">Submit Abstract</text>
+
+    <rect id="PHOTO_M_FIELDS_SUB" x="16" y="1724" width="358" height="188" rx="16" fill="#CBD5E1"/>
+    <rect x="28" y="1866" width="186" height="32" rx="8" fill="#FFFFFF"/>
+    <text x="121" y="1886" fill="#1B2D5B" font-family="Inter, sans-serif" font-size="10.5" font-weight="700" text-anchor="middle">Hybrid Amphitheater &amp; Zoom</text>
+
+    <rect id="PHOTO_M_FIELDS_GAL" x="16" y="1928" width="358" height="188" rx="16" fill="#CBD5E1"/>
+    <rect x="28" y="2070" width="196" height="32" rx="8" fill="#FFFFFF"/>
+    <text x="126" y="2090" fill="#1B2D5B" font-family="Inter, sans-serif" font-size="10.5" font-weight="700" text-anchor="middle">IJFI Double-Blind Peer Review</text>
+
+    <!-- Track Cards 2x4 Grid (y = 2140..2856) -->
+    <!-- Row 1 -->
+    <rect x="16" y="2140" width="171" height="168" rx="16" fill="#FFFFFF" stroke="#1B2D5B" stroke-opacity="0.1"/>
+    <rect x="16" y="2140" width="171" height="4" rx="2" fill="#004182"/>
+    <rect x="28" y="2156" width="30" height="30" rx="8" fill="#EEF2F9"/>
+    <text x="175" y="2174" fill="#B58C0D" font-family="Inter, sans-serif" font-size="9.5" font-weight="700" text-anchor="end">TRACK 01</text>
+    <text x="28" y="2208" fill="#004182" font-family="Georgia, serif" font-size="16" font-weight="700">Science</text>
+    <text x="28" y="2230" fill="#4E5D78" font-family="Inter, sans-serif" font-size="10.5">Creation stewardship,</text>
+    <text x="28" y="2246" fill="#4E5D78" font-family="Inter, sans-serif" font-size="10.5">bioethics &amp; inquiry.</text>
+    <line x1="28" y1="2270" x2="175" y2="2270" stroke="#E2E8F0"/>
+    <text x="28" y="2290" fill="#004182" font-family="Inter, sans-serif" font-size="10" font-weight="600">Bioethics · Creation</text>
+
+    <rect x="203" y="2140" width="171" height="168" rx="16" fill="#FFFFFF" stroke="#1B2D5B" stroke-opacity="0.1"/>
+    <rect x="203" y="2140" width="171" height="4" rx="2" fill="#B58C0D"/>
+    <rect x="215" y="2156" width="30" height="30" rx="8" fill="#FEF3C7"/>
+    <text x="362" y="2174" fill="#B58C0D" font-family="Inter, sans-serif" font-size="9.5" font-weight="700" text-anchor="end">TRACK 02</text>
+    <text x="215" y="2208" fill="#004182" font-family="Georgia, serif" font-size="16" font-weight="700">Arts &amp; Letters</text>
+    <text x="215" y="2230" fill="#4E5D78" font-family="Inter, sans-serif" font-size="10.5">Literature, history, music</text>
+    <text x="215" y="2246" fill="#4E5D78" font-family="Inter, sans-serif" font-size="10.5">&amp; cultural heritage.</text>
+    <line x1="215" y1="2270" x2="362" y2="2270" stroke="#E2E8F0"/>
+    <text x="215" y="2290" fill="#004182" font-family="Inter, sans-serif" font-size="10" font-weight="600">Reading · Heritage</text>
+
+    <!-- Row 2 -->
+    <rect x="16" y="2322" width="171" height="168" rx="16" fill="#FFFFFF" stroke="#1B2D5B" stroke-opacity="0.1"/>
+    <rect x="16" y="2322" width="171" height="4" rx="2" fill="#004182"/>
+    <rect x="28" y="2338" width="30" height="30" rx="8" fill="#EEF2F9"/>
+    <text x="175" y="2356" fill="#B58C0D" font-family="Inter, sans-serif" font-size="9.5" font-weight="700" text-anchor="end">TRACK 03</text>
+    <text x="28" y="2390" fill="#004182" font-family="Georgia, serif" font-size="16" font-weight="700">Technology</text>
+    <text x="28" y="2412" fill="#4E5D78" font-family="Inter, sans-serif" font-size="10.5">AI ethics, social media</text>
+    <text x="28" y="2428" fill="#4E5D78" font-family="Inter, sans-serif" font-size="10.5">&amp; digital responsibility.</text>
+    <line x1="28" y1="2452" x2="175" y2="2452" stroke="#E2E8F0"/>
+    <text x="28" y="2472" fill="#7A5C00" font-family="Inter, sans-serif" font-size="10" font-weight="600">AI &amp; Faith · Media</text>
+
+    <rect x="203" y="2322" width="171" height="168" rx="16" fill="#FFFFFF" stroke="#1B2D5B" stroke-opacity="0.1"/>
+    <rect x="203" y="2322" width="171" height="4" rx="2" fill="#B58C0D"/>
+    <rect x="215" y="2338" width="30" height="30" rx="8" fill="#FEF3C7"/>
+    <text x="362" y="2356" fill="#B58C0D" font-family="Inter, sans-serif" font-size="9.5" font-weight="700" text-anchor="end">TRACK 04</text>
+    <text x="215" y="2390" fill="#004182" font-family="Georgia, serif" font-size="16" font-weight="700">Leadership</text>
+    <text x="215" y="2412" fill="#4E5D78" font-family="Inter, sans-serif" font-size="10.5">Servant leadership &amp;</text>
+    <text x="215" y="2428" fill="#4E5D78" font-family="Inter, sans-serif" font-size="10.5">character ethics.</text>
+    <line x1="215" y1="2452" x2="362" y2="2452" stroke="#E2E8F0"/>
+    <text x="215" y="2472" fill="#004182" font-family="Inter, sans-serif" font-size="10" font-weight="600">Servant Leadership</text>
+
+    <!-- Row 3 -->
+    <rect x="16" y="2504" width="171" height="168" rx="16" fill="#FFFFFF" stroke="#1B2D5B" stroke-opacity="0.1"/>
+    <rect x="16" y="2504" width="171" height="4" rx="2" fill="#B58C0D"/>
+    <rect x="28" y="2520" width="30" height="30" rx="8" fill="#FEF3C7"/>
+    <text x="175" y="2538" fill="#B58C0D" font-family="Inter, sans-serif" font-size="9.5" font-weight="700" text-anchor="end">TRACK 05</text>
+    <text x="28" y="2572" fill="#004182" font-family="Georgia, serif" font-size="16" font-weight="700">Business</text>
+    <text x="28" y="2594" fill="#4E5D78" font-family="Inter, sans-serif" font-size="10.5">Entrepreneurship,</text>
+    <text x="28" y="2610" fill="#4E5D78" font-family="Inter, sans-serif" font-size="10.5">finance &amp; stewardship.</text>
+    <line x1="28" y1="2634" x2="175" y2="2634" stroke="#E2E8F0"/>
+    <text x="28" y="2654" fill="#004182" font-family="Inter, sans-serif" font-size="10" font-weight="600">Ethical Finance</text>
+
+    <rect x="203" y="2504" width="171" height="168" rx="16" fill="#FFFFFF" stroke="#1B2D5B" stroke-opacity="0.1"/>
+    <rect x="203" y="2504" width="171" height="4" rx="2" fill="#004182"/>
+    <rect x="215" y="2520" width="30" height="30" rx="8" fill="#EEF2F9"/>
+    <text x="362" y="2538" fill="#B58C0D" font-family="Inter, sans-serif" font-size="9.5" font-weight="700" text-anchor="end">TRACK 06</text>
+    <text x="215" y="2572" fill="#004182" font-family="Georgia, serif" font-size="16" font-weight="700">Institutions</text>
+    <text x="215" y="2594" fill="#4E5D78" font-family="Inter, sans-serif" font-size="10.5">Education quality,</text>
+    <text x="215" y="2610" fill="#4E5D78" font-family="Inter, sans-serif" font-size="10.5">audit &amp; curriculum.</text>
+    <line x1="215" y1="2634" x2="362" y2="2634" stroke="#E2E8F0"/>
+    <text x="215" y="2654" fill="#004182" font-family="Inter, sans-serif" font-size="10" font-weight="600">Audit &amp; QA</text>
+
+    <!-- Row 4 -->
+    <rect x="16" y="2686" width="171" height="168" rx="16" fill="#FFFFFF" stroke="#1B2D5B" stroke-opacity="0.1"/>
+    <rect x="16" y="2686" width="171" height="4" rx="2" fill="#B58C0D"/>
+    <rect x="28" y="2702" width="30" height="30" rx="8" fill="#FEF3C7"/>
+    <text x="175" y="2720" fill="#B58C0D" font-family="Inter, sans-serif" font-size="9.5" font-weight="700" text-anchor="end">TRACK 07</text>
+    <text x="28" y="2754" fill="#004182" font-family="Georgia, serif" font-size="16" font-weight="700">Religion</text>
+    <text x="28" y="2776" fill="#4E5D78" font-family="Inter, sans-serif" font-size="10.5">Evangelism, tradition</text>
+    <text x="28" y="2792" fill="#4E5D78" font-family="Inter, sans-serif" font-size="10.5">&amp; biblical theology.</text>
+    <line x1="28" y1="2816" x2="175" y2="2816" stroke="#E2E8F0"/>
+    <text x="28" y="2836" fill="#004182" font-family="Inter, sans-serif" font-size="10" font-weight="600">Biblical Ethics</text>
+
+    <rect x="203" y="2686" width="171" height="168" rx="16" fill="#FFFFFF" stroke="#1B2D5B" stroke-opacity="0.1"/>
+    <rect x="203" y="2686" width="171" height="4" rx="2" fill="#004182"/>
+    <rect x="215" y="2702" width="30" height="30" rx="8" fill="#EEF2F9"/>
+    <text x="362" y="2720" fill="#B58C0D" font-family="Inter, sans-serif" font-size="9.5" font-weight="700" text-anchor="end">TRACK 08</text>
+    <text x="215" y="2754" fill="#004182" font-family="Georgia, serif" font-size="16" font-weight="700">Politics</text>
+    <text x="215" y="2776" fill="#4E5D78" font-family="Inter, sans-serif" font-size="10.5">Governance, policy</text>
+    <text x="215" y="2792" fill="#4E5D78" font-family="Inter, sans-serif" font-size="10.5">&amp; social justice.</text>
+    <line x1="215" y1="2816" x2="362" y2="2816" stroke="#E2E8F0"/>
+    <text x="215" y="2836" fill="#004182" font-family="Inter, sans-serif" font-size="10" font-weight="600">Social Justice</text>
+  </g>
+
+  <!-- ================================================================= -->
+  <!-- 4. CONVENER'S DESK & LEADERSHIP (y = 2896..5006)                 -->
+  <!-- ================================================================= -->
+  <g id="04_Mobile_Convener_and_Leadership">
+    <rect x="0" y="2896" width="390" height="2110" fill="#0B2545"/>
+
+    <rect id="PHOTO_M_WELCOME_NWOSU" x="16" y="2934" width="358" height="280" rx="16" fill="#121F40" stroke="#EEC25A" stroke-opacity="0.4"/>
+    <text x="16" y="3258" fill="#EEC25A" font-family="Georgia, serif" font-size="44">“</text>
+    <text x="16" y="3286" fill="#FFFFFF" font-family="Georgia, serif" font-size="25" font-weight="700">From the Convener’s Desk</text>
+
+    <text x="16" y="3318" fill="#E2E8F0" font-family="Inter, sans-serif" font-size="12.5">Organized by the Institute for Faith Integration in</text>
+    <text x="16" y="3338" fill="#E2E8F0" font-family="Inter, sans-serif" font-size="12.5">Institutional Effectiveness at Babcock University,</text>
+    <text x="16" y="3358" fill="#E2E8F0" font-family="Inter, sans-serif" font-size="12.5">ICFI unites scholarship, ethics, and living faith.</text>
+
+    <text x="16" y="3396" fill="#EEC25A" font-family="Georgia, serif" font-size="16" font-style="italic">“Positioned as a tower and edifice of truth</text>
+    <text x="16" y="3418" fill="#EEC25A" font-family="Georgia, serif" font-size="16" font-style="italic">beyond campus walls — Isaiah 58:12.”</text>
+
+    <line x1="16" y1="3440" x2="374" y2="3440" stroke="#FFFFFF" stroke-opacity="0.18"/>
+    <text x="16" y="3464" fill="#FFFFFF" font-family="Georgia, serif" font-size="16" font-weight="700">Prof. Constance C. Nwosu</text>
+    <text x="16" y="3484" fill="#CBD5E1" font-family="Inter, sans-serif" font-size="11">Organizer &amp; Convener • AVP, Institutional Effectiveness</text>
+    <text x="16" y="3502" fill="#EEC25A" font-family="Inter, sans-serif" font-size="11" font-weight="600">+234 806 463 8207 • +234 805 829 9031</text>
+
+    <!-- Leadership Stack -->
+    <line x1="16" y1="3528" x2="374" y2="3528" stroke="#FFFFFF" stroke-opacity="0.16"/>
+    <text x="16" y="3560" fill="#EEC25A" font-family="Inter, sans-serif" font-size="10.5" font-weight="700" letter-spacing="1.2">CONFERENCE LEADERSHIP</text>
+    <text x="16" y="3588" fill="#FFFFFF" font-family="Georgia, serif" font-size="22" font-weight="700">Chief Host, Host &amp; Convener</text>
+
+    <!-- Chief Host Card -->
+    <rect x="16" y="3610" width="358" height="296" rx="16" fill="#FFFFFF" fill-opacity="0.06" stroke="#EEC25A" stroke-opacity="0.35"/>
+    <rect id="PHOTO_M_HOST_VC" x="28" y="3622" width="334" height="198" rx="12" fill="#1E3A8A"/>
+    <rect x="28" y="3832" width="90" height="20" rx="10" fill="#EEC25A" fill-opacity="0.22"/>
+    <text x="73" y="3846" fill="#EEC25A" font-family="Inter, sans-serif" font-size="9.5" font-weight="700" text-anchor="middle">CHIEF HOST</text>
+    <text x="28" y="3874" fill="#FFFFFF" font-family="Georgia, serif" font-size="17" font-weight="700">Prof. Afolarin Olutunde Ojewole</text>
+    <text x="28" y="3894" fill="#CBD5E1" font-family="Inter, sans-serif" font-size="11">President / Vice Chancellor, Babcock University</text>
+
+    <!-- Host Card -->
+    <rect x="16" y="3920" width="358" height="296" rx="16" fill="#FFFFFF" fill-opacity="0.06" stroke="#FFFFFF" stroke-opacity="0.18"/>
+    <rect id="PHOTO_M_HOST_AMANZE" x="28" y="3932" width="334" height="198" rx="12" fill="#1E3A8A"/>
+    <rect x="28" y="4142" width="58" height="20" rx="10" fill="#FFFFFF" fill-opacity="0.14"/>
+    <text x="57" y="4156" fill="#EEC25A" font-family="Inter, sans-serif" font-size="9.5" font-weight="700" text-anchor="middle">HOST</text>
+    <text x="28" y="4184" fill="#FFFFFF" font-family="Georgia, serif" font-size="18" font-weight="700">Prof. Jonathan C. Nwosu</text>
+    <text x="28" y="4204" fill="#CBD5E1" font-family="Inter, sans-serif" font-size="11">Senior Vice President, Babcock University</text>
+
+    <!-- Convener Card -->
+    <rect x="16" y="4230" width="358" height="296" rx="16" fill="#FFFFFF" fill-opacity="0.06" stroke="#FFFFFF" stroke-opacity="0.18"/>
+    <rect id="PHOTO_M_HOST_NWOSU" x="28" y="4242" width="334" height="198" rx="12" fill="#1E3A8A"/>
+    <rect x="28" y="4452" width="144" height="20" rx="10" fill="#FFFFFF" fill-opacity="0.14"/>
+    <text x="100" y="4466" fill="#EEC25A" font-family="Inter, sans-serif" font-size="9.5" font-weight="700" text-anchor="middle">ORGANIZER &amp; CONVENER</text>
+    <text x="28" y="4494" fill="#FFFFFF" font-family="Georgia, serif" font-size="18" font-weight="700">Prof. Constance C. Nwosu</text>
+    <text x="28" y="4514" fill="#CBD5E1" font-family="Inter, sans-serif" font-size="11">AVP, Institutional Effectiveness • Babcock Univ.</text>
+
+    <!-- Distinguished Keynote Scholars 2x2 -->
+    <text x="16" y="4566" fill="#FFFFFF" font-family="Georgia, serif" font-size="19" font-weight="700">Distinguished Keynote Scholars</text>
+
+    <rect x="16" y="4584" width="171" height="186" rx="14" fill="#FFFFFF" fill-opacity="0.06" stroke="#FFFFFF" stroke-opacity="0.16"/>
+    <rect id="PHOTO_M_PAST_TAYLOR" x="69" y="4600" width="64" height="64" rx="32" fill="#1E3A8A" stroke="#EEC25A"/>
+    <text x="101" y="4684" fill="#EEC25A" font-family="Inter, sans-serif" font-size="9.5" font-weight="700" text-anchor="middle">USA</text>
+    <text x="101" y="4704" fill="#FFFFFF" font-family="Inter, sans-serif" font-size="11.5" font-weight="700" text-anchor="middle">Prof. John Wesley Taylor V</text>
+    <text x="101" y="4724" fill="#CBD5E1" font-family="Inter, sans-serif" font-size="10" text-anchor="middle">Assoc. Education Director</text>
+    <text x="101" y="4739" fill="#CBD5E1" font-family="Inter, sans-serif" font-size="10" text-anchor="middle">General Conference SDA</text>
+
+    <rect x="203" y="4584" width="171" height="186" rx="14" fill="#FFFFFF" fill-opacity="0.06" stroke="#FFFFFF" stroke-opacity="0.16"/>
+    <rect id="PHOTO_M_PAST_BALISASA" x="256" y="4600" width="64" height="64" rx="32" fill="#1E3A8A" stroke="#FFFFFF" stroke-opacity="0.35"/>
+    <text x="288" y="4684" fill="#EEC25A" font-family="Inter, sans-serif" font-size="9.5" font-weight="700" text-anchor="middle">CÔTE D’IVOIRE</text>
+    <text x="288" y="4704" fill="#FFFFFF" font-family="Inter, sans-serif" font-size="11.5" font-weight="700" text-anchor="middle">Dr. Juvenal Balisasa</text>
+    <text x="288" y="4724" fill="#CBD5E1" font-family="Inter, sans-serif" font-size="10" text-anchor="middle">Education Director, WAD</text>
+    <text x="288" y="4739" fill="#CBD5E1" font-family="Inter, sans-serif" font-size="10" text-anchor="middle">West-Central Africa</text>
+
+    <rect x="16" y="4784" width="171" height="186" rx="14" fill="#FFFFFF" fill-opacity="0.06" stroke="#FFFFFF" stroke-opacity="0.16"/>
+    <rect id="PHOTO_M_PAST_FISHER" x="69" y="4800" width="64" height="64" rx="32" fill="#1E3A8A" stroke="#FFFFFF" stroke-opacity="0.35"/>
+    <text x="101" y="4884" fill="#EEC25A" font-family="Inter, sans-serif" font-size="9.5" font-weight="700" text-anchor="middle">AUSTRALIA</text>
+    <text x="101" y="4904" fill="#FFFFFF" font-family="Inter, sans-serif" font-size="11.5" font-weight="700" text-anchor="middle">Mrs. Barbara Fisher</text>
+    <text x="101" y="4924" fill="#CBD5E1" font-family="Inter, sans-serif" font-size="10" text-anchor="middle">Faith Integration &amp;</text>
+    <text x="101" y="4939" fill="#CBD5E1" font-family="Inter, sans-serif" font-size="10" text-anchor="middle">Curriculum Specialist</text>
+
+    <rect x="203" y="4784" width="171" height="186" rx="14" fill="#FFFFFF" fill-opacity="0.06" stroke="#FFFFFF" stroke-opacity="0.16"/>
+    <rect id="PHOTO_M_PAST_OYEDEJI" x="256" y="4800" width="64" height="64" rx="32" fill="#1E3A8A" stroke="#FFFFFF" stroke-opacity="0.35"/>
+    <text x="288" y="4884" fill="#EEC25A" font-family="Inter, sans-serif" font-size="9.5" font-weight="700" text-anchor="middle">NIGERIA</text>
+    <text x="288" y="4904" fill="#FFFFFF" font-family="Inter, sans-serif" font-size="11.5" font-weight="700" text-anchor="middle">Dr. Oluwole Oyedeji</text>
+    <text x="288" y="4924" fill="#CBD5E1" font-family="Inter, sans-serif" font-size="10" text-anchor="middle">Consultant Geoscientist</text>
+    <text x="288" y="4939" fill="#CBD5E1" font-family="Inter, sans-serif" font-size="10" text-anchor="middle">Abuja, Nigeria</text>
+  </g>
+
+  <!-- ================================================================= -->
+  <!-- 5. FAITH INTEGRATION & CORE VALUES ("GRACE") (y = 5006..5690)     -->
+  <!-- ================================================================= -->
+  <g id="05_Mobile_Grace_Core_Values">
+    <rect x="0" y="5006" width="390" height="684" fill="#F2F2F2"/>
+    <text x="16" y="5050" fill="#1B2D5B" font-family="Georgia, serif" font-size="22" font-weight="700">Faith Integration &amp; Core Values</text>
+    <rect x="16" y="5062" width="48" height="4" rx="2" fill="#CBD5E1"/>
+
+    <!-- Row 1: E | I -->
+    <rect x="16" y="5084" width="171" height="148" rx="14" fill="#FFFFFF"/>
+    <text x="30" y="5124" fill="#003068" font-family="Georgia, serif" font-size="28" font-weight="700">E</text>
+    <rect x="30" y="5134" width="22" height="2" fill="#C47A2C"/>
+    <text x="30" y="5156" fill="#004182" font-family="Inter, sans-serif" font-size="12.5" font-weight="700">Excellence</text>
+    <text x="30" y="5176" fill="#4E5D78" font-family="Inter, sans-serif" font-size="10.5">First-class scholarship &amp;</text>
+    <text x="30" y="5192" fill="#4E5D78" font-family="Inter, sans-serif" font-size="10.5">holistic human capacity.</text>
+
+    <rect x="203" y="5084" width="171" height="148" rx="14" fill="#FFFFFF"/>
+    <text x="217" y="5124" fill="#003068" font-family="Georgia, serif" font-size="28" font-weight="700">I</text>
+    <rect x="217" y="5134" width="22" height="2" fill="#C47A2C"/>
+    <text x="217" y="5156" fill="#004182" font-family="Inter, sans-serif" font-size="12.5" font-weight="700">Integrity</text>
+    <text x="217" y="5176" fill="#4E5D78" font-family="Inter, sans-serif" font-size="10.5">Biblical ethics as bedrock</text>
+    <text x="217" y="5192" fill="#4E5D78" font-family="Inter, sans-serif" font-size="10.5">of academic honesty.</text>
+
+    <!-- Row 2: A | S -->
+    <rect x="16" y="5244" width="171" height="148" rx="14" fill="#FFFFFF"/>
+    <text x="30" y="5284" fill="#003068" font-family="Georgia, serif" font-size="28" font-weight="700">A</text>
+    <rect x="30" y="5294" width="22" height="2" fill="#C47A2C"/>
+    <text x="30" y="5316" fill="#004182" font-family="Inter, sans-serif" font-size="12.5" font-weight="700">Accountability</text>
+    <text x="30" y="5336" fill="#4E5D78" font-family="Inter, sans-serif" font-size="10.5">Responsible governance &amp;</text>
+    <text x="30" y="5352" fill="#4E5D78" font-family="Inter, sans-serif" font-size="10.5">institutional care.</text>
+
+    <rect x="203" y="5244" width="171" height="148" rx="14" fill="#FFFFFF"/>
+    <text x="217" y="5284" fill="#003068" font-family="Georgia, serif" font-size="28" font-weight="700">S</text>
+    <rect x="217" y="5294" width="22" height="2" fill="#C47A2C"/>
+    <text x="217" y="5316" fill="#004182" font-family="Inter, sans-serif" font-size="12.5" font-weight="700">Servant Leadership</text>
+    <text x="217" y="5336" fill="#4E5D78" font-family="Inter, sans-serif" font-size="10.5">Leaders who serve</text>
+    <text x="217" y="5352" fill="#4E5D78" font-family="Inter, sans-serif" font-size="10.5">with compassion.</text>
+
+    <!-- Row 3: T | H -->
+    <rect x="16" y="5404" width="171" height="148" rx="14" fill="#FFFFFF"/>
+    <text x="30" y="5444" fill="#003068" font-family="Georgia, serif" font-size="28" font-weight="700">T</text>
+    <rect x="30" y="5454" width="22" height="2" fill="#C47A2C"/>
+    <text x="30" y="5476" fill="#004182" font-family="Inter, sans-serif" font-size="12.5" font-weight="700">Team Spirit</text>
+    <text x="30" y="5496" fill="#4E5D78" font-family="Inter, sans-serif" font-size="10.5">Uniting campus scholars</text>
+    <text x="30" y="5512" fill="#4E5D78" font-family="Inter, sans-serif" font-size="10.5">and global delegates.</text>
+
+    <rect x="203" y="5404" width="171" height="148" rx="14" fill="#FFFFFF"/>
+    <text x="217" y="5444" fill="#003068" font-family="Georgia, serif" font-size="28" font-weight="700">H</text>
+    <rect x="217" y="5454" width="22" height="2" fill="#C47A2C"/>
+    <text x="217" y="5476" fill="#004182" font-family="Inter, sans-serif" font-size="12.5" font-weight="700">SDA Heritage</text>
+    <text x="217" y="5496" fill="#4E5D78" font-family="Inter, sans-serif" font-size="10.5">Seventh-day Adventist</text>
+    <text x="217" y="5512" fill="#4E5D78" font-family="Inter, sans-serif" font-size="10.5">Isaiah 58:12 mandate.</text>
+
+    <!-- Vision & Mission Stacked Pills -->
+    <rect x="16" y="5572" width="358" height="44" rx="10" fill="#FFFFFF"/>
+    <text x="30" y="5598" fill="#004182" font-family="Inter, sans-serif" font-size="10.5" font-weight="700">VISION: First-class SDA university building servant-leaders.</text>
+
+    <rect x="16" y="5626" width="358" height="44" rx="10" fill="#FFFFFF"/>
+    <text x="30" y="5652" fill="#B98D3B" font-family="Inter, sans-serif" font-size="10.5" font-weight="700">MISSION: Christian education transforming lives &amp; society.</text>
+  </g>
+
+  <!-- ================================================================= -->
+  <!-- 6. WELCOME ROADMAP & 6-DAY PROGRAMME (y = 5690..6920)             -->
+  <!-- ================================================================= -->
+  <g id="06_Mobile_Welcome_Next_Schedule">
+    <rect x="0" y="5690" width="390" height="1230" fill="#EEF2F9"/>
+
+    <rect x="16" y="5724" width="214" height="26" rx="13" fill="#FFFFFF" stroke="#1B2D5B" stroke-opacity="0.1"/>
+    <text x="123" y="5741" fill="#4E5D78" font-family="Inter, sans-serif" font-size="10" font-weight="600" text-anchor="middle">Conference Roadmap • 2026 / 2027</text>
+
+    <text x="16" y="5786" fill="#1B2D5B" font-family="Georgia, serif" font-size="28" font-weight="700">Welcome to ICFI 2027.</text>
+    <text x="16" y="5820" fill="#C8A951" font-family="Georgia, serif" font-size="28" font-weight="700">Here’s what’s next.</text>
+    <text x="16" y="5848" fill="#4E5D78" font-family="Inter, sans-serif" font-size="12">Key dates, submission guide &amp; daily hybrid schedule.</text>
+
+    <rect x="16" y="5868" width="132" height="38" rx="19" fill="#1B2D5B"/>
+    <text x="82" y="5891" fill="#FFFFFF" font-family="Inter, sans-serif" font-size="12" font-weight="700" text-anchor="middle">Start here →</text>
+
+    <!-- 4 Key Date Cards -->
+    <rect x="16" y="5924" width="358" height="66" rx="14" fill="#FFFFFF" stroke="#1B2D5B" stroke-opacity="0.1"/>
+    <rect x="28" y="5939" width="36" height="36" rx="9" fill="#EEF2F9"/>
+    <text x="76" y="5953" fill="#1B2D5B" font-family="Inter, sans-serif" font-size="12.5" font-weight="700">Nov 02, 2026</text>
+    <text x="76" y="5972" fill="#4E5D78" font-family="Inter, sans-serif" font-size="11">Registration &amp; Seat Booking Opens</text>
+
+    <rect x="16" y="6002" width="358" height="66" rx="14" fill="#FFFFFF" stroke="#C8A951" stroke-width="2"/>
+    <rect x="28" y="6017" width="36" height="36" rx="9" fill="#FEF3C7"/>
+    <text x="76" y="6031" fill="#1B2D5B" font-family="Inter, sans-serif" font-size="12.5" font-weight="700">Mar 24, 2027 • Priority</text>
+    <text x="76" y="6050" fill="#4E5D78" font-family="Inter, sans-serif" font-size="11">Abstract Deadline (icfi@babcock.edu.ng)</text>
+
+    <rect x="16" y="6080" width="358" height="66" rx="14" fill="#FFFFFF" stroke="#1B2D5B" stroke-opacity="0.1"/>
+    <rect x="28" y="6095" width="36" height="36" rx="9" fill="#EEF2F9"/>
+    <text x="76" y="6109" fill="#1B2D5B" font-family="Inter, sans-serif" font-size="12.5" font-weight="700">Apr 23, 2027</text>
+    <text x="76" y="6128" fill="#4E5D78" font-family="Inter, sans-serif" font-size="11">Early Bird Closes (Members keep ₦40k)</text>
+
+    <rect x="16" y="6158" width="358" height="66" rx="14" fill="#FFFFFF" stroke="#1B2D5B" stroke-opacity="0.1"/>
+    <rect x="28" y="6173" width="36" height="36" rx="9" fill="#EEF2F9"/>
+    <text x="76" y="6187" fill="#1B2D5B" font-family="Inter, sans-serif" font-size="12.5" font-weight="700">May 09 &amp; May 31, 2027</text>
+    <text x="76" y="6206" fill="#4E5D78" font-family="Inter, sans-serif" font-size="11">Full Paper Due (May 9) • Final Seat (May 31)</text>
+
+    <!-- 6-Day Programme Card -->
+    <rect x="16" y="6244" width="358" height="320" rx="18" fill="#FFFFFF" stroke="#1B2D5B" stroke-opacity="0.1"/>
+    <text x="32" y="6278" fill="#1B2D5B" font-family="Georgia, serif" font-size="19" font-weight="700">6-Day Hybrid Programme</text>
+
+    <rect x="32" y="6294" width="60" height="26" rx="13" fill="#1B2D5B"/>
+    <text x="62" y="6311" fill="#FFFFFF" font-family="Inter, sans-serif" font-size="10.5" font-weight="700" text-anchor="middle">Day 1</text>
+    <rect x="100" y="6294" width="60" height="26" rx="13" fill="#EEF2F9"/>
+    <text x="130" y="6311" fill="#1B2D5B" font-family="Inter, sans-serif" font-size="10.5" font-weight="600" text-anchor="middle">Day 2</text>
+    <rect x="168" y="6294" width="60" height="26" rx="13" fill="#EEF2F9"/>
+    <text x="198" y="6311" fill="#1B2D5B" font-family="Inter, sans-serif" font-size="10.5" font-weight="600" text-anchor="middle">Day 3</text>
+    <rect x="236" y="6294" width="60" height="26" rx="13" fill="#EEF2F9"/>
+    <text x="266" y="6311" fill="#1B2D5B" font-family="Inter, sans-serif" font-size="10.5" font-weight="600" text-anchor="middle">Day 4+</text>
+
+    <line x1="32" y1="6336" x2="358" y2="6336" stroke="#E2E8F0"/>
+    <text x="32" y="6362" fill="#B98D3B" font-family="Inter, sans-serif" font-size="11" font-weight="700">09:00 – 13:00</text>
+    <text x="32" y="6382" fill="#1B2D5B" font-family="Inter, sans-serif" font-size="13" font-weight="700">Arrival, Registration &amp; Kit Collection</text>
+    <text x="32" y="6400" fill="#4E5D78" font-family="Inter, sans-serif" font-size="11">Campus check-in &amp; virtual welcome desk.</text>
+
+    <line x1="32" y1="6416" x2="358" y2="6416" stroke="#E2E8F0"/>
+    <text x="32" y="6440" fill="#B98D3B" font-family="Inter, sans-serif" font-size="11" font-weight="700">14:00 – 17:00</text>
+    <text x="32" y="6460" fill="#1B2D5B" font-family="Inter, sans-serif" font-size="13" font-weight="700">Opening Ceremony &amp; Theme Keynote</text>
+    <text x="32" y="6478" fill="#4E5D78" font-family="Inter, sans-serif" font-size="11">Chief Host Prof. Ojewole, Host Prof. J. C. Nwosu.</text>
+
+    <line x1="32" y1="6494" x2="358" y2="6494" stroke="#E2E8F0"/>
+    <text x="32" y="6518" fill="#B98D3B" font-family="Inter, sans-serif" font-size="11" font-weight="700">18:00 – 19:30</text>
+    <text x="32" y="6538" fill="#1B2D5B" font-family="Inter, sans-serif" font-size="13" font-weight="700">Welcome Fellowship &amp; Dinner</text>
+
+    <!-- Abstract Studio Card -->
+    <rect x="16" y="6582" width="358" height="310" rx="18" fill="#FFFFFF" stroke="#1B2D5B" stroke-opacity="0.1"/>
+    <rect id="PHOTO_M_SUBMIT_SCHOLAR" x="30" y="6596" width="330" height="140" rx="12" fill="#CBD5E1"/>
+    <text x="30" y="6762" fill="#B58C0D" font-family="Inter, sans-serif" font-size="10" font-weight="700" letter-spacing="1">ABSTRACT GUIDELINES</text>
+    <text x="30" y="6788" fill="#1B2D5B" font-family="Georgia, serif" font-size="18" font-weight="700">Submit Your Manuscript</text>
+    <text x="30" y="6812" fill="#4E5D78" font-family="Inter, sans-serif" font-size="11">Max 250 words · Times New Roman 12pt (.doc/.docx)</text>
+    <rect x="30" y="6832" width="224" height="38" rx="19" fill="#1B2D5B"/>
+    <text x="142" y="6855" fill="#FFFFFF" font-family="Inter, sans-serif" font-size="11.5" font-weight="700" text-anchor="middle">Email icfi@babcock.edu.ng →</text>
+  </g>
+
+  <!-- ================================================================= -->
+  <!-- 7. REGISTRATION PASSES & BANKING (y = 6920..8266)                 -->
+  <!-- ================================================================= -->
+  <g id="07_Mobile_Registration_Passes">
+    <text x="16" y="6962" fill="#B98D3B" font-family="Inter, sans-serif" font-size="10.5" font-weight="700" letter-spacing="1.2">REGISTRATION &amp; FEES</text>
+    <text x="16" y="6994" fill="#004182" font-family="Georgia, serif" font-size="20.5" font-weight="700">Simple, Transparent Pass Options</text>
+
+    <rect x="16" y="7012" width="218" height="36" rx="18" fill="#EEF2F9" stroke="#1B2D5B" stroke-opacity="0.1"/>
+    <rect x="20" y="7016" width="104" height="28" rx="14" fill="#1B2D5B"/>
+    <text x="72" y="7034" fill="#FFFFFF" font-family="Inter, sans-serif" font-size="10.5" font-weight="700" text-anchor="middle">Local (₦ NGN)</text>
+    <text x="176" y="7034" fill="#1B2D5B" font-family="Inter, sans-serif" font-size="10.5" font-weight="600" text-anchor="middle">Intl ($ USD)</text>
+
+    <!-- Pass 1: Standard -->
+    <rect x="16" y="7068" width="358" height="302" rx="18" fill="#FFFFFF" stroke="#1B2D5B" stroke-opacity="0.12"/>
+    <text x="36" y="7100" fill="#4E5D78" font-family="Inter, sans-serif" font-size="10" font-weight="700">IN-PERSON ATTENDANCE</text>
+    <text x="36" y="7128" fill="#004182" font-family="Georgia, serif" font-size="20" font-weight="700">Conference Fee</text>
+    <text x="36" y="7172" fill="#004182" font-family="Georgia, serif" font-size="32" font-weight="700">₦50,000</text>
+    <text x="170" y="7170" fill="#4E5D78" font-family="Inter, sans-serif" font-size="11.5">($100 International)</text>
+    <line x1="36" y1="7190" x2="354" y2="7190" stroke="#E2E8F0"/>
+    <text x="36" y="7220" fill="#4E5D78" font-family="Inter, sans-serif" font-size="11.5">✓ Full plenary &amp; parallel track sessions</text>
+    <text x="36" y="7244" fill="#4E5D78" font-family="Inter, sans-serif" font-size="11.5">✓ Delegate kit, folder &amp; daily lunch</text>
+    <text x="36" y="7268" fill="#4E5D78" font-family="Inter, sans-serif" font-size="11.5">✓ Free IJFI publication (peer-reviewed)</text>
+    <rect x="36" y="7304" width="318" height="42" rx="21" fill="#EEF2F9"/>
+    <text x="195" y="7329" fill="#1B2D5B" font-family="Inter, sans-serif" font-size="12" font-weight="700" text-anchor="middle">Register Standard Seat</text>
+
+    <!-- Pass 2: Early Bird Highlight -->
+    <rect x="16" y="7386" width="358" height="302" rx="18" fill="#0B2545" stroke="#EEC25A" stroke-width="2"/>
+    <text x="36" y="7418" fill="#EEC25A" font-family="Inter, sans-serif" font-size="10" font-weight="700">★ UNTIL APRIL 23, 2027</text>
+    <text x="36" y="7446" fill="#FFFFFF" font-family="Georgia, serif" font-size="20" font-weight="700">Early Bird &amp; Member</text>
+    <text x="36" y="7490" fill="#EEC25A" font-family="Georgia, serif" font-size="32" font-weight="700">₦40,000</text>
+    <text x="170" y="7488" fill="#CBD5E1" font-family="Inter, sans-serif" font-size="11.5">($80 International)</text>
+    <line x1="36" y1="7508" x2="354" y2="7508" stroke="#FFFFFF" stroke-opacity="0.18"/>
+    <text x="36" y="7538" fill="#E2E8F0" font-family="Inter, sans-serif" font-size="11.5">✓ Full delegate privileges &amp; meals</text>
+    <text x="36" y="7562" fill="#E2E8F0" font-family="Inter, sans-serif" font-size="11.5">✓ Free IJFI peer-reviewed publication</text>
+    <text x="36" y="7586" fill="#EEC25A" font-family="Inter, sans-serif" font-size="11.5" font-weight="700">★ ₦10,000 off for Registered Members</text>
+    <rect x="36" y="7622" width="318" height="42" rx="21" fill="#EEC25A"/>
+    <text x="195" y="7647" fill="#0B2545" font-family="Inter, sans-serif" font-size="12" font-weight="700" text-anchor="middle">Reserve Early Bird Seat →</text>
+
+    <!-- Pass 3: Online -->
+    <rect x="16" y="7704" width="358" height="302" rx="18" fill="#FFFFFF" stroke="#1B2D5B" stroke-opacity="0.12"/>
+    <text x="36" y="7736" fill="#4E5D78" font-family="Inter, sans-serif" font-size="10" font-weight="700">REMOTE PARTICIPATION</text>
+    <text x="36" y="7764" fill="#004182" font-family="Georgia, serif" font-size="20" font-weight="700">Online / Virtual</text>
+    <text x="36" y="7808" fill="#004182" font-family="Georgia, serif" font-size="32" font-weight="700">₦25,000</text>
+    <text x="170" y="7806" fill="#4E5D78" font-family="Inter, sans-serif" font-size="11.5">($50 International)</text>
+    <line x1="36" y1="7826" x2="354" y2="7826" stroke="#E2E8F0"/>
+    <text x="36" y="7856" fill="#4E5D78" font-family="Inter, sans-serif" font-size="11.5">✓ Live Zoom plenaries &amp; tracks</text>
+    <text x="36" y="7880" fill="#4E5D78" font-family="Inter, sans-serif" font-size="11.5">✓ Virtual paper presentation &amp; Q&amp;A</text>
+    <text x="36" y="7904" fill="#4E5D78" font-family="Inter, sans-serif" font-size="11.5">✓ Digital proceedings &amp; e-certificate</text>
+    <rect x="36" y="7940" width="318" height="42" rx="21" fill="#EEF2F9"/>
+    <text x="195" y="7965" fill="#1B2D5B" font-family="Inter, sans-serif" font-size="12" font-weight="700" text-anchor="middle">Register Online Pass</text>
+
+    <!-- Banking Stacked -->
+    <rect x="16" y="8026" width="358" height="102" rx="16" fill="#F3F6FB" stroke="#1B2D5B" stroke-opacity="0.1"/>
+    <text x="32" y="8054" fill="#B58C0D" font-family="Inter, sans-serif" font-size="9.5" font-weight="700">LOCAL TRANSFERS (NGN)</text>
+    <text x="32" y="8078" fill="#004182" font-family="Inter, sans-serif" font-size="14" font-weight="700">UBA Plc • Babcock MFB</text>
+    <text x="32" y="8100" fill="#4E5D78" font-family="Inter, sans-serif" font-size="11.5">Acct: 1020069501</text>
+    <rect x="272" y="8060" width="86" height="34" rx="17" fill="#FFFFFF" stroke="#1B2D5B" stroke-opacity="0.18"/>
+    <text x="315" y="8081" fill="#004182" font-family="Inter, sans-serif" font-size="10.5" font-weight="700" text-anchor="middle">Copy Acct</text>
+
+    <rect x="16" y="8142" width="358" height="102" rx="16" fill="#F3F6FB" stroke="#1B2D5B" stroke-opacity="0.1"/>
+    <text x="32" y="8170" fill="#B58C0D" font-family="Inter, sans-serif" font-size="9.5" font-weight="700">INTERNATIONAL TRANSFERS (USD)</text>
+    <text x="32" y="8194" fill="#004182" font-family="Inter, sans-serif" font-size="13.5" font-weight="700">GTBank • B.U-Op./Inst. For Faith</text>
+    <text x="32" y="8216" fill="#4E5D78" font-family="Inter, sans-serif" font-size="11.5">Acct: 0829898610</text>
+    <rect x="272" y="8176" width="86" height="34" rx="17" fill="#FFFFFF" stroke="#1B2D5B" stroke-opacity="0.18"/>
+    <text x="315" y="8197" fill="#004182" font-family="Inter, sans-serif" font-size="10.5" font-weight="700" text-anchor="middle">Copy Acct</text>
+  </g>
+
+  <!-- ================================================================= -->
+  <!-- 8. IJFI JOURNAL, BROADCASTS & GALLERY (y = 8266..9854)            -->
+  <!-- ================================================================= -->
+  <g id="08_Mobile_IJFI_YouTube_Gallery">
+    <rect x="0" y="8266" width="390" height="1588" fill="#EEF2F9"/>
+
+    <rect x="16" y="8300" width="218" height="26" rx="13" fill="#FFFFFF" stroke="#1B2D5B" stroke-opacity="0.1"/>
+    <circle cx="30" cy="8313" r="3.5" fill="#DC2626"/>
+    <text x="41" y="8317" fill="#1B2D5B" font-family="Inter, sans-serif" font-size="9.5" font-weight="700">OFFICIAL JOURNAL &amp; BROADCASTS</text>
+
+    <text x="16" y="8358" fill="#1B2D5B" font-family="Georgia, serif" font-size="25" font-weight="700">From our IJFI Journal &amp;</text>
+    <text x="16" y="8388" fill="#1B2D5B" font-family="Georgia, serif" font-size="25" font-weight="700">Past Conference Papers</text>
+
+    <!-- Journal Card -->
+    <rect x="16" y="8416" width="358" height="336" rx="18" fill="#FFFFFF" stroke="#1B2D5B" stroke-opacity="0.08"/>
+    <rect id="PHOTO_M_JOURNAL_BOOKS" x="16" y="8416" width="358" height="180" rx="16" fill="#CBD5E1"/>
+    <text x="32" y="8626" fill="#1B2D5B" font-family="Georgia, serif" font-size="17" font-weight="700">International Journal (IJFI)</text>
+    <text x="32" y="8650" fill="#4E5D78" font-family="Inter, sans-serif" font-size="11.5">Accepted papers qualify for free peer-reviewed</text>
+    <text x="32" y="8668" fill="#4E5D78" font-family="Inter, sans-serif" font-size="11.5">publication in IJFI. Join ICFI for year-round perks.</text>
+    <rect x="32" y="8692" width="186" height="38" rx="19" fill="#FFFFFF" stroke="#1B2D5B" stroke-opacity="0.22"/>
+    <text x="125" y="8715" fill="#1B2D5B" font-family="Inter, sans-serif" font-size="11.5" font-weight="700" text-anchor="middle">Journal Portal →</text>
+    <rect x="228" y="8692" width="130" height="38" rx="19" fill="#FFFBEB" stroke="#C8A951"/>
+    <text x="293" y="8715" fill="#004182" font-family="Inter, sans-serif" font-size="11" font-weight="700" text-anchor="middle">Join Community</text>
+
+    <!-- Video Recap Card -->
+    <rect x="16" y="8768" width="358" height="324" rx="18" fill="#FFFFFF" stroke="#1B2D5B" stroke-opacity="0.08"/>
+    <rect id="PHOTO_M_RECAP_PODIUM" x="16" y="8768" width="358" height="180" rx="16" fill="#CBD5E1"/>
+    <circle cx="195" cy="8858" r="22" fill="#DC2626"/>
+    <polygon points="189,8849 189,8867 205,8858" fill="#FFFFFF"/>
+    <text x="32" y="8978" fill="#1B2D5B" font-family="Georgia, serif" font-size="17" font-weight="700">5th ICFI Video Recap (2023)</text>
+    <text x="32" y="9002" fill="#4E5D78" font-family="Inter, sans-serif" font-size="11.5">Highlights from plenary sessions &amp; campus</text>
+    <text x="32" y="9020" fill="#4E5D78" font-family="Inter, sans-serif" font-size="11.5">fellowship at Babcock University, Ilishan-Remo.</text>
+    <rect x="32" y="9040" width="326" height="36" rx="18" fill="#FFFFFF" stroke="#1B2D5B" stroke-opacity="0.22"/>
+    <text x="195" y="9062" fill="#1B2D5B" font-family="Inter, sans-serif" font-size="11.5" font-weight="700" text-anchor="middle">Watch Video →</text>
+
+    <!-- 2x2 Archive PDFs -->
+    <rect x="16" y="9110" width="171" height="124" rx="14" fill="#FFFFFF" stroke="#1B2D5B" stroke-opacity="0.08"/>
+    <text x="28" y="9134" fill="#B58C0D" font-family="Inter, sans-serif" font-size="9" font-weight="700">SOCIAL WORK • PDF</text>
+    <text x="28" y="9156" fill="#1B2D5B" font-family="Inter, sans-serif" font-size="11.5" font-weight="700">Faith in Learning</text>
+    <rect x="28" y="9186" width="147" height="32" rx="16" fill="#FFFFFF" stroke="#1B2D5B" stroke-opacity="0.16"/>
+    <text x="101" y="9206" fill="#1B2D5B" font-family="Inter, sans-serif" font-size="10.5" font-weight="700" text-anchor="middle">Download PDF →</text>
+
+    <rect x="203" y="9110" width="171" height="124" rx="14" fill="#FFFFFF" stroke="#1B2D5B" stroke-opacity="0.08"/>
+    <text x="215" y="9134" fill="#B58C0D" font-family="Inter, sans-serif" font-size="9" font-weight="700">AUDIT &amp; QA • PDF</text>
+    <text x="215" y="9156" fill="#1B2D5B" font-family="Inter, sans-serif" font-size="11.5" font-weight="700">Audit &amp; Compliance</text>
+    <rect x="215" y="9186" width="147" height="32" rx="16" fill="#FFFFFF" stroke="#1B2D5B" stroke-opacity="0.16"/>
+    <text x="288" y="9206" fill="#1B2D5B" font-family="Inter, sans-serif" font-size="10.5" font-weight="700" text-anchor="middle">Download PDF →</text>
+
+    <rect x="16" y="9248" width="171" height="124" rx="14" fill="#FFFFFF" stroke="#1B2D5B" stroke-opacity="0.08"/>
+    <text x="28" y="9272" fill="#B58C0D" font-family="Inter, sans-serif" font-size="9" font-weight="700">EDUCATION • PDF</text>
+    <text x="28" y="9294" fill="#1B2D5B" font-family="Inter, sans-serif" font-size="11.5" font-weight="700">Quality Education</text>
+    <rect x="28" y="9324" width="147" height="32" rx="16" fill="#FFFFFF" stroke="#1B2D5B" stroke-opacity="0.16"/>
+    <text x="101" y="9344" fill="#1B2D5B" font-family="Inter, sans-serif" font-size="10.5" font-weight="700" text-anchor="middle">Download PDF →</text>
+
+    <rect x="203" y="9248" width="171" height="124" rx="14" fill="#FFFFFF" stroke="#1B2D5B" stroke-opacity="0.08"/>
+    <text x="215" y="9272" fill="#B58C0D" font-family="Inter, sans-serif" font-size="9" font-weight="700">POLICY • PDF</text>
+    <text x="215" y="9294" fill="#1B2D5B" font-family="Inter, sans-serif" font-size="11.5" font-weight="700">Matthew 22:34–40</text>
+    <rect x="215" y="9324" width="147" height="32" rx="16" fill="#FFFFFF" stroke="#1B2D5B" stroke-opacity="0.16"/>
+    <text x="288" y="9344" fill="#1B2D5B" font-family="Inter, sans-serif" font-size="10.5" font-weight="700" text-anchor="middle">Download PDF →</text>
+
+    <!-- Campus Gatherings Gallery Mosaic -->
+    <text x="16" y="9422" fill="#1B2D5B" font-family="Georgia, serif" font-size="22" font-weight="700">Campus Gatherings Gallery</text>
+    <rect x="16" y="9440" width="358" height="180" rx="16" fill="#FFFFFF" stroke="#1B2D5B" stroke-opacity="0.08"/>
+    <rect id="PHOTO_M_GAL_BIG" x="22" y="9446" width="346" height="168" rx="12" fill="#CBD5E1"/>
+
+    <rect id="PHOTO_M_GAL_1" x="16" y="9634" width="171" height="88" rx="12" fill="#CBD5E1"/>
+    <rect id="PHOTO_M_GAL_2" x="203" y="9634" width="171" height="88" rx="12" fill="#CBD5E1"/>
+    <rect id="PHOTO_M_GAL_3" x="16" y="9734" width="171" height="88" rx="12" fill="#CBD5E1"/>
+    <rect id="PHOTO_M_GAL_4" x="203" y="9734" width="171" height="88" rx="12" fill="#CBD5E1"/>
+  </g>
+
+  <!-- ================================================================= -->
+  <!-- 9. OFFICIAL 2-TIER BABCOCK NAVY & GOLD FOOTER (y = 9854..10510)   -->
+  <!-- ================================================================= -->
+  <g id="09_Mobile_Official_Babcock_Footer">
+    <rect x="0" y="9854" width="390" height="572" fill="#004182"/>
+
+    <rect id="PHOTO_M_FOOTER_COMBINED" x="16" y="9884" width="164" height="40" fill="none"/>
+
+    <text x="16" y="9948" fill="#DBEAFE" font-family="Georgia, serif" font-size="12">Babcock University integrates Christian faith side by side</text>
+    <text x="16" y="9966" fill="#DBEAFE" font-family="Georgia, serif" font-size="12">with academic excellence. The 7th ICFI advances that</text>
+    <text x="16" y="9984" fill="#DBEAFE" font-family="Georgia, serif" font-size="12">mandate globally July 27 – August 1, 2027.</text>
+
+    <text x="16" y="10028" fill="#FFFFFF" font-family="Georgia, serif" font-size="22" font-weight="700">7th Edition</text>
+    <text x="16" y="10046" fill="#BFDBFE" font-family="Inter, sans-serif" font-size="9.5" font-weight="700">BIENNIAL GATHERING</text>
+    <text x="203" y="10028" fill="#FFFFFF" font-family="Georgia, serif" font-size="22" font-weight="700">8 Fields</text>
+    <text x="203" y="10046" fill="#BFDBFE" font-family="Inter, sans-serif" font-size="9.5" font-weight="700">TRACKS &amp; IJFI</text>
+
+    <rect x="16" y="10066" width="358" height="38" rx="6" fill="#FFFFFF"/>
+    <text x="30" y="10089" fill="#64748B" font-family="Inter, sans-serif" font-size="11.5">Enter your Email</text>
+    <rect x="272" y="10066" width="102" height="38" rx="4" fill="#B98D3B"/>
+    <text x="323" y="10089" fill="#FFFFFF" font-family="Inter, sans-serif" font-size="11.5" font-weight="700" text-anchor="middle">Subscribe</text>
+
+    <line x1="16" y1="10124" x2="374" y2="10124" stroke="#FFFFFF" stroke-opacity="0.22"/>
+
+    <text x="16" y="10156" fill="#FFFFFF" font-family="Georgia, serif" font-size="14" font-weight="700">About ICFI</text>
+    <text x="16" y="10180" fill="#DBEAFE" font-family="Inter, sans-serif" font-size="11">› Convener’s Welcome</text>
+    <text x="16" y="10202" fill="#DBEAFE" font-family="Inter, sans-serif" font-size="11">› Leadership</text>
+    <text x="16" y="10224" fill="#DBEAFE" font-family="Inter, sans-serif" font-size="11">› Vision &amp; Values</text>
+
+    <text x="203" y="10156" fill="#FFFFFF" font-family="Georgia, serif" font-size="14" font-weight="700">Submissions</text>
+    <text x="203" y="10180" fill="#DBEAFE" font-family="Inter, sans-serif" font-size="11">› Eight Fields</text>
+    <text x="203" y="10202" fill="#DBEAFE" font-family="Inter, sans-serif" font-size="11">› Guidelines</text>
+    <text x="203" y="10224" fill="#DBEAFE" font-family="Inter, sans-serif" font-size="11">› IJFI Portal</text>
+
+    <text x="16" y="10272" fill="#FFFFFF" font-family="Georgia, serif" font-size="14" font-weight="700">Secretariat</text>
+    <text x="16" y="10296" fill="#DBEAFE" font-family="Inter, sans-serif" font-size="10.5">› Dr. N. Nwobi (+234 813 538 8049)</text>
+    <text x="16" y="10318" fill="#DBEAFE" font-family="Inter, sans-serif" font-size="10.5">› Dr. O. Olomojobi (08082334427)</text>
+    <text x="16" y="10340" fill="#DBEAFE" font-family="Inter, sans-serif" font-size="10.5">› Miss D. Caleb (08064007567)</text>
+
+    <text x="203" y="10272" fill="#FFFFFF" font-family="Georgia, serif" font-size="14" font-weight="700">Archive</text>
+    <text x="203" y="10296" fill="#DBEAFE" font-family="Inter, sans-serif" font-size="10.5">› icfi@babcock.edu.ng</text>
+    <text x="203" y="10318" fill="#DBEAFE" font-family="Inter, sans-serif" font-size="10.5">› 3rd ICFI (2019)</text>
+    <text x="203" y="10340" fill="#DBEAFE" font-family="Inter, sans-serif" font-size="10.5">› 2nd ICFI (2017)</text>
+
+    <!-- Bottom Gold Copyright Bar -->
+    <rect x="0" y="10426" width="390" height="84" fill="#B98D3B"/>
+    <text x="16" y="10452" fill="#FFFFFF" font-family="Inter, sans-serif" font-size="10.5" font-weight="700">Copyrights © 2027 Babcock University. All rights reserved</text>
+    <rect x="16" y="10466" width="110" height="28" rx="4" stroke="#FFFFFF" stroke-opacity="0.5"/>
+    <text x="71" y="10484" fill="#FFFFFF" font-family="Inter, sans-serif" font-size="10.5" font-weight="700" text-anchor="middle">Call for Papers</text>
+    <rect x="136" y="10466" width="110" height="28" rx="4" stroke="#FFFFFF" stroke-opacity="0.5"/>
+    <text x="191" y="10484" fill="#FFFFFF" font-family="Inter, sans-serif" font-size="10.5" font-weight="700" text-anchor="middle">YouTube Recap</text>
+  </g>
+</svg>
+'''
+
+with open("ICFI_2027_Mobile_Responsive_Design.svg", "w", encoding="utf-8") as f:
+    f.write(SVG_MOBILE)
+print(f"Wrote ICFI_2027_Mobile_Responsive_Design.svg: {len(SVG_MOBILE)} bytes")

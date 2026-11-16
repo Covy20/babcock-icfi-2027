@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>7th International Conference for Faith Integration (ICFI 2027) | Babcock University</title>
+  <link rel="icon" href="img/logo_icfi.jpg">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://api.fontshare.com/v2/css?f[]=sentient@400,500,600,700,700i&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            bu: {
+              navy: '#004182',
+              navyDark: '#003068',
+              band: '#0b2545',
+              canonical: '#1B2D5B',
+              canonicalDark: '#121F40',
+              gold: '#B58C0D',
+              goldLight: '#cfa416',
+              goldBand: '#b98d3b',
+              goldAccent: '#eec25a',
+              goldCanonical: '#C8A951',
+              goldContrast: '#7A5C00',
+              bronze: '#c47a2c',
+              blue: '#0048E0',
+              mist: '#eef2f9',
+              tint: '#f3f6fb',
+              muted: '#4e5d78',
+            }
+          },
+          fontFamily: {
+            serif: ['Sentient', 'Georgia', 'serif'],
+            sans: ['DM Sans', 'Inter', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    :root {
+      interpolate-size: allow-keywords;
+      --bu-navy: #004182;
+      --bu-navy-dark: #003068;
+      --bu-band: #0b2545;
+      --bu-canonical: #1B2D5B;
+      --bu-gold: #B58C0D;
+      --bu-gold-light: #cfa416;
+      --bu-band-mist: #eef2f9;
+      --bu-border: rgba(27, 45, 91, 0.08);
+    }
+    body {
+      font-family: 'DM Sans', 'Inter', system-ui, -apple-system, sans-serif;
+      background-color: #ffffff;
+      color: #1B2D5B;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+    h1, h2, h3 {
+      font-family: 'Sentient', Georgia, serif;
+      text-wrap: balance;
+    }
+    p, blockquote {
+      text-wrap: pretty;
+    }
+    .bu-hero-bg {
+      background: linear-gradient(135deg, #cde2fe 0%, #e4f0fe 55%, #f2f7ff 100%);
+    }
+    .bu-hero-title {
+      font-size: clamp(2.15rem, 1.4rem + 2.4vw, 3.35rem);
+      line-height: 1.1;
+    }
+    .bu-nav-link {
+      position: relative;
+      padding: 8px 10px;
+      color: rgba(255, 255, 255, 0.88);
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border-radius: 6px;
+      transition: color 0.2s ease, background-color 0.2s ease;
+    }
+    .bu-nav-link:hover {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.08);
+    }
+    .bu-nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 2px;
+      left: 10px;
+      right: 10px;
+      height: 2px;
+      background: #cfa416;
+      transform: scaleX(0);
+      transform-origin: center;
+      transition: transform 0.25s ease-out;
+    }
+    .bu-nav-link:hover::after {
+      transform: scaleX(1);
+    }
+    .bu-card {
+      background: #ffffff;
+      border: 1px solid rgba(27, 45, 91, 0.08);
+      border-radius: 20px;
+      box-shadow: 0 4px 14px rgba(27, 45, 91, 0.06);
+      transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.28s ease, border-color 0.28s ease;
+    }
+    .bu-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(27, 45, 91, 0.11);
+      border-color: rgba(27, 45, 91, 0.16);
+    }
+    details::details-content {
+      block-size: 0;
+      overflow: hidden;
+      transition: block-size 0.32s ease, content-visibility 0.32s allow-discrete;
+    }
+    details[open]::details-content {
+      block-size: auto;
+    }
+    details summary::-webkit-details-marker {
+      display: none;
+    }
+    details[open] .faq-icon {
+      transform: rotate(45deg);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .bu-card, .bu-nav-link::after, details::details-content, .faq-icon {
+        transition: none !important;
+        transform: none !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-white text-bu-canonical selection:bg-bu-mist selection:text-bu-navy">
+
+  <!-- 1. BABCOCK GOLD UTILITY STRIP (38px height, white links + dividers) -->
+  <div class="bg-bu-gold text-white h-[38px] overflow-hidden">
+    <div class="max-w-[1380px] mx-auto px-4 sm:px-8 h-full flex items-center justify-center overflow-x-auto">
+      <a href="#abstracts" class="inline-flex items-center gap-1.5 px-3.5 h-full text-[12.5px] font-medium whitespace-nowrap hover:bg-black/10 transition">
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        <span>Submit Abstract</span>
+      </a>
+      <span class="h-3.5 w-px bg-white/45 shrink-0"></span>
+      <a href="./ijml.html" target="_blank" class="inline-flex items-center gap-1.5 px-3.5 h-full text-[12.5px] font-medium whitespace-nowrap hover:bg-black/10 transition">
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        <span>IJFI Journal Portal</span>
+      </a>
+      <span class="h-3.5 w-px bg-white/45 shrink-0"></span>
+      <a href="#roadmap" class="inline-flex items-center gap-1.5 px-3.5 h-full text-[12.5px] font-medium whitespace-nowrap hover:bg-black/10 transition">
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        <span>Key Dates (Mar 24)</span>
+      </a>
+      <span class="h-3.5 w-px bg-white/45 shrink-0 hidden sm:block"></span>
+      <a href="#registration" class="hidden sm:inline-flex items-center gap-1.5 px-3.5 h-full text-[12.5px] font-medium whitespace-nowrap hover:bg-black/10 transition">
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+        <span>Fees &amp; Banking</span>
+      </a>
+      <span class="h-3.5 w-px bg-white/45 shrink-0 hidden md:block"></span>
+      <a href="https://www.babcock.edu.ng" target="_blank" class="hidden md:inline-flex items-center gap-1.5 px-3.5 h-full text-[12.5px] font-medium whitespace-nowrap hover:bg-black/10 transition">
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg>
+        <span>Babcock University</span>
+      </a>
+      <span class="h-3.5 w-px bg-white/45 shrink-0 hidden lg:block"></span>
+      <a href="mailto:icfi@babcock.edu.ng" class="hidden lg:inline-flex items-center gap-1.5 px-3.5 h-full text-[12.5px] font-medium whitespace-nowrap hover:bg-black/10 transition">
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <span>icfi@babcock.edu.ng</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- 2. BABCOCK NAVY MAIN NAVBAR (64px sticky, #004182) -->
+  <header class="sticky top-0 z-50 bg-bu-navy border-b border-white/15 shadow-lg">
+    <div class="max-w-[1380px] mx-auto px-4 sm:px-8 min-h-[64px] flex items-center justify-between gap-4">
+      <a href="#" class="flex items-center shrink-0">
+        <img src="img/logo_combined.png" alt="ICFI &amp; Babcock University" class="h-12 sm:h-[52px] w-auto object-contain">
+      </a>
+
+      <nav class="hidden lg:flex items-center gap-1.5 xl:gap-3 whitespace-nowrap">
+        <a href="#convener" class="bu-nav-link">About</a>
+        <a href="#fields" class="bu-nav-link">8 Fields</a>
+        <a href="#speakers" class="bu-nav-link">Speakers</a>
+        <a href="#values" class="bu-nav-link">Pillars</a>
+        <a href="#roadmap" class="bu-nav-link">Programme</a>
+        <a href="#registration" class="bu-nav-link">Registration</a>
+        <a href="#ijfi" class="bu-nav-link">IJFI &amp; Papers</a>
+      </nav>
+
+      <div class="flex items-center gap-2.5 shrink-0 whitespace-nowrap">
+        <a href="https://docs.google.com/forms/u/3/d/e/1FAIpQLScr2oiysOTW437vd0vtqiuUxgH4FvSELzEA1yFfPa9ebk6XkA/viewform?usp=send_form" target="_blank" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-[6px] bg-bu-gold hover:bg-bu-goldLight text-white text-xs font-bold uppercase tracking-wider shadow transition">
+          <span>Register Now</span>
+          <span aria-hidden="true">&rarr;</span>
+        </a>
+        <a href="#abstracts" title="Submit Abstract" class="hidden sm:inline-flex items-center justify-center w-9 h-9 rounded-full bg-white/10 border border-white/20 text-white hover:border-bu-goldLight transition">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- 3. SKY-BLUE SPLIT HERO (ALIGNED WITH babcock.edu.ng HERO SLIDER) -->
+  <section class="bu-hero-bg py-12 lg:py-16">
+    <div class="max-w-[1300px] mx-auto px-5 sm:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+
+        <!-- Left Headline & Action Column (6 Cols) -->
+        <div class="lg:col-span-6 space-y-6">
+          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/80 backdrop-blur border border-bu-navy/15 text-xs font-semibold text-bu-canonical shadow-sm">
+            <span class="w-2 h-2 rounded-full bg-bu-gold"></span>
+            <span>7th Biennial International Conference • July 27 – August 1, 2027</span>
+          </div>
+
+          <h1 class="bu-hero-title font-serif font-bold italic text-[#212121]">
+            International Conference on Faith Integration 2027
+          </h1>
+
+          <p class="text-base sm:text-lg text-[#2d3748] leading-relaxed max-w-[52ch]">
+            <strong class="text-bu-navy font-semibold">“Driving a Sustainable Faith-Based Ecosystem in a Changing World.”</strong> Hosted by the International Community for Faith Integration &amp; Babcock University.
+          </p>
+
+          <div class="flex flex-wrap gap-3.5 pt-2">
+            <a href="https://docs.google.com/forms/u/3/d/e/1FAIpQLScr2oiysOTW437vd0vtqiuUxgH4FvSELzEA1yFfPa9ebk6XkA/viewform?usp=send_form" target="_blank" class="px-7 py-3.5 rounded-[12px] bg-bu-blue hover:bg-blue-700 text-white text-[15px] font-medium shadow-md transition">
+              Reserve Your Seat
+            </a>
+            <a href="#abstracts" class="px-7 py-3.5 rounded-[12px] bg-[#383c42] hover:bg-[#212121] text-white text-[15px] font-medium shadow-md transition">
+              Submit 250-Word Abstract
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Conference Showcase Card (6 Cols, Mirrors babcock.edu.ng Event Card) -->
+        <div class="lg:col-span-6">
+          <div class="rounded-[22px] overflow-hidden bg-white border border-bu-navy/15 shadow-2xl">
+            <div class="relative aspect-[16/10] bg-slate-200">
+              <img src="img/hero_main.jpg" alt="Main Plenary Amphitheater in session at Babcock University" class="w-full h-full object-cover">
+              <div class="absolute top-3.5 left-3.5 px-3 py-1 rounded-full bg-white/95 text-bu-navy text-[11px] font-bold shadow">
+                Main Plenary Amphitheater • Ilishan-Remo
+              </div>
+              <a href="https://youtu.be/QnzxBpBPwrc" target="_blank" class="absolute top-3.5 right-3.5 px-3 py-1 rounded-full bg-bu-gold hover:bg-bu-goldLight text-white text-[11px] font-bold shadow transition">
+                ▶ 2023 Video Recap
+              </a>
+            </div>
+
+            <!-- Conference Speaker Strip + Navy Details Bar -->
+            <div class="p-4 sm:p-5 bg-gradient-to-b from-[#eef4fc] to-white border-t border-bu-navy/10">
+              <div class="grid grid-cols-4 gap-2.5 text-center">
+                <div class="bg-white rounded-[10px] p-1.5 border border-bu-navy/10 shadow-sm">
+                  <img src="img/host_vc.jpg" alt="Prof. Afolarin Olutunde Ojewole" class="w-full aspect-[6/5] object-cover object-top rounded-[6px]">
+                  <div class="text-[10px] font-bold text-bu-navy mt-1.5 truncate">Prof. A. Ojewole</div>
+                  <div class="text-[9px] text-bu-goldContrast font-semibold uppercase">Chief Host</div>
+                </div>
+                <div class="bg-white rounded-[10px] p-1.5 border border-bu-navy/10 shadow-sm">
+                  <img src="img/host_amanze.jpg" alt="Prof. Jonathan C. Nwosu" class="w-full aspect-[6/5] object-cover object-top rounded-[6px]">
+                  <div class="text-[10px] font-bold text-bu-navy mt-1.5 truncate">Prof. J. C. Nwosu</div>
+                  <div class="text-[9px] text-bu-goldContrast font-semibold uppercase">Host • SVP</div>
+                </div>
+                <div class="bg-white rounded-[10px] p-1.5 border border-bu-navy/10 shadow-sm">
+                  <img src="img/host_nwosu.jpg" alt="Prof. Constance C. Nwosu" class="w-full aspect-[6/5] object-cover object-top rounded-[6px]">
+                  <div class="text-[10px] font-bold text-bu-navy mt-1.5 truncate">Prof. C. Nwosu</div>
+                  <div class="text-[9px] text-bu-goldContrast font-semibold uppercase">Convener</div>
+                </div>
+                <div class="bg-white rounded-[10px] p-1.5 border border-bu-navy/10 shadow-sm">
+                  <img src="img/past_taylor.jpg" alt="Prof. John Wesley Taylor V" class="w-full aspect-[6/5] object-cover object-top rounded-[6px]">
+                  <div class="text-[10px] font-bold text-bu-navy mt-1.5 truncate">Prof. J. Taylor V</div>
+                  <div class="text-[9px] text-bu-goldContrast font-semibold uppercase">Global Keynote</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-bu-navyDark text-white px-5 py-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
+              <div class="font-bold tracking-wide uppercase text-bu-goldAccent">Physical &amp; Virtual • July 27 – August 1, 2027</div>
+              <div class="text-white/90 font-medium">Ilishan-Remo &amp; Zoom Worldwide</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. GOLD QUICK-INFO BAR + DARK NAVY METRICS BAND (#b98d3b + #0b2545) -->
+  <div class="bg-bu-goldBand text-white py-3.5 px-5 border-y border-white/20">
+    <div class="max-w-[1300px] mx-auto flex flex-col md:flex-row md:items-center justify-between gap-2">
+      <div class="font-serif font-bold text-lg tracking-wide uppercase shrink-0">Quick Information</div>
+      <div class="text-xs sm:text-[13px] font-semibold uppercase tracking-wide text-white/95 border-l-0 md:border-l-2 md:border-white/70 md:pl-4">
+        Call for Abstracts Open Until March 24, 2027 • Email 250-Word Abstracts to icfi@babcock.edu.ng • Free IJFI Publication
+      </div>
+    </div>
+  </div>
+
+  <section class="bg-bu-band text-white py-10 px-5 sm:px-8">
+    <div class="max-w-[1300px] mx-auto">
+      <h2 class="font-serif font-bold text-2xl sm:text-3xl text-white mb-7">
+        7th ICFI 2027 in key figures
+      </h2>
+      <div class="grid grid-cols-2 lg:grid-cols-[1.55fr_1fr_1fr_1fr_1fr] gap-6 lg:gap-0 lg:divide-x lg:divide-white/15 items-start">
+        <div class="col-span-2 lg:col-span-1 lg:pr-8">
+          <div class="font-serif font-bold text-xl sm:text-2xl xl:text-[26px] tracking-tight text-bu-goldAccent tabular-nums whitespace-nowrap">
+            <span id="cd-days">252</span>d <span class="mx-0.5 text-bu-goldAccent/70">:</span> <span id="cd-hours">00</span>h <span class="mx-0.5 text-bu-goldAccent/70">:</span> <span id="cd-mins">00</span>m <span class="mx-0.5 text-bu-goldAccent/70">:</span> <span id="cd-secs">00</span>s
+          </div>
+          <p class="text-xs text-slate-300 mt-2 leading-snug">Countdown to July 27, 2027 opening plenary at Babcock University</p>
+        </div>
+        <div class="lg:px-7">
+          <div class="font-serif font-bold text-2xl xl:text-3xl text-bu-goldAccent whitespace-nowrap">8 Tracks</div>
+          <p class="text-xs text-slate-300 mt-2 leading-snug">Interdisciplinary academic &amp; professional fields</p>
+        </div>
+        <div class="lg:px-7">
+          <div class="font-serif font-bold text-2xl xl:text-3xl text-bu-goldAccent whitespace-nowrap">₦40,000</div>
+          <p class="text-xs text-slate-300 mt-2 leading-snug">Early Bird &amp; ICFI Member Rate ($80 International)</p>
+        </div>
+        <div class="lg:px-7">
+          <div class="font-serif font-bold text-2xl xl:text-3xl text-bu-goldAccent whitespace-nowrap">₦10,000 Off</div>
+          <p class="text-xs text-slate-300 mt-2 leading-snug">Year-round member discount on standard ₦50,000 fee</p>
+        </div>
+        <div class="lg:pl-7">
+          <div class="font-serif font-bold text-2xl xl:text-3xl text-bu-goldAccent whitespace-nowrap">Free IJFI</div>
+          <p class="text-xs text-slate-300 mt-2 leading-snug">Double-blind peer-reviewed publication for accepted papers</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. "AN OPPORTUNITY TO INTEGRATE FAITH & LEARNING" — 8 FIELDS GRID -->
+  <section id="fields" class="py-16 lg:py-20 bg-white">
+    <div class="max-w-[1200px] mx-auto px-5 sm:px-8">
+
+      <!-- Top Babcock Intro + 2 Visual Feature Cards (Matches babcock.edu.ng "An Opportunity To Be Challenged") -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center mb-14">
+        <div class="lg:col-span-4 space-y-4">
+          <div class="text-xs font-bold uppercase tracking-[0.12em] text-bu-goldBand">Call for Papers !!</div>
+          <h2 class="font-serif font-bold text-3xl sm:text-4xl text-bu-navy leading-tight">
+            An Opportunity To Integrate Faith &amp; Learning
+          </h2>
+          <p class="text-sm text-bu-muted leading-relaxed">
+            Submit empirical research, theoretical frameworks, or workplace case studies across any of these eight interdisciplinary conference tracks.
+          </p>
+          <a href="#abstracts" class="inline-block px-7 py-3 rounded-[10px] bg-bu-goldBand hover:bg-bu-gold text-white text-sm font-bold shadow transition">
+            Submit Abstract
+          </a>
+        </div>
+
+        <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div class="relative rounded-[20px] overflow-hidden aspect-[16/10] bg-slate-200 shadow-md group">
+            <img src="img/hero_sub.jpg" alt="International & Local Scholars in Session" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+            <div class="absolute inset-0 bg-gradient-to-t from-bu-band/70 via-transparent to-transparent"></div>
+            <span class="absolute bottom-4 left-4 bg-white px-4 py-2 rounded-[10px] text-xs font-bold text-bu-canonical shadow">
+              Hybrid Amphitheater &amp; Zoom
+            </span>
+          </div>
+          <div class="relative rounded-[20px] overflow-hidden aspect-[16/10] bg-slate-200 shadow-md group">
+            <img src="img/gal_3.jpg" alt="Collegial Academic Dialogue" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+            <div class="absolute inset-0 bg-gradient-to-t from-bu-band/70 via-transparent to-transparent"></div>
+            <span class="absolute bottom-4 left-4 bg-white px-4 py-2 rounded-[10px] text-xs font-bold text-bu-canonical shadow">
+              IJFI Double-Blind Peer Review
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 8 Academic Fields Clean Babcock Cards -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div class="bu-card p-6 border-t-4 border-t-bu-navy flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <div class="w-10 h-10 rounded-xl bg-bu-mist text-bu-navy flex items-center justify-center">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M9 3h6M10 3v6l-5.5 9.5A2 2 0 0 0 6.2 21h11.6a2 2 0 0 0 1.7-2.5L14 9V3"/></svg>
+              </div>
+              <span class="text-[11px] font-bold text-bu-gold uppercase tracking-wider">Track 01</span>
+            </div>
+            <h3 class="font-bold text-xl text-bu-navy">Science</h3>
+            <p class="text-xs text-bu-muted mt-2 leading-relaxed">Creation stewardship, environmental sustainability, bioethics, and empirical inquiry.</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-bu-canonical/10 text-[11px] font-semibold text-bu-navy">Bioethics · Creation Care</div>
+        </div>
+
+        <div class="bu-card p-6 border-t-4 border-t-bu-gold flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <div class="w-10 h-10 rounded-xl bg-amber-50 text-bu-goldContrast flex items-center justify-center">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+              </div>
+              <span class="text-[11px] font-bold text-bu-gold uppercase tracking-wider">Track 02</span>
+            </div>
+            <h3 class="font-bold text-xl text-bu-navy">Arts &amp; Humanities</h3>
+            <p class="text-xs text-bu-muted mt-2 leading-relaxed">Literature, history, promoting student reading culture, music, and cultural heritage.</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-bu-canonical/10 text-[11px] font-semibold text-bu-navy">Reading Culture · Heritage</div>
+        </div>
+
+        <div class="bu-card p-6 border-t-4 border-t-bu-navy flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <div class="w-10 h-10 rounded-xl bg-bu-mist text-bu-navy flex items-center justify-center">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></svg>
+              </div>
+              <span class="text-[11px] font-bold text-bu-gold uppercase tracking-wider">Track 03</span>
+            </div>
+            <h3 class="font-bold text-xl text-bu-navy">Technology</h3>
+            <p class="text-xs text-bu-muted mt-2 leading-relaxed">Artificial intelligence ethics, social media in modern society, and digital responsibility.</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-bu-canonical/10 text-[11px] font-semibold text-bu-goldContrast">AI &amp; Faith · Social Media</div>
+        </div>
+
+        <div class="bu-card p-6 border-t-4 border-t-bu-gold flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <div class="w-10 h-10 rounded-xl bg-amber-50 text-bu-goldContrast flex items-center justify-center">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
+              </div>
+              <span class="text-[11px] font-bold text-bu-gold uppercase tracking-wider">Track 04</span>
+            </div>
+            <h3 class="font-bold text-xl text-bu-navy">Leadership</h3>
+            <p class="text-xs text-bu-muted mt-2 leading-relaxed">Servant leadership, character formation, mentorship, and organizational ethics.</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-bu-canonical/10 text-[11px] font-semibold text-bu-navy">Servant Leadership · Ethics</div>
+        </div>
+
+        <div class="bu-card p-6 border-t-4 border-t-bu-gold flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <div class="w-10 h-10 rounded-xl bg-amber-50 text-bu-goldContrast flex items-center justify-center">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+              </div>
+              <span class="text-[11px] font-bold text-bu-gold uppercase tracking-wider">Track 05</span>
+            </div>
+            <h3 class="font-bold text-xl text-bu-navy">Business</h3>
+            <p class="text-xs text-bu-muted mt-2 leading-relaxed">Faith-driven entrepreneurship, economic growth, ethical finance, and stewardship.</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-bu-canonical/10 text-[11px] font-semibold text-bu-navy">Entrepreneurship · Finance</div>
+        </div>
+
+        <div class="bu-card p-6 border-t-4 border-t-bu-navy flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <div class="w-10 h-10 rounded-xl bg-bu-mist text-bu-navy flex items-center justify-center">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/></svg>
+              </div>
+              <span class="text-[11px] font-bold text-bu-gold uppercase tracking-wider">Track 06</span>
+            </div>
+            <h3 class="font-bold text-xl text-bu-navy">Institutions</h3>
+            <p class="text-xs text-bu-muted mt-2 leading-relaxed">Quality education management, internal audit &amp; compliance, and curriculum design.</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-bu-canonical/10 text-[11px] font-semibold text-bu-navy">Curriculum · Audit &amp; QA</div>
+        </div>
+
+        <div class="bu-card p-6 border-t-4 border-t-bu-gold flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <div class="w-10 h-10 rounded-xl bg-amber-50 text-bu-goldContrast flex items-center justify-center">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+              </div>
+              <span class="text-[11px] font-bold text-bu-gold uppercase tracking-wider">Track 07</span>
+            </div>
+            <h3 class="font-bold text-xl text-bu-navy">Religion</h3>
+            <p class="text-xs text-bu-muted mt-2 leading-relaxed">Multicultural evangelism, tradition &amp; modernity, and practical biblical theology.</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-bu-canonical/10 text-[11px] font-semibold text-bu-navy">Evangelism · Biblical Ethics</div>
+        </div>
+
+        <div class="bu-card p-6 border-t-4 border-t-bu-navy flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <div class="w-10 h-10 rounded-xl bg-bu-mist text-bu-navy flex items-center justify-center">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 3v18M5 8h14M3 14l2-6 2 6a2.5 2.5 0 0 1-4 0zM17 14l2-6 2 6a2.5 2.5 0 0 1-4 0z"/></svg>
+              </div>
+              <span class="text-[11px] font-bold text-bu-gold uppercase tracking-wider">Track 08</span>
+            </div>
+            <h3 class="font-bold text-xl text-bu-navy">Politics &amp; Policy</h3>
+            <p class="text-xs text-bu-muted mt-2 leading-relaxed">Faith-driven governance, social justice, civic duty, and national relational principles.</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-bu-canonical/10 text-[11px] font-semibold text-bu-navy">Governance · Social Justice</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 6. "FROM THE CONVENER'S & HOSTS' DESK" (.bu-pd DARK NAVY BAND #0b2545) -->
+  <section id="convener" class="bg-bu-band text-white py-16 lg:py-20 px-5 sm:px-8">
+    <div class="max-w-[1180px] mx-auto">
+
+      <!-- .bu-pd-in 2-Column Layout matching babcock.edu.ng "From the President's Desk" -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center pb-14 border-b border-white/15">
+        <div class="lg:col-span-5">
+          <div class="rounded-[18px] overflow-hidden border border-bu-goldAccent/35 shadow-2xl bg-bu-navyDark">
+            <img src="img/welcome.jpg" alt="Prof. Constance C. Nwosu" class="w-full aspect-[4/4.3] object-cover object-top">
+          </div>
+        </div>
+
+        <div class="lg:col-span-7 space-y-5">
+          <div class="text-bu-goldAccent font-serif text-6xl leading-none select-none">“</div>
+          <h2 class="font-serif font-bold text-3xl sm:text-4xl text-white">From the Convener’s Desk</h2>
+          <p class="text-base text-slate-200 leading-relaxed max-w-[60ch]">
+            Organized by the <strong class="text-white">Institute for Faith Integration</strong> in the Office of Institutional Effectiveness at Babcock University, ICFI brings together scholars and practitioners uniting rigorous scholarship, professional ethics, and living faith.
+          </p>
+          <blockquote class="font-serif italic text-xl text-bu-goldAccent leading-relaxed">
+            “Positioned as a tower and edifice of truth to advance faith integration beyond campus walls — grounded in Isaiah 58:12.”
+          </blockquote>
+          <div class="pt-3 border-t border-white/15 flex flex-wrap items-center justify-between gap-4">
+            <div>
+              <div class="font-serif font-bold text-lg text-white">Prof. Constance C. Nwosu</div>
+              <div class="text-xs text-slate-300">Organizer &amp; Convener • AVP, Institutional Effectiveness, Babcock University</div>
+            </div>
+            <div class="text-xs font-mono text-bu-goldAccent">
+              +234 806 463 8207 • +234 805 829 9031
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hosts & Invited Scholars inside Dark Navy Band -->
+      <div id="speakers" class="pt-14 space-y-12">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+          <div>
+            <div class="text-xs font-bold uppercase tracking-[0.14em] text-bu-goldAccent">Conference Leadership</div>
+            <h3 class="font-serif font-bold text-2xl sm:text-3xl text-white mt-1">Chief Host, Host &amp; Convener</h3>
+          </div>
+          <span class="text-xs text-slate-300">Babcock University, Ilishan-Remo, Nigeria</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="bg-white/5 border border-bu-goldAccent/30 rounded-[18px] p-5">
+            <img src="img/host_vc.jpg" alt="Prof. Afolarin Olutunde Ojewole" class="w-full aspect-[6/5] object-cover object-top rounded-[12px] mb-4">
+            <span class="inline-block px-3 py-1 rounded-full bg-bu-goldAccent/20 text-bu-goldAccent text-[11px] font-bold uppercase">Chief Host</span>
+            <h4 class="font-serif font-bold text-xl text-white mt-2">Prof. Afolarin Olutunde Ojewole</h4>
+            <p class="text-xs text-slate-300 mt-0.5">President / Vice Chancellor, Babcock University</p>
+          </div>
+          <div class="bg-white/5 border border-white/15 rounded-[18px] p-5">
+            <img src="img/host_amanze.jpg" alt="Prof. Jonathan C. Nwosu" class="w-full aspect-[6/5] object-cover object-top rounded-[12px] mb-4">
+            <span class="inline-block px-3 py-1 rounded-full bg-white/10 text-bu-goldAccent text-[11px] font-bold uppercase">Host</span>
+            <h4 class="font-serif font-bold text-xl text-white mt-2">Prof. Jonathan C. Nwosu</h4>
+            <p class="text-xs text-slate-300 mt-0.5">Senior Vice President, Babcock University</p>
+          </div>
+          <div class="bg-white/5 border border-white/15 rounded-[18px] p-5">
+            <img src="img/host_nwosu.jpg" alt="Prof. Constance C. Nwosu" class="w-full aspect-[6/5] object-cover object-top rounded-[12px] mb-4">
+            <span class="inline-block px-3 py-1 rounded-full bg-white/10 text-bu-goldAccent text-[11px] font-bold uppercase">Organizer &amp; Convener</span>
+            <h4 class="font-serif font-bold text-xl text-white mt-2">Prof. Constance C. Nwosu</h4>
+            <p class="text-xs text-slate-300 mt-0.5">AVP, Institutional Effectiveness • IFI, Babcock University</p>
+          </div>
+        </div>
+
+        <div class="pt-4">
+          <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 mb-6">
+            <h3 class="font-serif font-bold text-2xl text-white">Distinguished Keynote &amp; Invited Scholars</h3>
+            <span class="text-xs text-bu-goldAccent font-medium">Global Faith Integration Voices</span>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            <div class="bg-white/5 border border-white/15 rounded-[16px] p-5 text-center">
+              <img src="img/past_taylor.jpg" alt="Prof. John Wesley Taylor V" class="w-20 h-20 rounded-full object-cover object-top mx-auto border-2 border-bu-goldAccent/60">
+              <div class="text-[10px] font-bold uppercase tracking-wider text-bu-goldAccent mt-3">USA</div>
+              <h4 class="text-sm font-bold text-white mt-1">Prof. John Wesley Taylor V</h4>
+              <p class="text-xs text-slate-300 mt-1">Associate Director of Education, General Conference of SDA</p>
+            </div>
+            <div class="bg-white/5 border border-white/15 rounded-[16px] p-5 text-center">
+              <img src="img/past_balisasa.jpg" alt="Dr. Juvenal Balisasa" class="w-20 h-20 rounded-full object-cover object-top mx-auto border-2 border-white/30">
+              <div class="text-[10px] font-bold uppercase tracking-wider text-bu-goldAccent mt-3">Côte d'Ivoire</div>
+              <h4 class="text-sm font-bold text-white mt-1">Dr. Juvenal Balisasa, Ph.D</h4>
+              <p class="text-xs text-slate-300 mt-1">Education Director, West-Central Africa Division (WAD)</p>
+            </div>
+            <div class="bg-white/5 border border-white/15 rounded-[16px] p-5 text-center">
+              <img src="img/past_fisher.jpg" alt="Mrs. Barbara Fisher" class="w-20 h-20 rounded-full object-cover object-top mx-auto border-2 border-white/30">
+              <div class="text-[10px] font-bold uppercase tracking-wider text-bu-goldAccent mt-3">Australia</div>
+              <h4 class="text-sm font-bold text-white mt-1">Mrs. Barbara Fisher</h4>
+              <p class="text-xs text-slate-300 mt-1">Faith Integration &amp; Bible Curriculum Specialist</p>
+            </div>
+            <div class="bg-white/5 border border-white/15 rounded-[16px] p-5 text-center">
+              <img src="img/past_oyedeji.jpg" alt="Dr. Oluwole A. Oyedeji" class="w-20 h-20 rounded-full object-cover object-top mx-auto border-2 border-white/30">
+              <div class="text-[10px] font-bold uppercase tracking-wider text-bu-goldAccent mt-3">Nigeria</div>
+              <h4 class="text-sm font-bold text-white mt-1">Dr. Oluwole A. Oyedeji, Ph.D</h4>
+              <p class="text-xs text-slate-300 mt-1">Consultant Geoscientist &amp; Faith-Science Scholar, Abuja</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 7. "THE FAITH INTEGRATION & CORE VALUES AGENDA" (MATCHING "THE GRACE AGENDA" #f2f2f2) -->
+  <section id="values" class="bg-[#f2f2f2] py-14 lg:py-16 px-5 sm:px-8">
+    <div class="max-w-[1200px] mx-auto">
+      <div class="mb-8">
+        <h2 class="font-serif font-bold text-3xl sm:text-4xl text-bu-canonical">The Faith Integration &amp; Core Values Agenda</h2>
+        <div class="w-14 h-1 bg-slate-300 mt-3 rounded"></div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4">
+        <div class="bg-white rounded-[16px] p-5 shadow-sm border border-black/5">
+          <div class="text-bu-bronze font-serif font-bold text-4xl text-bu-navyDark">E</div>
+          <div class="w-6 h-0.5 bg-bu-bronze my-2.5"></div>
+          <h3 class="font-sans font-bold text-sm text-bu-navy">Excellence</h3>
+          <p class="text-xs text-bu-muted mt-1.5 leading-relaxed">Sustaining first-class scholarship and holistic human capacity across disciplines.</p>
+        </div>
+
+        <div class="bg-white rounded-[16px] p-5 shadow-sm border border-black/5">
+          <div class="text-bu-bronze font-serif font-bold text-4xl text-bu-navyDark">I</div>
+          <div class="w-6 h-0.5 bg-bu-bronze my-2.5"></div>
+          <h3 class="font-sans font-bold text-sm text-bu-navy">Integrity</h3>
+          <p class="text-xs text-bu-muted mt-1.5 leading-relaxed">Biblical ethics as the bedrock of academic honesty and public stewardship.</p>
+        </div>
+
+        <div class="bg-white rounded-[16px] p-5 shadow-sm border border-black/5">
+          <div class="text-bu-bronze font-serif font-bold text-4xl text-bu-navyDark">A</div>
+          <div class="w-6 h-0.5 bg-bu-bronze my-2.5"></div>
+          <h3 class="font-sans font-bold text-sm text-bu-navy">Accountability</h3>
+          <p class="text-xs text-bu-muted mt-1.5 leading-relaxed">Responsible governance, internal audit standards, and faithful institutional care.</p>
+        </div>
+
+        <div class="bg-white rounded-[16px] p-5 shadow-sm border border-black/5">
+          <div class="text-bu-bronze font-serif font-bold text-4xl text-bu-navyDark">S</div>
+          <div class="w-6 h-0.5 bg-bu-bronze my-2.5"></div>
+          <h3 class="font-sans font-bold text-sm text-bu-navy">Servant Leadership</h3>
+          <p class="text-xs text-bu-muted mt-1.5 leading-relaxed">Training Christian servant-leaders who transform communities with compassion.</p>
+        </div>
+
+        <div class="bg-white rounded-[16px] p-5 shadow-sm border border-black/5">
+          <div class="text-bu-bronze font-serif font-bold text-4xl text-bu-navyDark">T</div>
+          <div class="w-6 h-0.5 bg-bu-bronze my-2.5"></div>
+          <h3 class="font-sans font-bold text-sm text-bu-navy">Team Spirit</h3>
+          <p class="text-xs text-bu-muted mt-1.5 leading-relaxed">Interdisciplinary collaboration uniting local scholars and global delegates.</p>
+        </div>
+
+        <div class="bg-white rounded-[16px] p-5 shadow-sm border border-black/5">
+          <div class="text-bu-bronze font-serif font-bold text-4xl text-bu-navyDark">H</div>
+          <div class="w-6 h-0.5 bg-bu-bronze my-2.5"></div>
+          <h3 class="font-sans font-bold text-sm text-bu-navy">SDA Heritage</h3>
+          <p class="text-xs text-bu-muted mt-1.5 leading-relaxed">Seventh-day Adventist education philosophy &amp; Isaiah 58:12 mandate.</p>
+        </div>
+      </div>
+
+      <!-- Compact Babcock Vision & Mission Strip -->
+      <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="bg-white rounded-[14px] px-6 py-4 border border-black/5 flex items-start gap-3">
+          <span class="font-bold text-xs uppercase tracking-wider text-bu-navy shrink-0 mt-0.5">Vision:</span>
+          <p class="text-xs text-bu-muted leading-relaxed">“A first-class Seventh-day Adventist institution, building servant-leaders for a better world.”</p>
+        </div>
+        <div class="bg-white rounded-[14px] px-6 py-4 border border-black/5 flex items-start gap-3">
+          <span class="font-bold text-xs uppercase tracking-wider text-bu-goldBand shrink-0 mt-0.5">Mission:</span>
+          <p class="text-xs text-bu-muted leading-relaxed">Building leadership through Christian education; transforming lives and impacting society for positive change.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. "WELCOME TO ICFI 2027. HERE'S WHAT'S NEXT." (.bu-nsp ROADMAP, SCHEDULE & ABSTRACT STUDIO) -->
+  <section id="roadmap" class="bg-bu-mist py-16 lg:py-20 px-5 sm:px-8">
+    <div class="max-w-[1200px] mx-auto">
+
+      <div class="mb-10">
+        <span class="inline-block px-4 py-1.5 rounded-full bg-white border border-bu-canonical/10 text-xs font-semibold text-bu-muted shadow-sm mb-4">
+          Conference Roadmap &bull; 2026 / 2027
+        </span>
+        <h2 class="font-serif font-bold text-3xl sm:text-5xl leading-tight">
+          <span class="text-bu-canonical">Welcome to ICFI 2027.</span>
+          <span class="text-bu-goldCanonical">Here’s what’s next.</span>
+        </h2>
+        <p class="text-sm sm:text-base text-bu-muted mt-2 max-w-[60ch]">
+          Every key date, submission guideline, and daily session itinerary for campus and online delegates in one clear place.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+
+        <!-- Left 5 Cols: Roadmap Date Chips + Abstract Card (Matches .bu-nsp-chip in step_19_shot_3.png) -->
+        <div class="lg:col-span-5 space-y-4">
+          <a href="https://docs.google.com/forms/u/3/d/e/1FAIpQLScr2oiysOTW437vd0vtqiuUxgH4FvSELzEA1yFfPa9ebk6XkA/viewform?usp=send_form" target="_blank" class="inline-flex items-center gap-3 px-6 py-3.5 rounded-full bg-bu-canonical hover:bg-bu-canonicalDark text-white text-sm font-bold shadow-md transition mb-2">
+            <span>Start here</span>
+            <span aria-hidden="true">&rarr;</span>
+          </a>
+
+          <div class="bg-white rounded-[18px] p-4 border border-bu-canonical/10 flex items-center gap-4 shadow-sm">
+            <div class="w-11 h-11 rounded-xl bg-bu-mist text-bu-canonical flex items-center justify-center shrink-0">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            </div>
+            <div>
+              <div class="font-bold text-sm text-bu-canonical">Nov 02, 2026</div>
+              <div class="text-xs text-bu-muted">Registration &amp; Seat Booking Opens</div>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-[18px] p-4 border-2 border-bu-goldCanonical/70 flex items-center gap-4 shadow-sm">
+            <div class="w-11 h-11 rounded-xl bg-amber-50 text-bu-goldContrast flex items-center justify-center shrink-0">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            </div>
+            <div>
+              <div class="font-bold text-sm text-bu-canonical">Mar 24, 2027 <span class="text-xs font-semibold text-bu-bronze ml-1">• Priority</span></div>
+              <div class="text-xs text-bu-muted">Abstract Submission Deadline (icfi@babcock.edu.ng)</div>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-[18px] p-4 border border-bu-canonical/10 flex items-center gap-4 shadow-sm">
+            <div class="w-11 h-11 rounded-xl bg-bu-mist text-bu-canonical flex items-center justify-center shrink-0">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div>
+              <div class="font-bold text-sm text-bu-canonical">Apr 23, 2027</div>
+              <div class="text-xs text-bu-muted">Early Bird Closes (ICFI Members keep ₦40,000 year-round)</div>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-[18px] p-4 border border-bu-canonical/10 flex items-center gap-4 shadow-sm">
+            <div class="w-11 h-11 rounded-xl bg-bu-mist text-bu-canonical flex items-center justify-center shrink-0">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+            </div>
+            <div>
+              <div class="font-bold text-sm text-bu-canonical">May 09 &amp; May 31, 2027</div>
+              <div class="text-xs text-bu-muted">Full Paper Due (May 9) • Final Seat Reservation (May 31)</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right 7 Cols: Hybrid 6-Day Schedule + Abstract Submission Box -->
+        <div class="lg:col-span-7 space-y-6">
+          <div class="bg-white rounded-[20px] p-6 sm:p-7 border border-bu-canonical/10 shadow-sm">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5">
+              <div>
+                <h3 class="font-serif font-bold text-2xl text-bu-canonical">6-Day Hybrid Programme</h3>
+                <p class="text-xs text-bu-muted mt-0.5">July 27 – August 1, 2027 • Campus &amp; Live Zoom</p>
+              </div>
+              <div class="flex flex-wrap gap-1.5">
+                <button onclick="setProgramDay(1)" id="p-tab-1" class="px-3 py-1.5 rounded-full text-xs font-bold bg-bu-canonical text-white transition">Day 1</button>
+                <button onclick="setProgramDay(2)" id="p-tab-2" class="px-3 py-1.5 rounded-full text-xs font-semibold bg-bu-mist text-bu-canonical hover:bg-blue-100 transition">Day 2</button>
+                <button onclick="setProgramDay(3)" id="p-tab-3" class="px-3 py-1.5 rounded-full text-xs font-semibold bg-bu-mist text-bu-canonical hover:bg-blue-100 transition">Day 3</button>
+                <button onclick="setProgramDay(4)" id="p-tab-4" class="px-3 py-1.5 rounded-full text-xs font-semibold bg-bu-mist text-bu-canonical hover:bg-blue-100 transition">Day 4</button>
+                <button onclick="setProgramDay(5)" id="p-tab-5" class="px-3 py-1.5 rounded-full text-xs font-semibold bg-bu-mist text-bu-canonical hover:bg-blue-100 transition">Jul 31–Aug 1</button>
+              </div>
+            </div>
+            <div id="program-list" class="divide-y divide-bu-canonical/10 border-t border-bu-canonical/10"></div>
+          </div>
+
+          <!-- Abstract Guidelines Studio Card -->
+          <div id="abstracts" class="bg-white rounded-[20px] p-6 border border-bu-canonical/10 shadow-sm grid grid-cols-1 sm:grid-cols-12 gap-5 items-center">
+            <div class="sm:col-span-5 rounded-[14px] overflow-hidden aspect-[4/3] bg-slate-100">
+              <img src="img/submit.jpg" alt="Scholars seated in ICFI conference session" class="w-full h-full object-cover">
+            </div>
+            <div class="sm:col-span-7 space-y-2.5">
+              <div class="text-[11px] font-bold uppercase tracking-wider text-bu-gold">Abstract Guidelines</div>
+              <h3 class="font-serif font-bold text-xl text-bu-canonical">How to Submit Your Manuscript</h3>
+              <ul class="text-xs text-bu-muted space-y-1">
+                <li><strong>Word Limit:</strong> Max 250 words (objective, method &amp; impact)</li>
+                <li><strong>Typography:</strong> Times New Roman, 12pt (.doc or .docx)</li>
+                <li><strong>Review Benefit:</strong> Qualifies for free IJFI peer review</li>
+              </ul>
+              <div class="pt-2 flex flex-wrap items-center gap-3">
+                <a href="mailto:icfi@babcock.edu.ng?subject=7th%20ICFI%202027%20Abstract%20Submission" class="px-5 py-2.5 rounded-full bg-bu-canonical hover:bg-bu-canonicalDark text-white text-xs font-bold transition whitespace-nowrap">
+                  Email icfi@babcock.edu.ng &rarr;
+                </a>
+                <span class="text-[11px] text-bu-muted font-medium">Dr. O. Olomojobi &bull; 08082334427</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. CONFERENCE REGISTRATION PASSES & BANKING (WHITE SECTION) -->
+  <section id="registration" class="py-16 lg:py-20 bg-white px-5 sm:px-8">
+    <div class="max-w-[1200px] mx-auto">
+
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-[0.12em] text-bu-goldBand">Registration &amp; Fees</span>
+          <h2 class="font-serif font-bold text-3xl sm:text-4xl text-bu-navy mt-1">Simple, Transparent Pass Options</h2>
+          <p class="text-sm text-bu-muted mt-1">Switch currency between Local (NGN) and International (USD).</p>
+        </div>
+
+        <div class="inline-flex bg-bu-mist p-1 rounded-full border border-bu-canonical/10 self-start">
+          <button id="cur-ngn" onclick="setRegCurrency('NGN')" class="px-5 py-2 rounded-full text-xs font-bold bg-bu-canonical text-white transition">Local (₦ NGN)</button>
+          <button id="cur-usd" onclick="setRegCurrency('USD')" class="px-5 py-2 rounded-full text-xs font-semibold text-bu-canonical hover:text-bu-navy transition">International ($ USD)</button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 items-stretch">
+        <div class="bu-card p-7 flex flex-col justify-between">
+          <div>
+            <div class="text-xs font-bold uppercase tracking-wider text-bu-muted">In-Person Attendance</div>
+            <h3 class="font-bold text-2xl text-bu-navy mt-1">Conference Fee</h3>
+            <div class="mt-4 pb-5 border-b border-bu-canonical/10">
+              <span class="font-serif font-bold text-4xl text-bu-navy fee-num" data-ngn="₦50,000" data-usd="$100">₦50,000</span>
+              <span class="text-xs text-bu-muted ml-1 fee-sub" data-ngn="($100 International)" data-usd="(₦50,000 Local)">($100 International)</span>
+            </div>
+            <ul class="space-y-2.5 text-xs text-bu-muted mt-5">
+              <li>✓ Full plenary &amp; parallel track sessions</li>
+              <li>✓ Delegate kit, folder &amp; conference materials</li>
+              <li>✓ Daily lunch for in-person attendees</li>
+              <li>✓ Free IJFI publication (peer-reviewed)</li>
+            </ul>
+          </div>
+          <a href="https://docs.google.com/forms/u/3/d/e/1FAIpQLScr2oiysOTW437vd0vtqiuUxgH4FvSELzEA1yFfPa9ebk6XkA/viewform?usp=send_form" target="_blank" class="mt-7 w-full py-3 rounded-full text-center text-xs font-bold text-bu-canonical bg-bu-mist hover:bg-blue-100 transition">
+            Register Standard Seat
+          </a>
+        </div>
+
+        <div class="bg-bu-band text-white border-2 border-bu-goldAccent rounded-[20px] p-7 shadow-xl flex flex-col justify-between">
+          <div>
+            <div class="text-xs font-bold uppercase tracking-wider text-bu-goldAccent">★ Until April 23, 2027</div>
+            <h3 class="font-bold text-2xl text-white mt-1">Early Bird &amp; Member</h3>
+            <div class="mt-4 pb-5 border-b border-white/15">
+              <span class="font-serif font-bold text-4xl text-bu-goldAccent fee-num" data-ngn="₦40,000" data-usd="$80">₦40,000</span>
+              <span class="text-xs text-slate-300 ml-1 fee-sub" data-ngn="($80 International)" data-usd="(₦40,000 Local)">($80 International)</span>
+            </div>
+            <ul class="space-y-2.5 text-xs text-slate-200 mt-5">
+              <li>✓ Full delegate privileges, materials &amp; lunch</li>
+              <li>✓ Free IJFI peer-reviewed publication</li>
+              <li class="text-bu-goldAccent font-bold">★ ₦10,000 off for Registered ICFI Members</li>
+              <li class="italic text-slate-300">Members retain Early Bird rates year-round.</li>
+            </ul>
+          </div>
+          <a href="https://docs.google.com/forms/u/3/d/e/1FAIpQLScr2oiysOTW437vd0vtqiuUxgH4FvSELzEA1yFfPa9ebk6XkA/viewform?usp=send_form" target="_blank" class="mt-7 w-full py-3 rounded-full text-center text-xs font-bold text-bu-band bg-bu-goldAccent hover:bg-amber-300 transition">
+            Reserve Early Bird Seat &rarr;
+          </a>
+        </div>
+
+        <div class="bu-card p-7 flex flex-col justify-between">
+          <div>
+            <div class="text-xs font-bold uppercase tracking-wider text-bu-muted">Remote Global Participation</div>
+            <h3 class="font-bold text-2xl text-bu-navy mt-1">Online / Virtual</h3>
+            <div class="mt-4 pb-5 border-b border-bu-canonical/10">
+              <span class="font-serif font-bold text-4xl text-bu-navy fee-num" data-ngn="₦25,000" data-usd="$50">₦25,000</span>
+              <span class="text-xs text-bu-muted ml-1 fee-sub" data-ngn="($50 International)" data-usd="(₦25,000 Local)">($50 International)</span>
+            </div>
+            <ul class="space-y-2.5 text-xs text-bu-muted mt-5">
+              <li>✓ Live Zoom streaming of plenaries &amp; tracks</li>
+              <li>✓ Live virtual paper presentation &amp; Q&amp;A</li>
+              <li>✓ Free IJFI peer review &amp; publication</li>
+              <li>✓ Digital proceedings &amp; e-certificate</li>
+            </ul>
+          </div>
+          <a href="https://docs.google.com/forms/u/3/d/e/1FAIpQLScr2oiysOTW437vd0vtqiuUxgH4FvSELzEA1yFfPa9ebk6XkA/viewform?usp=send_form" target="_blank" class="mt-7 w-full py-3 rounded-full text-center text-xs font-bold text-bu-canonical bg-bu-mist hover:bg-blue-100 transition">
+            Register Online Pass
+          </a>
+        </div>
+      </div>
+
+      <!-- Banking Transfer Details -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-bu-tint border border-bu-canonical/10 rounded-[18px] p-5 flex items-center justify-between gap-4">
+          <div>
+            <div class="text-[11px] font-bold uppercase tracking-wider text-bu-gold">Local Transfers (NGN)</div>
+            <div class="text-sm font-bold text-bu-navy mt-0.5">UBA Plc &bull; Babcock MFB</div>
+            <div class="text-xs text-bu-muted font-mono mt-0.5">Account: <strong class="text-bu-navy">1020069501</strong></div>
+          </div>
+          <button onclick="copyAcct(this, '1020069501')" class="px-4 py-2 rounded-full bg-white border border-bu-canonical/15 hover:border-bu-navy text-xs font-bold text-bu-navy transition shrink-0">
+            Copy Acct
+          </button>
+        </div>
+        <div class="bg-bu-tint border border-bu-canonical/10 rounded-[18px] p-5 flex items-center justify-between gap-4">
+          <div>
+            <div class="text-[11px] font-bold uppercase tracking-wider text-bu-gold">International Transfers (USD)</div>
+            <div class="text-sm font-bold text-bu-navy mt-0.5">GTBank &bull; B.U-Op./Inst. For Faith Integr</div>
+            <div class="text-xs text-bu-muted font-mono mt-0.5">Account: <strong class="text-bu-navy">0829898610</strong></div>
+          </div>
+          <button onclick="copyAcct(this, '0829898610')" class="px-4 py-2 rounded-full bg-white border border-bu-canonical/15 hover:border-bu-navy text-xs font-bold text-bu-navy transition shrink-0">
+            Copy Acct
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 10. "FROM OUR IJFI JOURNAL, BROADCASTS & PAPERS" (.bu-yt-section #eef2f9 + GALLERY & SECRETARIAT) -->
+  <section id="ijfi" class="bg-bu-mist py-16 lg:py-20 px-5 sm:px-8">
+    <div class="max-w-[1200px] mx-auto space-y-14">
+
+      <div>
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
+          <div>
+            <span class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white border border-bu-canonical/10 text-[11px] font-bold uppercase tracking-wider text-bu-canonical shadow-sm mb-3">
+              <span class="w-2 h-2 rounded-full bg-red-600"></span>
+              Official Journal &amp; Broadcasts
+            </span>
+            <h2 class="font-serif font-bold text-3xl sm:text-4xl text-bu-canonical">From our IJFI Journal &amp; Past Papers</h2>
+            <p class="text-sm text-bu-muted mt-1">Peer-reviewed scholarship, conference highlights, and downloadable proceedings.</p>
+          </div>
+          <span class="px-4 py-2 rounded-full bg-white border border-bu-canonical/10 text-xs font-semibold text-bu-canonical self-start">
+            4 Peer-Reviewed Papers &bull; IJFI Portal
+          </span>
+        </div>
+
+        <!-- Two Feature Media Cards (Matches babcock.edu.ng "From our YouTube") -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+          <div class="bu-card overflow-hidden flex flex-col justify-between">
+            <div>
+              <div class="aspect-[16/9] bg-slate-200 overflow-hidden">
+                <img src="img/journal.jpg" alt="International Journal for Faith Integration volumes" class="w-full h-full object-cover">
+              </div>
+              <div class="p-6">
+                <h3 class="font-bold text-xl text-bu-canonical">International Journal for Faith Integration (IJFI)</h3>
+                <p class="text-xs text-bu-muted mt-2 leading-relaxed">
+                  Every accepted ICFI 2027 paper qualifies for free double-blind peer-reviewed publication in IJFI. Join the ICFI community for year-round member rates.
+                </p>
+                <div class="flex items-center gap-2 mt-4 text-xs text-bu-muted font-medium">
+                  <img src="img/logo_icfi.jpg" alt="ICFI" class="w-5 h-5 rounded-full object-cover">
+                  <span>@BabcockICFI &bull; Bi-Annual Journal</span>
+                </div>
+              </div>
+            </div>
+            <div class="px-6 pb-6 flex gap-2.5">
+              <a href="./ijml.html" target="_blank" class="flex-1 py-2.5 rounded-full border border-bu-canonical/20 hover:bg-bu-canonical hover:text-white text-center text-xs font-bold text-bu-canonical transition">
+                Journal Portal &rarr;
+              </a>
+              <a href="https://docs.google.com/forms/d/e/1FAIpQLSdqy7-2m-Ffhi2xuW5_RHFaLsBXa39Ir0fzFd8UHb3DsOQibA/viewform?usp=sharing" target="_blank" class="px-4 py-2.5 rounded-full bg-amber-50 border border-bu-goldCanonical/40 text-xs font-bold text-bu-navy transition hover:bg-amber-100">
+                Join Community
+              </a>
+            </div>
+          </div>
+
+          <div class="bu-card overflow-hidden flex flex-col justify-between">
+            <div>
+              <div class="relative aspect-[16/9] bg-slate-200 overflow-hidden">
+                <img src="img/gal_2.jpg" alt="Keynote Session at Babcock University" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-black/20 flex items-center justify-center">
+                  <div class="w-12 h-12 rounded-full bg-red-600 text-white flex items-center justify-center shadow-lg text-sm pl-0.5">&#9654;</div>
+                </div>
+              </div>
+              <div class="p-6">
+                <h3 class="font-bold text-xl text-bu-canonical">5th ICFI Conference Video Recap (2023)</h3>
+                <p class="text-xs text-bu-muted mt-2 leading-relaxed">
+                  Watch highlights from plenary sessions, panel discussions, and international fellowship on campus at Babcock University, Ilishan-Remo.
+                </p>
+                <div class="flex items-center gap-2 mt-4 text-xs text-bu-muted font-medium">
+                  <img src="img/logo_bu.jpg" alt="BU" class="w-5 h-5 rounded object-contain bg-white">
+                  <span>@BabcockUniversityTV &bull; Highlight Film</span>
+                </div>
+              </div>
+            </div>
+            <div class="px-6 pb-6">
+              <a href="https://youtu.be/QnzxBpBPwrc" target="_blank" class="block w-full py-2.5 rounded-full border border-bu-canonical/20 hover:bg-bu-canonical hover:text-white text-center text-xs font-bold text-bu-canonical transition">
+                Watch Video &rarr;
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4 Past Conference Papers Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <a href="./FIPP%20Conference/INTEGRATING%20FAITH%20INTO%20LEARNING-SOCIAL%20WORK%20CLASS%20EXPERIENCES%20IN%20BABCOCK%20UNIVERSITY.pdf" target="_blank" class="bu-card p-5 flex flex-col justify-between">
+            <div>
+              <span class="text-[10px] font-bold uppercase tracking-wider text-bu-gold">Social Work &bull; PDF</span>
+              <h4 class="font-sans font-bold text-sm text-bu-canonical mt-1.5 leading-snug">Integrating Faith into Learning: Social Work Class Experiences</h4>
+            </div>
+            <span class="mt-4 block w-full py-2 rounded-full border border-bu-canonical/15 text-center text-xs font-bold text-bu-canonical">Download PDF &rarr;</span>
+          </a>
+
+          <a href="./FIPP%20Conference/FAITH%20INTEGRATION%20IN%20INTERNAL%20AUDIT%20AND%20COMPLIANCE%20FUNCTIONS%20OF%20PRIVATE%20UNIVERSITIES%20IN%20NIGERIA-%20THE%20CASE%20OF%20BABCOCK%20UNIVERSITY.pdf" target="_blank" class="bu-card p-5 flex flex-col justify-between">
+            <div>
+              <span class="text-[10px] font-bold uppercase tracking-wider text-bu-gold">Audit &amp; QA &bull; PDF</span>
+              <h4 class="font-sans font-bold text-sm text-bu-canonical mt-1.5 leading-snug">Faith Integration in Internal Audit &amp; Compliance Functions</h4>
+            </div>
+            <span class="mt-4 block w-full py-2 rounded-full border border-bu-canonical/15 text-center text-xs font-bold text-bu-canonical">Download PDF &rarr;</span>
+          </a>
+
+          <a href="./FIPP%20Conference/2017%20PAPER%20ON%20INTEGRATION%20OF%20FAITH%20IN%20INNOVATIVE%20QUALITY%20EDUCATION%20MANAGEMENT.pdf" target="_blank" class="bu-card p-5 flex flex-col justify-between">
+            <div>
+              <span class="text-[10px] font-bold uppercase tracking-wider text-bu-gold">Education &bull; PDF</span>
+              <h4 class="font-sans font-bold text-sm text-bu-canonical mt-1.5 leading-snug">Integration of Faith in Innovative Quality Education Management</h4>
+            </div>
+            <span class="mt-4 block w-full py-2 rounded-full border border-bu-canonical/15 text-center text-xs font-bold text-bu-canonical">Download PDF &rarr;</span>
+          </a>
+
+          <a href="./FIPP%20Conference/UNDERSTANDING%20THE%20BIBLICAL%20GRAPH%20REPRESENTATION%20OF%20MATHEW%2022-34-40%20AS%20BASIS%20FOR%20RELATIONAL%20PRINCIPLES%20IN%20NIGERIA%20SOCIO-POLITICAL%20SITUATION.pdf" target="_blank" class="bu-card p-5 flex flex-col justify-between">
+            <div>
+              <span class="text-[10px] font-bold uppercase tracking-wider text-bu-gold">Policy &bull; PDF</span>
+              <h4 class="font-sans font-bold text-sm text-bu-canonical mt-1.5 leading-snug">Biblical Graph Representation of Matthew 22:34–40 in Nigeria</h4>
+            </div>
+            <span class="mt-4 block w-full py-2 rounded-full border border-bu-canonical/15 text-center text-xs font-bold text-bu-canonical">Download PDF &rarr;</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Gallery Mosaic + FAQ & Team -->
+      <div id="gallery" class="pt-6 border-t border-bu-canonical/10">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
+          <div>
+            <h3 class="font-serif font-bold text-2xl sm:text-3xl text-bu-canonical">Campus Gatherings Gallery</h3>
+            <p class="text-xs text-bu-muted mt-1">Moments from earlier ICFI editions at Babcock University.</p>
+          </div>
+          <div class="flex gap-2.5 text-xs">
+            <a href="./gallery%202019.html" target="_blank" class="px-4 py-2 rounded-full bg-white border border-bu-canonical/15 font-bold text-bu-canonical hover:border-bu-gold transition">2019 Gallery &rarr;</a>
+            <a href="./gallery.html" target="_blank" class="px-4 py-2 rounded-full bg-white border border-bu-canonical/15 font-bold text-bu-canonical hover:border-bu-gold transition">2017 Gallery &rarr;</a>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+          <div class="lg:col-span-6 rounded-[20px] overflow-hidden bg-white p-2 border border-bu-canonical/10 shadow-sm">
+            <img src="img/gal_big.jpg" alt="University leadership outside hall" class="w-full h-64 sm:h-[316px] object-cover rounded-[14px]">
+          </div>
+          <div class="lg:col-span-6 grid grid-cols-2 gap-4">
+            <div class="rounded-[16px] overflow-hidden bg-white p-1.5 border border-bu-canonical/10 shadow-sm">
+              <img src="img/gal_1.jpg" alt="Delegates seated in session" class="w-full h-36 object-cover rounded-[12px]">
+            </div>
+            <div class="rounded-[16px] overflow-hidden bg-white p-1.5 border border-bu-canonical/10 shadow-sm">
+              <img src="img/gal_2.jpg" alt="Speaker at ICFI podium" class="w-full h-36 object-cover rounded-[12px]">
+            </div>
+            <div class="rounded-[16px] overflow-hidden bg-white p-1.5 border border-bu-canonical/10 shadow-sm">
+              <img src="img/gal_3.jpg" alt="Engaged scholars" class="w-full h-36 object-cover rounded-[12px]">
+            </div>
+            <div class="rounded-[16px] overflow-hidden bg-white p-1.5 border border-bu-canonical/10 shadow-sm">
+              <img src="img/gal_4.jpg" alt="Parallel workshop" class="w-full h-36 object-cover rounded-[12px]">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ & Conference Secretariat -->
+      <div id="faq" class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start pt-4">
+        <div class="lg:col-span-7 space-y-3">
+          <h3 class="font-serif font-bold text-2xl text-bu-canonical mb-4">Frequently Asked Questions</h3>
+          <details open class="bg-white rounded-[16px] p-5 border border-bu-canonical/10 shadow-sm">
+            <summary class="flex items-center justify-between cursor-pointer font-bold text-sm text-bu-canonical list-none">
+              <span>How do I arrange campus accommodation?</span>
+              <span class="faq-icon text-bu-gold text-lg font-bold transition-transform">+</span>
+            </summary>
+            <p class="text-xs text-bu-muted mt-3 leading-relaxed">
+              On-campus lodging (Babcock Guest House, Havillah Cottage, or Royal Cream Suite) is available for an additional fee. Contact <strong class="text-bu-navy">Dr. Nnenna Nwobi at +234 813 538 8049</strong>.
+            </p>
+          </details>
+          <details class="bg-white rounded-[16px] p-5 border border-bu-canonical/10 shadow-sm">
+            <summary class="flex items-center justify-between cursor-pointer font-bold text-sm text-bu-canonical list-none">
+              <span>How does the ₦10,000 community member discount work?</span>
+              <span class="faq-icon text-bu-gold text-lg font-bold transition-transform">+</span>
+            </summary>
+            <p class="text-xs text-bu-muted mt-3 leading-relaxed">
+              Registered members of ICFI receive ₦10,000 off the standard ₦50,000 fee and retain Early Bird rates (₦40,000) even after April 23, 2027.
+            </p>
+          </details>
+          <details class="bg-white rounded-[16px] p-5 border border-bu-canonical/10 shadow-sm">
+            <summary class="flex items-center justify-between cursor-pointer font-bold text-sm text-bu-canonical list-none">
+              <span>Can international or remote scholars present online?</span>
+              <span class="faq-icon text-bu-gold text-lg font-bold transition-transform">+</span>
+            </summary>
+            <p class="text-xs text-bu-muted mt-3 leading-relaxed">
+              Yes. Full hybrid participation lets online delegates present live via Zoom, receive digital certificates, and qualify for free IJFI publication.
+            </p>
+          </details>
+        </div>
+
+        <div class="lg:col-span-5 bg-bu-navy text-white rounded-[20px] p-6 sm:p-7 shadow-lg space-y-4">
+          <div>
+            <div class="text-[11px] font-bold uppercase tracking-wider text-bu-goldAccent">Speak With Our Coordinators</div>
+            <h3 class="font-serif font-bold text-2xl text-white mt-1">Conference Secretariat</h3>
+          </div>
+          <div class="space-y-2.5 text-xs">
+            <div class="p-3 rounded-xl bg-white/10 flex items-center justify-between">
+              <div><div class="font-bold">Dr. Nnenna Nwobi</div><div class="text-blue-200">Accommodation Arrangements</div></div>
+              <span class="font-mono text-bu-goldAccent font-semibold">+234 813 538 8049</span>
+            </div>
+            <div class="p-3 rounded-xl bg-white/10 flex items-center justify-between">
+              <div><div class="font-bold">Dr. Oluwafemi Olomojobi</div><div class="text-blue-200">Abstract Submissions</div></div>
+              <span class="font-mono text-bu-goldAccent font-semibold">08082334427</span>
+            </div>
+            <div class="p-3 rounded-xl bg-white/10 flex items-center justify-between">
+              <div><div class="font-bold">Miss Deborah Caleb</div><div class="text-blue-200">Registration &amp; Inquiries</div></div>
+              <span class="font-mono text-bu-goldAccent font-semibold">08064007567</span>
+            </div>
+            <div class="p-3 rounded-xl bg-white/10 flex items-center justify-between">
+              <div><div class="font-bold">Dr. Chinaka Emmanuel</div><div class="text-blue-200">Public Relations (PRO)</div></div>
+              <span class="font-mono text-bu-goldAccent font-semibold">07089324791</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 11. OFFICIAL 2-TIER BABCOCK UNIVERSITY FOOTER (#004182 UPPER + #b98d3b GOLD COPYRIGHT BAR) -->
+  <footer class="bg-bu-navy text-white">
+    <div class="max-w-[1280px] mx-auto px-5 sm:px-8 py-14">
+
+      <!-- Upper Institutional Lockup + Counters + Email Updates Form -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 pb-10 border-b border-white/20 items-start">
+        <div class="lg:col-span-7 flex flex-col sm:flex-row items-start gap-6">
+          <img src="img/logo_combined.png" alt="ICFI &amp; Babcock University" class="h-14 sm:h-16 w-auto object-contain shrink-0">
+          <p class="text-sm text-blue-100 leading-relaxed max-w-xl font-serif">
+            Babcock University is a faith based educational institution that integrates the totality of the Christian faith side by side with the academic programme. The 7th ICFI advances that mandate globally from July 27 – August 1, 2027.
+          </p>
+        </div>
+
+        <div class="lg:col-span-5 space-y-5">
+          <div class="grid grid-cols-2 gap-6">
+            <div>
+              <div class="font-serif font-bold text-3xl text-white">7th Edition</div>
+              <div class="text-[11px] font-bold uppercase tracking-wider text-blue-200 mt-0.5">ICFI Biennial Gatherings</div>
+            </div>
+            <div>
+              <div class="font-serif font-bold text-3xl text-white">8 Fields</div>
+              <div class="text-[11px] font-bold uppercase tracking-wider text-blue-200 mt-0.5">Research Tracks &amp; IJFI</div>
+            </div>
+          </div>
+
+          <form onsubmit="event.preventDefault(); window.location.href='mailto:icfi@babcock.edu.ng?subject=ICFI%202027%20Updates';" class="space-y-2">
+            <div class="text-xs font-serif text-blue-100">Subscribe for conference call-for-papers updates &amp; alerts</div>
+            <div class="flex rounded-[6px] overflow-hidden bg-white shadow">
+              <input type="email" placeholder="Enter your Email" class="flex-1 px-4 py-2.5 text-xs text-bu-canonical focus:outline-none">
+              <button type="submit" class="px-5 py-2.5 bg-bu-goldBand hover:bg-bu-gold text-white text-xs font-bold transition">Subscribe</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Lower Chevron Navigation Links -->
+      <div class="pt-10 grid grid-cols-2 sm:grid-cols-4 gap-8 text-xs">
+        <div class="space-y-3">
+          <div class="font-serif font-bold text-sm text-white">About ICFI</div>
+          <ul class="space-y-2 text-blue-100">
+            <li><a href="#convener" class="hover:text-bu-goldAccent transition">&rsaquo; Convener’s Welcome</a></li>
+            <li><a href="#speakers" class="hover:text-bu-goldAccent transition">&rsaquo; University Leadership</a></li>
+            <li><a href="#values" class="hover:text-bu-goldAccent transition">&rsaquo; Vision, Mission &amp; Values</a></li>
+          </ul>
+        </div>
+        <div class="space-y-3">
+          <div class="font-serif font-bold text-sm text-white">Submissions</div>
+          <ul class="space-y-2 text-blue-100">
+            <li><a href="#fields" class="hover:text-bu-goldAccent transition">&rsaquo; Eight Fields of Inquiry</a></li>
+            <li><a href="#abstracts" class="hover:text-bu-goldAccent transition">&rsaquo; Abstract Guidelines</a></li>
+            <li><a href="./ijml.html" target="_blank" class="hover:text-bu-goldAccent transition">&rsaquo; IJFI Journal Portal</a></li>
+          </ul>
+        </div>
+        <div class="space-y-3">
+          <div class="font-serif font-bold text-sm text-white">Registration</div>
+          <ul class="space-y-2 text-blue-100">
+            <li><a href="#registration" class="hover:text-bu-goldAccent transition">&rsaquo; Pass Tiers &amp; Pricing</a></li>
+            <li><a href="#roadmap" class="hover:text-bu-goldAccent transition">&rsaquo; Key Dates Roadmap</a></li>
+            <li><a href="#registration" class="hover:text-bu-goldAccent transition">&rsaquo; Bank Remittance Details</a></li>
+          </ul>
+        </div>
+        <div class="space-y-3">
+          <div class="font-serif font-bold text-sm text-white">Contact &amp; Archive</div>
+          <ul class="space-y-2 text-blue-100">
+            <li><a href="mailto:icfi@babcock.edu.ng" class="hover:text-bu-goldAccent transition">&rsaquo; icfi@babcock.edu.ng</a></li>
+            <li><a href="./gallery%202019.html" target="_blank" class="hover:text-bu-goldAccent transition">&rsaquo; 3rd ICFI Gallery (2019)</a></li>
+            <li><a href="./gallery.html" target="_blank" class="hover:text-bu-goldAccent transition">&rsaquo; 2nd ICFI Gallery (2017)</a></li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom Babcock Gold Copyright Bar -->
+    <div class="bg-bu-goldBand text-white py-4 px-5 sm:px-8">
+      <div class="max-w-[1280px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
+        <div class="space-y-0.5 text-center sm:text-left">
+          <div class="font-medium text-white/90">Office of Institutional Effectiveness &bull; Institute for Faith Integration</div>
+          <div class="font-semibold">Copyrights &copy; 2027 Babcock University. All rights reserved</div>
+        </div>
+        <div class="flex items-center gap-2 text-xs font-bold">
+          <a href="#abstracts" class="px-3 py-1.5 rounded border border-white/40 hover:bg-white/15 transition">Call for Abstracts</a>
+          <a href="https://youtu.be/QnzxBpBPwrc" target="_blank" class="px-3 py-1.5 rounded border border-white/40 hover:bg-white/15 transition">YouTube Recap</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const programDays = {
+      1: [
+        { time: "09:00 – 13:00", mode: "Campus & Zoom", title: "Arrival, Registration & Conference Kit Collection", desc: "Check-in at Babcock University campus or connect through our remote welcome desk." },
+        { time: "14:00 – 17:00", mode: "Plenary", title: "Opening Ceremony & Theme Keynote Address", desc: "Addresses by Chief Host Prof. Afolarin Olutunde Ojewole, Host Prof. Jonathan C. Nwosu, and Convener Prof. Constance C. Nwosu." },
+        { time: "18:00 – 19:30", mode: "Campus", title: "Welcome Fellowship & Networking Dinner", desc: "Collegial introductions and interdisciplinary table conversations." }
+      ],
+      2: [
+        { time: "08:30 – 10:30", mode: "Plenary", title: "Plenary I: Science, Technology & Faith Ecosystems", desc: "Dialogue on artificial intelligence, creation stewardship, and enduring faith values." },
+        { time: "11:00 – 13:30", mode: "Hybrid Tracks", title: "Parallel Sessions: Science, Arts & Technology", desc: "Research paper presentations with live audience Q&A across Auditorium and Zoom." },
+        { time: "15:00 – 16:30", mode: "IJFI Clinic", title: "IJFI Author & Peer-Review Publishing Clinic", desc: "Practical preparation for free double-blind peer-reviewed publication in IJFI." }
+      ],
+      3: [
+        { time: "08:30 – 10:30", mode: "Plenary", title: "Plenary II: Servant Leadership, Business & Institutional Integrity", desc: "Cultivating ethical ecosystems across higher education, finance, and governance." },
+        { time: "11:00 – 13:30", mode: "Hybrid Tracks", title: "Parallel Sessions: Leadership, Business & Institutions", desc: "Case studies in faith-integrated curriculum, management, and compliance audit." }
+      ],
+      4: [
+        { time: "09:00 – 11:30", mode: "Plenary", title: "Plenary III: Religion, Politics & Public Policy", desc: "Biblical relational principles, civic duty, justice, and multicultural community." },
+        { time: "13:00 – 16:00", mode: "Hybrid Tracks", title: "Parallel Sessions & Conference Communiqué", desc: "Research synthesis and collaborative institutional commitments." }
+      ],
+      5: [
+        { time: "Jul 31 · Sat", mode: "Worship", title: "Sabbath Worship, Thanksgiving & Closing Awards", desc: "Inspirational Sabbath service at Babcock University and presentation of certificates." },
+        { time: "Aug 1 · Sun", mode: "Departure", title: "Farewell Breakfast & Departures", desc: "Safe journeys for local and international delegates." }
+      ]
+    };
+
+    function setProgramDay(d) {
+      for (let i = 1; i <= 5; i++) {
+        const b = document.getElementById('p-tab-' + i);
+        if (i === d) {
+          b.className = "px-3 py-1.5 rounded-full text-xs font-bold bg-bu-canonical text-white transition";
+        } else {
+          b.className = "px-3 py-1.5 rounded-full text-xs font-semibold bg-bu-mist text-bu-canonical hover:bg-blue-100 transition";
+        }
+      }
+      document.getElementById('program-list').innerHTML = programDays[d].map(row => `
+        <div class="py-3.5 grid grid-cols-1 sm:grid-cols-12 gap-2 sm:gap-4 items-baseline">
+          <div class="sm:col-span-3 text-xs font-bold text-bu-goldBand">${row.time}</div>
+          <div class="sm:col-span-7">
+            <h4 class="font-sans font-bold text-sm text-bu-canonical">${row.title}</h4>
+            <p class="text-xs text-bu-muted mt-0.5 leading-relaxed">${row.desc}</p>
+          </div>
+          <div class="sm:col-span-2 sm:text-right text-[11px] font-semibold uppercase tracking-wider text-bu-navy">${row.mode}</div>
+        </div>
+      `).join('');
+    }
+    setProgramDay(1);
+
+    function setRegCurrency(curr) {
+      const ngnBtn = document.getElementById('cur-ngn');
+      const usdBtn = document.getElementById('cur-usd');
+      if (curr === 'NGN') {
+        ngnBtn.className = "px-5 py-2 rounded-full text-xs font-bold bg-bu-canonical text-white transition";
+        usdBtn.className = "px-5 py-2 rounded-full text-xs font-semibold text-bu-canonical hover:text-bu-navy transition";
+      } else {
+        usdBtn.className = "px-5 py-2 rounded-full text-xs font-bold bg-bu-canonical text-white transition";
+        ngnBtn.className = "px-5 py-2 rounded-full text-xs font-semibold text-bu-canonical hover:text-bu-navy transition";
+      }
+      document.querySelectorAll('.fee-num').forEach(el => {
+        el.textContent = curr === 'NGN' ? el.dataset.ngn : el.dataset.usd;
+      });
+      document.querySelectorAll('.fee-sub').forEach(el => {
+        el.textContent = curr === 'NGN' ? el.dataset.ngn : el.dataset.usd;
+      });
+    }
+
+    function copyAcct(btn, acct) {
+      navigator.clipboard.writeText(acct);
+      const orig = btn.textContent;
+      btn.textContent = "Copied ✓";
+      setTimeout(() => btn.textContent = orig, 1800);
+    }
+
+    function updateCountdown() {
+      const target = new Date('2027-07-27T09:00:00+01:00').getTime();
+      const diff = Math.max(0, target - Date.now());
+      document.getElementById('cd-days').textContent = Math.floor(diff / 86400000);
+      document.getElementById('cd-hours').textContent = String(Math.floor((diff / 3600000) % 24)).padStart(2, '0');
+      document.getElementById('cd-mins').textContent = String(Math.floor((diff / 60000) % 60)).padStart(2, '0');
+      document.getElementById('cd-secs').textContent = String(Math.floor((diff / 1000) % 60)).padStart(2, '0');
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+</body>
+</html>

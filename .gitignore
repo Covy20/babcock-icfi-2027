@@ -1,0 +1,18 @@
+.netlify/
+__pycache__/
+drive-download-*.zip
+drive-download-*/
+images2/
+images2019/
+icfi_7th_web/
+img/*
+!img/gal_*.jpg
+!img/hero*.jpg
+!img/host_*.jpg
+!img/journal.jpg
+!img/logo*.jpg
+!img/logo*.png
+!img/past_*.jpg
+!img/submit.jpg
+!img/welcome.jpg
+!img/bu logo.jpg

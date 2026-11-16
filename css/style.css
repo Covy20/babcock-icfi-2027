@@ -1,0 +1,388 @@
+/* -------------------------------------------------------------
+ * 6TH INTERNATIONAL CONFERENCE FOR FAITH INTEGRATION (ICFI)
+ * Babcock University - Office of Institutional Effectiveness
+ * Official Template Stylesheet
+ * ------------------------------------------------------------- */
+
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700');
+
+/* General Reset & Typography */
+body {
+    font-family: 'Roboto', sans-serif;
+    color: #333333;
+    background-color: #ffffff;
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+}
+
+a {
+    color: #1b3b6f;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+a:hover,
+a:focus {
+    color: #c0392b;
+    text-decoration: underline;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    color: #1b3b6f;
+}
+
+/* Page Preloader */
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ffffff;
+    z-index: 999999;
+}
+
+#status {
+    width: 80px;
+    height: 80px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin: -40px 0 0 -40px;
+    background-image: url('../img/preloader.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+/* Header & Sticky Navigation */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    background-color: rgba(255, 255, 255, 0.98);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease-in-out;
+}
+
+.header.sticky-nav {
+    background-color: #ffffff;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+}
+
+.navbar.main-menu {
+    margin-bottom: 0;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+}
+
+.navbar-brand {
+    padding: 10px 15px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-brand img {
+    max-height: 50px;
+    width: auto;
+    display: inline-block;
+}
+
+.navbar-nav > li > a {
+    color: #2c3e50;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    padding: 25px 16px;
+    transition: all 0.25s ease;
+}
+
+.navbar-nav > li > a:hover,
+.navbar-nav > li > a:focus,
+.navbar-nav > li.active > a {
+    color: #1b3b6f;
+    background-color: transparent;
+    border-bottom: 3px solid #1b3b6f;
+}
+
+/* Jumbotron / Hero Section */
+.jumbotron {
+    margin-top: 70px;
+    margin-bottom: 0;
+    padding: 130px 15px 110px;
+    background: linear-gradient(rgba(11, 27, 58, 0.82), rgba(11, 27, 58, 0.88)), url('../img/img-jumbotron-bg.jpg') no-repeat center center;
+    background-size: cover;
+    color: #ffffff;
+    position: relative;
+}
+
+.jumbotron .content {
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.jumbotron h1 {
+    font-size: 40px;
+    font-weight: 800;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    line-height: 1.25;
+    margin-bottom: 20px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.4);
+}
+
+.jumbotron .lead {
+    font-size: 20px;
+    font-weight: 400;
+    color: #e2e8f0;
+    margin-bottom: 15px;
+}
+
+.jumbotron .event-date {
+    display: inline-block;
+    padding: 12px 30px;
+    font-size: 22px;
+    font-weight: 700;
+    color: #ffffff;
+    background-color: #c0392b;
+    border-radius: 4px;
+    margin: 20px 0;
+    box-shadow: 0 4px 10px rgba(192, 57, 43, 0.4);
+}
+
+/* Section Wrappers & Content */
+.section-wrapper {
+    padding: 85px 0;
+    position: relative;
+}
+
+.gray-bg {
+    background-color: #f8fafc;
+}
+
+.section-title {
+    margin-bottom: 45px;
+    text-align: center;
+}
+
+.section-title h1 {
+    font-size: 34px;
+    font-weight: 700;
+    color: #1b3b6f;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 12px;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.section-title h1::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background-color: #c0392b;
+}
+
+/* About Section */
+.about-event {
+    background-color: #ffffff;
+}
+
+.about-event h1 {
+    font-size: 30px;
+    font-weight: 700;
+    color: #1b3b6f;
+    margin-bottom: 25px;
+}
+
+.about-event img {
+    float: left;
+    margin-right: 22px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+.about-event p {
+    font-size: 15px;
+    line-height: 1.85;
+    color: #475569;
+    margin-bottom: 18px;
+}
+
+.about-event li {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #334155;
+    margin-left: 20px;
+}
+
+.about-event address {
+    background: #f8fafc;
+    padding: 30px 25px;
+    border-radius: 8px;
+    border-left: 4px solid #1b3b6f;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    font-size: 15px;
+    line-height: 1.8;
+    color: #334155;
+}
+
+/* Speaker & Leadership Grid */
+.team .thumbnail {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 18px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+}
+
+.team .thumbnail:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 18px rgba(0,0,0,0.1);
+    border-color: #cbd5e1;
+}
+
+.team .thumbnail img {
+    border-radius: 6px;
+    margin: 0 auto;
+    object-fit: cover;
+}
+
+.team .caption {
+    padding: 15px 5px 5px;
+}
+
+.team .caption h3 {
+    font-size: 17px;
+    font-weight: 700;
+    color: #1b3b6f;
+    margin-top: 10px;
+    margin-bottom: 6px;
+}
+
+.team .caption h5 {
+    font-size: 13px;
+    color: #64748b;
+    line-height: 1.5;
+}
+
+/* Call for Abstract & Registration */
+.client-logo {
+    background-color: #ffffff;
+}
+
+.section-registration {
+    padding: 70px 0;
+    background-color: #ffffff;
+}
+
+.section-registration a {
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: #1b3b6f;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 14px;
+    border-radius: 5px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 25px;
+    transition: background-color 0.3s;
+}
+
+.section-registration a:hover {
+    background-color: #132a50;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.section-registration table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    margin-bottom: 30px;
+}
+
+.section-registration table th,
+.section-registration table td {
+    border: 1px solid #e2e8f0;
+    padding: 16px 20px;
+    font-size: 14px;
+    color: #334155;
+    text-align: left;
+}
+
+.section-registration table tr:nth-child(even) {
+    background-color: #f8fafc;
+}
+
+.section-registration table tr:hover {
+    background-color: #f1f5f9;
+}
+
+/* Venue & Method of Payment */
+#section-venue h3 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1b3b6f;
+    margin-top: 25px;
+    margin-bottom: 12px;
+}
+
+/* Footer */
+.footer {
+    background-color: #0b1b3a;
+    color: #94a3b8;
+    padding: 35px 0;
+    font-size: 14px;
+}
+
+.footer .copytext {
+    color: #cbd5e1;
+}
+
+.footer .copytext a {
+    color: #60a5fa;
+}
+
+.footer .copytext a:hover {
+    color: #93c5fd;
+    text-decoration: underline;
+}
+
+/* Blinking Animation */
+@-webkit-keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0.2; }
+    100% { opacity: 1; }
+}
+
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0.2; }
+    100% { opacity: 1; }
+}
+
+.blink {
+    -webkit-animation: blink 1.2s linear infinite;
+    animation: blink 1.2s linear infinite;
+}
