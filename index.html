@@ -76,20 +76,76 @@
       font-size: clamp(2.15rem, 1.4rem + 2.4vw, 3.35rem);
       line-height: 1.1;
     }
+    .header-inner > * {
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+    .site-header.is-measuring *,
+    .site-header.is-measuring *::after {
+      transition: none !important;
+    }
+    .menu-button {
+      anchor-name: --menu-button;
+    }
+    .site-header .site-menu {
+      position: fixed;
+      inset: auto;
+      inset-block-start: 4.35rem;
+      inset-block-start: anchor(--menu-button bottom);
+      inset-inline-end: 1rem;
+      inline-size: min(82dvw, 20rem);
+      max-inline-size: calc(100dvw - 2rem);
+      block-size: fit-content;
+      max-block-size: calc(100dvh - 5.5rem);
+      margin: 0;
+      margin-block-start: 0.5rem;
+      padding: 0.5rem;
+      overflow: auto;
+      background: #003068;
+      border: 1px solid rgba(238, 194, 90, 0.35);
+      border-radius: 14px;
+      box-shadow: 0 20px 44px rgba(0, 18, 42, 0.45);
+      color: #ffffff;
+      list-style: none;
+    }
+    .site-header:not(.is-wide) .site-menu:not(:is(:popover-open, .\:popover-open)) {
+      display: none;
+    }
+    .site-header:not(.is-wide) .site-menu:is(:popover-open, .\:popover-open) {
+      display: grid;
+      gap: 0.25rem;
+      opacity: 1;
+    }
+    .site-header .site-menu::backdrop {
+      background: rgba(11, 37, 69, 0.35);
+    }
     .bu-nav-link {
       position: relative;
-      padding: 8px 10px;
-      color: rgba(255, 255, 255, 0.88);
-      font-size: 0.78rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-block-size: 44px;
+      padding: 0.625rem 0.875rem;
+      color: rgba(255, 255, 255, 0.92);
+      font-size: 0.875rem;
       font-weight: 500;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.05em;
       text-transform: uppercase;
-      border-radius: 6px;
+      border-radius: 8px;
       transition: color 0.2s ease, background-color 0.2s ease;
     }
-    .bu-nav-link:hover {
+    .bu-nav-link:hover,
+    .bu-nav-link:focus-visible {
       color: #ffffff;
-      background: rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.1);
+      outline: 2px solid #eec25a;
+      outline-offset: -2px;
+    }
+    .bu-nav-link[aria-current="page"] {
+      color: #ffffff;
+      font-weight: 700;
+      background: rgba(238, 194, 90, 0.14);
+      box-shadow: inset 3px 0 0 #eec25a;
     }
     .bu-nav-link::after {
       content: '';
@@ -103,8 +159,58 @@
       transform-origin: center;
       transition: transform 0.25s ease-out;
     }
-    .bu-nav-link:hover::after {
+    .site-header.is-wide .menu-button {
+      display: none;
+    }
+    .site-header.is-wide .site-nav {
+      order: 2;
+    }
+    .site-header.is-wide .header-actions {
+      order: 3;
+      margin-inline-start: 0;
+    }
+    .site-header.is-wide .site-menu {
+      position: static;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      inline-size: auto;
+      max-inline-size: none;
+      block-size: auto;
+      max-block-size: none;
+      overflow: visible;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
+    }
+    .site-header.is-wide .site-menu::backdrop {
+      display: none;
+    }
+    .site-header.is-wide .bu-nav-link {
+      min-block-size: auto;
+      padding: 8px 10px;
+      font-size: 0.78rem;
+      letter-spacing: 0.06em;
+      border-radius: 6px;
+    }
+    .site-header.is-wide .bu-nav-link[aria-current="page"] {
+      box-shadow: none;
+      background: rgba(255, 255, 255, 0.08);
+    }
+    .site-header.is-wide .bu-nav-link[aria-current="page"]::after,
+    .site-header.is-wide .bu-nav-link:hover::after {
       transform: scaleX(1);
+    }
+    @media (forced-colors: active) {
+      .site-header .site-menu {
+        border: 1px solid CanvasText;
+      }
+      .bu-nav-link[aria-current="page"] {
+        border: 1px solid Highlight;
+      }
     }
     .bu-card {
       background: #ffffff;
@@ -133,7 +239,7 @@
       transform: rotate(45deg);
     }
     @media (prefers-reduced-motion: reduce) {
-      .bu-card, .bu-nav-link::after, details::details-content, .faq-icon {
+      .bu-card, .bu-nav-link::after, .site-header .site-menu, details::details-content, .faq-icon {
         transition: none !important;
         transform: none !important;
       }
@@ -144,18 +250,18 @@
 
   <!-- 1. BABCOCK GOLD UTILITY STRIP (38px height, white links + dividers) -->
   <div class="bg-bu-gold text-white h-[38px] overflow-hidden">
-    <div class="max-w-[1380px] mx-auto px-4 sm:px-8 h-full flex items-center justify-center overflow-x-auto">
-      <a href="#abstracts" class="inline-flex items-center gap-1.5 px-3.5 h-full text-[12.5px] font-medium whitespace-nowrap hover:bg-black/10 transition">
+    <div class="max-w-[1380px] mx-auto px-3 sm:px-8 h-full flex items-center justify-start sm:justify-center overflow-x-auto">
+      <a href="#abstracts" class="inline-flex items-center gap-1.5 px-2.5 sm:px-3.5 h-full text-[11.5px] sm:text-[12.5px] font-medium whitespace-nowrap hover:bg-black/10 transition shrink-0">
         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
         <span>Submit Abstract</span>
       </a>
       <span class="h-3.5 w-px bg-white/45 shrink-0"></span>
-      <a href="./ijml.html" target="_blank" class="inline-flex items-center gap-1.5 px-3.5 h-full text-[12.5px] font-medium whitespace-nowrap hover:bg-black/10 transition">
+      <a href="./ijml.html" target="_blank" class="inline-flex items-center gap-1.5 px-2.5 sm:px-3.5 h-full text-[11.5px] sm:text-[12.5px] font-medium whitespace-nowrap hover:bg-black/10 transition shrink-0">
         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
         <span>IJFI Journal Portal</span>
       </a>
       <span class="h-3.5 w-px bg-white/45 shrink-0"></span>
-      <a href="#roadmap" class="inline-flex items-center gap-1.5 px-3.5 h-full text-[12.5px] font-medium whitespace-nowrap hover:bg-black/10 transition">
+      <a href="#roadmap" class="inline-flex items-center gap-1.5 px-2.5 sm:px-3.5 h-full text-[11.5px] sm:text-[12.5px] font-medium whitespace-nowrap hover:bg-black/10 transition shrink-0">
         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
         <span>Key Dates (Mar 24)</span>
       </a>
@@ -178,25 +284,39 @@
   </div>
 
   <!-- 2. BABCOCK NAVY MAIN NAVBAR (64px sticky, #004182) -->
-  <header class="sticky top-0 z-50 bg-bu-navy border-b border-white/15 shadow-lg">
-    <div class="max-w-[1380px] mx-auto px-4 sm:px-8 min-h-[64px] flex items-center justify-between gap-4">
+  <header id="site-header" class="site-header sticky top-0 z-50 bg-bu-navy border-b border-white/15 shadow-lg">
+    <div class="header-inner max-w-[1380px] mx-auto px-3.5 sm:px-8 min-h-[64px] flex items-center justify-between gap-2 sm:gap-4">
       <a href="#" class="flex items-center shrink-0">
-        <img src="img/logo_combined.png" alt="ICFI &amp; Babcock University" class="h-12 sm:h-[52px] w-auto object-contain">
+        <img src="img/logo_combined.png" alt="ICFI &amp; Babcock University" class="h-9 sm:h-11 lg:h-[52px] w-auto object-contain">
       </a>
 
-      <nav class="hidden lg:flex items-center gap-1.5 xl:gap-3 whitespace-nowrap">
-        <a href="#convener" class="bu-nav-link">About</a>
-        <a href="#fields" class="bu-nav-link">8 Fields</a>
-        <a href="#speakers" class="bu-nav-link">Speakers</a>
-        <a href="#values" class="bu-nav-link">Pillars</a>
-        <a href="#roadmap" class="bu-nav-link">Programme</a>
-        <a href="#registration" class="bu-nav-link">Registration</a>
-        <a href="#ijfi" class="bu-nav-link">IJFI &amp; Papers</a>
+      <nav class="site-nav flex items-center order-3" aria-label="Primary">
+        <button
+          id="menu-button"
+          class="menu-button inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-2 rounded-[6px] bg-white/10 hover:bg-white/20 border border-white/25 text-white text-xs font-semibold tracking-wide min-h-[40px] cursor-pointer transition"
+          type="button"
+          popovertarget="site-menu"
+          popovertargetaction="toggle"
+          aria-controls="site-menu"
+        >
+          <svg class="w-4 h-4 shrink-0" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          <span>Menu</span>
+        </button>
+
+        <ul id="site-menu" class="site-menu" popover="auto">
+          <li><a href="#convener" class="bu-nav-link">About</a></li>
+          <li><a href="#fields" class="bu-nav-link">8 Fields</a></li>
+          <li><a href="#speakers" class="bu-nav-link">Speakers</a></li>
+          <li><a href="#values" class="bu-nav-link">Pillars</a></li>
+          <li><a href="#roadmap" class="bu-nav-link">Programme</a></li>
+          <li><a href="#registration" class="bu-nav-link">Registration</a></li>
+          <li><a href="#ijfi" class="bu-nav-link">IJFI &amp; Papers</a></li>
+        </ul>
       </nav>
 
-      <div class="flex items-center gap-2.5 shrink-0 whitespace-nowrap">
-        <a href="https://docs.google.com/forms/u/3/d/e/1FAIpQLScr2oiysOTW437vd0vtqiuUxgH4FvSELzEA1yFfPa9ebk6XkA/viewform?usp=send_form" target="_blank" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-[6px] bg-bu-gold hover:bg-bu-goldLight text-white text-xs font-bold uppercase tracking-wider shadow transition">
-          <span>Register Now</span>
+      <div class="header-actions flex items-center gap-2 sm:gap-2.5 shrink-0 whitespace-nowrap ml-auto order-2">
+        <a href="https://docs.google.com/forms/u/3/d/e/1FAIpQLScr2oiysOTW437vd0vtqiuUxgH4FvSELzEA1yFfPa9ebk6XkA/viewform?usp=send_form" target="_blank" class="inline-flex items-center gap-1.5 px-3 sm:px-4 py-2 sm:py-2.5 rounded-[6px] bg-bu-gold hover:bg-bu-goldLight text-white text-[11px] sm:text-xs font-bold uppercase tracking-wider shadow transition min-h-[40px]">
+          <span>Register<span class="hidden sm:inline"> Now</span></span>
           <span aria-hidden="true">&rarr;</span>
         </a>
         <a href="#abstracts" title="Submit Abstract" class="hidden sm:inline-flex items-center justify-center w-9 h-9 rounded-full bg-white/10 border border-white/20 text-white hover:border-bu-goldLight transition">
@@ -241,17 +361,19 @@
           <div class="rounded-[22px] overflow-hidden bg-white border border-bu-navy/15 shadow-2xl">
             <div class="relative aspect-[16/10] bg-slate-200">
               <img src="img/hero_main.jpg" alt="Main Plenary Amphitheater in session at Babcock University" class="w-full h-full object-cover">
-              <div class="absolute top-3.5 left-3.5 px-3 py-1 rounded-full bg-white/95 text-bu-navy text-[11px] font-bold shadow">
-                Main Plenary Amphitheater • Ilishan-Remo
+              <div class="absolute top-3 inset-x-3 flex flex-wrap items-center justify-between gap-1.5 pointer-events-none">
+                <div class="px-3 py-1 rounded-full bg-white/95 text-bu-navy text-[10.5px] sm:text-[11px] font-bold shadow pointer-events-auto">
+                  Main Plenary Amphitheater • Ilishan-Remo
+                </div>
+                <a href="https://youtu.be/QnzxBpBPwrc" target="_blank" class="px-3 py-1 rounded-full bg-bu-gold hover:bg-bu-goldLight text-white text-[10.5px] sm:text-[11px] font-bold shadow transition pointer-events-auto">
+                  ▶ 2023 Video Recap
+                </a>
               </div>
-              <a href="https://youtu.be/QnzxBpBPwrc" target="_blank" class="absolute top-3.5 right-3.5 px-3 py-1 rounded-full bg-bu-gold hover:bg-bu-goldLight text-white text-[11px] font-bold shadow transition">
-                ▶ 2023 Video Recap
-              </a>
             </div>
 
             <!-- Conference Speaker Strip + Navy Details Bar -->
             <div class="p-4 sm:p-5 bg-gradient-to-b from-[#eef4fc] to-white border-t border-bu-navy/10">
-              <div class="grid grid-cols-4 gap-2.5 text-center">
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 text-center">
                 <div class="bg-white rounded-[10px] p-1.5 border border-bu-navy/10 shadow-sm">
                   <img src="img/host_vc.jpg" alt="Prof. Afolarin Olutunde Ojewole" class="w-full aspect-[6/5] object-cover object-top rounded-[6px]">
                   <div class="text-[10px] font-bold text-bu-navy mt-1.5 truncate">Prof. A. Ojewole</div>
@@ -1052,19 +1174,19 @@
             <h3 class="font-serif font-bold text-2xl text-white mt-1">Conference Secretariat</h3>
           </div>
           <div class="space-y-2.5 text-xs">
-            <div class="p-3 rounded-xl bg-white/10 flex items-center justify-between">
+            <div class="p-3 rounded-xl bg-white/10 flex flex-wrap items-center justify-between gap-2">
               <div><div class="font-bold">Dr. Nnenna Nwobi</div><div class="text-blue-200">Accommodation Arrangements</div></div>
               <span class="font-mono text-bu-goldAccent font-semibold">+234 813 538 8049</span>
             </div>
-            <div class="p-3 rounded-xl bg-white/10 flex items-center justify-between">
+            <div class="p-3 rounded-xl bg-white/10 flex flex-wrap items-center justify-between gap-2">
               <div><div class="font-bold">Dr. Oluwafemi Olomojobi</div><div class="text-blue-200">Abstract Submissions</div></div>
               <span class="font-mono text-bu-goldAccent font-semibold">08082334427</span>
             </div>
-            <div class="p-3 rounded-xl bg-white/10 flex items-center justify-between">
+            <div class="p-3 rounded-xl bg-white/10 flex flex-wrap items-center justify-between gap-2">
               <div><div class="font-bold">Miss Deborah Caleb</div><div class="text-blue-200">Registration &amp; Inquiries</div></div>
               <span class="font-mono text-bu-goldAccent font-semibold">08064007567</span>
             </div>
-            <div class="p-3 rounded-xl bg-white/10 flex items-center justify-between">
+            <div class="p-3 rounded-xl bg-white/10 flex flex-wrap items-center justify-between gap-2">
               <div><div class="font-bold">Dr. Chinaka Emmanuel</div><div class="text-blue-200">Public Relations (PRO)</div></div>
               <span class="font-mono text-bu-goldAccent font-semibold">07089324791</span>
             </div>
@@ -1103,8 +1225,8 @@
           <form onsubmit="event.preventDefault(); window.location.href='mailto:icfi@babcock.edu.ng?subject=ICFI%202027%20Updates';" class="space-y-2">
             <div class="text-xs font-serif text-blue-100">Subscribe for conference call-for-papers updates &amp; alerts</div>
             <div class="flex rounded-[6px] overflow-hidden bg-white shadow">
-              <input type="email" placeholder="Enter your Email" class="flex-1 px-4 py-2.5 text-xs text-bu-canonical focus:outline-none">
-              <button type="submit" class="px-5 py-2.5 bg-bu-goldBand hover:bg-bu-gold text-white text-xs font-bold transition">Subscribe</button>
+              <input type="email" placeholder="Enter your Email" class="flex-1 min-w-0 px-4 py-2.5 text-xs text-bu-canonical focus:outline-none">
+              <button type="submit" class="px-5 py-2.5 bg-bu-goldBand hover:bg-bu-gold text-white text-xs font-bold transition shrink-0">Subscribe</button>
             </div>
           </form>
         </div>
@@ -1246,6 +1368,70 @@
     }
     updateCountdown();
     setInterval(updateCountdown, 1000);
+
+    (function initResponsiveNav() {
+      if (!Object.hasOwn(HTMLElement.prototype, 'popover')) {
+        const s = document.createElement('script');
+        s.src = 'https://unpkg.com/@oddbird/popover-polyfill@latest/dist/popover.min.js';
+        s.async = true;
+        document.head.appendChild(s);
+      }
+
+      const header = document.getElementById('site-header');
+      const inner = header.querySelector('.header-inner');
+      const menu = document.getElementById('site-menu');
+      const menuBtn = document.getElementById('menu-button');
+      const navLinks = menu.querySelectorAll('.bu-nav-link');
+      let lastWidth = 0;
+
+      function measureNav() {
+        const width = inner.clientWidth;
+        const wasWide = header.classList.contains('is-wide');
+        if (!wasWide && width <= lastWidth && lastWidth > 0) return;
+        lastWidth = width;
+
+        let wasOpen = false;
+        if (!wasWide) {
+          try { wasOpen = menu.matches(':popover-open'); } catch {}
+          wasOpen = wasOpen || menu.classList.contains(':popover-open');
+        }
+        header.classList.add('is-measuring', 'is-wide');
+        menu.removeAttribute('popover');
+
+        const wide = inner.scrollWidth <= inner.clientWidth;
+        header.classList.toggle('is-wide', wide);
+
+        if (!wide) {
+          menu.setAttribute('popover', 'auto');
+          if (wasOpen && typeof menu.showPopover === 'function') {
+            try { menu.showPopover(); } catch {}
+          }
+        }
+        requestAnimationFrame(() => header.classList.remove('is-measuring'));
+      }
+
+      menu.addEventListener('toggle', (e) => {
+        menuBtn.setAttribute('aria-expanded', e.newState === 'open' ? 'true' : 'false');
+      });
+
+      navLinks.forEach((link) => {
+        link.addEventListener('click', () => {
+          navLinks.forEach((l) => l.removeAttribute('aria-current'));
+          link.setAttribute('aria-current', 'page');
+          if (!header.classList.contains('is-wide') && typeof menu.hidePopover === 'function') {
+            try { menu.hidePopover(); } catch {}
+          }
+        });
+      });
+
+      const ro = new ResizeObserver(() => measureNav());
+      ro.observe(inner);
+      ro.observe(menu);
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(measureNav);
+      }
+      measureNav();
+    })();
   </script>
 </body>
 </html>
