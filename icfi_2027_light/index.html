@@ -244,6 +244,83 @@
         transform: none !important;
       }
     }
+    .visually-hidden:where(:not(:focus-within, :active)) {
+      position: absolute !important;
+      clip-path: inset(50%) !important;
+      overflow: hidden !important;
+      width: 1px !important;
+      height: 1px !important;
+      margin: -1px !important;
+      padding: 0 !important;
+      border: 0 !important;
+      white-space: nowrap !important;
+    }
+    .reg-input {
+      width: 100%;
+      font: inherit;
+      font-size: max(1rem, 1em);
+      min-height: 48px;
+      padding: 0.65rem 0.9rem;
+      border-radius: 12px;
+      border: 1.5px solid #94a3b8;
+      background-color: #ffffff;
+      color: #1B2D5B;
+      box-sizing: border-box;
+      transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .reg-input:focus-visible,
+    .reg-choice:focus-visible + label,
+    .reg-file:focus-visible {
+      outline: 3px solid #0b57d0;
+      outline-offset: 2px;
+    }
+    .reg-input:is(:user-invalid, .user-invalid-fallback) {
+      border-color: #d93025;
+      background-color: #fef2f2;
+    }
+    .reg-input:is(:user-valid, .user-valid-fallback) {
+      border-color: #188038;
+    }
+    .bu-error-msg {
+      display: none;
+      color: #b91c1c;
+      font-size: 0.85rem;
+      margin-top: 0.35rem;
+      font-weight: 500;
+    }
+    .reg-input:is(:user-invalid, .user-invalid-fallback) ~ .bu-error-msg,
+    .reg-choice-group.has-error ~ .bu-error-msg,
+    .reg-file-wrap.has-error ~ .bu-error-msg {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .reg-choice {
+      position: absolute !important;
+      clip-path: inset(50%) !important;
+      overflow: hidden !important;
+      width: 1px !important;
+      height: 1px !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      border: 0 !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
+    }
+    .reg-choice:checked + .reg-choice-card {
+      border-color: #004182;
+      background-color: #eef4fb;
+      box-shadow: 0 0 0 1px #004182;
+    }
+    .reg-choice:checked + .reg-choice-card .reg-radio-dot {
+      background-color: #004182;
+      box-shadow: inset 0 0 0 3px #eef4fb;
+    }
+    @media (pointer: coarse) {
+      .reg-input {
+        min-height: 52px;
+      }
+    }
   </style>
 </head>
 <body class="bg-white text-bu-canonical selection:bg-bu-mist selection:text-bu-navy">
@@ -256,7 +333,7 @@
         <span>Submit Abstract</span>
       </a>
       <span class="h-3.5 w-px bg-white/45 shrink-0"></span>
-      <a href="../ijml.html" target="_blank" class="inline-flex items-center gap-1.5 px-2.5 sm:px-3.5 h-full text-[11.5px] sm:text-[12.5px] font-medium whitespace-nowrap hover:bg-black/10 transition shrink-0">
+      <a href="./ijml.html" target="_blank" class="inline-flex items-center gap-1.5 px-2.5 sm:px-3.5 h-full text-[11.5px] sm:text-[12.5px] font-medium whitespace-nowrap hover:bg-black/10 transition shrink-0">
         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
         <span>IJFI Journal Portal</span>
       </a>
@@ -315,7 +392,7 @@
       </nav>
 
       <div class="header-actions flex items-center gap-2 sm:gap-2.5 shrink-0 whitespace-nowrap ml-auto order-2">
-        <a href="https://docs.google.com/forms/u/3/d/e/1FAIpQLScr2oiysOTW437vd0vtqiuUxgH4FvSELzEA1yFfPa9ebk6XkA/viewform?usp=send_form" target="_blank" class="inline-flex items-center gap-1.5 px-3 sm:px-4 py-2 sm:py-2.5 rounded-[6px] bg-bu-gold hover:bg-bu-goldLight text-white text-[11px] sm:text-xs font-bold uppercase tracking-wider shadow transition min-h-[40px]">
+        <a href="#registration-portal" class="inline-flex items-center gap-1.5 px-3 sm:px-4 py-2 sm:py-2.5 rounded-[6px] bg-bu-gold hover:bg-bu-goldLight text-white text-[11px] sm:text-xs font-bold uppercase tracking-wider shadow transition min-h-[40px]">
           <span>Register<span class="hidden sm:inline"> Now</span></span>
           <span aria-hidden="true">&rarr;</span>
         </a>
@@ -347,7 +424,7 @@
           </p>
 
           <div class="flex flex-wrap gap-3.5 pt-2">
-            <a href="https://docs.google.com/forms/u/3/d/e/1FAIpQLScr2oiysOTW437vd0vtqiuUxgH4FvSELzEA1yFfPa9ebk6XkA/viewform?usp=send_form" target="_blank" class="px-7 py-3.5 rounded-[12px] bg-bu-blue hover:bg-blue-700 text-white text-[15px] font-medium shadow-md transition">
+            <a href="#registration-portal" class="px-7 py-3.5 rounded-[12px] bg-bu-blue hover:bg-blue-700 text-white text-[15px] font-medium shadow-md transition">
               Reserve Your Seat
             </a>
             <a href="#abstracts" class="px-7 py-3.5 rounded-[12px] bg-[#383c42] hover:bg-[#212121] text-white text-[15px] font-medium shadow-md transition">
@@ -793,7 +870,7 @@
 
         <!-- Left 5 Cols: Roadmap Date Chips + Abstract Card (Matches .bu-nsp-chip in step_19_shot_3.png) -->
         <div class="lg:col-span-5 space-y-4">
-          <a href="https://docs.google.com/forms/u/3/d/e/1FAIpQLScr2oiysOTW437vd0vtqiuUxgH4FvSELzEA1yFfPa9ebk6XkA/viewform?usp=send_form" target="_blank" class="inline-flex items-center gap-3 px-6 py-3.5 rounded-full bg-bu-canonical hover:bg-bu-canonicalDark text-white text-sm font-bold shadow-md transition mb-2">
+          <a href="#registration-portal" class="inline-flex items-center gap-3 px-6 py-3.5 rounded-full bg-bu-canonical hover:bg-bu-canonicalDark text-white text-sm font-bold shadow-md transition mb-2">
             <span>Start here</span>
             <span aria-hidden="true">&rarr;</span>
           </a>
@@ -918,9 +995,9 @@
               <li>✓ Free IJFI publication (peer-reviewed)</li>
             </ul>
           </div>
-          <a href="https://docs.google.com/forms/u/3/d/e/1FAIpQLScr2oiysOTW437vd0vtqiuUxgH4FvSELzEA1yFfPa9ebk6XkA/viewform?usp=send_form" target="_blank" class="mt-7 w-full py-3 rounded-full text-center text-xs font-bold text-bu-canonical bg-bu-mist hover:bg-blue-100 transition">
+          <button type="button" onclick="openRegWithPreset('Physical / In-person', 'non-member')" class="mt-7 w-full py-3 rounded-full text-center text-xs font-bold text-bu-canonical bg-bu-mist hover:bg-blue-100 transition cursor-pointer">
             Register Standard Seat
-          </a>
+          </button>
         </div>
 
         <div class="bg-bu-band text-white border-2 border-bu-goldAccent rounded-[20px] p-7 shadow-xl flex flex-col justify-between">
@@ -938,9 +1015,9 @@
               <li class="italic text-slate-300">Members retain Early Bird rates year-round.</li>
             </ul>
           </div>
-          <a href="https://docs.google.com/forms/u/3/d/e/1FAIpQLScr2oiysOTW437vd0vtqiuUxgH4FvSELzEA1yFfPa9ebk6XkA/viewform?usp=send_form" target="_blank" class="mt-7 w-full py-3 rounded-full text-center text-xs font-bold text-bu-band bg-bu-goldAccent hover:bg-amber-300 transition">
+          <button type="button" onclick="openRegWithPreset('Physical / In-person', 'early-bird')" class="mt-7 w-full py-3 rounded-full text-center text-xs font-bold text-bu-band bg-bu-goldAccent hover:bg-amber-300 transition cursor-pointer">
             Reserve Early Bird Seat &rarr;
-          </a>
+          </button>
         </div>
 
         <div class="bu-card p-7 flex flex-col justify-between">
@@ -958,21 +1035,21 @@
               <li>✓ Digital proceedings &amp; e-certificate</li>
             </ul>
           </div>
-          <a href="https://docs.google.com/forms/u/3/d/e/1FAIpQLScr2oiysOTW437vd0vtqiuUxgH4FvSELzEA1yFfPa9ebk6XkA/viewform?usp=send_form" target="_blank" class="mt-7 w-full py-3 rounded-full text-center text-xs font-bold text-bu-canonical bg-bu-mist hover:bg-blue-100 transition">
+          <button type="button" onclick="openRegWithPreset('Virtual / Online', 'non-member')" class="mt-7 w-full py-3 rounded-full text-center text-xs font-bold text-bu-canonical bg-bu-mist hover:bg-blue-100 transition cursor-pointer">
             Register Online Pass
-          </a>
+          </button>
         </div>
       </div>
 
       <!-- Banking Transfer Details -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
         <div class="bg-bu-tint border border-bu-canonical/10 rounded-[18px] p-5 flex items-center justify-between gap-4">
           <div>
             <div class="text-[11px] font-bold uppercase tracking-wider text-bu-gold">Local Transfers (NGN)</div>
             <div class="text-sm font-bold text-bu-navy mt-0.5">UBA Plc &bull; Babcock MFB</div>
             <div class="text-xs text-bu-muted font-mono mt-0.5">Account: <strong class="text-bu-navy">1020069501</strong></div>
           </div>
-          <button onclick="copyAcct(this, '1020069501')" class="px-4 py-2 rounded-full bg-white border border-bu-canonical/15 hover:border-bu-navy text-xs font-bold text-bu-navy transition shrink-0">
+          <button type="button" onclick="copyAcct(this, '1020069501')" class="px-4 py-2 rounded-full bg-white border border-bu-canonical/15 hover:border-bu-navy text-xs font-bold text-bu-navy transition shrink-0 cursor-pointer">
             Copy Acct
           </button>
         </div>
@@ -982,9 +1059,496 @@
             <div class="text-sm font-bold text-bu-navy mt-0.5">GTBank &bull; B.U-Op./Inst. For Faith Integr</div>
             <div class="text-xs text-bu-muted font-mono mt-0.5">Account: <strong class="text-bu-navy">0829898610</strong></div>
           </div>
-          <button onclick="copyAcct(this, '0829898610')" class="px-4 py-2 rounded-full bg-white border border-bu-canonical/15 hover:border-bu-navy text-xs font-bold text-bu-navy transition shrink-0">
+          <button type="button" onclick="copyAcct(this, '0829898610')" class="px-4 py-2 rounded-full bg-white border border-bu-canonical/15 hover:border-bu-navy text-xs font-bold text-bu-navy transition shrink-0 cursor-pointer">
             Copy Acct
           </button>
+        </div>
+      </div>
+
+      <!-- ON-SITE REGISTRATION PORTAL (CONNECTED TO GOOGLE SHEETS + APPS SCRIPT) -->
+      <div id="registration-portal" class="scroll-mt-24 bg-bu-tint border border-bu-canonical/15 rounded-[24px] p-6 sm:p-10 shadow-sm">
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-6 border-b border-bu-canonical/10 mb-8">
+          <div>
+            <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-bu-canonical/15 text-[11px] font-bold uppercase tracking-wider text-bu-goldBand mb-2">
+              Official On-Site Registration Portal
+            </span>
+            <h3 id="reg-portal-heading" class="font-serif font-bold text-2xl sm:text-3xl text-bu-navy">
+              Complete Your 7th ICFI 2027 Registration
+            </h3>
+            <p class="text-xs sm:text-sm text-bu-muted mt-1 max-w-[68ch]">
+              Register directly below without signing into Google. Complete payment first via the bank accounts above, attach your receipt, and receive an instant reference ID.
+            </p>
+          </div>
+          <div class="bg-white border border-bu-canonical/15 rounded-[16px] px-4 py-3 shrink-0">
+            <div class="text-[10px] font-bold uppercase tracking-wider text-bu-muted">Accommodation Inquiries</div>
+            <div class="text-xs font-bold text-bu-navy mt-0.5">Dr. Nnenna Nwobi</div>
+            <a href="tel:+2348135388049" class="text-xs font-semibold text-bu-blue hover:underline">+234 813 538 8049</a>
+          </div>
+        </div>
+
+        <!-- Step Progress Tracker -->
+        <nav aria-label="Registration progress" class="mb-8">
+          <ol class="grid grid-cols-2 sm:grid-cols-4 gap-2.5" id="reg-progress-list">
+            <li data-step-indicator="1" aria-current="step" class="rounded-xl px-3.5 py-2.5 border text-xs font-bold bg-bu-canonical text-white border-bu-canonical transition">
+              <span class="block text-[10px] opacity-80 uppercase tracking-wider">Step 1</span>
+              <span>Category &amp; Fee</span>
+            </li>
+            <li data-step-indicator="2" class="rounded-xl px-3.5 py-2.5 border text-xs font-semibold bg-white text-bu-muted border-bu-canonical/15 transition">
+              <span class="block text-[10px] opacity-80 uppercase tracking-wider">Step 2</span>
+              <span>Personal Info</span>
+            </li>
+            <li data-step-indicator="3" class="rounded-xl px-3.5 py-2.5 border text-xs font-semibold bg-white text-bu-muted border-bu-canonical/15 transition">
+              <span class="block text-[10px] opacity-80 uppercase tracking-wider">Step 3</span>
+              <span>Payment Proof</span>
+            </li>
+            <li data-step-indicator="4" class="rounded-xl px-3.5 py-2.5 border text-xs font-semibold bg-white text-bu-muted border-bu-canonical/15 transition">
+              <span class="block text-[10px] opacity-80 uppercase tracking-wider">Step 4</span>
+              <span>Declaration</span>
+            </li>
+          </ol>
+        </nav>
+
+        <form id="icfi-reg-form" aria-labelledby="reg-portal-heading" method="POST" novalidate class="space-y-6">
+          <!-- Honeypot field hidden from screen readers and keyboard flow -->
+          <div class="visually-hidden" aria-hidden="true">
+            <label for="reg-website-url">Leave this field blank</label>
+            <input type="text" id="reg-website-url" name="websiteUrl" tabindex="-1" autocomplete="off">
+          </div>
+
+          <!-- STEP 1: CATEGORY, MODE, MEMBERSHIP & APPLICABLE FEE -->
+          <div data-reg-step="1" class="space-y-6">
+            <h4 tabindex="-1" class="font-serif font-bold text-xl text-bu-navy focus:outline-none">
+              1. Participant Category, Mode &amp; Membership
+            </h4>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
+              <div class="md:col-span-7 lg:col-span-8 space-y-6">
+                <!-- Participant Category -->
+                <fieldset class="space-y-2.5">
+                  <legend class="text-sm font-bold text-bu-navy mb-2">
+                    Participant Category Based on Location <span class="text-red-600" aria-hidden="true">*</span>
+                  </legend>
+                  <div class="reg-choice-group grid grid-cols-1 sm:grid-cols-2 gap-3" data-group-required="participantCategory" data-error="err-category">
+                    <div>
+                      <input class="reg-choice" type="radio" name="participantCategory" id="cat-local" value="Local Participant (within Nigeria)" required>
+                      <label for="cat-local" class="reg-choice-card flex items-start gap-3 p-4 rounded-xl border border-bu-canonical/20 bg-white cursor-pointer transition min-h-[48px]">
+                        <span class="reg-radio-dot mt-0.5 w-4 h-4 rounded-full border-2 border-bu-canonical shrink-0 inline-block"></span>
+                        <span>
+                          <span class="block text-sm font-bold text-bu-navy">Local Participant</span>
+                          <span class="block text-xs text-bu-muted mt-0.5">Within Nigeria (Payments in ₦ NGN)</span>
+                        </span>
+                      </label>
+                    </div>
+                    <div>
+                      <input class="reg-choice" type="radio" name="participantCategory" id="cat-intl" value="International Participant (outside Nigeria)" required>
+                      <label for="cat-intl" class="reg-choice-card flex items-start gap-3 p-4 rounded-xl border border-bu-canonical/20 bg-white cursor-pointer transition min-h-[48px]">
+                        <span class="reg-radio-dot mt-0.5 w-4 h-4 rounded-full border-2 border-bu-canonical shrink-0 inline-block"></span>
+                        <span>
+                          <span class="block text-sm font-bold text-bu-navy">International Participant</span>
+                          <span class="block text-xs text-bu-muted mt-0.5">Outside Nigeria (Payments in $ USD)</span>
+                        </span>
+                      </label>
+                    </div>
+                  </div>
+                  <div id="err-category" class="bu-error-msg">
+                    <span role="img" aria-label="Error">&#10060;</span> Please choose whether you are a Local or International participant.
+                  </div>
+                </fieldset>
+
+                <!-- Participation Mode -->
+                <fieldset class="space-y-2.5">
+                  <legend class="text-sm font-bold text-bu-navy mb-2">
+                    How would you like to participate in the conference? <span class="text-red-600" aria-hidden="true">*</span>
+                  </legend>
+                  <div class="reg-choice-group grid grid-cols-1 sm:grid-cols-2 gap-3" data-group-required="participationMode" data-error="err-mode">
+                    <div>
+                      <input class="reg-choice" type="radio" name="participationMode" id="mode-physical" value="Physical / In-person" required>
+                      <label for="mode-physical" class="reg-choice-card flex items-start gap-3 p-4 rounded-xl border border-bu-canonical/20 bg-white cursor-pointer transition min-h-[48px]">
+                        <span class="reg-radio-dot mt-0.5 w-4 h-4 rounded-full border-2 border-bu-canonical shrink-0 inline-block"></span>
+                        <span>
+                          <span class="block text-sm font-bold text-bu-navy">Physical / In-person</span>
+                          <span class="block text-xs text-bu-muted mt-0.5">Babcock University, Ilishan-Remo (materials &amp; lunch)</span>
+                        </span>
+                      </label>
+                    </div>
+                    <div>
+                      <input class="reg-choice" type="radio" name="participationMode" id="mode-virtual" value="Virtual / Online" required>
+                      <label for="mode-virtual" class="reg-choice-card flex items-start gap-3 p-4 rounded-xl border border-bu-canonical/20 bg-white cursor-pointer transition min-h-[48px]">
+                        <span class="reg-radio-dot mt-0.5 w-4 h-4 rounded-full border-2 border-bu-canonical shrink-0 inline-block"></span>
+                        <span>
+                          <span class="block text-sm font-bold text-bu-navy">Virtual / Online</span>
+                          <span class="block text-xs text-bu-muted mt-0.5">Live Zoom plenaries, presentation &amp; e-certificate</span>
+                        </span>
+                      </label>
+                    </div>
+                  </div>
+                  <div id="err-mode" class="bu-error-msg">
+                    <span role="img" aria-label="Error">&#10060;</span> Please choose Physical / In-person or Virtual / Online participation.
+                  </div>
+                </fieldset>
+
+                <!-- Membership Status -->
+                <fieldset class="space-y-2.5">
+                  <legend class="text-sm font-bold text-bu-navy mb-2">
+                    Are you a registered member of the International Community for Faith Integration (ICFI)? <span class="text-red-600" aria-hidden="true">*</span>
+                  </legend>
+                  <div class="reg-choice-group space-y-2.5" data-group-required="membershipStatus" data-error="err-membership">
+                    <div>
+                      <input class="reg-choice" type="radio" name="membershipStatus" id="mem-yes" value="Registered Member" required>
+                      <label for="mem-yes" class="reg-choice-card flex items-start gap-3 p-3.5 rounded-xl border border-bu-canonical/20 bg-white cursor-pointer transition min-h-[48px]">
+                        <span class="reg-radio-dot mt-0.5 w-4 h-4 rounded-full border-2 border-bu-canonical shrink-0 inline-block"></span>
+                        <span>
+                          <span class="block text-sm font-bold text-bu-navy">Yes, I am a registered member</span>
+                          <span class="block text-xs text-bu-muted">Members retain Early Bird rates (₦10,000 off standard fee). Proof upload required.</span>
+                        </span>
+                      </label>
+                    </div>
+                    <div>
+                      <input class="reg-choice" type="radio" name="membershipStatus" id="mem-new" value="New Member Applicant" required>
+                      <label for="mem-new" class="reg-choice-card flex items-start gap-3 p-3.5 rounded-xl border border-bu-canonical/20 bg-white cursor-pointer transition min-h-[48px]">
+                        <span class="reg-radio-dot mt-0.5 w-4 h-4 rounded-full border-2 border-bu-canonical shrink-0 inline-block"></span>
+                        <span>
+                          <span class="block text-sm font-bold text-bu-navy">No, but I would like to become a member</span>
+                          <span class="block text-xs text-bu-muted">Local Membership: ₦7,000 • International Membership: $5</span>
+                        </span>
+                      </label>
+                    </div>
+                    <div>
+                      <input class="reg-choice" type="radio" name="membershipStatus" id="mem-no" value="Non-Member (Conference Only)" required>
+                      <label for="mem-no" class="reg-choice-card flex items-start gap-3 p-3.5 rounded-xl border border-bu-canonical/20 bg-white cursor-pointer transition min-h-[48px]">
+                        <span class="reg-radio-dot mt-0.5 w-4 h-4 rounded-full border-2 border-bu-canonical shrink-0 inline-block"></span>
+                        <span>
+                          <span class="block text-sm font-bold text-bu-navy">No, I only wish to register for the conference</span>
+                          <span class="block text-xs text-bu-muted">Proceed directly with standard / early-bird conference pass.</span>
+                        </span>
+                      </label>
+                    </div>
+                  </div>
+                  <div id="err-membership" class="bu-error-msg">
+                    <span role="img" aria-label="Error">&#10060;</span> Please select your ICFI membership option.
+                  </div>
+                </fieldset>
+
+                <!-- Conditional: Existing Member Proof Upload -->
+                <div id="member-proof-box" hidden class="bg-white border border-bu-canonical/20 rounded-2xl p-5 space-y-2">
+                  <label for="reg-member-proof" class="block text-sm font-bold text-bu-navy">
+                    Upload evidence of membership registration/payment <span class="text-red-600" aria-hidden="true">*</span>
+                  </label>
+                  <span id="member-proof-hint" class="block text-xs text-bu-muted">
+                    Accepted formats: PDF, DOC, DOCX, or image (JPG/PNG). Maximum file size: 10 MB.
+                  </span>
+                  <div class="reg-file-wrap pt-1">
+                    <input
+                      type="file"
+                      id="reg-member-proof"
+                      name="membershipProof"
+                      accept=".pdf,.doc,.docx,image/*"
+                      aria-describedby="member-proof-hint"
+                      data-error="err-member-proof"
+                      class="reg-file block w-full text-sm text-bu-navy file:mr-4 file:py-2.5 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-bold file:bg-bu-mist file:text-bu-canonical hover:file:bg-blue-100 cursor-pointer min-h-[48px]"
+                    >
+                  </div>
+                  <div id="member-proof-preview" class="text-xs font-medium text-emerald-700 hidden"></div>
+                  <div id="err-member-proof" class="bu-error-msg">
+                    <span role="img" aria-label="Error">&#10060;</span> Please attach your membership registration/payment evidence (max 10 MB).
+                  </div>
+                </div>
+
+                <!-- Conditional: Join Association Membership Card -->
+                <div id="member-join-box" hidden class="bg-amber-50 border border-bu-gold/40 rounded-2xl p-5 space-y-2.5">
+                  <div class="text-xs font-bold uppercase tracking-wider text-bu-goldBand">Association Membership Registration</div>
+                  <p class="text-xs text-bu-navy leading-relaxed">
+                    Association Membership fee is <strong>₦7,000</strong> (Local) or <strong>$5</strong> (International), subject to verification. You can complete your membership application below and still continue your conference registration here right now:
+                  </p>
+                  <div class="flex flex-wrap items-center gap-3 pt-1">
+                    <a href="https://forms.gle/Q9HLdnBbpwCcJ2Vg6" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-bu-gold hover:bg-bu-goldLight text-white text-xs font-bold transition min-h-[40px]">
+                      Open Membership Form &rarr;
+                    </a>
+                    <span class="text-[11px] text-bu-muted">Your status will be marked <em>Membership Pending</em> for committee verification.</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Live Fee Summary Card (Sidebar) -->
+              <aside class="md:col-span-5 lg:col-span-4 md:sticky md:top-24 bg-bu-band text-white rounded-2xl p-6 space-y-4 shadow-lg">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="text-[11px] font-bold uppercase tracking-wider text-bu-goldAccent">Applicable Fee Summary</span>
+                  <span id="summary-period-badge" class="px-2.5 py-0.5 rounded-full bg-white/10 text-[10px] font-bold uppercase tracking-wider">Early Bird</span>
+                </div>
+                <div>
+                  <div id="summary-fee-amount" class="font-serif font-bold text-4xl text-bu-goldAccent">Select options</div>
+                  <div id="summary-fee-label" class="text-xs text-slate-200 mt-1">Choose category, mode &amp; membership to view exact fee.</div>
+                </div>
+                <div class="pt-3 border-t border-white/15 space-y-1.5 text-xs text-slate-200">
+                  <div id="summary-bank-title" class="font-bold text-bu-goldAccent">Transfer Instructions</div>
+                  <div id="summary-bank-detail">UBA Plc • Babcock MFB (NGN: 1020069501) or GTBank (USD: 0829898610)</div>
+                </div>
+                <ul class="pt-3 border-t border-white/15 space-y-1.5 text-[11px] text-slate-300">
+                  <li>✓ Early Bird closes <strong>April 23, 2027</strong></li>
+                  <li>✓ Members retain Early Bird rates year-round</li>
+                  <li>✓ Peer-reviewed IJFI publication included</li>
+                </ul>
+              </aside>
+            </div>
+
+            <div class="flex justify-end pt-2">
+              <button type="button" onclick="nextRegStep(1)" class="px-7 py-3 rounded-full bg-bu-canonical hover:bg-bu-canonicalDark text-white text-sm font-bold shadow transition min-h-[48px] cursor-pointer">
+                Continue to Personal Info &rarr;
+              </button>
+            </div>
+          </div>
+
+          <!-- STEP 2: PERSONAL INFORMATION -->
+          <div data-reg-step="2" hidden class="space-y-6">
+            <h4 tabindex="-1" class="font-serif font-bold text-xl text-bu-navy focus:outline-none">
+              2. Personal Information
+            </h4>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+              <div class="md:col-span-2">
+                <label for="reg-fullname" class="block text-sm font-bold text-bu-navy mb-1">
+                  Full name <span class="text-red-600" aria-hidden="true">*</span>
+                </label>
+                <span id="hint-fullname" class="block text-xs text-bu-muted mb-1.5">Include your title if desired (e.g., Prof., Dr., Rev., Mr., Mrs.).</span>
+                <input type="text" id="reg-fullname" name="fullName" required autocomplete="name" enterkeyhint="next" aria-describedby="hint-fullname" data-error="err-fullname" class="reg-input">
+                <div id="err-fullname" class="bu-error-msg">
+                  <span role="img" aria-label="Error">&#10060;</span> Please enter your full name.
+                </div>
+              </div>
+
+              <div>
+                <label for="reg-email" class="block text-sm font-bold text-bu-navy mb-1">
+                  Email address <span class="text-red-600" aria-hidden="true">*</span>
+                </label>
+                <span id="hint-email" class="block text-xs text-bu-muted mb-1.5">Format: you@example.com (for your confirmation receipt).</span>
+                <input type="email" id="reg-email" name="email" required autocomplete="email" autocorrect="off" autocapitalize="none" spellcheck="false" enterkeyhint="next" aria-describedby="hint-email" data-error="err-email" class="reg-input">
+                <div id="err-email" class="bu-error-msg">
+                  <span role="img" aria-label="Error">&#10060;</span> Enter a valid email address (e.g., name@institution.edu).
+                </div>
+              </div>
+
+              <div>
+                <label for="reg-phone" class="block text-sm font-bold text-bu-navy mb-1">
+                  Phone number (with country code) <span class="text-red-600" aria-hidden="true">*</span>
+                </label>
+                <span id="hint-phone" class="block text-xs text-bu-muted mb-1.5">Format: +234 806 000 0000 (WhatsApp preferred).</span>
+                <input type="tel" id="reg-phone" name="phone" required autocomplete="tel" enterkeyhint="next" aria-describedby="hint-phone" data-error="err-phone" class="reg-input">
+                <div id="err-phone" class="bu-error-msg">
+                  <span role="img" aria-label="Error">&#10060;</span> Please enter a valid phone number with country code.
+                </div>
+              </div>
+
+              <div>
+                <label for="reg-country" class="block text-sm font-bold text-bu-navy mb-1">
+                  Country of residence <span class="text-red-600" aria-hidden="true">*</span>
+                </label>
+                <input type="text" id="reg-country" name="country" required autocomplete="country-name" enterkeyhint="next" data-error="err-country" class="reg-input">
+                <div id="err-country" class="bu-error-msg">
+                  <span role="img" aria-label="Error">&#10060;</span> Please enter your country of residence.
+                </div>
+              </div>
+
+              <div>
+                <label for="reg-state" class="block text-sm font-bold text-bu-navy mb-1">
+                  State of residence <span class="text-xs font-normal text-bu-muted">(for Nigerian participants only)</span>
+                </label>
+                <input type="text" id="reg-state" name="stateOfResidence" autocomplete="address-level1" enterkeyhint="next" class="reg-input">
+              </div>
+
+              <div>
+                <label for="reg-org" class="block text-sm font-bold text-bu-navy mb-1">
+                  Organisation / Institution <span class="text-xs font-normal text-bu-muted">(Optional)</span>
+                </label>
+                <input type="text" id="reg-org" name="organisation" autocomplete="organization" enterkeyhint="next" class="reg-input">
+              </div>
+
+              <div>
+                <label for="reg-designation" class="block text-sm font-bold text-bu-navy mb-1">
+                  Professional designation <span class="text-xs font-normal text-bu-muted">(Optional)</span>
+                </label>
+                <input type="text" id="reg-designation" name="designation" autocomplete="organization-title" enterkeyhint="next" class="reg-input">
+              </div>
+
+              <div class="md:col-span-2">
+                <label for="reg-specialisation" class="block text-sm font-bold text-bu-navy mb-1">
+                  Area of Specialisation <span class="text-xs font-normal text-bu-muted">(Optional)</span>
+                </label>
+                <input type="text" id="reg-specialisation" name="specialisation" enterkeyhint="done" class="reg-input">
+              </div>
+            </div>
+
+            <div class="flex flex-wrap items-center justify-between gap-3 pt-2">
+              <button type="button" onclick="goRegStep(1)" class="px-6 py-3 rounded-full bg-white border border-bu-canonical/25 hover:border-bu-navy text-bu-navy text-sm font-bold transition min-h-[48px] cursor-pointer">
+                &larr; Back
+              </button>
+              <button type="button" onclick="nextRegStep(2)" class="px-7 py-3 rounded-full bg-bu-canonical hover:bg-bu-canonicalDark text-white text-sm font-bold shadow transition min-h-[48px] cursor-pointer">
+                Continue to Payment Proof &rarr;
+              </button>
+            </div>
+          </div>
+
+          <!-- STEP 3: PAYMENT CONFIRMATION -->
+          <div data-reg-step="3" hidden class="space-y-6">
+            <h4 tabindex="-1" class="font-serif font-bold text-xl text-bu-navy focus:outline-none">
+              3. Payment Confirmation
+            </h4>
+
+            <div id="payment-reminder-banner" class="bg-white border border-bu-canonical/20 rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div>
+                <div class="text-[11px] font-bold uppercase tracking-wider text-bu-goldBand">Applicable Fee &amp; Account</div>
+                <div id="pay-banner-summary" class="text-sm font-bold text-bu-navy mt-0.5">—</div>
+                <div id="pay-banner-acct" class="text-xs text-bu-muted font-mono mt-0.5">—</div>
+              </div>
+              <button type="button" id="pay-banner-copy" onclick="copyCurrentBankAcct(this)" class="px-4 py-2.5 rounded-full bg-bu-mist hover:bg-blue-100 text-xs font-bold text-bu-canonical transition shrink-0 min-h-[44px] cursor-pointer">
+                Copy Account Number
+              </button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+              <div>
+                <label for="reg-amount-paid" class="block text-sm font-bold text-bu-navy mb-1">
+                  Amount paid <span class="text-red-600" aria-hidden="true">*</span>
+                </label>
+                <span id="hint-amount" class="block text-xs text-bu-muted mb-1.5">Enter amount transferred (e.g., ₦40,000 or $80).</span>
+                <input type="text" id="reg-amount-paid" name="amountPaid" required enterkeyhint="next" aria-describedby="hint-amount" data-error="err-amount" class="reg-input">
+                <div id="err-amount" class="bu-error-msg">
+                  <span role="img" aria-label="Error">&#10060;</span> Please enter the exact amount you paid.
+                </div>
+              </div>
+
+              <div>
+                <label for="reg-pay-date" class="block text-sm font-bold text-bu-navy mb-1">
+                  Date of payment <span class="text-red-600" aria-hidden="true">*</span>
+                </label>
+                <span id="hint-pay-date" class="block text-xs text-bu-muted mb-1.5">Select the transfer date on your bank receipt.</span>
+                <input type="date" id="reg-pay-date" name="paymentDate" required aria-describedby="hint-pay-date" data-error="err-pay-date" class="reg-input">
+                <div id="err-pay-date" class="bu-error-msg">
+                  <span role="img" aria-label="Error">&#10060;</span> Please select the payment date.
+                </div>
+              </div>
+
+              <div>
+                <label for="reg-tx-ref" class="block text-sm font-bold text-bu-navy mb-1">
+                  Payment transaction reference <span class="text-xs font-normal text-bu-muted">(Optional)</span>
+                </label>
+                <input type="text" id="reg-tx-ref" name="transactionRef" autocorrect="off" autocapitalize="none" spellcheck="false" enterkeyhint="next" class="reg-input">
+              </div>
+
+              <div>
+                <label for="reg-account-holder" class="block text-sm font-bold text-bu-navy mb-1">
+                  Name of account holder <span class="text-red-600" aria-hidden="true">*</span>
+                </label>
+                <input type="text" id="reg-account-holder" name="accountHolderName" required enterkeyhint="done" data-error="err-holder" class="reg-input">
+                <div id="err-holder" class="bu-error-msg">
+                  <span role="img" aria-label="Error">&#10060;</span> Please enter the sender's bank account holder name.
+                </div>
+              </div>
+
+              <div class="md:col-span-2 bg-white border border-bu-canonical/20 rounded-2xl p-5 space-y-2">
+                <label for="reg-receipt-file" class="block text-sm font-bold text-bu-navy">
+                  Upload conference registration payment receipt <span class="text-red-600" aria-hidden="true">*</span>
+                </label>
+                <span id="receipt-hint" class="block text-xs text-bu-muted">
+                  Upload 1 supported file: PDF, document (.doc/.docx), or image (.jpg/.png). Maximum 10 MB.
+                </span>
+                <div class="reg-file-wrap pt-1">
+                  <input
+                    type="file"
+                    id="reg-receipt-file"
+                    name="paymentReceipt"
+                    required
+                    accept=".pdf,.doc,.docx,image/*"
+                    aria-describedby="receipt-hint"
+                    data-error="err-receipt"
+                    class="reg-file block w-full text-sm text-bu-navy file:mr-4 file:py-2.5 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-bold file:bg-bu-mist file:text-bu-canonical hover:file:bg-blue-100 cursor-pointer min-h-[48px]"
+                  >
+                </div>
+                <div id="receipt-preview" class="text-xs font-medium text-emerald-700 hidden"></div>
+                <div id="err-receipt" class="bu-error-msg">
+                  <span role="img" aria-label="Error">&#10060;</span> Please upload your payment receipt (max 10 MB).
+                </div>
+              </div>
+            </div>
+
+            <div class="flex flex-wrap items-center justify-between gap-3 pt-2">
+              <button type="button" onclick="goRegStep(2)" class="px-6 py-3 rounded-full bg-white border border-bu-canonical/25 hover:border-bu-navy text-bu-navy text-sm font-bold transition min-h-[48px] cursor-pointer">
+                &larr; Back
+              </button>
+              <button type="button" onclick="nextRegStep(3)" class="px-7 py-3 rounded-full bg-bu-canonical hover:bg-bu-canonicalDark text-white text-sm font-bold shadow transition min-h-[48px] cursor-pointer">
+                Review &amp; Declaration &rarr;
+              </button>
+            </div>
+          </div>
+
+          <!-- STEP 4: REVIEW & DECLARATION -->
+          <div data-reg-step="4" hidden class="space-y-6">
+            <h4 tabindex="-1" class="font-serif font-bold text-xl text-bu-navy focus:outline-none">
+              4. Review &amp; Declaration
+            </h4>
+
+            <!-- Summary Review Grid -->
+            <div id="reg-review-box" class="bg-white border border-bu-canonical/15 rounded-2xl p-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-xs"></div>
+
+            <!-- Full 8-Point Declaration -->
+            <div class="bg-white border border-bu-canonical/20 rounded-2xl p-5 sm:p-6 space-y-3 text-xs text-bu-navy leading-relaxed">
+              <div class="font-serif font-bold text-base text-bu-canonical">DECLARATION</div>
+              <p>By submitting this registration form, I hereby declare and confirm that:</p>
+              <ol class="list-decimal pl-5 space-y-1.5 text-bu-muted">
+                <li>The information provided in this form is true, accurate and complete to the best of my knowledge.</li>
+                <li>I have carefully reviewed my selected participant category, participation mode and applicable registration fee.</li>
+                <li>I understand that my conference registration is subject to the payment of the appropriate registration fee and subsequent verification by the Conference Organising Committee.</li>
+                <li>Where I have indicated that I am a registered member of the Association, I confirm that the membership information and supporting evidence provided are genuine and accurate. I understand that my eligibility for the applicable membership discount is subject to verification by the Association.</li>
+                <li>Where I have indicated my intention to become a member of the Association, I understand that membership registration and payment are subject to the Association's membership requirements and verification procedures.</li>
+                <li>I understand that submitting this form does not automatically constitute confirmation of my conference registration. My registration will be confirmed upon successful verification of the required payment and registration details.</li>
+                <li>I agree to abide by the rules, regulations and guidelines established by the Conference Organising Committee.</li>
+                <li>I consent to the collection and use of the information provided in this form for conference registration, communication, membership verification (where applicable) and other legitimate administrative purposes relating to the conference.</li>
+              </ol>
+            </div>
+
+            <div class="bg-white border border-bu-canonical/20 rounded-2xl p-4 sm:p-5">
+              <div class="flex items-start gap-3">
+                <input type="checkbox" id="reg-declaration-agree" name="declarationAgreed" value="Yes" required data-error="err-declaration" class="mt-1 w-5 h-5 accent-[#004182] rounded cursor-pointer shrink-0">
+                <label for="reg-declaration-agree" class="text-sm font-bold text-bu-navy cursor-pointer">
+                  I have read and understood the declaration above <span class="text-red-600" aria-hidden="true">*</span>
+                </label>
+              </div>
+              <div id="err-declaration" class="bu-error-msg">
+                <span role="img" aria-label="Error">&#10060;</span> You must confirm the declaration before submitting your registration.
+              </div>
+            </div>
+
+            <div id="reg-submit-feedback" role="alert" class="hidden rounded-xl p-4 text-xs font-medium"></div>
+
+            <div class="flex flex-wrap items-center justify-between gap-3 pt-2">
+              <button type="button" onclick="goRegStep(3)" class="px-6 py-3 rounded-full bg-white border border-bu-canonical/25 hover:border-bu-navy text-bu-navy text-sm font-bold transition min-h-[48px] cursor-pointer">
+                &larr; Back
+              </button>
+              <button type="submit" id="reg-submit-btn" class="px-8 py-3.5 rounded-full bg-bu-gold hover:bg-bu-goldLight text-white text-sm font-bold uppercase tracking-wider shadow-lg transition min-h-[48px] cursor-pointer">
+                Submit Registration &rarr;
+              </button>
+            </div>
+          </div>
+        </form>
+
+        <!-- SUBMISSION SUCCESS STATE -->
+        <div id="reg-success-panel" hidden role="status" class="bg-white border-2 border-emerald-600/30 rounded-2xl p-6 sm:p-8 text-center space-y-4">
+          <div class="w-14 h-14 mx-auto rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-2xl font-bold">✓</div>
+          <h4 tabindex="-1" id="reg-success-heading" class="font-serif font-bold text-2xl text-bu-navy focus:outline-none">
+            Registration Received!
+          </h4>
+          <p class="text-sm text-bu-muted max-w-[56ch] mx-auto">
+            Your registration details and payment receipt have been recorded for verification by the 7th ICFI 2027 Conference Organising Committee.
+          </p>
+          <div class="inline-block bg-bu-tint border border-bu-canonical/15 rounded-xl px-5 py-3 text-xs">
+            <span class="text-bu-muted">Reference ID:</span>
+            <strong id="reg-success-ref" class="font-mono text-bu-navy text-sm ml-1">—</strong>
+          </div>
+          <div id="reg-success-summary" class="text-xs text-bu-muted"></div>
+          <div class="pt-2">
+            <button type="button" onclick="resetRegPortal()" class="px-6 py-2.5 rounded-full bg-bu-mist hover:bg-blue-100 text-bu-canonical text-xs font-bold transition min-h-[44px] cursor-pointer">
+              Register Another Participant
+            </button>
+          </div>
         </div>
       </div>
 
@@ -1029,7 +1593,7 @@
               </div>
             </div>
             <div class="px-6 pb-6 flex gap-2.5">
-              <a href="../ijml.html" target="_blank" class="flex-1 py-2.5 rounded-full border border-bu-canonical/20 hover:bg-bu-canonical hover:text-white text-center text-xs font-bold text-bu-canonical transition">
+              <a href="./ijml.html" target="_blank" class="flex-1 py-2.5 rounded-full border border-bu-canonical/20 hover:bg-bu-canonical hover:text-white text-center text-xs font-bold text-bu-canonical transition">
                 Journal Portal &rarr;
               </a>
               <a href="https://docs.google.com/forms/d/e/1FAIpQLSdqy7-2m-Ffhi2xuW5_RHFaLsBXa39Ir0fzFd8UHb3DsOQibA/viewform?usp=sharing" target="_blank" class="px-4 py-2.5 rounded-full bg-amber-50 border border-bu-goldCanonical/40 text-xs font-bold text-bu-navy transition hover:bg-amber-100">
@@ -1067,7 +1631,7 @@
 
         <!-- 4 Past Conference Papers Grid -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          <a href="../FIPP%20Conference/INTEGRATING%20FAITH%20INTO%20LEARNING-SOCIAL%20WORK%20CLASS%20EXPERIENCES%20IN%20BABCOCK%20UNIVERSITY.pdf" target="_blank" class="bu-card p-5 flex flex-col justify-between">
+          <a href="./FIPP%20Conference/INTEGRATING%20FAITH%20INTO%20LEARNING-SOCIAL%20WORK%20CLASS%20EXPERIENCES%20IN%20BABCOCK%20UNIVERSITY.pdf" target="_blank" class="bu-card p-5 flex flex-col justify-between">
             <div>
               <span class="text-[10px] font-bold uppercase tracking-wider text-bu-gold">Social Work &bull; PDF</span>
               <h4 class="font-sans font-bold text-sm text-bu-canonical mt-1.5 leading-snug">Integrating Faith into Learning: Social Work Class Experiences</h4>
@@ -1075,7 +1639,7 @@
             <span class="mt-4 block w-full py-2 rounded-full border border-bu-canonical/15 text-center text-xs font-bold text-bu-canonical">Download PDF &rarr;</span>
           </a>
 
-          <a href="../FIPP%20Conference/FAITH%20INTEGRATION%20IN%20INTERNAL%20AUDIT%20AND%20COMPLIANCE%20FUNCTIONS%20OF%20PRIVATE%20UNIVERSITIES%20IN%20NIGERIA-%20THE%20CASE%20OF%20BABCOCK%20UNIVERSITY.pdf" target="_blank" class="bu-card p-5 flex flex-col justify-between">
+          <a href="./FIPP%20Conference/FAITH%20INTEGRATION%20IN%20INTERNAL%20AUDIT%20AND%20COMPLIANCE%20FUNCTIONS%20OF%20PRIVATE%20UNIVERSITIES%20IN%20NIGERIA-%20THE%20CASE%20OF%20BABCOCK%20UNIVERSITY.pdf" target="_blank" class="bu-card p-5 flex flex-col justify-between">
             <div>
               <span class="text-[10px] font-bold uppercase tracking-wider text-bu-gold">Audit &amp; QA &bull; PDF</span>
               <h4 class="font-sans font-bold text-sm text-bu-canonical mt-1.5 leading-snug">Faith Integration in Internal Audit &amp; Compliance Functions</h4>
@@ -1083,7 +1647,7 @@
             <span class="mt-4 block w-full py-2 rounded-full border border-bu-canonical/15 text-center text-xs font-bold text-bu-canonical">Download PDF &rarr;</span>
           </a>
 
-          <a href="../FIPP%20Conference/2017%20PAPER%20ON%20INTEGRATION%20OF%20FAITH%20IN%20INNOVATIVE%20QUALITY%20EDUCATION%20MANAGEMENT.pdf" target="_blank" class="bu-card p-5 flex flex-col justify-between">
+          <a href="./FIPP%20Conference/2017%20PAPER%20ON%20INTEGRATION%20OF%20FAITH%20IN%20INNOVATIVE%20QUALITY%20EDUCATION%20MANAGEMENT.pdf" target="_blank" class="bu-card p-5 flex flex-col justify-between">
             <div>
               <span class="text-[10px] font-bold uppercase tracking-wider text-bu-gold">Education &bull; PDF</span>
               <h4 class="font-sans font-bold text-sm text-bu-canonical mt-1.5 leading-snug">Integration of Faith in Innovative Quality Education Management</h4>
@@ -1091,7 +1655,7 @@
             <span class="mt-4 block w-full py-2 rounded-full border border-bu-canonical/15 text-center text-xs font-bold text-bu-canonical">Download PDF &rarr;</span>
           </a>
 
-          <a href="../FIPP%20Conference/UNDERSTANDING%20THE%20BIBLICAL%20GRAPH%20REPRESENTATION%20OF%20MATHEW%2022-34-40%20AS%20BASIS%20FOR%20RELATIONAL%20PRINCIPLES%20IN%20NIGERIA%20SOCIO-POLITICAL%20SITUATION.pdf" target="_blank" class="bu-card p-5 flex flex-col justify-between">
+          <a href="./FIPP%20Conference/UNDERSTANDING%20THE%20BIBLICAL%20GRAPH%20REPRESENTATION%20OF%20MATHEW%2022-34-40%20AS%20BASIS%20FOR%20RELATIONAL%20PRINCIPLES%20IN%20NIGERIA%20SOCIO-POLITICAL%20SITUATION.pdf" target="_blank" class="bu-card p-5 flex flex-col justify-between">
             <div>
               <span class="text-[10px] font-bold uppercase tracking-wider text-bu-gold">Policy &bull; PDF</span>
               <h4 class="font-sans font-bold text-sm text-bu-canonical mt-1.5 leading-snug">Biblical Graph Representation of Matthew 22:34–40 in Nigeria</h4>
@@ -1109,8 +1673,8 @@
             <p class="text-xs text-bu-muted mt-1">Moments from earlier ICFI editions at Babcock University.</p>
           </div>
           <div class="flex gap-2.5 text-xs">
-            <a href="../gallery%202019.html" target="_blank" class="px-4 py-2 rounded-full bg-white border border-bu-canonical/15 font-bold text-bu-canonical hover:border-bu-gold transition">2019 Gallery &rarr;</a>
-            <a href="../gallery.html" target="_blank" class="px-4 py-2 rounded-full bg-white border border-bu-canonical/15 font-bold text-bu-canonical hover:border-bu-gold transition">2017 Gallery &rarr;</a>
+            <a href="./gallery%202019.html" target="_blank" class="px-4 py-2 rounded-full bg-white border border-bu-canonical/15 font-bold text-bu-canonical hover:border-bu-gold transition">2019 Gallery &rarr;</a>
+            <a href="./gallery.html" target="_blank" class="px-4 py-2 rounded-full bg-white border border-bu-canonical/15 font-bold text-bu-canonical hover:border-bu-gold transition">2017 Gallery &rarr;</a>
           </div>
         </div>
 
@@ -1247,7 +1811,7 @@
           <ul class="space-y-2 text-blue-100">
             <li><a href="#fields" class="hover:text-bu-goldAccent transition">&rsaquo; Eight Fields of Inquiry</a></li>
             <li><a href="#abstracts" class="hover:text-bu-goldAccent transition">&rsaquo; Abstract Guidelines</a></li>
-            <li><a href="../ijml.html" target="_blank" class="hover:text-bu-goldAccent transition">&rsaquo; IJFI Journal Portal</a></li>
+            <li><a href="./ijml.html" target="_blank" class="hover:text-bu-goldAccent transition">&rsaquo; IJFI Journal Portal</a></li>
           </ul>
         </div>
         <div class="space-y-3">
@@ -1262,8 +1826,8 @@
           <div class="font-serif font-bold text-sm text-white">Contact &amp; Archive</div>
           <ul class="space-y-2 text-blue-100">
             <li><a href="mailto:icfi@babcock.edu.ng" class="hover:text-bu-goldAccent transition">&rsaquo; icfi@babcock.edu.ng</a></li>
-            <li><a href="../gallery%202019.html" target="_blank" class="hover:text-bu-goldAccent transition">&rsaquo; 3rd ICFI Gallery (2019)</a></li>
-            <li><a href="../gallery.html" target="_blank" class="hover:text-bu-goldAccent transition">&rsaquo; 2nd ICFI Gallery (2017)</a></li>
+            <li><a href="./gallery%202019.html" target="_blank" class="hover:text-bu-goldAccent transition">&rsaquo; 3rd ICFI Gallery (2019)</a></li>
+            <li><a href="./gallery.html" target="_blank" class="hover:text-bu-goldAccent transition">&rsaquo; 2nd ICFI Gallery (2017)</a></li>
           </ul>
         </div>
       </div>
@@ -1333,7 +1897,9 @@
     }
     setProgramDay(1);
 
+    let activeCurrencyView = 'NGN';
     function setRegCurrency(curr) {
+      activeCurrencyView = curr;
       const ngnBtn = document.getElementById('cur-ngn');
       const usdBtn = document.getElementById('cur-usd');
       if (curr === 'NGN') {
@@ -1357,6 +1923,490 @@
       btn.textContent = "Copied ✓";
       setTimeout(() => btn.textContent = orig, 1800);
     }
+
+    // ------------------------------------------------------------------
+    // ON-SITE REGISTRATION PORTAL (GOOGLE SHEETS + APPS SCRIPT)
+    // Paste your deployed Google Apps Script Web App URL below:
+    // See google-apps-script/SETUP.md for 2-minute setup instructions.
+    // ------------------------------------------------------------------
+    const REGISTRATION_ENDPOINT = '';
+    const EARLY_BIRD_CUTOFF_MS = new Date('2027-04-23T23:59:59+01:00').getTime();
+    const MAX_UPLOAD_BYTES = 10 * 1024 * 1024; // 10 MB
+
+    (function initRegistrationPortal() {
+      const form = document.getElementById('icfi-reg-form');
+      if (!form) return;
+
+      const announcer = document.createElement('div');
+      announcer.setAttribute('aria-live', 'polite');
+      announcer.classList.add('visually-hidden');
+      document.body.append(announcer);
+      let announceTimer;
+      let announcedField;
+
+      const dirtyState = new WeakMap();
+      const flagged = new WeakSet();
+      const announced = new WeakSet();
+      const supportsUserInvalid = typeof CSS !== 'undefined' && CSS.supports && CSS.supports('selector(:user-invalid)');
+
+      const linkError = (el, shown) => {
+        const errorId = el.dataset.error;
+        if (!errorId) return;
+        const ids = (el.getAttribute('aria-describedby') || '').split(/\s+/).filter((id) => id && id !== errorId);
+        if (shown) ids.push(errorId);
+        if (ids.length) el.setAttribute('aria-describedby', ids.join(' '));
+        else el.removeAttribute('aria-describedby');
+      };
+
+      const spokenText = (node) => {
+        const copy = node.cloneNode(true);
+        copy.querySelectorAll('[aria-hidden="true"]').forEach((n) => n.remove());
+        copy.querySelectorAll('[role="img"][aria-label]').forEach((n) => n.replaceWith(`${n.getAttribute('aria-label')}: `));
+        return copy.textContent.replace(/\s+/g, ' ').trim();
+      };
+
+      const announceError = (el) => {
+        const error = document.getElementById(el.dataset.error);
+        if (!error) return;
+        const label = el.labels?.[0] ? `${spokenText(el.labels[0])}: ` : '';
+        clearTimeout(announceTimer);
+        announcer.textContent = '';
+        announcedField = el;
+        announceTimer = setTimeout(() => { announcer.textContent = label + spokenText(error); }, 500);
+      };
+
+      const isFieldInvalid = (el) => {
+        if (supportsUserInvalid) return el.matches(':user-invalid');
+        const st = dirtyState.get(el);
+        return Boolean(st && st.hasBlurred && !el.validity.valid);
+      };
+
+      const syncAria = (el, announce = false) => {
+        if (!el.matches?.('input, select, textarea')) return;
+        if (el.type === 'radio' || el.type === 'file') return;
+        const invalid = isFieldInvalid(el);
+        if (!supportsUserInvalid) {
+          const st = dirtyState.get(el);
+          if (st && st.hasBlurred) {
+            el.classList.toggle('user-invalid-fallback', !el.validity.valid);
+            el.classList.toggle('user-valid-fallback', el.validity.valid);
+          }
+        }
+        if (invalid) {
+          if (announce && !announced.has(el)) {
+            announceError(el);
+            announced.add(el);
+          }
+          el.setAttribute('aria-invalid', 'true');
+          linkError(el, true);
+          flagged.add(el);
+        } else if (flagged.has(el) || el.getAttribute('aria-invalid') !== 'true') {
+          el.setAttribute('aria-invalid', 'false');
+          linkError(el, false);
+          flagged.delete(el);
+          announced.delete(el);
+          if (announcedField === el) {
+            clearTimeout(announceTimer);
+            announcer.textContent = '';
+          }
+        }
+      };
+
+      form.querySelectorAll('input:not([type="radio"]):not([type="file"]), select, textarea').forEach((el) => syncAria(el));
+
+      form.addEventListener('blur', (e) => {
+        const st = dirtyState.get(e.target) || { hasInteracted: false, hasBlurred: false };
+        st.hasBlurred = true;
+        dirtyState.set(e.target, st);
+        syncAria(e.target, true);
+      }, true);
+
+      form.addEventListener('input', (e) => {
+        const st = dirtyState.get(e.target) || { hasInteracted: false, hasBlurred: false };
+        st.hasInteracted = true;
+        dirtyState.set(e.target, st);
+        if (e.target.hasAttribute('aria-invalid')) syncAria(e.target);
+      });
+
+      form.addEventListener('change', (e) => {
+        if (e.target.type === 'radio' || e.target.type === 'checkbox' || e.target.type === 'file') {
+          if (e.target.type === 'checkbox') syncAria(e.target, true);
+        }
+      }, true);
+
+      form.addEventListener('invalid', (e) => {
+        dirtyState.set(e.target, { hasInteracted: true, hasBlurred: true });
+        announced.add(e.target);
+        syncAria(e.target);
+      }, true);
+
+      const filePayloads = {
+        membershipProof: null,
+        paymentReceipt: null
+      };
+
+      function getSelectedRadio(name) {
+        const checked = form.querySelector(`input[name="${name}"]:checked`);
+        return checked ? checked.value : '';
+      }
+
+      function computePricing() {
+        const cat = getSelectedRadio('participantCategory');
+        const mode = getSelectedRadio('participationMode');
+        const mem = getSelectedRadio('membershipStatus');
+        const isEarlyBirdPeriod = Date.now() <= EARLY_BIRD_CUTOFF_MS;
+        const periodLabel = isEarlyBirdPeriod ? 'Early Bird' : 'Standard';
+        const isLocal = cat.startsWith('Local');
+        const isIntl = cat.startsWith('International');
+        const currency = isIntl ? 'USD' : 'NGN';
+        const accountNo = isIntl ? '0829898610' : '1020069501';
+        const bankLabel = isIntl
+          ? 'GTBank • B.U-Op./Inst. For Faith Integr (USD: 0829898610)'
+          : 'UBA Plc • Babcock MFB (NGN: 1020069501)';
+
+        let formattedFee = 'Select options';
+        let numericFee = 0;
+        let tierNote = 'Choose category, mode & membership to view exact fee.';
+
+        if ((isLocal || isIntl) && mode) {
+          if (mode === 'Virtual / Online') {
+            numericFee = isLocal ? 25000 : 50;
+            formattedFee = isLocal ? '₦25,000' : '$50';
+            tierNote = `${isLocal ? 'Local' : 'International'} • Virtual / Online (${periodLabel})`;
+          } else {
+            const getsEarlyBirdRate = isEarlyBirdPeriod || mem === 'Registered Member';
+            if (getsEarlyBirdRate) {
+              numericFee = isLocal ? 40000 : 80;
+              formattedFee = isLocal ? '₦40,000' : '$80';
+              tierNote = `${isLocal ? 'Local' : 'International'} • In-person (${mem === 'Registered Member' ? 'Registered Member Rate' : 'Early Bird'})`;
+            } else {
+              numericFee = isLocal ? 50000 : 100;
+              formattedFee = isLocal ? '₦50,000' : '$100';
+              tierNote = `${isLocal ? 'Local' : 'International'} • In-person (Standard Conference Fee)`;
+            }
+          }
+        }
+
+        return { cat, mode, mem, periodLabel, isLocal, isIntl, currency, accountNo, bankLabel, formattedFee, numericFee, tierNote };
+      }
+
+      function updateDynamicSections() {
+        const pricing = computePricing();
+        const memProofBox = document.getElementById('member-proof-box');
+        const memProofInput = document.getElementById('reg-member-proof');
+        const memJoinBox = document.getElementById('member-join-box');
+        const countryInput = document.getElementById('reg-country');
+
+        const isMember = pricing.mem === 'Registered Member';
+        memProofBox.hidden = !isMember;
+        memProofInput.required = isMember;
+        if (!isMember) {
+          memProofBox.querySelector('.reg-file-wrap')?.classList.remove('has-error');
+        }
+        memJoinBox.hidden = pricing.mem !== 'New Member Applicant';
+
+        if (pricing.isLocal && !countryInput.dataset.userEdited) {
+          countryInput.value = 'Nigeria';
+          syncAria(countryInput);
+        } else if (pricing.isIntl && !countryInput.dataset.userEdited && countryInput.value === 'Nigeria') {
+          countryInput.value = '';
+        }
+
+        document.getElementById('summary-period-badge').textContent = pricing.periodLabel;
+        document.getElementById('summary-fee-amount').textContent = pricing.formattedFee;
+        document.getElementById('summary-fee-label').textContent = pricing.tierNote;
+        document.getElementById('summary-bank-detail').textContent = pricing.cat
+          ? pricing.bankLabel
+          : 'UBA Plc • Babcock MFB (NGN: 1020069501) or GTBank (USD: 0829898610)';
+
+        document.getElementById('pay-banner-summary').textContent = pricing.cat && pricing.mode
+          ? `${pricing.formattedFee} — ${pricing.tierNote}`
+          : 'Select category and mode in Step 1';
+        document.getElementById('pay-banner-acct').textContent = pricing.bankLabel;
+
+        const amountInput = document.getElementById('reg-amount-paid');
+        if (pricing.numericFee > 0 && !amountInput.dataset.userEdited) {
+          amountInput.value = pricing.formattedFee;
+          syncAria(amountInput);
+        }
+      }
+
+      document.getElementById('reg-country').addEventListener('input', (e) => {
+        e.target.dataset.userEdited = '1';
+      });
+      document.getElementById('reg-amount-paid').addEventListener('input', (e) => {
+        e.target.dataset.userEdited = '1';
+      });
+
+      form.querySelectorAll('input[type="radio"]').forEach((radio) => {
+        radio.addEventListener('change', () => {
+          const group = radio.closest('.reg-choice-group');
+          if (group) group.classList.remove('has-error');
+          updateDynamicSections();
+        });
+      });
+
+      function setupFileInput(inputEl, previewId, payloadKey) {
+        const previewEl = document.getElementById(previewId);
+        const wrap = inputEl.closest('.reg-file-wrap');
+        inputEl.addEventListener('change', () => {
+          wrap?.classList.remove('has-error');
+          const file = inputEl.files && inputEl.files[0];
+          if (!file) {
+            filePayloads[payloadKey] = null;
+            previewEl.textContent = '';
+            previewEl.classList.add('hidden');
+            return;
+          }
+          if (file.size > MAX_UPLOAD_BYTES) {
+            filePayloads[payloadKey] = null;
+            inputEl.value = '';
+            wrap?.classList.add('has-error');
+            previewEl.textContent = `File "${file.name}" exceeds the 10 MB size limit.`;
+            previewEl.className = 'text-xs font-medium text-red-700';
+            return;
+          }
+          const reader = new FileReader();
+          reader.onload = () => {
+            const result = String(reader.result || '');
+            const base64 = result.includes(',') ? result.split(',')[1] : result;
+            filePayloads[payloadKey] = {
+              name: file.name,
+              mimeType: file.type || 'application/octet-stream',
+              size: file.size,
+              base64
+            };
+            const sizeKb = file.size < 1024 * 1024
+              ? `${Math.max(1, Math.round(file.size / 1024))} KB`
+              : `${(file.size / (1024 * 1024)).toFixed(2)} MB`;
+            previewEl.textContent = `Attached: ${file.name} (${sizeKb})`;
+            previewEl.className = 'text-xs font-medium text-emerald-700';
+          };
+          reader.readAsDataURL(file);
+        });
+      }
+
+      setupFileInput(document.getElementById('reg-member-proof'), 'member-proof-preview', 'membershipProof');
+      setupFileInput(document.getElementById('reg-receipt-file'), 'receipt-preview', 'paymentReceipt');
+
+      function validateStep(stepNum) {
+        const stepEl = form.querySelector(`[data-reg-step="${stepNum}"]`);
+        if (!stepEl) return true;
+        let firstInvalid = null;
+
+        stepEl.querySelectorAll('[data-group-required]').forEach((group) => {
+          const name = group.dataset.groupRequired;
+          const ok = Boolean(form.querySelector(`input[name="${name}"]:checked`));
+          group.classList.toggle('has-error', !ok);
+          if (!ok && !firstInvalid) {
+            firstInvalid = group.querySelector('input');
+          }
+        });
+
+        stepEl.querySelectorAll('input[type="file"]').forEach((fileInput) => {
+          if (fileInput.closest('[hidden]')) return;
+          const isRequired = fileInput.required;
+          const key = fileInput.name;
+          const ok = !isRequired || Boolean(filePayloads[key]);
+          fileInput.closest('.reg-file-wrap')?.classList.toggle('has-error', !ok);
+          if (!ok && !firstInvalid) {
+            firstInvalid = fileInput;
+          }
+        });
+
+        stepEl.querySelectorAll('input:not([type="radio"]):not([type="file"]), select, textarea').forEach((el) => {
+          if (el.closest('[hidden]')) return;
+          if (!el.checkValidity()) {
+            dirtyState.set(el, { hasInteracted: true, hasBlurred: true });
+            syncAria(el);
+            if (!firstInvalid) firstInvalid = el;
+          }
+        });
+
+        if (firstInvalid) {
+          firstInvalid.focus({ preventScroll: false });
+          return false;
+        }
+        return true;
+      }
+
+      function escapeHtml(str) {
+        return String(str ?? '')
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#39;');
+      }
+
+      function renderReviewSummary() {
+        const pricing = computePricing();
+        const items = [
+          ['Category', pricing.cat],
+          ['Mode', pricing.mode],
+          ['Applicable Fee', `${pricing.formattedFee} (${pricing.periodLabel})`],
+          ['Membership', pricing.mem],
+          ['Full Name', form.fullName.value.trim()],
+          ['Email', form.email.value.trim()],
+          ['Phone', form.phone.value.trim()],
+          ['Location', [form.stateOfResidence.value.trim(), form.country.value.trim()].filter(Boolean).join(', ')],
+          ['Amount & Date', `${form.amountPaid.value.trim()} on ${form.paymentDate.value}`],
+          ['Payment Receipt', filePayloads.paymentReceipt ? filePayloads.paymentReceipt.name : 'Not attached']
+        ];
+        if (filePayloads.membershipProof) {
+          items.push(['Membership Proof', filePayloads.membershipProof.name]);
+        }
+        document.getElementById('reg-review-box').innerHTML = items.map(([label, value]) => `
+          <div>
+            <div class="text-[10px] font-bold uppercase tracking-wider text-bu-muted">${escapeHtml(label)}</div>
+            <div class="font-semibold text-bu-navy mt-0.5 break-words">${escapeHtml(value || '—')}</div>
+          </div>
+        `).join('');
+      }
+
+      window.goRegStep = function(targetStep) {
+        form.querySelectorAll('[data-reg-step]').forEach((el) => {
+          const num = Number(el.dataset.regStep);
+          el.hidden = num !== targetStep;
+        });
+        document.querySelectorAll('[data-step-indicator]').forEach((li) => {
+          const num = Number(li.dataset.stepIndicator);
+          if (num === targetStep) {
+            li.setAttribute('aria-current', 'step');
+            li.className = 'rounded-xl px-3.5 py-2.5 border text-xs font-bold bg-bu-canonical text-white border-bu-canonical transition';
+          } else if (num < targetStep) {
+            li.removeAttribute('aria-current');
+            li.className = 'rounded-xl px-3.5 py-2.5 border text-xs font-semibold bg-emerald-50 text-emerald-800 border-emerald-200 transition';
+          } else {
+            li.removeAttribute('aria-current');
+            li.className = 'rounded-xl px-3.5 py-2.5 border text-xs font-semibold bg-white text-bu-muted border-bu-canonical/15 transition';
+          }
+        });
+        if (targetStep === 4) renderReviewSummary();
+        const heading = form.querySelector(`[data-reg-step="${targetStep}"] h4`);
+        if (heading) {
+          heading.focus();
+          heading.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+      };
+
+      window.nextRegStep = function(currentStep) {
+        if (!validateStep(currentStep)) return;
+        window.goRegStep(currentStep + 1);
+      };
+
+      window.copyCurrentBankAcct = function(btn) {
+        const pricing = computePricing();
+        copyAcct(btn, pricing.accountNo);
+      };
+
+      window.openRegWithPreset = function(modeValue, tierHint) {
+        const catRadio = document.getElementById(activeCurrencyView === 'USD' ? 'cat-intl' : 'cat-local');
+        if (catRadio) catRadio.checked = true;
+        const modeRadio = form.querySelector(`input[name="participationMode"][value="${modeValue}"]`);
+        if (modeRadio) modeRadio.checked = true;
+        if (tierHint === 'early-bird') {
+          const isAfterEarlyBird = Date.now() > EARLY_BIRD_CUTOFF_MS;
+          const targetMem = isAfterEarlyBird ? 'mem-yes' : 'mem-no';
+          document.getElementById(targetMem).checked = true;
+        } else if (tierHint === 'non-member') {
+          document.getElementById('mem-no').checked = true;
+        }
+        form.querySelectorAll('.reg-choice-group').forEach((g) => g.classList.remove('has-error'));
+        updateDynamicSections();
+        window.goRegStep(1);
+        document.getElementById('registration-portal').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      };
+
+      window.resetRegPortal = function() {
+        form.reset();
+        filePayloads.membershipProof = null;
+        filePayloads.paymentReceipt = null;
+        delete document.getElementById('reg-country').dataset.userEdited;
+        delete document.getElementById('reg-amount-paid').dataset.userEdited;
+        ['member-proof-preview', 'receipt-preview'].forEach((id) => {
+          const el = document.getElementById(id);
+          el.textContent = '';
+          el.classList.add('hidden');
+        });
+        document.getElementById('reg-submit-feedback').classList.add('hidden');
+        document.getElementById('reg-success-panel').hidden = true;
+        form.hidden = false;
+        updateDynamicSections();
+        window.goRegStep(1);
+      };
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (!validateStep(4)) return;
+
+        const feedback = document.getElementById('reg-submit-feedback');
+        const submitBtn = document.getElementById('reg-submit-btn');
+
+        if (!REGISTRATION_ENDPOINT) {
+          feedback.className = 'rounded-xl p-4 text-xs font-medium bg-amber-50 border border-amber-300 text-amber-900';
+          feedback.textContent = 'Google Apps Script endpoint is not configured yet. Deploy google-apps-script/Code.gs as a Web App and paste its URL into REGISTRATION_ENDPOINT in index.html to save live submissions to Google Sheets.';
+          return;
+        }
+
+        const pricing = computePricing();
+        const payload = {
+          websiteUrl: form.websiteUrl.value,
+          participantCategory: pricing.cat,
+          participationMode: pricing.mode,
+          registrationPeriod: pricing.periodLabel,
+          membershipStatus: pricing.mem,
+          currency: pricing.currency,
+          applicableFee: pricing.formattedFee,
+          fullName: form.fullName.value.trim(),
+          email: form.email.value.trim(),
+          phone: form.phone.value.trim(),
+          country: form.country.value.trim(),
+          stateOfResidence: form.stateOfResidence.value.trim(),
+          organisation: form.organisation.value.trim(),
+          designation: form.designation.value.trim(),
+          specialisation: form.specialisation.value.trim(),
+          amountPaid: form.amountPaid.value.trim(),
+          paymentDate: form.paymentDate.value,
+          transactionRef: form.transactionRef.value.trim(),
+          accountHolderName: form.accountHolderName.value.trim(),
+          declarationAgreed: document.getElementById('reg-declaration-agree').checked,
+          membershipProof: filePayloads.membershipProof,
+          paymentReceipt: filePayloads.paymentReceipt
+        };
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Submitting Registration...';
+        feedback.classList.add('hidden');
+
+        try {
+          const resp = await fetch(REGISTRATION_ENDPOINT, {
+            method: 'POST',
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+            body: JSON.stringify(payload)
+          });
+          const resJson = await resp.json();
+          if (!resJson || !resJson.ok) {
+            throw new Error((resJson && resJson.error) || 'Could not record registration.');
+          }
+
+          form.hidden = true;
+          const successPanel = document.getElementById('reg-success-panel');
+          successPanel.hidden = false;
+          document.getElementById('reg-success-ref').textContent = resJson.registrationId || 'Recorded';
+          document.getElementById('reg-success-summary').textContent = `${payload.fullName} • ${payload.participantCategory} • ${payload.participationMode} (${payload.applicableFee})`;
+          document.getElementById('reg-success-heading').focus();
+        } catch (err) {
+          feedback.className = 'rounded-xl p-4 text-xs font-medium bg-red-50 border border-red-200 text-red-800';
+          feedback.textContent = `Submission failed: ${err.message}. Please try again or contact icfi@babcock.edu.ng.`;
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Submit Registration →';
+        }
+      });
+
+      updateDynamicSections();
+    })();
 
     function updateCountdown() {
       const target = new Date('2027-07-27T09:00:00+01:00').getTime();
