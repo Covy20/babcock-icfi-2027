@@ -388,6 +388,7 @@
           <li><a href="#values" class="bu-nav-link">Pillars</a></li>
           <li><a href="#roadmap" class="bu-nav-link">Programme</a></li>
           <li><a href="#registration" class="bu-nav-link">Registration</a></li>
+          <li><a href="#membership-portal" onclick="openMembershipPortal(); return false;" class="bu-nav-link">Membership</a></li>
           <li><a href="#ijfi" class="bu-nav-link">IJFI &amp; Papers</a></li>
         </ul>
       </nav>
@@ -1066,18 +1067,19 @@
         </div>
       </div>
 
-      <!-- ON-SITE REGISTRATION PORTAL (CONNECTED TO GOOGLE SHEETS + APPS SCRIPT) -->
+      <!-- ON-SITE REGISTRATION & MEMBERSHIP PORTAL (CONNECTED TO GOOGLE SHEETS + APPS SCRIPT) -->
       <div id="registration-portal" class="scroll-mt-24 bg-bu-tint border border-bu-canonical/15 rounded-[24px] p-6 sm:p-10 shadow-sm">
-        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-6 border-b border-bu-canonical/10 mb-8">
+        <div id="membership-portal" class="scroll-mt-24"></div>
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-6 border-b border-bu-canonical/10 mb-6">
           <div>
             <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-bu-canonical/15 text-[11px] font-bold uppercase tracking-wider text-bu-goldBand mb-2">
-              Official On-Site Registration Portal
+              Official On-Site Portal
             </span>
             <h3 id="reg-portal-heading" class="font-serif font-bold text-2xl sm:text-3xl text-bu-navy">
-              Complete Your 7th ICFI 2027 Registration
+              Conference Registration &amp; ICFI Membership
             </h3>
             <p class="text-xs sm:text-sm text-bu-muted mt-1 max-w-[68ch]">
-              Register directly below without signing into Google. Complete payment first via the bank accounts above, attach your receipt, and receive an instant reference ID.
+              Complete either your 7th ICFI 2027 Conference registration or your ICFI Association Membership directly below without signing into Google.
             </p>
           </div>
           <div class="bg-white border border-bu-canonical/15 rounded-[16px] px-4 py-3 shrink-0">
@@ -1087,6 +1089,33 @@
           </div>
         </div>
 
+        <!-- Portal Switcher Tabs -->
+        <div role="tablist" aria-label="Registration Forms" class="inline-flex flex-wrap gap-2 bg-white p-1.5 rounded-2xl border border-bu-canonical/15 shadow-sm mb-8">
+          <button
+            type="button"
+            id="tab-btn-conference"
+            role="tab"
+            aria-selected="true"
+            aria-controls="panel-conference"
+            onclick="switchPortalTab('conference')"
+            class="px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-bu-canonical text-white transition min-h-[44px] cursor-pointer"
+          >
+            1. Conference Registration (ICFI 2027)
+          </button>
+          <button
+            type="button"
+            id="tab-btn-membership"
+            role="tab"
+            aria-selected="false"
+            aria-controls="panel-membership"
+            onclick="switchPortalTab('membership')"
+            class="px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-bu-canonical hover:bg-bu-mist transition min-h-[44px] cursor-pointer"
+          >
+            2. ICFI Membership Form (US$5 / ₦7,000)
+          </button>
+        </div>
+
+        <div id="panel-conference" role="tabpanel" aria-labelledby="tab-btn-conference">
         <!-- Step Progress Tracker -->
         <nav aria-label="Registration progress" class="mb-8">
           <ol class="grid grid-cols-2 sm:grid-cols-4 gap-2.5" id="reg-progress-list">
@@ -1262,10 +1291,10 @@
                     Association Membership fee is <strong>₦7,000</strong> (Local) or <strong>$5</strong> (International), subject to verification. You can complete your membership application below and still continue your conference registration here right now:
                   </p>
                   <div class="flex flex-wrap items-center gap-3 pt-1">
-                    <a href="https://forms.gle/Q9HLdnBbpwCcJ2Vg6" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-bu-gold hover:bg-bu-goldLight text-white text-xs font-bold transition min-h-[40px]">
-                      Open Membership Form &rarr;
-                    </a>
-                    <span class="text-[11px] text-bu-muted">Your status will be marked <em>Membership Pending</em> for committee verification.</span>
+                    <button type="button" onclick="openMembershipPortal()" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-bu-gold hover:bg-bu-goldLight text-white text-xs font-bold transition min-h-[40px] cursor-pointer">
+                      Apply for ICFI Membership Here &rarr;
+                    </button>
+                    <span class="text-[11px] text-bu-muted">Your conference registration will be marked <em>Membership Pending</em> for committee verification.</span>
                   </div>
                 </div>
               </div>
@@ -1551,6 +1580,266 @@
             </button>
           </div>
         </div>
+        </div><!-- end #panel-conference -->
+
+        <!-- TAB PANEL 2: ICFI ASSOCIATION MEMBERSHIP FORM -->
+        <div id="panel-membership" role="tabpanel" aria-labelledby="tab-btn-membership" hidden>
+          <nav aria-label="Membership application progress" class="mb-8">
+            <ol class="grid grid-cols-2 gap-2.5 max-w-md" id="mem-progress-list">
+              <li data-mem-indicator="1" aria-current="step" class="rounded-xl px-3.5 py-2.5 border text-xs font-bold bg-bu-canonical text-white border-bu-canonical transition">
+                <span class="block text-[10px] opacity-80 uppercase tracking-wider">Step 1</span>
+                <span>Membership Conditions</span>
+              </li>
+              <li data-mem-indicator="2" class="rounded-xl px-3.5 py-2.5 border text-xs font-semibold bg-white text-bu-muted border-bu-canonical/15 transition">
+                <span class="block text-[10px] opacity-80 uppercase tracking-wider">Step 2</span>
+                <span>Biodata &amp; Payment</span>
+              </li>
+            </ol>
+          </nav>
+
+          <form id="icfi-membership-form" aria-labelledby="tab-btn-membership" method="POST" novalidate class="space-y-6">
+            <div class="visually-hidden" aria-hidden="true">
+              <label for="mem-website-url">Leave this field blank</label>
+              <input type="text" id="mem-website-url" name="websiteUrl" tabindex="-1" autocomplete="off">
+            </div>
+
+            <!-- MEMBERSHIP STEP 1: IMPORTANT INFORMATION & CONDITIONS -->
+            <div data-mem-step="1" class="space-y-6">
+              <h4 tabindex="-1" class="font-serif font-bold text-xl text-bu-navy focus:outline-none">
+                1. Important Membership Information and Conditions
+              </h4>
+
+              <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
+                <div class="md:col-span-7 lg:col-span-8 space-y-5">
+                  <div class="bg-white border border-bu-canonical/20 rounded-2xl p-5 sm:p-6 space-y-3 text-xs text-bu-navy leading-relaxed">
+                    <div class="font-serif font-bold text-base text-bu-canonical">
+                      IMPORTANT MEMBERSHIP INFORMATION AND CONDITIONS
+                    </div>
+                    <p class="italic text-bu-muted">
+                      By registering with the International Community for Faith Integration (ICFI), applicants acknowledge and agree to the following:
+                    </p>
+                    <ul class="space-y-2.5 text-bu-muted">
+                      <li><strong class="text-bu-navy">Annual Membership Fee:</strong> Membership of the International Community for Faith Integration attracts an annual subscription fee of <strong>US$5 (approximately ₦7,000)</strong>. The fee is payable upon registration and is renewable annually to maintain active membership. The applicable Naira equivalent may be adjusted to reflect prevailing exchange rates.</li>
+                      <li><strong class="text-bu-navy">Membership Renewal:</strong> Membership is valid for one year from the date of registration and must be renewed annually to retain active membership status and its associated privileges.</li>
+                      <li><strong class="text-bu-navy">Voting Rights and Participation in Governance:</strong> Registered members whose memberships are active and up to date are entitled to voting rights in matters requiring decisions by the Community. Members may be called upon to participate in periodic virtual meetings to deliberate on proposals, vote on resolutions, and contribute to decisions concerning the administration, programmes, and general affairs of the Community.</li>
+                      <li><strong class="text-bu-navy">Participation in Virtual Meetings:</strong> Members are expected to make reasonable efforts to attend scheduled virtual meetings and participate in the Community's decision-making processes. The Community will communicate meeting notices, agendas, and relevant information to members in advance.</li>
+                      <li><strong class="text-bu-navy">Concessions on Paid Events:</strong> Registered members are entitled to preferential considerations, including discounted registration fees or other applicable concessions, for selected paid programmes and events organised by the Community, such as the International Conference for Faith Integration (ICFI). The nature and extent of such concessions will be communicated ahead of each event.</li>
+                      <li><strong class="text-bu-navy">Membership Privileges and Eligibility:</strong> Membership privileges, including voting rights and event concessions, are available only to members whose annual subscriptions are current. Members with expired subscriptions may be required to renew their membership before accessing these privileges.</li>
+                      <li><strong class="text-bu-navy">Commitment to the Community's Objectives:</strong> Members are expected to uphold the vision, mission, values, and objectives of the International Community for Faith Integration and to conduct themselves in a manner consistent with the Community's commitment to advancing faith integration in scholarship, professional practice, and institutional life.</li>
+                      <li><strong class="text-bu-navy">Communication and Updates:</strong> Members are expected to provide accurate contact information and remain accessible through the official communication channels designated by the Community. The Community will communicate important announcements, meeting invitations, programme updates, and membership-related information through these channels.</li>
+                    </ul>
+                  </div>
+
+                  <fieldset class="space-y-2.5">
+                    <legend class="text-sm font-bold text-bu-navy mb-2">
+                      By completing this registration, do you agree to the membership conditions above? <span class="text-red-600" aria-hidden="true">*</span>
+                    </legend>
+                    <div class="reg-choice-group grid grid-cols-1 sm:grid-cols-2 gap-3" data-group-required="conditionsChoice" data-error="err-mem-conditions">
+                      <div>
+                        <input class="reg-choice" type="radio" name="conditionsChoice" id="mem-cond-agree" value="I agree" required>
+                        <label for="mem-cond-agree" class="reg-choice-card flex items-center gap-3 p-4 rounded-xl border border-bu-canonical/20 bg-white cursor-pointer transition min-h-[48px]">
+                          <span class="reg-radio-dot w-4 h-4 rounded-full border-2 border-bu-canonical shrink-0 inline-block"></span>
+                          <span class="text-sm font-bold text-bu-navy">I agree</span>
+                        </label>
+                      </div>
+                      <div>
+                        <input class="reg-choice" type="radio" name="conditionsChoice" id="mem-cond-disagree" value="I disagree" required>
+                        <label for="mem-cond-disagree" class="reg-choice-card flex items-center gap-3 p-4 rounded-xl border border-bu-canonical/20 bg-white cursor-pointer transition min-h-[48px]">
+                          <span class="reg-radio-dot w-4 h-4 rounded-full border-2 border-bu-canonical shrink-0 inline-block"></span>
+                          <span class="text-sm font-bold text-bu-navy">I disagree</span>
+                        </label>
+                      </div>
+                    </div>
+                    <div id="err-mem-conditions" class="bu-error-msg">
+                      <span role="img" aria-label="Error">&#10060;</span> Please select whether you agree to the membership conditions.
+                    </div>
+                  </fieldset>
+
+                  <div id="mem-disagree-notice" hidden class="bg-amber-50 border border-amber-300 rounded-2xl p-5 space-y-3 text-xs text-amber-950">
+                    <p class="font-semibold">Agreement to the ICFI membership conditions is required to submit a membership application.</p>
+                    <p>You can still attend the 7th ICFI 2027 Conference as a non-member.</p>
+                    <button type="button" onclick="switchPortalTab('conference')" class="px-5 py-2.5 rounded-full bg-bu-canonical hover:bg-bu-canonicalDark text-white font-bold transition min-h-[44px] cursor-pointer">
+                      Go to Conference Registration &rarr;
+                    </button>
+                  </div>
+                </div>
+
+                <aside class="md:col-span-5 lg:col-span-4 md:sticky md:top-24 bg-bu-band text-white rounded-2xl p-6 space-y-4 shadow-lg">
+                  <div class="flex items-center justify-between gap-2">
+                    <span class="text-[11px] font-bold uppercase tracking-wider text-bu-goldAccent">Annual Subscription</span>
+                    <span class="px-2.5 py-0.5 rounded-full bg-white/10 text-[10px] font-bold uppercase tracking-wider">1 Year</span>
+                  </div>
+                  <div>
+                    <div class="font-serif font-bold text-3xl text-bu-goldAccent">US$5 / ₦7,000</div>
+                    <div class="text-xs text-slate-200 mt-1">Annual subscription fee (payable upon registration).</div>
+                  </div>
+                  <div class="pt-3 border-t border-white/15 space-y-2 text-xs text-slate-200">
+                    <div class="font-bold text-bu-goldAccent">Transfer Accounts</div>
+                    <div>Local (NGN): <strong>UBA Plc • Babcock MFB — 1020069501</strong></div>
+                    <div>Intl (USD): <strong>GTBank — 0829898610</strong></div>
+                  </div>
+                  <ul class="pt-3 border-t border-white/15 space-y-1.5 text-[11px] text-slate-300">
+                    <li>✓ Voting rights &amp; virtual governance meetings</li>
+                    <li>✓ ₦10,000 off ICFI conference registration</li>
+                    <li>✓ Members retain Early Bird rates year-round</li>
+                  </ul>
+                </aside>
+              </div>
+
+              <div class="flex justify-end pt-2">
+                <button type="button" id="mem-step1-next" onclick="nextMemStep()" class="px-7 py-3 rounded-full bg-bu-canonical hover:bg-bu-canonicalDark text-white text-sm font-bold shadow transition min-h-[48px] cursor-pointer">
+                  Continue to Biodata &rarr;
+                </button>
+              </div>
+            </div>
+
+            <!-- MEMBERSHIP STEP 2: BIODATA & EVIDENCE OF PAYMENT -->
+            <div data-mem-step="2" hidden class="space-y-6">
+              <h4 tabindex="-1" class="font-serif font-bold text-xl text-bu-navy focus:outline-none">
+                2. Biodata &amp; Evidence of Payment
+              </h4>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div>
+                  <label for="mem-name" class="block text-sm font-bold text-bu-navy mb-1">
+                    Name <span class="text-red-600" aria-hidden="true">*</span>
+                  </label>
+                  <input type="text" id="mem-name" name="fullName" required autocomplete="name" enterkeyhint="next" data-error="err-mem-name" class="reg-input">
+                  <div id="err-mem-name" class="bu-error-msg">
+                    <span role="img" aria-label="Error">&#10060;</span> Please enter your full name.
+                  </div>
+                </div>
+
+                <div>
+                  <label for="mem-profession" class="block text-sm font-bold text-bu-navy mb-1">
+                    Profession <span class="text-red-600" aria-hidden="true">*</span>
+                  </label>
+                  <input type="text" id="mem-profession" name="profession" required autocomplete="organization-title" enterkeyhint="next" data-error="err-mem-profession" class="reg-input">
+                  <div id="err-mem-profession" class="bu-error-msg">
+                    <span role="img" aria-label="Error">&#10060;</span> Please enter your profession or role.
+                  </div>
+                </div>
+
+                <div class="md:col-span-2">
+                  <label for="mem-address" class="block text-sm font-bold text-bu-navy mb-1">
+                    Full Institutional Address <span class="text-red-600" aria-hidden="true">*</span>
+                  </label>
+                  <span id="hint-mem-address" class="block text-xs text-bu-muted mb-1.5">e.g., Babcock University, Ilishan-Remo, Ogun State, Nigeria.</span>
+                  <input type="text" id="mem-address" name="institutionalAddress" required autocomplete="street-address" enterkeyhint="next" aria-describedby="hint-mem-address" data-error="err-mem-address" class="reg-input">
+                  <div id="err-mem-address" class="bu-error-msg">
+                    <span role="img" aria-label="Error">&#10060;</span> Please enter your full institutional address.
+                  </div>
+                </div>
+
+                <div>
+                  <label for="mem-cell" class="block text-sm font-bold text-bu-navy mb-1">
+                    Cell Phone <span class="text-red-600" aria-hidden="true">*</span>
+                  </label>
+                  <input type="tel" id="mem-cell" name="cellPhone" required autocomplete="tel" enterkeyhint="next" data-error="err-mem-cell" class="reg-input">
+                  <div id="err-mem-cell" class="bu-error-msg">
+                    <span role="img" aria-label="Error">&#10060;</span> Please enter your cell phone number.
+                  </div>
+                </div>
+
+                <div>
+                  <div class="flex items-center justify-between gap-2 mb-1">
+                    <label for="mem-whatsapp" class="block text-sm font-bold text-bu-navy">
+                      WhatsApp Contact <span class="text-red-600" aria-hidden="true">*</span>
+                    </label>
+                    <button type="button" onclick="copyCellToWhatsapp()" class="text-[11px] font-bold text-bu-blue hover:underline cursor-pointer">
+                      Same as Cell Phone
+                    </button>
+                  </div>
+                  <input type="tel" id="mem-whatsapp" name="whatsappContact" required autocomplete="tel" enterkeyhint="next" data-error="err-mem-whatsapp" class="reg-input">
+                  <div id="err-mem-whatsapp" class="bu-error-msg">
+                    <span role="img" aria-label="Error">&#10060;</span> Please enter your WhatsApp contact number.
+                  </div>
+                </div>
+
+                <div>
+                  <label for="mem-email" class="block text-sm font-bold text-bu-navy mb-1">
+                    E-mail Address <span class="text-red-600" aria-hidden="true">*</span>
+                  </label>
+                  <span id="hint-mem-email" class="block text-xs text-bu-muted mb-1.5">Format: you@example.com</span>
+                  <input type="email" id="mem-email" name="email" required autocomplete="email" autocorrect="off" autocapitalize="none" spellcheck="false" enterkeyhint="next" aria-describedby="hint-mem-email" data-error="err-mem-email" class="reg-input">
+                  <div id="err-mem-email" class="bu-error-msg">
+                    <span role="img" aria-label="Error">&#10060;</span> Enter a valid e-mail address.
+                  </div>
+                </div>
+
+                <div>
+                  <label for="mem-reg-date" class="block text-sm font-bold text-bu-navy mb-1">
+                    Registration Date <span class="text-red-600" aria-hidden="true">*</span>
+                  </label>
+                  <input type="date" id="mem-reg-date" name="registrationDate" required data-error="err-mem-date" class="reg-input">
+                  <div id="err-mem-date" class="bu-error-msg">
+                    <span role="img" aria-label="Error">&#10060;</span> Please choose your registration date.
+                  </div>
+                </div>
+
+                <div class="md:col-span-2 bg-white border border-bu-canonical/20 rounded-2xl p-5 space-y-2">
+                  <label for="mem-evidence-file" class="block text-sm font-bold text-bu-navy">
+                    Attach evidence of payment <span class="text-red-600" aria-hidden="true">*</span>
+                  </label>
+                  <span id="mem-evidence-hint" class="block text-xs text-bu-muted">
+                    Upload 1 supported file: PDF or image (JPG/PNG). Annual fee: US$5 (approx. ₦7,000). Maximum 10 MB.
+                  </span>
+                  <div class="reg-file-wrap pt-1">
+                    <input
+                      type="file"
+                      id="mem-evidence-file"
+                      name="paymentEvidence"
+                      required
+                      accept=".pdf,image/*"
+                      aria-describedby="mem-evidence-hint"
+                      data-error="err-mem-evidence"
+                      class="reg-file block w-full text-sm text-bu-navy file:mr-4 file:py-2.5 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-bold file:bg-bu-mist file:text-bu-canonical hover:file:bg-blue-100 cursor-pointer min-h-[48px]"
+                    >
+                  </div>
+                  <div id="mem-evidence-preview" class="text-xs font-medium text-emerald-700 hidden"></div>
+                  <div id="err-mem-evidence" class="bu-error-msg">
+                    <span role="img" aria-label="Error">&#10060;</span> Please attach your membership payment evidence (PDF or image, max 10 MB).
+                  </div>
+                </div>
+              </div>
+
+              <div id="mem-submit-feedback" role="alert" class="hidden rounded-xl p-4 text-xs font-medium"></div>
+
+              <div class="flex flex-wrap items-center justify-between gap-3 pt-2">
+                <button type="button" onclick="goMemStep(1)" class="px-6 py-3 rounded-full bg-white border border-bu-canonical/25 hover:border-bu-navy text-bu-navy text-sm font-bold transition min-h-[48px] cursor-pointer">
+                  &larr; Back
+                </button>
+                <button type="submit" id="mem-submit-btn" class="px-8 py-3.5 rounded-full bg-bu-gold hover:bg-bu-goldLight text-white text-sm font-bold uppercase tracking-wider shadow-lg transition min-h-[48px] cursor-pointer">
+                  Submit Membership Application &rarr;
+                </button>
+              </div>
+            </div>
+          </form>
+
+          <!-- MEMBERSHIP SUCCESS STATE -->
+          <div id="mem-success-panel" hidden role="status" class="bg-white border-2 border-emerald-600/30 rounded-2xl p-6 sm:p-8 text-center space-y-4">
+            <div class="w-14 h-14 mx-auto rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-2xl font-bold">✓</div>
+            <h4 tabindex="-1" id="mem-success-heading" class="font-serif font-bold text-2xl text-bu-navy focus:outline-none">
+              Membership Application Received!
+            </h4>
+            <p class="text-sm text-bu-muted max-w-[56ch] mx-auto">
+              Your ICFI membership biodata and payment evidence have been recorded for verification by the Association.
+            </p>
+            <div class="inline-block bg-bu-tint border border-bu-canonical/15 rounded-xl px-5 py-3 text-xs">
+              <span class="text-bu-muted">Membership Ref ID:</span>
+              <strong id="mem-success-ref" class="font-mono text-bu-navy text-sm ml-1">—</strong>
+            </div>
+            <div id="mem-success-summary" class="text-xs text-bu-muted"></div>
+            <div class="pt-2 flex flex-wrap justify-center gap-3">
+              <button type="button" onclick="switchPortalTab('conference')" class="px-6 py-2.5 rounded-full bg-bu-canonical hover:bg-bu-canonicalDark text-white text-xs font-bold transition min-h-[44px] cursor-pointer">
+                Continue to 7th ICFI Conference Registration &rarr;
+              </button>
+              <button type="button" onclick="resetMemPortal()" class="px-6 py-2.5 rounded-full bg-bu-mist hover:bg-blue-100 text-bu-canonical text-xs font-bold transition min-h-[44px] cursor-pointer">
+                Submit Another Membership
+              </button>
+            </div>
+          </div>
+        </div><!-- end #panel-membership -->
       </div>
 
     </div>
@@ -1597,7 +1886,7 @@
               <a href="./ijml.html" target="_blank" class="flex-1 py-2.5 rounded-full border border-bu-canonical/20 hover:bg-bu-canonical hover:text-white text-center text-xs font-bold text-bu-canonical transition">
                 Journal Portal &rarr;
               </a>
-              <a href="https://docs.google.com/forms/d/e/1FAIpQLSdqy7-2m-Ffhi2xuW5_RHFaLsBXa39Ir0fzFd8UHb3DsOQibA/viewform?usp=sharing" target="_blank" class="px-4 py-2.5 rounded-full bg-amber-50 border border-bu-goldCanonical/40 text-xs font-bold text-bu-navy transition hover:bg-amber-100">
+              <a href="#membership-portal" onclick="openMembershipPortal(); return false;" class="px-4 py-2.5 rounded-full bg-amber-50 border border-bu-goldCanonical/40 text-xs font-bold text-bu-navy transition hover:bg-amber-100">
                 Join Community
               </a>
             </div>
@@ -1819,6 +2108,7 @@
           <div class="font-serif font-bold text-sm text-white">Registration</div>
           <ul class="space-y-2 text-blue-100">
             <li><a href="#registration" class="hover:text-bu-goldAccent transition">&rsaquo; Pass Tiers &amp; Pricing</a></li>
+            <li><a href="#membership-portal" onclick="openMembershipPortal(); return false;" class="hover:text-bu-goldAccent transition">&rsaquo; ICFI Membership Form</a></li>
             <li><a href="#roadmap" class="hover:text-bu-goldAccent transition">&rsaquo; Key Dates Roadmap</a></li>
             <li><a href="#registration" class="hover:text-bu-goldAccent transition">&rsaquo; Bank Remittance Details</a></li>
           </ul>
@@ -1934,9 +2224,10 @@
     const EARLY_BIRD_CUTOFF_MS = new Date('2027-04-23T23:59:59+01:00').getTime();
     const MAX_UPLOAD_BYTES = 10 * 1024 * 1024; // 10 MB
 
-    (function initRegistrationPortal() {
-      const form = document.getElementById('icfi-reg-form');
-      if (!form) return;
+    (function initPortals() {
+      const regForm = document.getElementById('icfi-reg-form');
+      const memForm = document.getElementById('icfi-membership-form');
+      if (!regForm || !memForm) return;
 
       const announcer = document.createElement('div');
       announcer.setAttribute('aria-live', 'polite');
@@ -2013,48 +2304,206 @@
         }
       };
 
-      form.querySelectorAll('input:not([type="radio"]):not([type="file"]), select, textarea').forEach((el) => syncAria(el));
-
-      form.addEventListener('blur', (e) => {
-        const st = dirtyState.get(e.target) || { hasInteracted: false, hasBlurred: false };
-        st.hasBlurred = true;
-        dirtyState.set(e.target, st);
-        syncAria(e.target, true);
-      }, true);
-
-      form.addEventListener('input', (e) => {
-        const st = dirtyState.get(e.target) || { hasInteracted: false, hasBlurred: false };
-        st.hasInteracted = true;
-        dirtyState.set(e.target, st);
-        if (e.target.hasAttribute('aria-invalid')) syncAria(e.target);
-      });
-
-      form.addEventListener('change', (e) => {
-        if (e.target.type === 'radio' || e.target.type === 'checkbox' || e.target.type === 'file') {
+      const attachFormA11y = (rootForm) => {
+        rootForm.querySelectorAll('input:not([type="radio"]):not([type="file"]), select, textarea').forEach((el) => syncAria(el));
+        rootForm.addEventListener('blur', (e) => {
+          const st = dirtyState.get(e.target) || { hasInteracted: false, hasBlurred: false };
+          st.hasBlurred = true;
+          dirtyState.set(e.target, st);
+          syncAria(e.target, true);
+        }, true);
+        rootForm.addEventListener('input', (e) => {
+          const st = dirtyState.get(e.target) || { hasInteracted: false, hasBlurred: false };
+          st.hasInteracted = true;
+          dirtyState.set(e.target, st);
+          if (e.target.hasAttribute('aria-invalid')) syncAria(e.target);
+        });
+        rootForm.addEventListener('change', (e) => {
           if (e.target.type === 'checkbox') syncAria(e.target, true);
-        }
-      }, true);
-
-      form.addEventListener('invalid', (e) => {
-        dirtyState.set(e.target, { hasInteracted: true, hasBlurred: true });
-        announced.add(e.target);
-        syncAria(e.target);
-      }, true);
-
-      const filePayloads = {
-        membershipProof: null,
-        paymentReceipt: null
+        }, true);
+        rootForm.addEventListener('invalid', (e) => {
+          dirtyState.set(e.target, { hasInteracted: true, hasBlurred: true });
+          announced.add(e.target);
+          syncAria(e.target);
+        }, true);
       };
 
-      function getSelectedRadio(name) {
-        const checked = form.querySelector(`input[name="${name}"]:checked`);
-        return checked ? checked.value : '';
+      const bindFileInput = (inputEl, previewId, storeObj, payloadKey) => {
+        const previewEl = document.getElementById(previewId);
+        const wrap = inputEl.closest('.reg-file-wrap');
+        inputEl.addEventListener('change', () => {
+          wrap?.classList.remove('has-error');
+          const file = inputEl.files && inputEl.files[0];
+          if (!file) {
+            storeObj[payloadKey] = null;
+            previewEl.textContent = '';
+            previewEl.classList.add('hidden');
+            return;
+          }
+          if (file.size > MAX_UPLOAD_BYTES) {
+            storeObj[payloadKey] = null;
+            inputEl.value = '';
+            wrap?.classList.add('has-error');
+            previewEl.textContent = `File "${file.name}" exceeds the 10 MB size limit.`;
+            previewEl.className = 'text-xs font-medium text-red-700';
+            return;
+          }
+          const reader = new FileReader();
+          reader.onload = () => {
+            const result = String(reader.result || '');
+            const base64 = result.includes(',') ? result.split(',')[1] : result;
+            storeObj[payloadKey] = {
+              name: file.name,
+              mimeType: file.type || 'application/octet-stream',
+              size: file.size,
+              base64
+            };
+            const sizeKb = file.size < 1024 * 1024
+              ? `${Math.max(1, Math.round(file.size / 1024))} KB`
+              : `${(file.size / (1024 * 1024)).toFixed(2)} MB`;
+            previewEl.textContent = `Attached: ${file.name} (${sizeKb})`;
+            previewEl.className = 'text-xs font-medium text-emerald-700';
+          };
+          reader.readAsDataURL(file);
+        });
+      };
+
+      const validateStepContainer = (rootForm, stepEl, storeObj) => {
+        if (!stepEl) return true;
+        let firstInvalid = null;
+
+        stepEl.querySelectorAll('[data-group-required]').forEach((group) => {
+          const name = group.dataset.groupRequired;
+          const ok = Boolean(rootForm.querySelector(`input[name="${name}"]:checked`));
+          group.classList.toggle('has-error', !ok);
+          if (!ok && !firstInvalid) firstInvalid = group.querySelector('input');
+        });
+
+        stepEl.querySelectorAll('input[type="file"]').forEach((fileInput) => {
+          if (fileInput.closest('[hidden]')) return;
+          const ok = !fileInput.required || Boolean(storeObj[fileInput.name]);
+          fileInput.closest('.reg-file-wrap')?.classList.toggle('has-error', !ok);
+          if (!ok && !firstInvalid) firstInvalid = fileInput;
+        });
+
+        stepEl.querySelectorAll('input:not([type="radio"]):not([type="file"]), select, textarea').forEach((el) => {
+          if (el.closest('[hidden]')) return;
+          if (!el.checkValidity()) {
+            dirtyState.set(el, { hasInteracted: true, hasBlurred: true });
+            syncAria(el);
+            if (!firstInvalid) firstInvalid = el;
+          }
+        });
+
+        if (firstInvalid) {
+          firstInvalid.focus({ preventScroll: false });
+          return false;
+        }
+        return true;
+      };
+
+      const postPortalPayload = async (payload, submitBtn, loadingLabel, defaultLabel, feedbackEl) => {
+        if (!REGISTRATION_ENDPOINT) {
+          feedbackEl.className = 'rounded-xl p-4 text-xs font-medium bg-amber-50 border border-amber-300 text-amber-900';
+          feedbackEl.textContent = 'Google Apps Script endpoint is not configured yet. Deploy google-apps-script/Code.gs as a Web App and paste its URL into REGISTRATION_ENDPOINT in index.html.';
+          return null;
+        }
+        submitBtn.disabled = true;
+        submitBtn.textContent = loadingLabel;
+        feedbackEl.classList.add('hidden');
+        try {
+          const resp = await fetch(REGISTRATION_ENDPOINT, {
+            method: 'POST',
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+            body: JSON.stringify(payload)
+          });
+          const resJson = await resp.json();
+          if (!resJson || !resJson.ok) {
+            throw new Error((resJson && resJson.error) || 'Could not save submission.');
+          }
+          return resJson;
+        } catch (err) {
+          feedbackEl.className = 'rounded-xl p-4 text-xs font-medium bg-red-50 border border-red-200 text-red-800';
+          feedbackEl.textContent = `Submission failed: ${err.message}. Please try again or contact icfi@babcock.edu.ng.`;
+          return null;
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.textContent = defaultLabel;
+        }
+      };
+
+      const updateStepIndicators = (selector, attrName, activeStep) => {
+        document.querySelectorAll(selector).forEach((li) => {
+          const num = Number(li.getAttribute(attrName));
+          if (num === activeStep) {
+            li.setAttribute('aria-current', 'step');
+            li.className = 'rounded-xl px-3.5 py-2.5 border text-xs font-bold bg-bu-canonical text-white border-bu-canonical transition';
+          } else if (num < activeStep) {
+            li.removeAttribute('aria-current');
+            li.className = 'rounded-xl px-3.5 py-2.5 border text-xs font-semibold bg-emerald-50 text-emerald-800 border-emerald-200 transition';
+          } else {
+            li.removeAttribute('aria-current');
+            li.className = 'rounded-xl px-3.5 py-2.5 border text-xs font-semibold bg-white text-bu-muted border-bu-canonical/15 transition';
+          }
+        });
+      };
+
+      const escapeHtml = (str) => String(str ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+
+      // ------------------------------------------------------------------
+      // 1. PORTAL TAB SWITCHING
+      // ------------------------------------------------------------------
+      window.switchPortalTab = function(tabName) {
+        const isMem = tabName === 'membership';
+        const btnConf = document.getElementById('tab-btn-conference');
+        const btnMem = document.getElementById('tab-btn-membership');
+        const panelConf = document.getElementById('panel-conference');
+        const panelMem = document.getElementById('panel-membership');
+
+        btnConf.setAttribute('aria-selected', String(!isMem));
+        btnMem.setAttribute('aria-selected', String(isMem));
+        btnConf.className = !isMem
+          ? 'px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-bu-canonical text-white transition min-h-[44px] cursor-pointer'
+          : 'px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-bu-canonical hover:bg-bu-mist transition min-h-[44px] cursor-pointer';
+        btnMem.className = isMem
+          ? 'px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-bu-canonical text-white transition min-h-[44px] cursor-pointer'
+          : 'px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-bu-canonical hover:bg-bu-mist transition min-h-[44px] cursor-pointer';
+
+        panelConf.hidden = isMem;
+        panelMem.hidden = !isMem;
+      };
+
+      window.openMembershipPortal = function() {
+        window.switchPortalTab('membership');
+        document.getElementById('registration-portal').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      };
+
+      if (window.location.hash === '#membership-portal') {
+        window.switchPortalTab('membership');
       }
 
+      // ------------------------------------------------------------------
+      // 2. CONFERENCE REGISTRATION CONTROLLER
+      // ------------------------------------------------------------------
+      attachFormA11y(regForm);
+      const regFiles = { membershipProof: null, paymentReceipt: null };
+      bindFileInput(document.getElementById('reg-member-proof'), 'member-proof-preview', regFiles, 'membershipProof');
+      bindFileInput(document.getElementById('reg-receipt-file'), 'receipt-preview', regFiles, 'paymentReceipt');
+
+      const getRegRadio = (name) => {
+        const checked = regForm.querySelector(`input[name="${name}"]:checked`);
+        return checked ? checked.value : '';
+      };
+
       function computePricing() {
-        const cat = getSelectedRadio('participantCategory');
-        const mode = getSelectedRadio('participationMode');
-        const mem = getSelectedRadio('membershipStatus');
+        const cat = getRegRadio('participantCategory');
+        const mode = getRegRadio('participationMode');
+        const mem = getRegRadio('membershipStatus');
         const isEarlyBirdPeriod = Date.now() <= EARLY_BIRD_CUTOFF_MS;
         const periodLabel = isEarlyBirdPeriod ? 'Early Bird' : 'Standard';
         const isLocal = cat.startsWith('Local');
@@ -2074,20 +2523,16 @@
             numericFee = isLocal ? 25000 : 50;
             formattedFee = isLocal ? '₦25,000' : '$50';
             tierNote = `${isLocal ? 'Local' : 'International'} • Virtual / Online (${periodLabel})`;
+          } else if (isEarlyBirdPeriod || mem === 'Registered Member') {
+            numericFee = isLocal ? 40000 : 80;
+            formattedFee = isLocal ? '₦40,000' : '$80';
+            tierNote = `${isLocal ? 'Local' : 'International'} • In-person (${mem === 'Registered Member' ? 'Registered Member Rate' : 'Early Bird'})`;
           } else {
-            const getsEarlyBirdRate = isEarlyBirdPeriod || mem === 'Registered Member';
-            if (getsEarlyBirdRate) {
-              numericFee = isLocal ? 40000 : 80;
-              formattedFee = isLocal ? '₦40,000' : '$80';
-              tierNote = `${isLocal ? 'Local' : 'International'} • In-person (${mem === 'Registered Member' ? 'Registered Member Rate' : 'Early Bird'})`;
-            } else {
-              numericFee = isLocal ? 50000 : 100;
-              formattedFee = isLocal ? '₦50,000' : '$100';
-              tierNote = `${isLocal ? 'Local' : 'International'} • In-person (Standard Conference Fee)`;
-            }
+            numericFee = isLocal ? 50000 : 100;
+            formattedFee = isLocal ? '₦50,000' : '$100';
+            tierNote = `${isLocal ? 'Local' : 'International'} • In-person (Standard Conference Fee)`;
           }
         }
-
         return { cat, mode, mem, periodLabel, isLocal, isIntl, currency, accountNo, bankLabel, formattedFee, numericFee, tierNote };
       }
 
@@ -2101,9 +2546,7 @@
         const isMember = pricing.mem === 'Registered Member';
         memProofBox.hidden = !isMember;
         memProofInput.required = isMember;
-        if (!isMember) {
-          memProofBox.querySelector('.reg-file-wrap')?.classList.remove('has-error');
-        }
+        if (!isMember) memProofBox.querySelector('.reg-file-wrap')?.classList.remove('has-error');
         memJoinBox.hidden = pricing.mem !== 'New Member Applicant';
 
         if (pricing.isLocal && !countryInput.dataset.userEdited) {
@@ -2132,113 +2575,15 @@
         }
       }
 
-      document.getElementById('reg-country').addEventListener('input', (e) => {
-        e.target.dataset.userEdited = '1';
-      });
-      document.getElementById('reg-amount-paid').addEventListener('input', (e) => {
-        e.target.dataset.userEdited = '1';
-      });
+      document.getElementById('reg-country').addEventListener('input', (e) => { e.target.dataset.userEdited = '1'; });
+      document.getElementById('reg-amount-paid').addEventListener('input', (e) => { e.target.dataset.userEdited = '1'; });
 
-      form.querySelectorAll('input[type="radio"]').forEach((radio) => {
+      regForm.querySelectorAll('input[type="radio"]').forEach((radio) => {
         radio.addEventListener('change', () => {
-          const group = radio.closest('.reg-choice-group');
-          if (group) group.classList.remove('has-error');
+          radio.closest('.reg-choice-group')?.classList.remove('has-error');
           updateDynamicSections();
         });
       });
-
-      function setupFileInput(inputEl, previewId, payloadKey) {
-        const previewEl = document.getElementById(previewId);
-        const wrap = inputEl.closest('.reg-file-wrap');
-        inputEl.addEventListener('change', () => {
-          wrap?.classList.remove('has-error');
-          const file = inputEl.files && inputEl.files[0];
-          if (!file) {
-            filePayloads[payloadKey] = null;
-            previewEl.textContent = '';
-            previewEl.classList.add('hidden');
-            return;
-          }
-          if (file.size > MAX_UPLOAD_BYTES) {
-            filePayloads[payloadKey] = null;
-            inputEl.value = '';
-            wrap?.classList.add('has-error');
-            previewEl.textContent = `File "${file.name}" exceeds the 10 MB size limit.`;
-            previewEl.className = 'text-xs font-medium text-red-700';
-            return;
-          }
-          const reader = new FileReader();
-          reader.onload = () => {
-            const result = String(reader.result || '');
-            const base64 = result.includes(',') ? result.split(',')[1] : result;
-            filePayloads[payloadKey] = {
-              name: file.name,
-              mimeType: file.type || 'application/octet-stream',
-              size: file.size,
-              base64
-            };
-            const sizeKb = file.size < 1024 * 1024
-              ? `${Math.max(1, Math.round(file.size / 1024))} KB`
-              : `${(file.size / (1024 * 1024)).toFixed(2)} MB`;
-            previewEl.textContent = `Attached: ${file.name} (${sizeKb})`;
-            previewEl.className = 'text-xs font-medium text-emerald-700';
-          };
-          reader.readAsDataURL(file);
-        });
-      }
-
-      setupFileInput(document.getElementById('reg-member-proof'), 'member-proof-preview', 'membershipProof');
-      setupFileInput(document.getElementById('reg-receipt-file'), 'receipt-preview', 'paymentReceipt');
-
-      function validateStep(stepNum) {
-        const stepEl = form.querySelector(`[data-reg-step="${stepNum}"]`);
-        if (!stepEl) return true;
-        let firstInvalid = null;
-
-        stepEl.querySelectorAll('[data-group-required]').forEach((group) => {
-          const name = group.dataset.groupRequired;
-          const ok = Boolean(form.querySelector(`input[name="${name}"]:checked`));
-          group.classList.toggle('has-error', !ok);
-          if (!ok && !firstInvalid) {
-            firstInvalid = group.querySelector('input');
-          }
-        });
-
-        stepEl.querySelectorAll('input[type="file"]').forEach((fileInput) => {
-          if (fileInput.closest('[hidden]')) return;
-          const isRequired = fileInput.required;
-          const key = fileInput.name;
-          const ok = !isRequired || Boolean(filePayloads[key]);
-          fileInput.closest('.reg-file-wrap')?.classList.toggle('has-error', !ok);
-          if (!ok && !firstInvalid) {
-            firstInvalid = fileInput;
-          }
-        });
-
-        stepEl.querySelectorAll('input:not([type="radio"]):not([type="file"]), select, textarea').forEach((el) => {
-          if (el.closest('[hidden]')) return;
-          if (!el.checkValidity()) {
-            dirtyState.set(el, { hasInteracted: true, hasBlurred: true });
-            syncAria(el);
-            if (!firstInvalid) firstInvalid = el;
-          }
-        });
-
-        if (firstInvalid) {
-          firstInvalid.focus({ preventScroll: false });
-          return false;
-        }
-        return true;
-      }
-
-      function escapeHtml(str) {
-        return String(str ?? '')
-          .replace(/&/g, '&amp;')
-          .replace(/</g, '&lt;')
-          .replace(/>/g, '&gt;')
-          .replace(/"/g, '&quot;')
-          .replace(/'/g, '&#39;');
-      }
 
       function renderReviewSummary() {
         const pricing = computePricing();
@@ -2247,16 +2592,14 @@
           ['Mode', pricing.mode],
           ['Applicable Fee', `${pricing.formattedFee} (${pricing.periodLabel})`],
           ['Membership', pricing.mem],
-          ['Full Name', form.fullName.value.trim()],
-          ['Email', form.email.value.trim()],
-          ['Phone', form.phone.value.trim()],
-          ['Location', [form.stateOfResidence.value.trim(), form.country.value.trim()].filter(Boolean).join(', ')],
-          ['Amount & Date', `${form.amountPaid.value.trim()} on ${form.paymentDate.value}`],
-          ['Payment Receipt', filePayloads.paymentReceipt ? filePayloads.paymentReceipt.name : 'Not attached']
+          ['Full Name', regForm.fullName.value.trim()],
+          ['Email', regForm.email.value.trim()],
+          ['Phone', regForm.phone.value.trim()],
+          ['Location', [regForm.stateOfResidence.value.trim(), regForm.country.value.trim()].filter(Boolean).join(', ')],
+          ['Amount & Date', `${regForm.amountPaid.value.trim()} on ${regForm.paymentDate.value}`],
+          ['Payment Receipt', regFiles.paymentReceipt ? regFiles.paymentReceipt.name : 'Not attached']
         ];
-        if (filePayloads.membershipProof) {
-          items.push(['Membership Proof', filePayloads.membershipProof.name]);
-        }
+        if (regFiles.membershipProof) items.push(['Membership Proof', regFiles.membershipProof.name]);
         document.getElementById('reg-review-box').innerHTML = items.map(([label, value]) => `
           <div>
             <div class="text-[10px] font-bold uppercase tracking-wider text-bu-muted">${escapeHtml(label)}</div>
@@ -2266,25 +2609,12 @@
       }
 
       window.goRegStep = function(targetStep) {
-        form.querySelectorAll('[data-reg-step]').forEach((el) => {
-          const num = Number(el.dataset.regStep);
-          el.hidden = num !== targetStep;
+        regForm.querySelectorAll('[data-reg-step]').forEach((el) => {
+          el.hidden = Number(el.dataset.regStep) !== targetStep;
         });
-        document.querySelectorAll('[data-step-indicator]').forEach((li) => {
-          const num = Number(li.dataset.stepIndicator);
-          if (num === targetStep) {
-            li.setAttribute('aria-current', 'step');
-            li.className = 'rounded-xl px-3.5 py-2.5 border text-xs font-bold bg-bu-canonical text-white border-bu-canonical transition';
-          } else if (num < targetStep) {
-            li.removeAttribute('aria-current');
-            li.className = 'rounded-xl px-3.5 py-2.5 border text-xs font-semibold bg-emerald-50 text-emerald-800 border-emerald-200 transition';
-          } else {
-            li.removeAttribute('aria-current');
-            li.className = 'rounded-xl px-3.5 py-2.5 border text-xs font-semibold bg-white text-bu-muted border-bu-canonical/15 transition';
-          }
-        });
+        updateStepIndicators('[data-step-indicator]', 'data-step-indicator', targetStep);
         if (targetStep === 4) renderReviewSummary();
-        const heading = form.querySelector(`[data-reg-step="${targetStep}"] h4`);
+        const heading = regForm.querySelector(`[data-reg-step="${targetStep}"] h4`);
         if (heading) {
           heading.focus();
           heading.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -2292,37 +2622,36 @@
       };
 
       window.nextRegStep = function(currentStep) {
-        if (!validateStep(currentStep)) return;
+        const stepEl = regForm.querySelector(`[data-reg-step="${currentStep}"]`);
+        if (!validateStepContainer(regForm, stepEl, regFiles)) return;
         window.goRegStep(currentStep + 1);
       };
 
       window.copyCurrentBankAcct = function(btn) {
-        const pricing = computePricing();
-        copyAcct(btn, pricing.accountNo);
+        copyAcct(btn, computePricing().accountNo);
       };
 
       window.openRegWithPreset = function(modeValue, tierHint) {
+        window.switchPortalTab('conference');
         const catRadio = document.getElementById(activeCurrencyView === 'USD' ? 'cat-intl' : 'cat-local');
         if (catRadio) catRadio.checked = true;
-        const modeRadio = form.querySelector(`input[name="participationMode"][value="${modeValue}"]`);
+        const modeRadio = regForm.querySelector(`input[name="participationMode"][value="${modeValue}"]`);
         if (modeRadio) modeRadio.checked = true;
         if (tierHint === 'early-bird') {
-          const isAfterEarlyBird = Date.now() > EARLY_BIRD_CUTOFF_MS;
-          const targetMem = isAfterEarlyBird ? 'mem-yes' : 'mem-no';
-          document.getElementById(targetMem).checked = true;
+          document.getElementById(Date.now() > EARLY_BIRD_CUTOFF_MS ? 'mem-yes' : 'mem-no').checked = true;
         } else if (tierHint === 'non-member') {
           document.getElementById('mem-no').checked = true;
         }
-        form.querySelectorAll('.reg-choice-group').forEach((g) => g.classList.remove('has-error'));
+        regForm.querySelectorAll('.reg-choice-group').forEach((g) => g.classList.remove('has-error'));
         updateDynamicSections();
         window.goRegStep(1);
         document.getElementById('registration-portal').scrollIntoView({ behavior: 'smooth', block: 'start' });
       };
 
       window.resetRegPortal = function() {
-        form.reset();
-        filePayloads.membershipProof = null;
-        filePayloads.paymentReceipt = null;
+        regForm.reset();
+        regFiles.membershipProof = null;
+        regFiles.paymentReceipt = null;
         delete document.getElementById('reg-country').dataset.userEdited;
         delete document.getElementById('reg-amount-paid').dataset.userEdited;
         ['member-proof-preview', 'receipt-preview'].forEach((id) => {
@@ -2332,78 +2661,165 @@
         });
         document.getElementById('reg-submit-feedback').classList.add('hidden');
         document.getElementById('reg-success-panel').hidden = true;
-        form.hidden = false;
+        regForm.hidden = false;
         updateDynamicSections();
         window.goRegStep(1);
       };
 
-      form.addEventListener('submit', async (e) => {
+      regForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        if (!validateStep(4)) return;
-
-        const feedback = document.getElementById('reg-submit-feedback');
-        const submitBtn = document.getElementById('reg-submit-btn');
-
-        if (!REGISTRATION_ENDPOINT) {
-          feedback.className = 'rounded-xl p-4 text-xs font-medium bg-amber-50 border border-amber-300 text-amber-900';
-          feedback.textContent = 'Google Apps Script endpoint is not configured yet. Deploy google-apps-script/Code.gs as a Web App and paste its URL into REGISTRATION_ENDPOINT in index.html to save live submissions to Google Sheets.';
-          return;
-        }
+        const step4 = regForm.querySelector('[data-reg-step="4"]');
+        if (!validateStepContainer(regForm, step4, regFiles)) return;
 
         const pricing = computePricing();
         const payload = {
-          websiteUrl: form.websiteUrl.value,
+          formType: 'conference',
+          websiteUrl: regForm.websiteUrl.value,
           participantCategory: pricing.cat,
           participationMode: pricing.mode,
           registrationPeriod: pricing.periodLabel,
           membershipStatus: pricing.mem,
           currency: pricing.currency,
           applicableFee: pricing.formattedFee,
-          fullName: form.fullName.value.trim(),
-          email: form.email.value.trim(),
-          phone: form.phone.value.trim(),
-          country: form.country.value.trim(),
-          stateOfResidence: form.stateOfResidence.value.trim(),
-          organisation: form.organisation.value.trim(),
-          designation: form.designation.value.trim(),
-          specialisation: form.specialisation.value.trim(),
-          amountPaid: form.amountPaid.value.trim(),
-          paymentDate: form.paymentDate.value,
-          transactionRef: form.transactionRef.value.trim(),
-          accountHolderName: form.accountHolderName.value.trim(),
+          fullName: regForm.fullName.value.trim(),
+          email: regForm.email.value.trim(),
+          phone: regForm.phone.value.trim(),
+          country: regForm.country.value.trim(),
+          stateOfResidence: regForm.stateOfResidence.value.trim(),
+          organisation: regForm.organisation.value.trim(),
+          designation: regForm.designation.value.trim(),
+          specialisation: regForm.specialisation.value.trim(),
+          amountPaid: regForm.amountPaid.value.trim(),
+          paymentDate: regForm.paymentDate.value,
+          transactionRef: regForm.transactionRef.value.trim(),
+          accountHolderName: regForm.accountHolderName.value.trim(),
           declarationAgreed: document.getElementById('reg-declaration-agree').checked,
-          membershipProof: filePayloads.membershipProof,
-          paymentReceipt: filePayloads.paymentReceipt
+          membershipProof: regFiles.membershipProof,
+          paymentReceipt: regFiles.paymentReceipt
         };
 
-        submitBtn.disabled = true;
-        submitBtn.textContent = 'Submitting Registration...';
-        feedback.classList.add('hidden');
+        const resJson = await postPortalPayload(
+          payload,
+          document.getElementById('reg-submit-btn'),
+          'Submitting Registration...',
+          'Submit Registration →',
+          document.getElementById('reg-submit-feedback')
+        );
+        if (!resJson) return;
 
-        try {
-          const resp = await fetch(REGISTRATION_ENDPOINT, {
-            method: 'POST',
-            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-            body: JSON.stringify(payload)
-          });
-          const resJson = await resp.json();
-          if (!resJson || !resJson.ok) {
-            throw new Error((resJson && resJson.error) || 'Could not record registration.');
-          }
+        regForm.hidden = true;
+        document.getElementById('reg-success-panel').hidden = false;
+        document.getElementById('reg-success-ref').textContent = resJson.registrationId || 'Recorded';
+        document.getElementById('reg-success-summary').textContent = `${payload.fullName} • ${payload.participantCategory} • ${payload.participationMode} (${payload.applicableFee})`;
+        document.getElementById('reg-success-heading').focus();
+      });
 
-          form.hidden = true;
-          const successPanel = document.getElementById('reg-success-panel');
-          successPanel.hidden = false;
-          document.getElementById('reg-success-ref').textContent = resJson.registrationId || 'Recorded';
-          document.getElementById('reg-success-summary').textContent = `${payload.fullName} • ${payload.participantCategory} • ${payload.participationMode} (${payload.applicableFee})`;
-          document.getElementById('reg-success-heading').focus();
-        } catch (err) {
-          feedback.className = 'rounded-xl p-4 text-xs font-medium bg-red-50 border border-red-200 text-red-800';
-          feedback.textContent = `Submission failed: ${err.message}. Please try again or contact icfi@babcock.edu.ng.`;
-        } finally {
-          submitBtn.disabled = false;
-          submitBtn.textContent = 'Submit Registration →';
+      // ------------------------------------------------------------------
+      // 3. ICFI MEMBERSHIP APPLICATION CONTROLLER
+      // ------------------------------------------------------------------
+      attachFormA11y(memForm);
+      const memFiles = { paymentEvidence: null };
+      bindFileInput(document.getElementById('mem-evidence-file'), 'mem-evidence-preview', memFiles, 'paymentEvidence');
+
+      const regDateInput = document.getElementById('mem-reg-date');
+      if (regDateInput && !regDateInput.value) {
+        regDateInput.value = new Date().toISOString().slice(0, 10);
+      }
+
+      memForm.querySelectorAll('input[name="conditionsChoice"]').forEach((radio) => {
+        radio.addEventListener('change', () => {
+          radio.closest('.reg-choice-group')?.classList.remove('has-error');
+          const disagreed = radio.value === 'I disagree';
+          document.getElementById('mem-disagree-notice').hidden = !disagreed;
+          document.getElementById('mem-step1-next').disabled = disagreed;
+          document.getElementById('mem-step1-next').classList.toggle('opacity-50', disagreed);
+          document.getElementById('mem-step1-next').classList.toggle('cursor-not-allowed', disagreed);
+        });
+      });
+
+      window.goMemStep = function(targetStep) {
+        memForm.querySelectorAll('[data-mem-step]').forEach((el) => {
+          el.hidden = Number(el.dataset.memStep) !== targetStep;
+        });
+        updateStepIndicators('[data-mem-indicator]', 'data-mem-indicator', targetStep);
+        const heading = memForm.querySelector(`[data-mem-step="${targetStep}"] h4`);
+        if (heading) {
+          heading.focus();
+          heading.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
+      };
+
+      window.nextMemStep = function() {
+        const step1 = memForm.querySelector('[data-mem-step="1"]');
+        if (!validateStepContainer(memForm, step1, memFiles)) return;
+        const checked = memForm.querySelector('input[name="conditionsChoice"]:checked');
+        if (checked && checked.value !== 'I agree') {
+          document.getElementById('mem-disagree-notice').hidden = false;
+          return;
+        }
+        window.goMemStep(2);
+      };
+
+      window.copyCellToWhatsapp = function() {
+        const cell = document.getElementById('mem-cell');
+        const wa = document.getElementById('mem-whatsapp');
+        if (cell.value.trim()) {
+          wa.value = cell.value.trim();
+          syncAria(wa);
+        }
+        wa.focus();
+      };
+
+      window.resetMemPortal = function() {
+        memForm.reset();
+        memFiles.paymentEvidence = null;
+        if (regDateInput) regDateInput.value = new Date().toISOString().slice(0, 10);
+        const prev = document.getElementById('mem-evidence-preview');
+        prev.textContent = '';
+        prev.classList.add('hidden');
+        document.getElementById('mem-disagree-notice').hidden = true;
+        document.getElementById('mem-step1-next').disabled = false;
+        document.getElementById('mem-step1-next').classList.remove('opacity-50', 'cursor-not-allowed');
+        document.getElementById('mem-submit-feedback').classList.add('hidden');
+        document.getElementById('mem-success-panel').hidden = true;
+        memForm.hidden = false;
+        window.goMemStep(1);
+      };
+
+      memForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const step2 = memForm.querySelector('[data-mem-step="2"]');
+        if (!validateStepContainer(memForm, step2, memFiles)) return;
+
+        const payload = {
+          formType: 'membership',
+          websiteUrl: memForm.websiteUrl.value,
+          conditionsAgreed: 'I agree',
+          fullName: memForm.fullName.value.trim(),
+          profession: memForm.profession.value.trim(),
+          institutionalAddress: memForm.institutionalAddress.value.trim(),
+          cellPhone: memForm.cellPhone.value.trim(),
+          whatsappContact: memForm.whatsappContact.value.trim(),
+          email: memForm.email.value.trim(),
+          registrationDate: memForm.registrationDate.value,
+          annualFee: 'US$5 / ₦7,000',
+          paymentEvidence: memFiles.paymentEvidence
+        };
+
+        const resJson = await postPortalPayload(
+          payload,
+          document.getElementById('mem-submit-btn'),
+          'Submitting Application...',
+          'Submit Membership Application →',
+          document.getElementById('mem-submit-feedback')
+        );
+        if (!resJson) return;
+
+        memForm.hidden = true;
+        document.getElementById('mem-success-panel').hidden = false;
+        document.getElementById('mem-success-ref').textContent = resJson.membershipId || 'Recorded';
+        document.getElementById('mem-success-summary').textContent = `${payload.fullName} • ${payload.profession} • ${payload.email}`;
+        document.getElementById('mem-success-heading').focus();
       });
 
       updateDynamicSections();
