@@ -12,6 +12,7 @@ img/*
 !img/journal.jpg
 !img/logo*.jpg
 !img/logo*.png
+!img/favicon_*.png
 !img/past_*.jpg
 !img/submit.jpg
 !img/welcome.jpg
