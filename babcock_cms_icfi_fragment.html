@@ -19,20 +19,28 @@
 
   /* Wrapper locks all CSS to ICFI sections so Babcock's top navbar & footer never break */
   .bu-icfi-wrap {
-    --bu-navy:        #004182;
-    --bu-navy-dark:   #003068;
-    --bu-band:        #0b2545;
-    --bu-canonical:   #1B2D5B;
-    --bu-canon-dark:  #121F40;
-    --bu-gold:        #B58C0D;
-    --bu-gold-light:  #d4a722;
-    --bu-gold-band:   #b98d3b;
-    --bu-gold-accent: #eec25a;
-    --bu-bronze:      #9d7533;
-    --bu-blue:        #2f6fed;
-    --bu-mist:        #eef2f9;
-    --bu-tint:        #f3f6fb;
-    --bu-muted:       #475569;
+    /* =====================================================================
+       EASY THEME COLORS & FONTS — Edit any value below to restyle the page!
+       Uses low-specificity base rules (NO !important locks on colors), so
+       changing a variable here, a class below, or HTML style="" always works.
+       ===================================================================== */
+    --bu-hero-bg:     linear-gradient(135deg, #cde2fe 0%, #e4f0fe 55%, #f2f7ff 100%);
+    --bu-hero-title:  #000000;   /* Main Hero Headline */
+    --bu-hero-sub:    #2d3748;   /* Hero subtitle paragraph */
+    --bu-navy:        #004182;   /* Accent headings & labels */
+    --bu-navy-dark:   #003068;   /* Deep navy bar & dark card trim */
+    --bu-band:        #0b2545;   /* Dark navy sections (Key Figures, Convener, Secretariat) */
+    --bu-canonical:   #1B2D5B;   /* Default headings & body ink */
+    --bu-canon-dark:  #121F40;   /* Navy button hover */
+    --bu-gold:        #B58C0D;   /* Gold accents & Video Recap badge */
+    --bu-gold-light:  #d4a722;   /* Gold badge hover */
+    --bu-gold-band:   #b98d3b;   /* Quick Information strip & gold buttons */
+    --bu-gold-accent: #eec25a;   /* Highlight numbers on dark navy bands */
+    --bu-bronze:      #9d7533;   /* Small decorative dividers */
+    --bu-blue:        #2f6fed;   /* Primary Hero CTA ("Reserve Your Seat") */
+    --bu-mist:        #eef2f9;   /* Soft blue alternate sections */
+    --bu-tint:        #f3f6fb;   /* Form portal background */
+    --bu-muted:       #475569;   /* Secondary paragraph text */
     --bu-border:      rgba(27, 45, 91, 0.10);
     --bu-border-mid:  rgba(27, 45, 91, 0.18);
     --bu-font-serif:  'Sentient', Georgia, serif;
@@ -49,16 +57,14 @@
   .bu-icfi-wrap *,
   .bu-icfi-wrap *::before,
   .bu-icfi-wrap *::after { box-sizing: border-box; }
-  .bu-icfi-wrap a { color: inherit; text-decoration: none; }
+  /* :where() keeps base link & heading rules low-specificity so any class or style="" overrides them easily */
+  :where(.bu-icfi-wrap) a { color: inherit; text-decoration: none; }
   .bu-icfi-wrap img { display: block; max-width: 100%; }
 
-  /* Explicit heading color overrides Babcock Canvas CSS resets (.bu-hero-h1 sets its own color below) */
-  .bu-icfi-wrap h1:not(.bu-hero-h1),
-  .bu-icfi-wrap h2,
-  .bu-icfi-wrap h3,
-  .bu-icfi-wrap h4 {
+  /* Base heading defaults (overrides Babcock Canvas defaults without !important locks) */
+  :where(.bu-icfi-wrap) :is(h1, h2, h3, h4) {
     font-family: var(--bu-font-serif);
-    color: var(--bu-canonical) !important;
+    color: var(--bu-canonical);
     letter-spacing: -0.02em;
     line-height: 1.14;
     margin: 0;
@@ -69,16 +75,16 @@
   .bu-icfi-band-mist  { background: var(--bu-mist); padding: 68px 24px; }
   .bu-icfi-band-gray  { background: #f2f2f2; padding: 58px 24px; }
   .bu-icfi-band-navy  { background: var(--bu-band); color: #ffffff; padding: 68px 24px; }
-  .bu-icfi-band-hero  { background: linear-gradient(135deg, #cde2fe 0%, #e4f0fe 55%, #f2f7ff 100%); padding: clamp(76px, 7.5vw, 112px) 24px clamp(58px, 6vw, 88px); }
+  .bu-icfi-band-hero  { background: var(--bu-hero-bg); padding: clamp(76px, 7.5vw, 112px) 24px clamp(58px, 6vw, 88px); }
 
   .bu-icfi-band-navy h2,
   .bu-icfi-band-navy h3,
   .bu-icfi-band-navy h4,
   .bu-icfi-card-dark h3,
-  .bu-icfi-card-dark h4 { color: #ffffff !important; }
+  .bu-icfi-card-dark h4 { color: #ffffff; }
 
-  .bu-icfi-wrap .bu-icfi-text-navy { color: var(--bu-navy) !important; }
-  .bu-icfi-wrap .bu-icfi-text-gold { color: var(--bu-gold-accent) !important; }
+  .bu-icfi-wrap .bu-icfi-text-navy { color: var(--bu-navy); }
+  .bu-icfi-wrap .bu-icfi-text-gold { color: var(--bu-gold-accent); }
 
   .bu-icfi-container { max-width: 1200px; margin: 0 auto; }
   .bu-icfi-container-lg { max-width: 1300px; margin: 0 auto; }
@@ -102,7 +108,7 @@
   .bu-eyebrow { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--bu-gold-band); display: block; }
   .bu-lead    { font-size: 14px; color: var(--bu-muted); margin: 6px 0 0; }
   .bu-section-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 14px; margin-bottom: 28px; }
-  .bu-section-h2 { font-size: clamp(1.75rem, 3.2vw, 2.35rem); color: var(--bu-navy) !important; margin-top: 4px; }
+  .bu-section-h2 { font-size: clamp(1.75rem, 3.2vw, 2.35rem); color: var(--bu-navy); margin-top: 4px; }
 
   /* Reusable Card & Button Styles */
   .bu-card-box {
@@ -133,35 +139,35 @@
   .bu-btn-sm { min-height: 40px; padding: 8px 16px; font-size: 12px; }
   .bu-btn-xs { min-height: 38px; padding: 6px 14px; font-size: 12px; }
   .bu-btn-pill { border-radius: 999px; }
-  .bu-btn-blue { background: var(--bu-blue); color: #ffffff !important; }
+  .bu-btn-blue { background: var(--bu-blue); color: #ffffff; }
   .bu-btn-blue:hover { background: #1d4ed8; }
-  .bu-btn-navy { background: var(--bu-canonical); color: #ffffff !important; }
+  .bu-btn-navy { background: var(--bu-canonical); color: #ffffff; }
   .bu-btn-navy:hover { background: var(--bu-canon-dark); }
-  .bu-btn-charcoal { background: #383c42; color: #ffffff !important; }
+  .bu-btn-charcoal { background: #383c42; color: #ffffff; }
   .bu-btn-charcoal:hover { background: #212121; }
-  .bu-btn-gold { background: var(--bu-gold-band); color: #ffffff !important; }
+  .bu-btn-gold { background: var(--bu-gold-band); color: #ffffff; }
   .bu-btn-gold:hover { background: var(--bu-gold); }
-  .bu-btn-gold-bright { background: var(--bu-gold-accent); color: var(--bu-band) !important; }
+  .bu-btn-gold-bright { background: var(--bu-gold-accent); color: var(--bu-band); }
   .bu-btn-gold-bright:hover { background: #fcd34d; }
-  .bu-btn-mist { background: var(--bu-mist); color: var(--bu-canonical) !important; }
+  .bu-btn-mist { background: var(--bu-mist); color: var(--bu-canonical); }
   .bu-btn-mist:hover { background: #dbeafe; }
-  .bu-btn-outline { background: #ffffff; border-color: var(--bu-border-mid); color: var(--bu-canonical) !important; }
+  .bu-btn-outline { background: #ffffff; border-color: var(--bu-border-mid); color: var(--bu-canonical); }
   .bu-btn-outline:hover { border-color: var(--bu-navy); }
   .bu-btn-row { display: flex; flex-wrap: wrap; gap: 12px; }
 
   /* Hero Elements */
   .bu-hero-pill { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; border-radius: 999px; background: rgba(255,255,255,0.85); border: 1px solid rgba(0,65,130,0.16); font-size: 12px; font-weight: 700; color: var(--bu-canonical); }
   .bu-hero-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--bu-gold); }
-  /* EDIT: Main Hero Headline Color — change #000000 below if you want another color */
-  .bu-icfi-wrap .bu-hero-h1 { font-family: var(--bu-font-serif); font-size: clamp(2.15rem, 1.4rem + 2.4vw, 3.35rem); font-weight: 700; font-style: italic; color: #000000 !important; letter-spacing: -0.02em; line-height: 1.1; margin: 18px 0 16px; }
-  .bu-hero-sub { font-size: 1.08rem; color: #2d3748; max-width: 52ch; margin: 0 0 22px; }
+  /* EDIT: Main Hero Headline — uses --bu-hero-title above, or replace with any hex/color name right here */
+  .bu-hero-h1 { font-size: clamp(2.15rem, 1.4rem + 2.4vw, 3.35rem); font-weight: 700; font-style: italic; color: var(--bu-hero-title); line-height: 1.1; margin: 18px 0 16px; }
+  .bu-hero-sub { font-size: 1.08rem; color: var(--bu-hero-sub); max-width: 52ch; margin: 0 0 22px; }
   .bu-hero-card { border-radius: 22px; overflow: hidden; background: #ffffff; border: 1px solid rgba(0,65,130,0.16); box-shadow: 0 20px 44px rgba(11,37,69,0.16); }
   .bu-hero-photo { position: relative; aspect-ratio: 16/10; background: #e2e8f0; }
   .bu-hero-photo img { width: 100%; height: 100%; object-fit: cover; }
   .bu-hero-badges { position: absolute; top: 12px; left: 12px; right: 12px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; }
   .bu-hero-chip-white { padding: 5px 12px; border-radius: 999px; background: rgba(255,255,255,0.95); color: var(--bu-navy); font-size: 11px; font-weight: 700; }
-  .bu-hero-chip-gold  { padding: 5px 12px; border-radius: 999px; background: var(--bu-gold); color: #ffffff !important; font-size: 11px; font-weight: 700; transition: background-color 0.2s ease; }
-  .bu-hero-chip-gold:hover { background: var(--bu-gold-light); color: #ffffff !important; }
+  .bu-hero-chip-gold  { padding: 5px 12px; border-radius: 999px; background: var(--bu-gold); color: #ffffff; font-size: 11px; font-weight: 700; transition: background-color 0.2s ease; }
+  .bu-hero-chip-gold:hover { background: var(--bu-gold-light); color: #ffffff; }
   .bu-hero-portraits-wrap { padding: 16px; background: linear-gradient(180deg, #eef4fc 0%, #ffffff 100%); border-top: 1px solid rgba(0,65,130,0.1); }
   .bu-icfi-mini-grid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 10px; text-align: center; }
   .bu-mini-card { background: #ffffff; border-radius: 10px; padding: 6px; border: 1px solid rgba(0,65,130,0.1); }
@@ -188,7 +194,7 @@
   .bu-track-card { border-top: 4px solid var(--bu-navy); }
   .bu-track-card--gold { border-top-color: var(--bu-gold); }
   .bu-track-num { font-size: 11px; font-weight: 700; color: var(--bu-gold); display: block; margin-bottom: 10px; }
-  .bu-track-card h3 { font-size: 1.2rem; color: var(--bu-navy) !important; }
+  .bu-track-card h3 { font-size: 1.2rem; color: var(--bu-navy); }
   .bu-track-card p { font-size: 12.5px; color: var(--bu-muted); margin: 8px 0 0; }
   .bu-track-tag { margin-top: 14px; padding-top: 10px; border-top: 1px solid var(--bu-border); font-size: 11px; font-weight: 700; color: var(--bu-navy); }
   .bu-track-tag--amber { color: #8A6D22; }
@@ -279,7 +285,7 @@
     .bu-prog-row { grid-template-columns: 1fr; }
   }
   @media (max-width: 600px) {
-    .bu-icfi-mini-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+    .bu-icfi-mini-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .bu-icfi-band-white, .bu-icfi-band-mist, .bu-icfi-band-navy, .bu-icfi-band-gray { padding: 48px 18px; }
   }
   @media (prefers-reduced-motion: reduce) {
@@ -778,7 +784,7 @@
         <div class="bu-card-box bu-pass-card">
           <div>
             <div style="font-size:11px; font-weight:700; text-transform:uppercase; color:var(--bu-muted);">In-Person Attendance</div>
-            <h3 style="font-size:1.4rem; color:var(--bu-navy) !important; margin-top:4px;">Conference Fee</h3>
+            <h3 style="font-size:1.4rem; color:var(--bu-navy); margin-top:4px;">Conference Fee</h3>
             <div class="bu-pass-price-row">
               <span class="bu-icfi-fee-num bu-pass-price" data-ngn="₦50,000" data-usd="$100">₦50,000</span>
               <span class="bu-icfi-fee-sub" data-ngn=" ($100 International)" data-usd=" (₦50,000 Local)" style="font-size:12px; color:var(--bu-muted);"> ($100 International)</span>
@@ -812,7 +818,7 @@
         <div class="bu-card-box bu-pass-card">
           <div>
             <div style="font-size:11px; font-weight:700; text-transform:uppercase; color:var(--bu-muted);">Remote Global Participation</div>
-            <h3 style="font-size:1.4rem; color:var(--bu-navy) !important; margin-top:4px;">Online / Virtual</h3>
+            <h3 style="font-size:1.4rem; color:var(--bu-navy); margin-top:4px;">Online / Virtual</h3>
             <div class="bu-pass-price-row">
               <span class="bu-icfi-fee-num bu-pass-price" data-ngn="₦25,000" data-usd="$50">₦25,000</span>
               <span class="bu-icfi-fee-sub" data-ngn=" ($50 International)" data-usd=" (₦25,000 Local)" style="font-size:12px; color:var(--bu-muted);"> ($50 International)</span>
@@ -855,7 +861,7 @@
         <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-start; gap:16px; padding-bottom:20px; border-bottom:1px solid var(--bu-border);">
           <div>
             <span style="display:inline-block; padding:4px 12px; border-radius:999px; background:#ffffff; border:1px solid var(--bu-border); font-size:11px; font-weight:700; color:var(--bu-gold-band); text-transform:uppercase;">Official On-Site Portal</span>
-            <h3 id="bu-portal-heading" style="font-size:clamp(1.45rem, 2.6vw, 1.95rem); color:var(--bu-navy) !important; margin-top:8px;">Conference Registration &amp; ICFI Membership</h3>
+            <h3 id="bu-portal-heading" style="font-size:clamp(1.45rem, 2.6vw, 1.95rem); color:var(--bu-navy); margin-top:8px;">Conference Registration &amp; ICFI Membership</h3>
             <p class="bu-lead" style="font-size:13px;">Register directly below without signing into Google. Complete transfer first, attach receipt, and get an instant reference ID.</p>
           </div>
           <div style="background:#ffffff; border:1px solid var(--bu-border); border-radius:14px; padding:12px 16px;">
@@ -887,7 +893,7 @@
 
             <!-- Step 1: Category, Mode & Membership -->
             <div data-reg-step="1">
-              <h4 tabindex="-1" style="font-size:1.25rem; color:var(--bu-navy) !important; margin-bottom:16px;">1. Participant Category, Mode &amp; Membership</h4>
+              <h4 tabindex="-1" style="font-size:1.25rem; color:var(--bu-navy); margin-bottom:16px;">1. Participant Category, Mode &amp; Membership</h4>
               <div class="bu-g12 bu-g12--top">
                 <div class="bu-c8">
                   <fieldset class="bu-fieldset">
@@ -974,7 +980,7 @@
 
             <!-- Step 2: Personal Information -->
             <div data-reg-step="2" hidden>
-              <h4 tabindex="-1" style="font-size:1.25rem; color:var(--bu-navy) !important; margin-bottom:16px;">2. Personal Information</h4>
+              <h4 tabindex="-1" style="font-size:1.25rem; color:var(--bu-navy); margin-bottom:16px;">2. Personal Information</h4>
               <div class="bu-field-grid">
                 <div class="bu-full">
                   <label for="bu-r-name" class="bu-label">Full name *</label>
@@ -1024,7 +1030,7 @@
 
             <!-- Step 3: Payment Proof -->
             <div data-reg-step="3" hidden>
-              <h4 tabindex="-1" style="font-size:1.25rem; color:var(--bu-navy) !important; margin-bottom:14px;">3. Payment Confirmation</h4>
+              <h4 tabindex="-1" style="font-size:1.25rem; color:var(--bu-navy); margin-bottom:14px;">3. Payment Confirmation</h4>
               <div class="bu-card-box" style="padding:16px 20px; border-radius:16px; display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:12px; margin-bottom:18px;">
                 <div>
                   <div style="font-size:11px; font-weight:700; text-transform:uppercase; color:var(--bu-gold-band);">Applicable Fee &amp; Account</div>
@@ -1070,7 +1076,7 @@
 
             <!-- Step 4: Declaration & Submit -->
             <div data-reg-step="4" hidden>
-              <h4 tabindex="-1" style="font-size:1.25rem; color:var(--bu-navy) !important; margin-bottom:14px;">4. Review &amp; Declaration</h4>
+              <h4 tabindex="-1" style="font-size:1.25rem; color:var(--bu-navy); margin-bottom:14px;">4. Review &amp; Declaration</h4>
               <div id="bu-reg-review" class="bu-card-box" style="padding:18px; border-radius:16px; display:grid; grid-template-columns:repeat(auto-fit, minmax(190px, 1fr)); gap:12px; font-size:12.5px; margin-bottom:14px;"></div>
               <div class="bu-card-box" style="padding:20px; border-radius:16px; font-size:12.5px; color:var(--bu-muted); margin-bottom:14px;">
                 <div style="font-weight:700; color:var(--bu-canonical); font-size:14px; margin-bottom:8px;">DECLARATION</div>
@@ -1125,7 +1131,7 @@
 
             <!-- Step 1: Full Verbatim 8 Membership Clauses -->
             <div data-mem-step="1">
-              <h4 tabindex="-1" style="font-size:1.25rem; color:var(--bu-navy) !important; margin-bottom:16px;">1. Important Membership Information and Conditions</h4>
+              <h4 tabindex="-1" style="font-size:1.25rem; color:var(--bu-navy); margin-bottom:16px;">1. Important Membership Information and Conditions</h4>
               <div class="bu-g12 bu-g12--top">
                 <div class="bu-c8">
                   <div class="bu-card-box bu-terms-box">
@@ -1174,7 +1180,7 @@
 
             <!-- Step 2: Biodata & Payment Receipt -->
             <div data-mem-step="2" hidden>
-              <h4 tabindex="-1" style="font-size:1.25rem; color:var(--bu-navy) !important; margin-bottom:16px;">2. Biodata &amp; Evidence of Payment</h4>
+              <h4 tabindex="-1" style="font-size:1.25rem; color:var(--bu-navy); margin-bottom:16px;">2. Biodata &amp; Evidence of Payment</h4>
               <div class="bu-field-grid">
                 <div><label for="bu-m-name" class="bu-label">Name *</label><input type="text" id="bu-m-name" name="fullName" required autocomplete="name" class="bu-reg-input"><div class="bu-error-msg">&#10060; Enter your full name.</div></div>
                 <div><label for="bu-m-prof" class="bu-label">Profession *</label><input type="text" id="bu-m-prof" name="profession" required autocomplete="organization-title" class="bu-reg-input"><div class="bu-error-msg">&#10060; Enter your profession.</div></div>
@@ -1357,7 +1363,7 @@
 
         <div class="bu-c5" style="background:var(--bu-navy); color:#ffffff; border-radius:20px; padding:26px; box-shadow:0 12px 26px rgba(0,48,104,0.2);">
           <div style="font-size:11px; font-weight:700; text-transform:uppercase; color:var(--bu-gold-accent);">Speak With Our Coordinators</div>
-          <h3 style="font-size:1.5rem; color:#ffffff !important; margin:4px 0 16px;">Conference Secretariat</h3>
+          <h3 style="font-size:1.5rem; color:#ffffff; margin:4px 0 16px;">Conference Secretariat</h3>
           <div style="display:grid; gap:10px; font-size:12px;">
             <div class="bu-coord-row">
               <div><strong>Dr. Nnenna Nwobi</strong><div class="bu-coord-role">Accommodation Arrangements</div></div>
