@@ -104,7 +104,7 @@
   .bu-site-nav-link::after { content: ""; position: absolute; left: 10px; right: 10px; bottom: 3px; height: 2px; background: var(--bu-gold-accent); transform: scaleX(0); transform-origin: center; transition: transform 0.22s ease; }
   .bu-site-nav-link:hover::after, .bu-site-nav-link:focus-visible::after { transform: scaleX(1); }
 
-  .bu-nav-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+  .bu-site-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
   .bu-nav-cta-btn { display: inline-flex; align-items: center; gap: 6px; padding: 9px 14px; min-height: 40px; border-radius: 6px; background: var(--bu-gold); color: #ffffff; font-size: 11.5px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap; transition: background-color 0.2s ease; }
   .bu-nav-cta-btn:hover, .bu-nav-cta-btn:focus-visible { background: var(--bu-gold-light); color: #ffffff; }
   .bu-nav-cta-more { display: none; }
@@ -348,6 +348,7 @@
     .bu-prog-row { grid-template-columns: 1fr; }
   }
   @media (max-width: 600px) {
+    .bu-hero-pill { font-size: 11px; padding: 6px 12px; border-radius: 14px; line-height: 1.35; }
     .bu-icfi-mini-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .bu-icfi-band-white, .bu-icfi-band-mist, .bu-icfi-band-navy, .bu-icfi-band-gray { padding: 48px 18px; }
   }
@@ -397,7 +398,7 @@
       </nav>
 
       <!-- Right: Register CTA, Email Icon & Mobile Menu Button -->
-      <div class="bu-nav-actions">
+      <div class="bu-site-actions">
         <a href="#bu-icfi-portal" onclick="buIcfiOpenTab('conference'); buIcfiCloseMenu();" class="bu-nav-cta-btn">
           <span>Register<span class="bu-nav-cta-more"> Now</span></span>
           <span aria-hidden="true">&rarr;</span>
