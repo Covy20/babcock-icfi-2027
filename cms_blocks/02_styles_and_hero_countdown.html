@@ -123,6 +123,16 @@
   .bu-mob-item { display: flex; align-items: center; padding: 10px 12px; border-radius: 8px; background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.94); font-size: 12.5px; font-weight: 600; }
   .bu-mob-item:hover, .bu-mob-item:focus-visible { background: rgba(238,194,90,0.18); color: #ffffff; }
 
+  @media (max-width: 479px) {
+    .bu-site-nav-inner { padding: 0 12px; gap: 8px; }
+    .bu-nav-brand { gap: 7px; }
+    .bu-nav-emblem { width: 32px; height: 32px; }
+    .bu-nav-sep { height: 22px; }
+    .bu-nav-bu-logo { height: 26px; }
+    .bu-site-actions { gap: 6px; }
+    .bu-nav-cta-btn { padding: 7px 10px; min-height: 36px; font-size: 10.5px; }
+    .bu-nav-menu-btn { padding: 7px 9px; min-height: 36px; font-size: 11px; }
+  }
   @media (min-width: 480px) { .bu-nav-cta-more { display: inline; } }
   @media (min-width: 640px) { .bu-nav-mail-btn { display: inline-flex; } }
   @media (min-width: 1120px) {
