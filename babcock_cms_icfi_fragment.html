@@ -67,7 +67,7 @@
   .bu-icfi-band-mist  { background: var(--bu-mist); padding: 68px 24px; }
   .bu-icfi-band-gray  { background: #f2f2f2; padding: 58px 24px; }
   .bu-icfi-band-navy  { background: var(--bu-band); color: #ffffff; padding: 68px 24px; }
-  .bu-icfi-band-hero  { background: linear-gradient(135deg, #d7e7fb 0%, #eef5fe 55%, #ffffff 100%); padding: clamp(44px, 6vw, 68px) 24px; }
+  .bu-icfi-band-hero  { background: linear-gradient(135deg, #cde2fe 0%, #e4f0fe 55%, #f2f7ff 100%); padding: clamp(76px, 7.5vw, 112px) 24px clamp(58px, 6vw, 88px); }
 
   .bu-icfi-band-navy h2,
   .bu-icfi-band-navy h3,
@@ -81,7 +81,8 @@
   .bu-icfi-wrap .bu-icfi-text-gold { color: var(--bu-gold-accent) !important; }
 
   .bu-icfi-container { max-width: 1200px; margin: 0 auto; }
-  .bu-icfi-container-lg { max-width: 1280px; margin: 0 auto; }
+  .bu-icfi-container-lg { max-width: 1300px; margin: 0 auto; }
+  @media (max-width: 600px) { .bu-hero-br { display: none; } }
 
   /* Grid Helpers */
   .bu-g12 { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 28px; align-items: center; }
@@ -340,14 +341,14 @@
   <!-- 1. SKY-BLUE SPLIT HERO -->
   <div class="bu-icfi-band-hero">
     <div class="bu-icfi-container-lg">
-      <div class="bu-g12">
+      <div class="bu-g12" style="gap:36px;">
         <div class="bu-c6">
           <div style="display:inline-flex; align-items:center; gap:8px; padding:6px 14px; border-radius:999px; background:rgba(255,255,255,0.85); border:1px solid rgba(0,65,130,0.16); font-size:12px; font-weight:700; color:var(--bu-canonical);">
             <span style="width:8px; height:8px; border-radius:50%; background:var(--bu-gold);"></span>
             <span>7th Biennial International Conference • July 27 – August 1, 2027</span>
           </div>
-          <h1 style="font-size:clamp(2rem, 3.8vw, 3.15rem); font-weight:700; font-style:italic; color:#212121 !important; margin:18px 0 14px;">
-            International Conference on Faith Integration 2027
+          <h1 style="font-size:clamp(2.15rem, 1.4rem + 2.4vw, 3.35rem); font-weight:700; font-style:italic; color:#212121 !important; line-height:1.1; margin:18px 0 16px;">
+            International<br class="bu-hero-br"> Conference on Faith<br class="bu-hero-br"> Integration 2027
           </h1>
           <p style="font-size:1.08rem; color:#2d3748; max-width:52ch; margin:0 0 22px;">
             <strong style="color:var(--bu-navy);">“Driving a Sustainable Faith-Based Ecosystem in a Changing World.”</strong> Hosted by the International Community for Faith Integration &amp; Babcock University.
