@@ -50,8 +50,8 @@
   .bu-icfi-wrap a { color: inherit; text-decoration: none; }
   .bu-icfi-wrap img { display: block; max-width: 100%; }
 
-  /* Explicit heading color overrides Babcock Canvas CSS resets */
-  .bu-icfi-wrap h1,
+  /* Explicit heading color overrides Babcock Canvas CSS resets (.bu-hero-h1 sets its own color below) */
+  .bu-icfi-wrap h1:not(.bu-hero-h1),
   .bu-icfi-wrap h2,
   .bu-icfi-wrap h3,
   .bu-icfi-wrap h4 {
@@ -150,7 +150,8 @@
   /* Hero Elements */
   .bu-hero-pill { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; border-radius: 999px; background: rgba(255,255,255,0.85); border: 1px solid rgba(0,65,130,0.16); font-size: 12px; font-weight: 700; color: var(--bu-canonical); }
   .bu-hero-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--bu-gold); }
-  .bu-hero-h1 { font-size: clamp(2.15rem, 1.4rem + 2.4vw, 3.35rem); font-weight: 700; font-style: italic; color: #212121 !important; line-height: 1.1; margin: 18px 0 16px; }
+  /* EDIT: Main Hero Headline Color — change #000000 below if you want another color */
+  .bu-icfi-wrap .bu-hero-h1 { font-family: var(--bu-font-serif); font-size: clamp(2.15rem, 1.4rem + 2.4vw, 3.35rem); font-weight: 700; font-style: italic; color: #000000 !important; letter-spacing: -0.02em; line-height: 1.1; margin: 18px 0 16px; }
   .bu-hero-sub { font-size: 1.08rem; color: #2d3748; max-width: 52ch; margin: 0 0 22px; }
   .bu-hero-card { border-radius: 22px; overflow: hidden; background: #ffffff; border: 1px solid rgba(0,65,130,0.16); box-shadow: 0 20px 44px rgba(11,37,69,0.16); }
   .bu-hero-photo { position: relative; aspect-ratio: 16/10; background: #e2e8f0; }
