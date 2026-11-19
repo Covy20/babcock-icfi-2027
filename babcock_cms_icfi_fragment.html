@@ -1,45 +1,36 @@
 <!-- =========================================================================
-     7TH ICFI 2027 — BABCOCK UNIVERSITY FILAMENT CMS EMBEDDABLE FRAGMENT
-     Visual Style Spec v0.2 + Canvas 2 Safe (No DOCTYPE/html/head/body/scripts)
+     7TH ICFI 2027 — FULL DESIGN FOR BABCOCK UNIVERSITY FILAMENT CMS (CANVAS 2)
+     Zero <!DOCTYPE>/<html>/<body>, zero external scripts, zero .section clash.
+     Includes full sections + ticking countdown + Conference & Membership forms.
      ========================================================================= -->
 <style>
-  /* ================= 1. FONT IMPORTS & SCOPED TOKENS ================= */
   @import url('https://api.fontshare.com/v2/css?f[]=sentient@400,500&display=swap');
   @import url('https://api.fontshare.com/v2/css?f[]=sentient@600,700&display=swap');
-  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&family=Inter:wght@400;500;600;700&display=swap');
 
   .bu-icfi-wrap {
-    --bu-navy:        #1B2D5B;
-    --bu-navy-dark:   #121F40;
-    --bu-gold:        #C8A951;
-    --bu-gold-deep:   #8A6D22;
-    --bu-gold-soft:   rgba(200, 169, 81, 0.14);
-    --bu-gold-border: rgba(200, 169, 81, 0.38);
-
-    --bu-band-white:  #ffffff;
-    --bu-band-mist:   #eef2f9;
-    --bu-band-navy:   var(--bu-navy);
-
-    --bu-card-light:  #ffffff;
-    --bu-card-tint:   #f3f6fb;
-    --bu-border:      rgba(27, 45, 91, 0.08);
-    --bu-border-mid:  rgba(27, 45, 91, 0.16);
+    --bu-navy:        #004182;
+    --bu-navy-dark:   #003068;
+    --bu-band:        #0b2545;
+    --bu-canonical:   #1B2D5B;
+    --bu-canon-dark:  #121F40;
+    --bu-gold:        #B58C0D;
+    --bu-gold-light:  #d4a722;
+    --bu-gold-band:   #b98d3b;
+    --bu-gold-accent: #eec25a;
+    --bu-bronze:      #9d7533;
+    --bu-blue:        #2f6fed;
+    --bu-mist:        #eef2f9;
+    --bu-tint:        #f3f6fb;
     --bu-muted:       #475569;
+    --bu-border:      rgba(27, 45, 91, 0.10);
+    --bu-border-mid:  rgba(27, 45, 91, 0.18);
+    --bu-font-serif:  'Sentient', Georgia, serif;
+    --bu-font-sans:   'DM Sans', 'Inter', system-ui, -apple-system, sans-serif;
 
-    --bu-radius-card: 24px;
-    --bu-radius-pill: 999px;
-    --bu-container:   1100px;
-    --bu-gutter:      24px;
-    --bu-band-pad:    clamp(64px, 8vw, 108px);
-    --bu-card-pad:    clamp(20px, 2.5vw, 32px);
-    --bu-gap:         20px;
-
-    --bu-font-heading: 'Sentient', Georgia, serif;
-    --bu-font-body:    'DM Sans', 'Inter', system-ui, -apple-system, sans-serif;
-
-    font-family: var(--bu-font-body);
-    color: var(--bu-navy);
-    background: var(--bu-band-white);
+    font-family: var(--bu-font-sans);
+    color: var(--bu-canonical);
+    background: #ffffff;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     overflow-x: clip;
@@ -65,366 +56,131 @@
   .bu-icfi-wrap h2,
   .bu-icfi-wrap h3,
   .bu-icfi-wrap h4 {
-    font-family: var(--bu-font-heading);
-    color: var(--bu-navy) !important;
+    font-family: var(--bu-font-serif);
+    color: var(--bu-canonical) !important;
     letter-spacing: -0.02em;
-    line-height: 1.15;
+    line-height: 1.14;
     margin: 0;
   }
 
-  .bu-icfi-wrap .bu-icfi-band--navy h2,
-  .bu-icfi-wrap .bu-icfi-band--navy h3,
-  .bu-icfi-wrap .bu-icfi-band--navy h4,
-  .bu-icfi-wrap .bu-icfi-card--navy h3,
-  .bu-icfi-wrap .bu-icfi-card--navy h4 {
+  .bu-icfi-band-white { background: #ffffff; padding: 68px 24px; }
+  .bu-icfi-band-mist  { background: var(--bu-mist); padding: 68px 24px; }
+  .bu-icfi-band-gray  { background: #f2f2f2; padding: 58px 24px; }
+  .bu-icfi-band-navy  { background: var(--bu-band); color: #ffffff; padding: 68px 24px; }
+  .bu-icfi-band-hero  { background: linear-gradient(135deg, #d7e7fb 0%, #eef5fe 55%, #ffffff 100%); padding: clamp(44px, 6vw, 68px) 24px; }
+
+  .bu-icfi-band-navy h2,
+  .bu-icfi-band-navy h3,
+  .bu-icfi-band-navy h4,
+  .bu-icfi-card-dark h3,
+  .bu-icfi-card-dark h4 {
     color: #ffffff !important;
   }
 
-  /* ================= 2. ALTERNATING BAND STRUCTURE ================= */
-  .bu-icfi-band {
-    background: var(--bu-band-white);
-    padding: var(--bu-band-pad) var(--bu-gutter);
-  }
+  .bu-icfi-wrap .bu-icfi-text-navy { color: var(--bu-navy) !important; }
+  .bu-icfi-wrap .bu-icfi-text-gold { color: var(--bu-gold-accent) !important; }
 
-  .bu-icfi-band--hero {
-    background: linear-gradient(180deg, #ffffff 0%, var(--bu-band-mist) 100%);
-    padding: clamp(48px, 6vw, 76px) var(--bu-gutter);
-  }
+  .bu-icfi-container { max-width: 1200px; margin: 0 auto; }
+  .bu-icfi-container-lg { max-width: 1280px; margin: 0 auto; }
 
-  .bu-icfi-band--mist {
-    background: var(--bu-band-mist);
-  }
+  /* Grid Helpers */
+  .bu-g12 { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 28px; align-items: center; }
+  .bu-g4  { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
+  .bu-g3  { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+  .bu-g2  { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+  .bu-g6  { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 16px; }
+  .bu-c5  { grid-column: span 5; }
+  .bu-c6  { grid-column: span 6; }
+  .bu-c7  { grid-column: span 7; }
+  .bu-c8  { grid-column: span 8; }
+  .bu-c4  { grid-column: span 4; }
 
-  .bu-icfi-band--navy {
-    background: var(--bu-band-navy);
-    color: #e2e8f0;
+  /* Cards & Buttons */
+  .bu-card-box {
+    background: #ffffff;
+    border: 1px solid rgba(27, 45, 91, 0.08);
+    border-radius: 20px;
+    padding: 24px;
+    box-shadow: 0 4px 14px rgba(27, 45, 91, 0.06);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
   }
-
-  .bu-icfi-inner {
-    max-width: var(--bu-container);
-    margin: 0 auto;
+  .bu-card-box:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 26px rgba(27, 45, 91, 0.11);
+    border-color: rgba(27, 45, 91, 0.16);
   }
-
-  .bu-icfi-eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 6px 14px;
-    border-radius: var(--bu-radius-pill);
-    background: var(--bu-card-tint);
-    border: 1px solid var(--bu-border-mid);
-    color: var(--bu-navy);
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+  .bu-icfi-card-dark {
+    background: var(--bu-band);
+    color: #ffffff;
+    border: 2px solid var(--bu-gold-accent);
+    border-radius: 20px;
+    padding: 26px;
+    box-shadow: 0 12px 28px rgba(11, 37, 69, 0.22);
   }
-
-  .bu-icfi-band--navy .bu-icfi-eyebrow {
-    background: rgba(255, 255, 255, 0.08);
-    border-color: var(--bu-gold-border);
-    color: var(--bu-gold);
-  }
-
-  .bu-icfi-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--bu-gold);
-    flex-shrink: 0;
-  }
-
-  .bu-icfi-h1 {
-    font-size: clamp(2rem, 4.4vw, 3.35rem);
-    font-weight: 700;
-    font-style: italic;
-    margin-top: 16px;
-  }
-
-  .bu-icfi-h2 {
-    font-size: clamp(1.85rem, 3.6vw, 2.75rem);
-    font-weight: 700;
-  }
-
-  .bu-icfi-lead {
-    font-size: clamp(1rem, 1.4vw, 1.125rem);
-    color: var(--bu-muted);
-    max-width: 56ch;
-    margin: 14px 0 0;
-  }
-
-  .bu-icfi-band--navy .bu-icfi-lead {
-    color: #cbd5e1;
-  }
-
-  .bu-icfi-gold-text {
-    color: var(--bu-gold) !important;
-  }
-
-  .bu-icfi-gold-deep {
-    color: var(--bu-gold-deep);
-  }
-
-  /* ================= 3. BUTTONS & LINKS ================= */
-  .bu-icfi-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-top: 24px;
-  }
-
-  .bu-icfi-btn {
+  .bu-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
     min-height: 46px;
     padding: 11px 24px;
-    border-radius: var(--bu-radius-pill);
+    border-radius: 12px;
     border: 1px solid transparent;
-    font-family: var(--bu-font-body);
+    font-family: var(--bu-font-sans);
     font-size: 14px;
     font-weight: 700;
     cursor: pointer;
-    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
   }
+  .bu-btn-pill { border-radius: 999px; }
+  .bu-btn-blue { background: var(--bu-blue); color: #ffffff !important; }
+  .bu-btn-blue:hover { background: #1d4ed8; }
+  .bu-btn-navy { background: var(--bu-canonical); color: #ffffff !important; }
+  .bu-btn-navy:hover { background: var(--bu-canon-dark); }
+  .bu-btn-charcoal { background: #383c42; color: #ffffff !important; }
+  .bu-btn-charcoal:hover { background: #212121; }
+  .bu-btn-gold { background: var(--bu-gold-band); color: #ffffff !important; }
+  .bu-btn-gold:hover { background: var(--bu-gold); }
+  .bu-btn-gold-bright { background: var(--bu-gold-accent); color: var(--bu-band) !important; }
+  .bu-btn-gold-bright:hover { background: #fcd34d; }
+  .bu-btn-mist { background: var(--bu-mist); color: var(--bu-canonical) !important; }
+  .bu-btn-mist:hover { background: #dbeafe; }
+  .bu-btn-outline { background: #ffffff; border-color: var(--bu-border-mid); color: var(--bu-canonical) !important; }
+  .bu-btn-outline:hover { border-color: var(--bu-navy); }
 
-  .bu-icfi-btn--primary {
-    background: var(--bu-navy);
-    color: #ffffff !important;
-  }
-
-  .bu-icfi-btn--primary:hover {
-    background: var(--bu-navy-dark);
-  }
-
-  .bu-icfi-btn--gold {
-    background: var(--bu-gold);
-    color: var(--bu-navy-dark) !important;
-  }
-
-  .bu-icfi-btn--gold:hover {
-    background: #d8ba64;
-  }
-
-  .bu-icfi-btn--outline {
-    background: #ffffff;
-    border-color: var(--bu-border-mid);
-    color: var(--bu-navy) !important;
-  }
-
-  .bu-icfi-btn--outline:hover {
-    border-color: var(--bu-gold);
-    background: var(--bu-card-tint);
-  }
-
-  .bu-icfi-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-weight: 700;
-    font-size: 14px;
-    color: var(--bu-navy);
-    border-bottom: 2px solid var(--bu-gold);
-    padding-bottom: 2px;
-  }
-
-  .bu-icfi-band--navy .bu-icfi-link {
-    color: #ffffff;
-  }
-
-  /* ================= 4. GRIDS, BENTO & CARDS ================= */
-  .bu-icfi-grid-2 {
+  /* Key Figures Bar */
+  .bu-quick-strip { background: var(--bu-gold-band); color: #ffffff; padding: 14px 24px; border-top: 1px solid rgba(255,255,255,0.22); border-bottom: 1px solid rgba(255,255,255,0.22); }
+  .bu-metrics-grid {
     display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    gap: clamp(20px, 3vw, 36px);
-    align-items: center;
+    grid-template-columns: 1.55fr 1fr 1fr 1fr 1fr;
+    align-items: start;
   }
+  .bu-metric-cell { padding: 0 24px; border-left: 1px solid rgba(255,255,255,0.16); }
+  .bu-metric-cell:first-child { padding-left: 0; border-left: 0; }
+  .bu-metric-cell:last-child { padding-right: 0; }
 
-  .bu-icfi-col-6 { grid-column: span 6; }
-  .bu-icfi-col-5 { grid-column: span 5; }
-  .bu-icfi-col-7 { grid-column: span 7; }
-  .bu-icfi-col-8 { grid-column: span 8; }
-  .bu-icfi-col-4 { grid-column: span 4; }
-
-  .bu-icfi-bento {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    gap: var(--bu-gap);
-  }
-
-  .bu-icfi-bento__wide { grid-column: span 7; }
-  .bu-icfi-bento__narrow { grid-column: span 5; }
-  .bu-icfi-bento__half { grid-column: span 6; }
-  .bu-icfi-bento__third { grid-column: span 4; }
-  .bu-icfi-bento__quarter { grid-column: span 3; }
-
-  .bu-icfi-card {
-    background: var(--bu-card-light);
-    border: 1px solid var(--bu-border);
-    border-radius: var(--bu-radius-card);
-    padding: var(--bu-card-pad);
-    transition: transform 0.25s ease, border-color 0.25s ease;
-  }
-
-  .bu-icfi-card:hover {
-    border-color: var(--bu-gold-border);
-  }
-
-  .bu-icfi-card--tint {
-    background: var(--bu-card-tint);
-  }
-
-  .bu-icfi-card--navy {
-    background: var(--bu-navy);
-    border: 2px solid var(--bu-gold);
-    color: #ffffff;
-  }
-
-  .bu-icfi-band--navy .bu-icfi-card--glass {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    color: #ffffff;
-  }
-
-  .bu-icfi-media-frame {
-    position: relative;
-    border-radius: var(--bu-radius-card);
-    overflow: hidden;
-    border: 1px solid var(--bu-border);
-    background: var(--bu-navy-dark);
-  }
-
-  .bu-icfi-pill-tag {
-    position: absolute;
-    bottom: 14px;
-    left: 14px;
-    background: #ffffff;
-    color: var(--bu-navy);
+  /* Tabs & Programme */
+  .bu-tab-btn {
     padding: 7px 14px;
-    border-radius: var(--bu-radius-pill);
-    font-size: 12px;
-    font-weight: 700;
-  }
-
-  /* Countdown & Numbers Strip */
-  .bu-icfi-stats {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 12px;
-    margin-top: 20px;
-  }
-
-  .bu-icfi-stat-tile {
-    background: #ffffff;
-    border: 1px solid var(--bu-border);
-    border-radius: 16px;
-    padding: 12px;
-    text-align: center;
-  }
-
-  .bu-icfi-stat-num {
-    font-family: var(--bu-font-heading);
-    font-size: clamp(1.35rem, 2.2vw, 1.85rem);
-    font-weight: 700;
-    color: var(--bu-navy);
-    line-height: 1.1;
-  }
-
-  .bu-icfi-stat-lbl {
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--bu-gold-deep);
-    margin-top: 4px;
-  }
-
-  /* Hero Showcase Hosts Row */
-  .bu-icfi-mini-hosts {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 10px;
-    margin-top: 12px;
-  }
-
-  .bu-icfi-mini-host {
-    background: #ffffff;
-    border: 1px solid var(--bu-border);
-    border-radius: 14px;
-    padding: 8px;
-  }
-
-  .bu-icfi-mini-host img {
-    width: 100%;
-    aspect-ratio: 6 / 5;
-    object-fit: cover;
-    object-position: top;
-    border-radius: 10px;
-  }
-
-  /* Section Header Utility */
-  .bu-icfi-sec-head {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 16px;
-    margin-bottom: 36px;
-  }
-
-  /* Programme Tabs & Schedule Rows */
-  .bu-icfi-tab-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-
-  .bu-icfi-tab-btn {
-    padding: 8px 14px;
-    border-radius: var(--bu-radius-pill);
-    border: 1px solid var(--bu-border-mid);
-    background: var(--bu-card-tint);
-    color: var(--bu-navy);
+    border-radius: 999px;
+    border: 0;
     font-size: 12px;
     font-weight: 700;
     cursor: pointer;
-    transition: background-color 0.2s ease, color 0.2s ease;
+    background: var(--bu-mist);
+    color: var(--bu-canonical);
   }
-
-  .bu-icfi-tab-btn.is-active {
-    background: var(--bu-navy);
-    border-color: var(--bu-navy);
-    color: #ffffff;
-  }
-
-  .bu-icfi-prog-item {
+  .bu-tab-btn.is-active { background: var(--bu-canonical); color: #ffffff; }
+  .bu-prog-row {
     display: grid;
     grid-template-columns: 150px 1fr auto;
     gap: 12px;
-    padding: 14px 0;
+    padding: 13px 0;
     border-top: 1px solid var(--bu-border);
     align-items: baseline;
   }
 
-  /* Track Cards */
-  .bu-icfi-track-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 12px;
-    background: var(--bu-band-mist);
-    color: var(--bu-navy);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .bu-icfi-track-icon--gold {
-    background: var(--bu-gold-soft);
-    color: var(--bu-gold-deep);
-  }
-
-  /* ================= 5. FORM PORTAL & ACCESSIBILITY ================= */
+  /* Portal & Accessible Form Rules */
   .bu-icfi-visually-hidden:where(:not(:focus-within, :active)) {
     position: absolute !important;
     clip-path: inset(50%) !important;
@@ -436,106 +192,59 @@
     border: 0 !important;
     white-space: nowrap !important;
   }
-
-  .bu-icfi-portal-shell {
+  .bu-portal-shell {
     margin-top: 32px;
-    background: var(--bu-card-tint);
-    border: 1px solid var(--bu-border-mid);
-    border-radius: var(--bu-radius-card);
+    background: var(--bu-tint);
+    border: 1px solid rgba(27, 45, 91, 0.16);
+    border-radius: 24px;
     padding: clamp(20px, 3vw, 40px);
   }
-
-  .bu-icfi-portal-tabs {
+  .bu-portal-tablist {
     display: inline-flex;
     flex-wrap: wrap;
     gap: 8px;
     background: #ffffff;
     padding: 6px;
     border-radius: 16px;
-    border: 1px solid var(--bu-border-mid);
-    margin: 24px 0 28px;
+    border: 1px solid var(--bu-border);
+    margin: 22px 0 26px;
   }
-
-  .bu-icfi-portal-tab {
+  .bu-portal-tab {
     padding: 10px 18px;
     min-height: 44px;
     border-radius: 12px;
     border: 0;
     background: transparent;
-    color: var(--bu-navy);
-    font-family: var(--bu-font-body);
+    color: var(--bu-canonical);
+    font-family: var(--bu-font-sans);
     font-size: 13px;
     font-weight: 700;
     cursor: pointer;
   }
-
-  .bu-icfi-portal-tab[aria-selected="true"] {
-    background: var(--bu-navy);
-    color: #ffffff;
-  }
-
-  .bu-icfi-steps {
+  .bu-portal-tab[aria-selected="true"] { background: var(--bu-canonical); color: #ffffff; }
+  .bu-steps-row {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 10px;
     list-style: none;
     padding: 0;
-    margin: 0 0 28px;
+    margin: 0 0 26px;
   }
-
-  .bu-icfi-steps--2 {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    max-width: 440px;
-  }
-
-  .bu-icfi-step-pill {
+  .bu-steps-row--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 440px; }
+  .bu-step-pill {
     padding: 10px 14px;
     border-radius: 12px;
-    border: 1px solid var(--bu-border-mid);
+    border: 1px solid var(--bu-border);
     background: #ffffff;
     color: var(--bu-muted);
     font-size: 12px;
     font-weight: 600;
   }
-
-  .bu-icfi-step-pill[aria-current="step"] {
-    background: var(--bu-navy);
-    border-color: var(--bu-navy);
-    color: #ffffff;
-    font-weight: 700;
-  }
-
-  .bu-icfi-step-pill.is-done {
-    background: #ecfdf5;
-    border-color: #a7f3d0;
-    color: #065f46;
-  }
-
-  .bu-icfi-fieldset {
-    border: 0;
-    padding: 0;
-    margin: 0 0 22px;
-  }
-
-  .bu-icfi-legend {
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--bu-navy);
-    margin-bottom: 10px;
-  }
-
-  .bu-icfi-choice-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px;
-  }
-
-  .bu-icfi-choice-stack {
-    display: grid;
-    gap: 10px;
-  }
-
-  .bu-icfi-choice {
+  .bu-step-pill[aria-current="step"] { background: var(--bu-canonical); border-color: var(--bu-canonical); color: #ffffff; font-weight: 700; }
+  .bu-step-pill.is-done { background: #ecfdf5; border-color: #a7f3d0; color: #065f46; }
+  .bu-fieldset { border: 0; padding: 0; margin: 0 0 20px; }
+  .bu-legend { font-size: 14px; font-weight: 700; color: var(--bu-navy); margin-bottom: 10px; }
+  .bu-choice {
     position: absolute !important;
     clip-path: inset(50%) !important;
     overflow: hidden !important;
@@ -545,8 +254,7 @@
     opacity: 0 !important;
     pointer-events: none !important;
   }
-
-  .bu-icfi-choice-card {
+  .bu-choice-card {
     display: flex;
     align-items: flex-start;
     gap: 12px;
@@ -558,61 +266,25 @@
     cursor: pointer;
     transition: border-color 0.2s ease, background-color 0.2s ease;
   }
-
-  .bu-icfi-choice:checked + .bu-icfi-choice-card {
-    border-color: var(--bu-navy);
-    background: var(--bu-band-mist);
-    box-shadow: 0 0 0 1px var(--bu-navy);
-  }
-
-  .bu-icfi-choice:focus-visible + .bu-icfi-choice-card,
-  .bu-icfi-input:focus-visible,
-  .bu-icfi-file:focus-visible,
-  .bu-icfi-btn:focus-visible {
-    outline: 3px solid var(--bu-gold);
-    outline-offset: 2px;
-  }
-
-  .bu-icfi-radio-dot {
+  .bu-choice:checked + .bu-choice-card { border-color: var(--bu-navy); background: var(--bu-mist); box-shadow: 0 0 0 1px var(--bu-navy); }
+  .bu-choice:focus-visible + .bu-choice-card,
+  .bu-reg-input:focus-visible,
+  .bu-file:focus-visible,
+  .bu-btn:focus-visible { outline: 3px solid #0b57d0; outline-offset: 2px; }
+  .bu-radio-dot {
     width: 16px;
     height: 16px;
-    margin-top: 2px;
+    margin-top: 3px;
     border-radius: 50%;
-    border: 2px solid var(--bu-navy);
+    border: 2px solid var(--bu-canonical);
     flex-shrink: 0;
   }
-
-  .bu-icfi-choice:checked + .bu-icfi-choice-card .bu-icfi-radio-dot {
-    background: var(--bu-navy);
-    box-shadow: inset 0 0 0 3px var(--bu-band-mist);
-  }
-
-  .bu-icfi-field-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 18px;
-  }
-
-  .bu-icfi-field--full {
-    grid-column: 1 / -1;
-  }
-
-  .bu-icfi-label {
-    display: block;
-    font-size: 13.5px;
-    font-weight: 700;
-    color: var(--bu-navy);
-    margin-bottom: 4px;
-  }
-
-  .bu-icfi-hint {
-    display: block;
-    font-size: 12px;
-    color: var(--bu-muted);
-    margin-bottom: 6px;
-  }
-
-  .bu-icfi-input {
+  .bu-choice:checked + .bu-choice-card .bu-radio-dot { background: var(--bu-navy); box-shadow: inset 0 0 0 3px var(--bu-mist); }
+  .bu-field-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+  .bu-full { grid-column: 1 / -1; }
+  .bu-label { display: block; font-size: 13.5px; font-weight: 700; color: var(--bu-navy); margin-bottom: 4px; }
+  .bu-hint { display: block; font-size: 12px; color: var(--bu-muted); margin-bottom: 6px; }
+  .bu-reg-input {
     width: 100%;
     font: inherit;
     font-size: max(1rem, 1em);
@@ -621,194 +293,108 @@
     border-radius: 12px;
     border: 1.5px solid #94a3b8;
     background: #ffffff;
-    color: var(--bu-navy);
+    color: var(--bu-canonical);
   }
+  .bu-reg-input:is(:user-invalid, .user-invalid-fallback) { border-color: #d93025; background: #fef2f2; }
+  .bu-reg-input:is(:user-valid, .user-valid-fallback) { border-color: #188038; }
+  .bu-error-msg { display: none; color: #b91c1c; font-size: 13px; font-weight: 600; margin-top: 6px; align-items: center; gap: 6px; }
+  .bu-reg-input:is(:user-invalid, .user-invalid-fallback) ~ .bu-error-msg,
+  .bu-choice-group.has-error ~ .bu-error-msg,
+  .bu-file-wrap.has-error ~ .bu-error-msg { display: flex; }
 
-  .bu-icfi-input:is(:user-invalid, .user-invalid-fallback) {
-    border-color: #d93025;
-    background: #fef2f2;
-  }
-
-  .bu-icfi-input:is(:user-valid, .user-valid-fallback) {
-    border-color: #188038;
-  }
-
-  .bu-icfi-error {
-    display: none;
-    color: #b91c1c;
-    font-size: 13px;
-    font-weight: 600;
-    margin-top: 6px;
-    align-items: center;
-    gap: 6px;
-  }
-
-  .bu-icfi-input:is(:user-invalid, .user-invalid-fallback) ~ .bu-icfi-error,
-  .bu-icfi-choice-group.has-error ~ .bu-icfi-error,
-  .bu-icfi-file-wrap.has-error ~ .bu-icfi-error {
-    display: flex;
-  }
-
-  .bu-icfi-aside-sticky {
+  .bu-aside-sticky {
     position: sticky;
     top: 24px;
-    background: var(--bu-navy);
+    background: var(--bu-band);
     color: #ffffff;
     border-radius: 20px;
     padding: 24px;
-    border: 1px solid var(--bu-gold-border);
+    box-shadow: 0 10px 26px rgba(11, 37, 69, 0.22);
   }
+  .bu-faq-item { background: #ffffff; border: 1px solid var(--bu-border); border-radius: 16px; padding: 18px 20px; margin-bottom: 12px; }
+  .bu-faq-item summary { display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-weight: 700; font-size: 14px; list-style: none; }
+  .bu-faq-item summary::-webkit-details-marker { display: none; }
+  .bu-faq-item[open] .bu-faq-plus { transform: rotate(45deg); }
 
-  /* FAQ Accordion */
-  .bu-icfi-faq {
-    background: var(--bu-card-tint);
-    border: 1px solid var(--bu-border);
-    border-radius: 16px;
-    margin-bottom: 12px;
+  @media (max-width: 960px) {
+    .bu-g12, .bu-g4, .bu-g3, .bu-g2, .bu-g6, .bu-field-grid { grid-template-columns: 1fr; }
+    .bu-c5, .bu-c6, .bu-c7, .bu-c8, .bu-c4 { grid-column: 1 / -1; }
+    .bu-metrics-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+    .bu-metric-cell:first-child { grid-column: 1 / -1; }
+    .bu-metric-cell { border-left: 0; padding: 0; }
+    .bu-aside-sticky { position: static; }
+    .bu-steps-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .bu-prog-row { grid-template-columns: 1fr; }
   }
-
-  .bu-icfi-faq summary {
-    list-style: none;
-    cursor: pointer;
-    padding: 18px 20px;
-    font-weight: 700;
-    font-size: 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 16px;
+  @media (max-width: 600px) {
+    .bu-icfi-mini-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+    .bu-icfi-band-white, .bu-icfi-band-mist, .bu-icfi-band-navy, .bu-icfi-band-gray { padding: 48px 18px; }
   }
-
-  .bu-icfi-faq summary::-webkit-details-marker {
-    display: none;
-  }
-
-  .bu-icfi-faq[open] .bu-icfi-faq-plus {
-    transform: rotate(45deg);
-  }
-
-  .bu-icfi-faq-body {
-    padding: 0 20px 18px;
-    font-size: 13.5px;
-    color: var(--bu-muted);
-    line-height: 1.65;
-  }
-
-  /* ================= 6. RESPONSIVE & REDUCED MOTION ================= */
-  @media (max-width: 900px) {
-    .bu-icfi-col-6,
-    .bu-icfi-col-5,
-    .bu-icfi-col-7,
-    .bu-icfi-col-8,
-    .bu-icfi-col-4,
-    .bu-icfi-bento__wide,
-    .bu-icfi-bento__narrow,
-    .bu-icfi-bento__half,
-    .bu-icfi-bento__third,
-    .bu-icfi-bento__quarter {
-      grid-column: 1 / -1;
-    }
-
-    .bu-icfi-aside-sticky {
-      position: static;
-    }
-
-    .bu-icfi-steps {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .bu-icfi-choice-grid,
-    .bu-icfi-field-grid,
-    .bu-icfi-prog-item {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  @media (max-width: 560px) {
-    .bu-icfi-stats {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-    .bu-icfi-mini-hosts {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-  }
-
   @media (prefers-reduced-motion: reduce) {
-    .bu-icfi-wrap * {
-      transition: none !important;
-      animation: none !important;
-    }
+    .bu-icfi-wrap * { transition: none !important; animation: none !important; }
   }
 </style>
 
 <div class="bu-icfi-wrap" id="bu-icfi-root">
 
-  <!-- ================= BAND 1: HERO & LIVE CONFERENCE OVERVIEW (MIST GRADIENT / WHITE) ================= -->
-  <div class="bu-icfi-band bu-icfi-band--hero">
-    <div class="bu-icfi-inner">
-      <div class="bu-icfi-grid-2">
-        <div class="bu-icfi-col-6">
-          <span class="bu-icfi-eyebrow">
-            <span class="bu-icfi-dot" aria-hidden="true"></span>
-            7th Biennial Conference • July 27 – August 1, 2027
-          </span>
-          <h1 class="bu-icfi-h1">International Conference on Faith Integration 2027</h1>
-          <p class="bu-icfi-lead">
-            <strong>“Driving a Sustainable Faith-Based Ecosystem in a Changing World.”</strong> Hosted by the Institute for Faith Integration at Babcock University, Nigeria.
+  <!-- 1. SKY-BLUE SPLIT HERO -->
+  <div class="bu-icfi-band-hero">
+    <div class="bu-icfi-container-lg">
+      <div class="bu-g12">
+        <div class="bu-c6">
+          <div style="display:inline-flex; align-items:center; gap:8px; padding:6px 14px; border-radius:999px; background:rgba(255,255,255,0.85); border:1px solid rgba(0,65,130,0.16); font-size:12px; font-weight:700; color:var(--bu-canonical);">
+            <span style="width:8px; height:8px; border-radius:50%; background:var(--bu-gold);"></span>
+            <span>7th Biennial International Conference • July 27 – August 1, 2027</span>
+          </div>
+          <h1 style="font-size:clamp(2rem, 3.8vw, 3.15rem); font-weight:700; font-style:italic; color:#212121 !important; margin:18px 0 14px;">
+            International Conference on Faith Integration 2027
+          </h1>
+          <p style="font-size:1.08rem; color:#2d3748; max-width:52ch; margin:0 0 22px;">
+            <strong style="color:var(--bu-navy);">“Driving a Sustainable Faith-Based Ecosystem in a Changing World.”</strong> Hosted by the International Community for Faith Integration &amp; Babcock University.
           </p>
-          <div class="bu-icfi-actions">
-            <a href="#bu-icfi-portal" class="bu-icfi-btn bu-icfi-btn--primary" onclick="buIcfiOpenTab('conference'); return true;">
-              Reserve Your Seat &rarr;
-            </a>
-            <button type="button" class="bu-icfi-btn bu-icfi-btn--gold" onclick="buIcfiOpenTab('membership')">
-              Apply for Membership
-            </button>
-            <a href="#bu-icfi-abstracts" class="bu-icfi-btn bu-icfi-btn--outline">
-              Submit Abstract
-            </a>
-          </div>
-
-          <div class="bu-icfi-stats" aria-label="Conference countdown and facts">
-            <div class="bu-icfi-stat-tile">
-              <div class="bu-icfi-stat-num" id="bu-cd-days">250</div>
-              <div class="bu-icfi-stat-lbl">Days</div>
-            </div>
-            <div class="bu-icfi-stat-tile">
-              <div class="bu-icfi-stat-num" id="bu-cd-hours">00</div>
-              <div class="bu-icfi-stat-lbl">Hours</div>
-            </div>
-            <div class="bu-icfi-stat-tile">
-              <div class="bu-icfi-stat-num" id="bu-cd-mins">00</div>
-              <div class="bu-icfi-stat-lbl">Mins</div>
-            </div>
-            <div class="bu-icfi-stat-tile">
-              <div class="bu-icfi-stat-num">8</div>
-              <div class="bu-icfi-stat-lbl">Research Tracks</div>
-            </div>
+          <div style="display:flex; flex-wrap:wrap; gap:12px;">
+            <a href="#bu-icfi-portal" class="bu-btn bu-btn-blue" onclick="buIcfiOpenTab('conference'); return true;">Reserve Your Seat</a>
+            <button type="button" class="bu-btn bu-btn-gold" onclick="buIcfiOpenTab('membership')">Join ICFI Membership</button>
+            <a href="#bu-icfi-abstracts" class="bu-btn bu-btn-charcoal">Submit 250-Word Abstract</a>
           </div>
         </div>
 
-        <div class="bu-icfi-col-6">
-          <div class="bu-icfi-media-frame">
-            <img src="https://babcock-icfi-2027.netlify.app/img/hero_main.jpg" alt="Delegates at Babcock University International Conference on Faith Integration" style="width:100%; aspect-ratio:16/10; object-fit:cover;">
-            <span class="bu-icfi-pill-tag">Campus &amp; Live Zoom • Ilishan-Remo</span>
-          </div>
-
-          <div class="bu-icfi-mini-hosts">
-            <div class="bu-icfi-mini-host">
-              <img src="https://babcock-icfi-2027.netlify.app/img/host_vc.jpg" alt="Prof. Afolarin Olutunde Ojewole">
-              <div style="font-size:11px; font-weight:700; margin-top:6px;">Prof. Afolarin Olutunde Ojewole</div>
-              <div style="font-size:10px; color:var(--bu-gold-deep); font-weight:700; text-transform:uppercase;">Chief Host • VC</div>
+        <div class="bu-c6">
+          <div style="border-radius:22px; overflow:hidden; background:#ffffff; border:1px solid rgba(0,65,130,0.16); box-shadow:0 20px 44px rgba(11,37,69,0.16);">
+            <div style="position:relative; aspect-ratio:16/10; background:#e2e8f0;">
+              <img src="https://babcock.edu.ng/storage/media/830ab974-1035-4dba-a233-fed1746b1b84.jpg" alt="Main Plenary Amphitheater in session at Babcock University" style="width:100%; height:100%; object-fit:cover;">
+              <div style="position:absolute; top:12px; left:12px; right:12px; display:flex; flex-wrap:wrap; justify-content:space-between; gap:8px;">
+                <span style="padding:5px 12px; border-radius:999px; background:rgba(255,255,255,0.95); color:var(--bu-navy); font-size:11px; font-weight:700;">Main Plenary Amphitheater • Ilishan-Remo</span>
+                <a href="https://youtu.be/QnzxBpBPwrc" target="_blank" rel="noopener" style="padding:5px 12px; border-radius:999px; background:var(--bu-gold); color:#ffffff; font-size:11px; font-weight:700;">&#9654; 2023 Video Recap</a>
+              </div>
             </div>
-            <div class="bu-icfi-mini-host">
-              <img src="https://babcock-icfi-2027.netlify.app/img/host_amanze.jpg" alt="Prof. Jonathan C. Nwosu">
-              <div style="font-size:11px; font-weight:700; margin-top:6px;">Prof. Jonathan C. Nwosu</div>
-              <div style="font-size:10px; color:var(--bu-gold-deep); font-weight:700; text-transform:uppercase;">Host • SVP</div>
+            <div style="padding:16px; background:linear-gradient(180deg,#eef4fc 0%,#ffffff 100%); border-top:1px solid rgba(0,65,130,0.1);">
+              <div class="bu-icfi-mini-grid" style="display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:10px; text-align:center;">
+                <div style="background:#ffffff; border-radius:10px; padding:6px; border:1px solid rgba(0,65,130,0.1);">
+                  <img src="https://babcock.edu.ng/storage/media/5ad4f5d8-c9e9-486a-9b7b-32e10cb7e728.jpg" alt="Prof. Afolarin Olutunde Ojewole" style="width:100%; aspect-ratio:6/5; object-fit:cover; object-position:top; border-radius:6px;">
+                  <div style="font-size:10px; font-weight:700; color:var(--bu-navy); margin-top:5px;">Prof. A. Ojewole</div>
+                  <div style="font-size:9px; color:#8A6D22; font-weight:700; text-transform:uppercase;">Chief Host</div>
+                </div>
+                <div style="background:#ffffff; border-radius:10px; padding:6px; border:1px solid rgba(0,65,130,0.1);">
+                  <img src="https://babcock.edu.ng/storage/media/968e1947-5b11-4fcb-9dcb-9e5b7035246f.jpg" alt="Prof. Jonathan C. Nwosu" style="width:100%; aspect-ratio:6/5; object-fit:cover; object-position:top; border-radius:6px;">
+                  <div style="font-size:10px; font-weight:700; color:var(--bu-navy); margin-top:5px;">Prof. J. C. Nwosu</div>
+                  <div style="font-size:9px; color:#8A6D22; font-weight:700; text-transform:uppercase;">Host • SVP</div>
+                </div>
+                <div style="background:#ffffff; border-radius:10px; padding:6px; border:1px solid rgba(0,65,130,0.1);">
+                  <img src="https://babcock.edu.ng/storage/media/46b5ce14-3ba8-4ca7-8164-8c33d5b9a76d.jpg" alt="Prof. Constance C. Nwosu" style="width:100%; aspect-ratio:6/5; object-fit:cover; object-position:top; border-radius:6px;">
+                  <div style="font-size:10px; font-weight:700; color:var(--bu-navy); margin-top:5px;">Prof. C. Nwosu</div>
+                  <div style="font-size:9px; color:#8A6D22; font-weight:700; text-transform:uppercase;">Convener</div>
+                </div>
+                <div style="background:#ffffff; border-radius:10px; padding:6px; border:1px solid rgba(0,65,130,0.1);">
+                  <img src="https://babcock.edu.ng/storage/media/e9545d58-8a9d-4181-9ddb-730f7fa91f3e.jpg" alt="Prof. John Wesley Taylor V" style="width:100%; aspect-ratio:6/5; object-fit:cover; object-position:top; border-radius:6px;">
+                  <div style="font-size:10px; font-weight:700; color:var(--bu-navy); margin-top:5px;">Prof. J. Taylor V</div>
+                  <div style="font-size:9px; color:#8A6D22; font-weight:700; text-transform:uppercase;">Global Keynote</div>
+                </div>
+              </div>
             </div>
-            <div class="bu-icfi-mini-host">
-              <img src="https://babcock-icfi-2027.netlify.app/img/host_nwosu.jpg" alt="Prof. Constance C. Nwosu">
-              <div style="font-size:11px; font-weight:700; margin-top:6px;">Prof. Constance C. Nwosu</div>
-              <div style="font-size:10px; color:var(--bu-gold-deep); font-weight:700; text-transform:uppercase;">Convener</div>
+            <div style="background:var(--bu-navy-dark); color:#ffffff; padding:12px 18px; display:flex; flex-wrap:wrap; justify-content:space-between; gap:8px; font-size:12px;">
+              <strong style="color:var(--bu-gold-accent); text-transform:uppercase;">Physical &amp; Virtual • July 27 – August 1, 2027</strong>
+              <span>Ilishan-Remo &amp; Zoom Worldwide</span>
             </div>
           </div>
         </div>
@@ -816,191 +402,337 @@
     </div>
   </div>
 
-  <!-- ================= BAND 2: EIGHT INTERDISCIPLINARY FIELDS BENTO (WHITE) ================= -->
-  <div class="bu-icfi-band" id="bu-icfi-fields">
-    <div class="bu-icfi-inner">
-      <div class="bu-icfi-sec-head">
-        <div>
-          <span class="bu-icfi-eyebrow">Call for Papers</span>
-          <h2 class="bu-icfi-h2" style="margin-top:12px;">An Opportunity to Integrate Faith &amp; Learning</h2>
-          <p class="bu-icfi-lead">Submit empirical research, theoretical frameworks, or workplace case studies across eight academic tracks.</p>
-        </div>
-        <a href="#bu-icfi-abstracts" class="bu-icfi-link">View Abstract Guidelines &rarr;</a>
-      </div>
+  <!-- 2. GOLD QUICK-INFO BAR + NAVY KEY FIGURES COUNTDOWN -->
+  <div class="bu-quick-strip">
+    <div class="bu-icfi-container-lg" style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:10px;">
+      <strong style="font-family:var(--bu-font-serif); font-size:18px; text-transform:uppercase;">Quick Information</strong>
+      <span style="font-size:12.5px; font-weight:700; text-transform:uppercase; letter-spacing:0.04em;">Call for Abstracts Open Until March 24, 2027 • Email 250-Word Abstracts to icfi@babcock.edu.ng • Free IJFI Publication</span>
+    </div>
+  </div>
 
-      <div class="bu-icfi-bento" style="margin-bottom:20px;">
-        <div class="bu-icfi-bento__wide bu-icfi-media-frame">
-          <img src="https://babcock-icfi-2027.netlify.app/img/hero_sub.jpg" alt="Scholars presenting at Babcock University" style="width:100%; height:260px; object-fit:cover;">
-          <span class="bu-icfi-pill-tag">Hybrid Amphitheater &amp; Zoom Tracks</span>
-        </div>
-        <div class="bu-icfi-bento__narrow bu-icfi-media-frame">
-          <img src="https://babcock-icfi-2027.netlify.app/img/gal_3.jpg" alt="Academic panel dialogue at ICFI" style="width:100%; height:260px; object-fit:cover;">
-          <span class="bu-icfi-pill-tag">Free IJFI Peer-Reviewed Publishing</span>
-        </div>
-      </div>
-
-      <div class="bu-icfi-bento">
-        <div class="bu-icfi-bento__quarter bu-icfi-card">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
-            <span class="bu-icfi-track-icon" aria-hidden="true">
-              <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M9 3h6M10 3v6l-5.5 9.5A2 2 0 0 0 6.2 21h11.6a2 2 0 0 0 1.7-2.5L14 9V3"/></svg>
-            </span>
-            <span style="font-size:11px; font-weight:700; color:var(--bu-gold-deep);">TRACK 01</span>
+  <div class="bu-icfi-band-navy" style="padding:44px 24px;">
+    <div class="bu-icfi-container-lg">
+      <h2 style="font-size:clamp(1.5rem, 2.5vw, 2rem); margin-bottom:26px;">7th ICFI 2027 in key figures</h2>
+      <div class="bu-metrics-grid">
+        <div class="bu-metric-cell">
+          <div style="font-family:var(--bu-font-serif); font-size:clamp(1.35rem, 2vw, 1.65rem); font-weight:700; color:var(--bu-gold-accent); font-variant-numeric:tabular-nums; white-space:nowrap;">
+            <span id="bu-cd-days">250</span>d : <span id="bu-cd-hours">00</span>h : <span id="bu-cd-mins">00</span>m : <span id="bu-cd-secs">00</span>s
           </div>
-          <h3 style="font-size:1.2rem;">Science</h3>
-          <p style="font-size:13px; color:var(--bu-muted); margin:8px 0 0;">Creation stewardship, sustainability, bioethics, and empirical inquiry.</p>
+          <p style="font-size:12px; color:#cbd5e1; margin:8px 0 0;">Countdown to July 27, 2027 opening plenary at Babcock University</p>
         </div>
-
-        <div class="bu-icfi-bento__quarter bu-icfi-card">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
-            <span class="bu-icfi-track-icon bu-icfi-track-icon--gold" aria-hidden="true">
-              <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-            </span>
-            <span style="font-size:11px; font-weight:700; color:var(--bu-gold-deep);">TRACK 02</span>
-          </div>
-          <h3 style="font-size:1.2rem;">Arts &amp; Humanities</h3>
-          <p style="font-size:13px; color:var(--bu-muted); margin:8px 0 0;">Literature, history, reading culture, music, and cultural heritage.</p>
+        <div class="bu-metric-cell">
+          <div style="font-family:var(--bu-font-serif); font-size:1.75rem; font-weight:700; color:var(--bu-gold-accent);">8 Tracks</div>
+          <p style="font-size:12px; color:#cbd5e1; margin:8px 0 0;">Interdisciplinary academic &amp; professional fields</p>
         </div>
-
-        <div class="bu-icfi-bento__quarter bu-icfi-card">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
-            <span class="bu-icfi-track-icon" aria-hidden="true">
-              <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></svg>
-            </span>
-            <span style="font-size:11px; font-weight:700; color:var(--bu-gold-deep);">TRACK 03</span>
-          </div>
-          <h3 style="font-size:1.2rem;">Technology</h3>
-          <p style="font-size:13px; color:var(--bu-muted); margin:8px 0 0;">AI ethics, social media in modern society, and digital responsibility.</p>
+        <div class="bu-metric-cell">
+          <div style="font-family:var(--bu-font-serif); font-size:1.75rem; font-weight:700; color:var(--bu-gold-accent);">₦40,000</div>
+          <p style="font-size:12px; color:#cbd5e1; margin:8px 0 0;">Early Bird &amp; ICFI Member Rate ($80 International)</p>
         </div>
-
-        <div class="bu-icfi-bento__quarter bu-icfi-card">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
-            <span class="bu-icfi-track-icon bu-icfi-track-icon--gold" aria-hidden="true">
-              <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
-            </span>
-            <span style="font-size:11px; font-weight:700; color:var(--bu-gold-deep);">TRACK 04</span>
-          </div>
-          <h3 style="font-size:1.2rem;">Leadership</h3>
-          <p style="font-size:13px; color:var(--bu-muted); margin:8px 0 0;">Servant leadership, character formation, mentorship, and governance.</p>
+        <div class="bu-metric-cell">
+          <div style="font-family:var(--bu-font-serif); font-size:1.75rem; font-weight:700; color:var(--bu-gold-accent);">₦10,000 Off</div>
+          <p style="font-size:12px; color:#cbd5e1; margin:8px 0 0;">Year-round member discount on standard ₦50,000 fee</p>
         </div>
-
-        <div class="bu-icfi-bento__quarter bu-icfi-card">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
-            <span class="bu-icfi-track-icon bu-icfi-track-icon--gold" aria-hidden="true">
-              <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
-            </span>
-            <span style="font-size:11px; font-weight:700; color:var(--bu-gold-deep);">TRACK 05</span>
-          </div>
-          <h3 style="font-size:1.2rem;">Business</h3>
-          <p style="font-size:13px; color:var(--bu-muted); margin:8px 0 0;">Faith-driven entrepreneurship, economic growth, and ethical finance.</p>
-        </div>
-
-        <div class="bu-icfi-bento__quarter bu-icfi-card">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
-            <span class="bu-icfi-track-icon" aria-hidden="true">
-              <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/></svg>
-            </span>
-            <span style="font-size:11px; font-weight:700; color:var(--bu-gold-deep);">TRACK 06</span>
-          </div>
-          <h3 style="font-size:1.2rem;">Institutions</h3>
-          <p style="font-size:13px; color:var(--bu-muted); margin:8px 0 0;">Quality education management, audit compliance, and curriculum.</p>
-        </div>
-
-        <div class="bu-icfi-bento__quarter bu-icfi-card">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
-            <span class="bu-icfi-track-icon" aria-hidden="true">
-              <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-            </span>
-            <span style="font-size:11px; font-weight:700; color:var(--bu-gold-deep);">TRACK 07</span>
-          </div>
-          <h3 style="font-size:1.2rem;">Religion</h3>
-          <p style="font-size:13px; color:var(--bu-muted); margin:8px 0 0;">Biblical worldview, Adventist education, and multicultural evangelism.</p>
-        </div>
-
-        <div class="bu-icfi-bento__quarter bu-icfi-card">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
-            <span class="bu-icfi-track-icon bu-icfi-track-icon--gold" aria-hidden="true">
-              <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-            </span>
-            <span style="font-size:11px; font-weight:700; color:var(--bu-gold-deep);">TRACK 08</span>
-          </div>
-          <h3 style="font-size:1.2rem;">Politics &amp; Policy</h3>
-          <p style="font-size:13px; color:var(--bu-muted); margin:8px 0 0;">Civic integrity, social policy, justice, and sustainable nation-building.</p>
+        <div class="bu-metric-cell">
+          <div style="font-family:var(--bu-font-serif); font-size:1.75rem; font-weight:700; color:var(--bu-gold-accent);">Free IJFI</div>
+          <p style="font-size:12px; color:#cbd5e1; margin:8px 0 0;">Double-blind peer-reviewed publication for accepted papers</p>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- ================= BAND 3: KEY DATES, PROGRAMME & ABSTRACTS (MIST) ================= -->
-  <div class="bu-icfi-band bu-icfi-band--mist" id="bu-icfi-roadmap">
-    <div class="bu-icfi-inner">
-      <div class="bu-icfi-sec-head">
-        <div>
-          <span class="bu-icfi-eyebrow">2026 – 2027 Schedule</span>
-          <h2 class="bu-icfi-h2" style="margin-top:12px;">Key Dates &amp; Hybrid Programme</h2>
-          <p class="bu-icfi-lead">Plan your abstract submission, seat reservation, and daily itinerary for campus or Zoom attendance.</p>
+  <!-- 3. 8 ACADEMIC FIELDS GRID (WHITE) -->
+  <div class="bu-icfi-band-white" id="bu-icfi-fields">
+    <div class="bu-icfi-container">
+      <div class="bu-g12" style="margin-bottom:44px;">
+        <div class="bu-c4">
+          <div style="font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.12em; color:var(--bu-gold-band);">Call for Papers !!</div>
+          <h2 style="font-size:clamp(1.75rem, 3vw, 2.35rem); color:var(--bu-navy) !important; margin:8px 0 12px;">An Opportunity To Integrate Faith &amp; Learning</h2>
+          <p style="font-size:14px; color:var(--bu-muted); margin:0 0 18px;">Submit empirical research, theoretical frameworks, or workplace case studies across any of these eight interdisciplinary conference tracks.</p>
+          <a href="#bu-icfi-abstracts" class="bu-btn bu-btn-gold">Submit Abstract</a>
         </div>
-        <a href="#bu-icfi-portal" class="bu-icfi-btn bu-icfi-btn--primary" onclick="buIcfiOpenTab('conference'); return true;">Start Registration &rarr;</a>
+        <div class="bu-c8">
+          <div class="bu-g2">
+            <div style="position:relative; border-radius:20px; overflow:hidden; aspect-ratio:16/10; box-shadow:0 10px 24px rgba(0,0,0,0.1);">
+              <img src="https://babcock.edu.ng/storage/media/4f1bd9fd-7221-450b-8509-5041d6df2d24.jpg" alt="International & Local Scholars in Session" style="width:100%; height:100%; object-fit:cover;">
+              <span style="position:absolute; bottom:14px; left:14px; background:#ffffff; color:var(--bu-canonical); padding:7px 14px; border-radius:10px; font-size:12px; font-weight:700;">Hybrid Amphitheater &amp; Zoom</span>
+            </div>
+            <div style="position:relative; border-radius:20px; overflow:hidden; aspect-ratio:16/10; box-shadow:0 10px 24px rgba(0,0,0,0.1);">
+              <img src="https://babcock.edu.ng/storage/media/4399208c-2bc4-4709-bd8a-712f27647d9e.jpg" alt="Collegial Academic Dialogue" style="width:100%; height:100%; object-fit:cover;">
+              <span style="position:absolute; bottom:14px; left:14px; background:#ffffff; color:var(--bu-canonical); padding:7px 14px; border-radius:10px; font-size:12px; font-weight:700;">IJFI Double-Blind Peer Review</span>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class="bu-icfi-bento">
-        <div class="bu-icfi-bento__narrow" style="display:grid; gap:14px;">
-          <div class="bu-icfi-card">
-            <div style="font-size:11px; font-weight:700; color:var(--bu-gold-deep);">NOV 02, 2026</div>
-            <div style="font-weight:700; font-size:15px; margin-top:4px;">Registration &amp; Seat Booking Opens</div>
-            <p style="font-size:13px; color:var(--bu-muted); margin:4px 0 0;">Online conference &amp; membership portals open.</p>
+      <div class="bu-g4">
+        <div class="bu-card-box" style="border-top:4px solid var(--bu-navy);">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;"><span style="font-size:11px; font-weight:700; color:var(--bu-gold);">TRACK 01</span></div>
+          <h3 style="font-size:1.2rem; color:var(--bu-navy) !important;">Science</h3>
+          <p style="font-size:12.5px; color:var(--bu-muted); margin:8px 0 0;">Creation stewardship, environmental sustainability, bioethics, and empirical inquiry.</p>
+          <div style="margin-top:14px; padding-top:10px; border-top:1px solid var(--bu-border); font-size:11px; font-weight:700; color:var(--bu-navy);">Bioethics · Creation Care</div>
+        </div>
+        <div class="bu-card-box" style="border-top:4px solid var(--bu-gold);">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;"><span style="font-size:11px; font-weight:700; color:var(--bu-gold);">TRACK 02</span></div>
+          <h3 style="font-size:1.2rem; color:var(--bu-navy) !important;">Arts &amp; Humanities</h3>
+          <p style="font-size:12.5px; color:var(--bu-muted); margin:8px 0 0;">Literature, history, promoting student reading culture, music, and cultural heritage.</p>
+          <div style="margin-top:14px; padding-top:10px; border-top:1px solid var(--bu-border); font-size:11px; font-weight:700; color:var(--bu-navy);">Reading Culture · Heritage</div>
+        </div>
+        <div class="bu-card-box" style="border-top:4px solid var(--bu-navy);">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;"><span style="font-size:11px; font-weight:700; color:var(--bu-gold);">TRACK 03</span></div>
+          <h3 style="font-size:1.2rem; color:var(--bu-navy) !important;">Technology</h3>
+          <p style="font-size:12.5px; color:var(--bu-muted); margin:8px 0 0;">Artificial intelligence ethics, social media in modern society, and digital responsibility.</p>
+          <div style="margin-top:14px; padding-top:10px; border-top:1px solid var(--bu-border); font-size:11px; font-weight:700; color:#8A6D22;">AI &amp; Faith · Social Media</div>
+        </div>
+        <div class="bu-card-box" style="border-top:4px solid var(--bu-gold);">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;"><span style="font-size:11px; font-weight:700; color:var(--bu-gold);">TRACK 04</span></div>
+          <h3 style="font-size:1.2rem; color:var(--bu-navy) !important;">Leadership</h3>
+          <p style="font-size:12.5px; color:var(--bu-muted); margin:8px 0 0;">Servant leadership, character formation, mentorship, and organizational ethics.</p>
+          <div style="margin-top:14px; padding-top:10px; border-top:1px solid var(--bu-border); font-size:11px; font-weight:700; color:var(--bu-navy);">Servant Leadership · Ethics</div>
+        </div>
+        <div class="bu-card-box" style="border-top:4px solid var(--bu-gold);">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;"><span style="font-size:11px; font-weight:700; color:var(--bu-gold);">TRACK 05</span></div>
+          <h3 style="font-size:1.2rem; color:var(--bu-navy) !important;">Business</h3>
+          <p style="font-size:12.5px; color:var(--bu-muted); margin:8px 0 0;">Faith-driven entrepreneurship, economic growth, ethical finance, and stewardship.</p>
+          <div style="margin-top:14px; padding-top:10px; border-top:1px solid var(--bu-border); font-size:11px; font-weight:700; color:var(--bu-navy);">Entrepreneurship · Finance</div>
+        </div>
+        <div class="bu-card-box" style="border-top:4px solid var(--bu-navy);">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;"><span style="font-size:11px; font-weight:700; color:var(--bu-gold);">TRACK 06</span></div>
+          <h3 style="font-size:1.2rem; color:var(--bu-navy) !important;">Institutions</h3>
+          <p style="font-size:12.5px; color:var(--bu-muted); margin:8px 0 0;">Quality education management, internal audit &amp; compliance, and curriculum design.</p>
+          <div style="margin-top:14px; padding-top:10px; border-top:1px solid var(--bu-border); font-size:11px; font-weight:700; color:var(--bu-navy);">Governance · Education</div>
+        </div>
+        <div class="bu-card-box" style="border-top:4px solid var(--bu-navy);">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;"><span style="font-size:11px; font-weight:700; color:var(--bu-gold);">TRACK 07</span></div>
+          <h3 style="font-size:1.2rem; color:var(--bu-navy) !important;">Religion</h3>
+          <p style="font-size:12.5px; color:var(--bu-muted); margin:8px 0 0;">Biblical worldview, Adventist education, relational principles, and evangelism.</p>
+          <div style="margin-top:14px; padding-top:10px; border-top:1px solid var(--bu-border); font-size:11px; font-weight:700; color:#8A6D22;">Faith · Biblical Praxis</div>
+        </div>
+        <div class="bu-card-box" style="border-top:4px solid var(--bu-gold);">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;"><span style="font-size:11px; font-weight:700; color:var(--bu-gold);">TRACK 08</span></div>
+          <h3 style="font-size:1.2rem; color:var(--bu-navy) !important;">Politics &amp; Policy</h3>
+          <p style="font-size:12.5px; color:var(--bu-muted); margin:8px 0 0;">Civic integrity, social policy reform, justice, and sustainable nation-building.</p>
+          <div style="margin-top:14px; padding-top:10px; border-top:1px solid var(--bu-border); font-size:11px; font-weight:700; color:var(--bu-navy);">Public Policy · Integrity</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. FROM THE CONVENER'S DESK, LEADERSHIP & DISTINGUISHED SCHOLARS (NAVY BAND) -->
+  <div class="bu-icfi-band-navy" id="bu-icfi-convener">
+    <div class="bu-icfi-container">
+      <div class="bu-g12" style="padding-bottom:48px; border-bottom:1px solid rgba(255,255,255,0.16);">
+        <div class="bu-c5">
+          <div style="border-radius:18px; overflow:hidden; border:1px solid rgba(238,194,90,0.35); background:var(--bu-navy-dark);">
+            <img src="https://babcock.edu.ng/storage/media/2d5687e3-943b-44cd-b49e-e2db325b3c76.jpg" alt="Prof. Constance C. Nwosu" style="width:100%; aspect-ratio:4/4.3; object-fit:cover; object-position:top;">
           </div>
-          <div class="bu-icfi-card">
-            <div style="font-size:11px; font-weight:700; color:var(--bu-gold-deep);">MAR 24, 2027 • PRIORITY</div>
-            <div style="font-weight:700; font-size:15px; margin-top:4px;">Abstract Submission Deadline</div>
-            <p style="font-size:13px; color:var(--bu-muted); margin:4px 0 0;">Max 250 words emailed to <strong>icfi@babcock.edu.ng</strong>.</p>
+        </div>
+        <div class="bu-c7">
+          <div style="font-family:var(--bu-font-serif); font-size:52px; color:var(--bu-gold-accent); line-height:1;">“</div>
+          <h2 style="font-size:clamp(1.75rem, 3vw, 2.4rem);">From the Convener’s Desk</h2>
+          <p style="font-size:15.5px; color:#e2e8f0; margin:16px 0; max-width:58ch;">
+            Organized by the <strong style="color:#ffffff;">Institute for Faith Integration</strong> at Babcock University, ICFI brings together scholars and practitioners uniting rigorous scholarship, professional ethics, and living faith.
+          </p>
+          <blockquote style="font-family:var(--bu-font-serif); font-style:italic; font-size:1.25rem; color:var(--bu-gold-accent); margin:0 0 18px; border:0; padding:0;">
+            “Positioned as a tower and edifice of truth to advance faith integration beyond campus walls — grounded in Isaiah 58:12.”
+          </blockquote>
+          <div style="padding-top:14px; border-top:1px solid rgba(255,255,255,0.15); display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px;">
+            <div>
+              <div style="font-family:var(--bu-font-serif); font-weight:700; font-size:1.1rem;">Prof. Constance C. Nwosu</div>
+              <div style="font-size:12px; color:#cbd5e1;">Organizer &amp; Convener • Special Advisor to the President/VC on AAA, IBE/IBMTE, and IFL/IFS, Babcock University</div>
+            </div>
+            <div style="font-size:12px; color:var(--bu-gold-accent); font-weight:700;">+234 806 463 8207 • +234 805 829 9031</div>
           </div>
-          <div class="bu-icfi-card">
-            <div style="font-size:11px; font-weight:700; color:var(--bu-gold-deep);">APR 23, 2027</div>
-            <div style="font-weight:700; font-size:15px; margin-top:4px;">Early Bird Closes</div>
-            <p style="font-size:13px; color:var(--bu-muted); margin:4px 0 0;">Registered ICFI Members retain ₦40,000 / $80 rate year-round.</p>
+        </div>
+      </div>
+
+      <div id="bu-icfi-speakers" style="padding-top:46px;">
+        <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-end; gap:10px; margin-bottom:24px;">
+          <div>
+            <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.14em; color:var(--bu-gold-accent);">Conference Leadership</div>
+            <h3 style="font-size:clamp(1.5rem, 2.5vw, 2rem); margin-top:4px;">Chief Host, Host &amp; Convener</h3>
           </div>
-          <div class="bu-icfi-card">
-            <div style="font-size:11px; font-weight:700; color:var(--bu-gold-deep);">MAY 09 &amp; MAY 31, 2027</div>
-            <div style="font-weight:700; font-size:15px; margin-top:4px;">Full Paper (May 9) &amp; Seat Reservation (May 31)</div>
-            <p style="font-size:13px; color:var(--bu-muted); margin:4px 0 0;">Final deadlines ahead of the July 27 opening.</p>
+          <span style="font-size:12px; color:#cbd5e1;">Babcock University, Ilishan-Remo, Nigeria</span>
+        </div>
+
+        <div class="bu-g3" style="margin-bottom:44px;">
+          <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(238,194,90,0.35); border-radius:18px; padding:20px;">
+            <img src="https://babcock.edu.ng/storage/media/5ad4f5d8-c9e9-486a-9b7b-32e10cb7e728.jpg" alt="Prof. Afolarin Olutunde Ojewole" style="width:100%; aspect-ratio:6/5; object-fit:cover; object-position:top; border-radius:12px; margin-bottom:14px;">
+            <span style="display:inline-block; padding:4px 12px; border-radius:999px; background:rgba(238,194,90,0.2); color:var(--bu-gold-accent); font-size:11px; font-weight:700; text-transform:uppercase;">Chief Host</span>
+            <h4 style="font-size:1.2rem; margin-top:10px;">Prof. Afolarin Olutunde Ojewole</h4>
+            <p style="font-size:12px; color:#cbd5e1; margin:4px 0 0;">President / Vice Chancellor, Babcock University</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.16); border-radius:18px; padding:20px;">
+            <img src="https://babcock.edu.ng/storage/media/968e1947-5b11-4fcb-9dcb-9e5b7035246f.jpg" alt="Prof. Jonathan C. Nwosu" style="width:100%; aspect-ratio:6/5; object-fit:cover; object-position:top; border-radius:12px; margin-bottom:14px;">
+            <span style="display:inline-block; padding:4px 12px; border-radius:999px; background:rgba(255,255,255,0.12); color:var(--bu-gold-accent); font-size:11px; font-weight:700; text-transform:uppercase;">Host</span>
+            <h4 style="font-size:1.2rem; margin-top:10px;">Prof. Jonathan C. Nwosu</h4>
+            <p style="font-size:12px; color:#cbd5e1; margin:4px 0 0;">Senior Vice President, Babcock University</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.16); border-radius:18px; padding:20px;">
+            <img src="https://babcock.edu.ng/storage/media/46b5ce14-3ba8-4ca7-8164-8c33d5b9a76d.jpg" alt="Prof. Constance C. Nwosu" style="width:100%; aspect-ratio:6/5; object-fit:cover; object-position:top; border-radius:12px; margin-bottom:14px;">
+            <span style="display:inline-block; padding:4px 12px; border-radius:999px; background:rgba(255,255,255,0.12); color:var(--bu-gold-accent); font-size:11px; font-weight:700; text-transform:uppercase;">Organizer &amp; Convener</span>
+            <h4 style="font-size:1.2rem; margin-top:10px;">Prof. Constance C. Nwosu</h4>
+            <p style="font-size:12px; color:#cbd5e1; margin:4px 0 0;">Special Advisor to the President/VC on AAA, IBE/IBMTE, and IFL/IFS, Babcock University</p>
           </div>
         </div>
 
-        <div class="bu-icfi-bento__wide" style="display:grid; gap:20px;">
-          <div class="bu-icfi-card">
+        <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-end; gap:10px; margin-bottom:22px;">
+          <h3 style="font-size:1.55rem;">Distinguished Keynote &amp; Invited Scholars</h3>
+          <span style="font-size:12px; color:var(--bu-gold-accent); font-weight:600;">Global Faith Integration Voices</span>
+        </div>
+
+        <div class="bu-g4">
+          <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.16); border-radius:16px; padding:20px; text-align:center;">
+            <img src="https://babcock.edu.ng/storage/media/e9545d58-8a9d-4181-9ddb-730f7fa91f3e.jpg" alt="Prof. John Wesley Taylor V" style="width:80px; height:80px; border-radius:50%; object-fit:cover; object-position:top; margin:0 auto; border:2px solid rgba(238,194,90,0.65);">
+            <div style="font-size:10px; font-weight:700; color:var(--bu-gold-accent); text-transform:uppercase; margin-top:12px;">USA</div>
+            <h4 style="font-size:14px; font-family:var(--bu-font-sans); margin-top:4px;">Prof. John Wesley Taylor V</h4>
+            <p style="font-size:12px; color:#cbd5e1; margin:6px 0 0;">Associate Director of Education, General Conference of SDA</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.16); border-radius:16px; padding:20px; text-align:center;">
+            <img src="https://babcock.edu.ng/storage/media/2039d94b-3618-4412-b70f-01e755c4016a.jpg" alt="Dr. Juvenal Balisasa" style="width:80px; height:80px; border-radius:50%; object-fit:cover; object-position:top; margin:0 auto; border:2px solid rgba(255,255,255,0.35);">
+            <div style="font-size:10px; font-weight:700; color:var(--bu-gold-accent); text-transform:uppercase; margin-top:12px;">Côte d'Ivoire</div>
+            <h4 style="font-size:14px; font-family:var(--bu-font-sans); margin-top:4px;">Dr. Juvenal Balisasa, Ph.D</h4>
+            <p style="font-size:12px; color:#cbd5e1; margin:6px 0 0;">Education Director, West-Central Africa Division (WAD)</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.16); border-radius:16px; padding:20px; text-align:center;">
+            <img src="https://babcock.edu.ng/storage/media/6629ee2d-b026-4a61-b8d0-9ed1f8dcb5ec.jpg" alt="Mrs. Barbara Fisher" style="width:80px; height:80px; border-radius:50%; object-fit:cover; object-position:top; margin:0 auto; border:2px solid rgba(255,255,255,0.35);">
+            <div style="font-size:10px; font-weight:700; color:var(--bu-gold-accent); text-transform:uppercase; margin-top:12px;">Australia</div>
+            <h4 style="font-size:14px; font-family:var(--bu-font-sans); margin-top:4px;">Mrs. Barbara Fisher</h4>
+            <p style="font-size:12px; color:#cbd5e1; margin:6px 0 0;">Faith Integration &amp; Bible Curriculum Specialist</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.16); border-radius:16px; padding:20px; text-align:center;">
+            <img src="https://babcock.edu.ng/storage/media/457a0baa-a6a6-4255-be26-be4b31d96f74.jpg" alt="Dr. Oluwole A. Oyedeji" style="width:80px; height:80px; border-radius:50%; object-fit:cover; object-position:top; margin:0 auto; border:2px solid rgba(255,255,255,0.35);">
+            <div style="font-size:10px; font-weight:700; color:var(--bu-gold-accent); text-transform:uppercase; margin-top:12px;">Nigeria</div>
+            <h4 style="font-size:14px; font-family:var(--bu-font-sans); margin-top:4px;">Dr. Oluwole A. Oyedeji, Ph.D</h4>
+            <p style="font-size:12px; color:#cbd5e1; margin:6px 0 0;">Consultant Geoscientist &amp; Faith-Science Scholar, Abuja</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. CORE VALUES AGENDA (E-I-A-S-T-H + VISION/MISSION) -->
+  <div class="bu-icfi-band-gray" id="bu-icfi-values">
+    <div class="bu-icfi-container">
+      <div style="margin-bottom:28px;">
+        <h2 style="font-size:clamp(1.75rem, 3vw, 2.25rem);">The Faith Integration &amp; Core Values Agenda</h2>
+        <div style="width:56px; height:4px; background:#cbd5e1; border-radius:4px; margin-top:10px;"></div>
+      </div>
+      <div class="bu-g6">
+        <div class="bu-card-box" style="padding:18px; border-radius:16px;">
+          <div style="font-family:var(--bu-font-serif); font-weight:700; font-size:2rem; color:var(--bu-navy-dark);">E</div>
+          <div style="width:24px; height:2px; background:var(--bu-bronze); margin:8px 0;"></div>
+          <h3 style="font-size:14px; font-family:var(--bu-font-sans);">Excellence</h3>
+          <p style="font-size:12px; color:var(--bu-muted); margin:6px 0 0;">Sustaining first-class scholarship and holistic capacity across disciplines.</p>
+        </div>
+        <div class="bu-card-box" style="padding:18px; border-radius:16px;">
+          <div style="font-family:var(--bu-font-serif); font-weight:700; font-size:2rem; color:var(--bu-navy-dark);">I</div>
+          <div style="width:24px; height:2px; background:var(--bu-bronze); margin:8px 0;"></div>
+          <h3 style="font-size:14px; font-family:var(--bu-font-sans);">Integrity</h3>
+          <p style="font-size:12px; color:var(--bu-muted); margin:6px 0 0;">Biblical ethics as the bedrock of academic honesty and stewardship.</p>
+        </div>
+        <div class="bu-card-box" style="padding:18px; border-radius:16px;">
+          <div style="font-family:var(--bu-font-serif); font-weight:700; font-size:2rem; color:var(--bu-navy-dark);">A</div>
+          <div style="width:24px; height:2px; background:var(--bu-bronze); margin:8px 0;"></div>
+          <h3 style="font-size:14px; font-family:var(--bu-font-sans);">Accountability</h3>
+          <p style="font-size:12px; color:var(--bu-muted); margin:6px 0 0;">Responsible governance, internal audit standards, and faithful care.</p>
+        </div>
+        <div class="bu-card-box" style="padding:18px; border-radius:16px;">
+          <div style="font-family:var(--bu-font-serif); font-weight:700; font-size:2rem; color:var(--bu-navy-dark);">S</div>
+          <div style="width:24px; height:2px; background:var(--bu-bronze); margin:8px 0;"></div>
+          <h3 style="font-size:14px; font-family:var(--bu-font-sans);">Servant Leadership</h3>
+          <p style="font-size:12px; color:var(--bu-muted); margin:6px 0 0;">Training Christian servant-leaders who transform communities.</p>
+        </div>
+        <div class="bu-card-box" style="padding:18px; border-radius:16px;">
+          <div style="font-family:var(--bu-font-serif); font-weight:700; font-size:2rem; color:var(--bu-navy-dark);">T</div>
+          <div style="width:24px; height:2px; background:var(--bu-bronze); margin:8px 0;"></div>
+          <h3 style="font-size:14px; font-family:var(--bu-font-sans);">Team Spirit</h3>
+          <p style="font-size:12px; color:var(--bu-muted); margin:6px 0 0;">Interdisciplinary collaboration uniting local and global delegates.</p>
+        </div>
+        <div class="bu-card-box" style="padding:18px; border-radius:16px;">
+          <div style="font-family:var(--bu-font-serif); font-weight:700; font-size:2rem; color:var(--bu-navy-dark);">H</div>
+          <div style="width:24px; height:2px; background:var(--bu-bronze); margin:8px 0;"></div>
+          <h3 style="font-size:14px; font-family:var(--bu-font-sans);">SDA Heritage</h3>
+          <p style="font-size:12px; color:var(--bu-muted); margin:6px 0 0;">Seventh-day Adventist education philosophy &amp; Isaiah 58:12 mandate.</p>
+        </div>
+      </div>
+
+      <div class="bu-g2" style="margin-top:20px;">
+        <div class="bu-card-box" style="padding:16px 22px; border-radius:14px; display:flex; gap:12px; align-items:flex-start;">
+          <strong style="font-size:12px; color:var(--bu-navy); text-transform:uppercase;">Vision:</strong>
+          <p style="font-size:12.5px; color:var(--bu-muted); margin:0;">“A first-class Seventh-day Adventist institution, building servant-leaders for a better world.”</p>
+        </div>
+        <div class="bu-card-box" style="padding:16px 22px; border-radius:14px; display:flex; gap:12px; align-items:flex-start;">
+          <strong style="font-size:12px; color:var(--bu-gold-band); text-transform:uppercase;">Mission:</strong>
+          <p style="font-size:12.5px; color:var(--bu-muted); margin:0;">Building leadership through Christian education; transforming lives and impacting society for positive change.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. ROADMAP, 6-DAY HYBRID PROGRAMME & ABSTRACT SUBMISSION (MIST) -->
+  <div class="bu-icfi-band-mist" id="bu-icfi-roadmap">
+    <div class="bu-icfi-container">
+      <div style="margin-bottom:36px;">
+        <span style="display:inline-block; padding:6px 14px; border-radius:999px; background:#ffffff; border:1px solid var(--bu-border); font-size:12px; font-weight:600; color:var(--bu-muted); margin-bottom:14px;">Conference Roadmap • 2026 / 2027</span>
+        <h2 style="font-size:clamp(1.85rem, 3.6vw, 2.75rem);">Welcome to ICFI 2027. <span style="color:var(--bu-gold-band);">Here’s what’s next.</span></h2>
+        <p style="font-size:15px; color:var(--bu-muted); margin:8px 0 0; max-width:60ch;">Every key date, submission guideline, and daily session itinerary for campus and online delegates in one clear place.</p>
+      </div>
+
+      <div class="bu-g12" style="align-items:start;">
+        <div class="bu-c5" style="display:grid; gap:14px;">
+          <div><a href="#bu-icfi-portal" class="bu-btn bu-btn-navy bu-btn-pill" onclick="buIcfiOpenTab('conference'); return true;">Start here &rarr;</a></div>
+          <div class="bu-card-box" style="padding:16px 20px; border-radius:18px;">
+            <strong style="font-size:14px;">Nov 02, 2026</strong>
+            <div style="font-size:12px; color:var(--bu-muted);">Registration &amp; Seat Booking Opens</div>
+          </div>
+          <div class="bu-card-box" style="padding:16px 20px; border-radius:18px;">
+            <strong style="font-size:14px;">Mar 24, 2027 <span style="color:var(--bu-bronze);">• Priority</span></strong>
+            <div style="font-size:12px; color:var(--bu-muted);">Abstract Submission Deadline (icfi@babcock.edu.ng)</div>
+          </div>
+          <div class="bu-card-box" style="padding:16px 20px; border-radius:18px;">
+            <strong style="font-size:14px;">Apr 23, 2027</strong>
+            <div style="font-size:12px; color:var(--bu-muted);">Early Bird Closes (ICFI Members keep ₦40,000 year-round)</div>
+          </div>
+          <div class="bu-card-box" style="padding:16px 20px; border-radius:18px;">
+            <strong style="font-size:14px;">May 09 &amp; May 31, 2027</strong>
+            <div style="font-size:12px; color:var(--bu-muted);">Full Paper Due (May 9) • Final Seat Reservation (May 31)</div>
+          </div>
+        </div>
+
+        <div class="bu-c7" style="display:grid; gap:20px;">
+          <div class="bu-card-box">
             <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:12px; margin-bottom:16px;">
               <div>
                 <h3 style="font-size:1.35rem;">6-Day Hybrid Programme</h3>
                 <div style="font-size:12px; color:var(--bu-muted);">July 27 – August 1, 2027 • Campus &amp; Live Zoom</div>
               </div>
-              <div class="bu-icfi-tab-row" role="tablist" aria-label="Programme days">
-                <button type="button" class="bu-icfi-tab-btn is-active" onclick="buIcfiSetDay(1, this)">Day 1</button>
-                <button type="button" class="bu-icfi-tab-btn" onclick="buIcfiSetDay(2, this)">Day 2</button>
-                <button type="button" class="bu-icfi-tab-btn" onclick="buIcfiSetDay(3, this)">Day 3</button>
-                <button type="button" class="bu-icfi-tab-btn" onclick="buIcfiSetDay(4, this)">Day 4</button>
-                <button type="button" class="bu-icfi-tab-btn" onclick="buIcfiSetDay(5, this)">Jul 31–Aug 1</button>
+              <div style="display:flex; flex-wrap:wrap; gap:6px;">
+                <button type="button" class="bu-tab-btn is-active" onclick="buIcfiSetDay(1, this)">Day 1</button>
+                <button type="button" class="bu-tab-btn" onclick="buIcfiSetDay(2, this)">Day 2</button>
+                <button type="button" class="bu-tab-btn" onclick="buIcfiSetDay(3, this)">Day 3</button>
+                <button type="button" class="bu-tab-btn" onclick="buIcfiSetDay(4, this)">Day 4</button>
+                <button type="button" class="bu-tab-btn" onclick="buIcfiSetDay(5, this)">Jul 31–Aug 1</button>
               </div>
             </div>
             <div id="bu-icfi-prog-list"></div>
           </div>
 
-          <div class="bu-icfi-card" id="bu-icfi-abstracts">
-            <div class="bu-icfi-grid-2">
-              <div class="bu-icfi-col-5">
-                <img src="https://babcock-icfi-2027.netlify.app/img/submit.jpg" alt="ICFI paper presentation session" style="width:100%; border-radius:16px; aspect-ratio:4/3; object-fit:cover;">
+          <div class="bu-card-box" id="bu-icfi-abstracts">
+            <div class="bu-g12">
+              <div class="bu-c5">
+                <img src="https://babcock.edu.ng/storage/media/ed349bd4-ec0b-4071-af83-7879c9c5218c.jpg" alt="Scholars seated in ICFI conference session" style="width:100%; border-radius:14px; aspect-ratio:4/3; object-fit:cover;">
               </div>
-              <div class="bu-icfi-col-7">
-                <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--bu-gold-deep);">Abstract Guidelines</div>
-                <h3 style="font-size:1.35rem; margin-top:4px;">How to Submit Your Manuscript</h3>
-                <ul style="font-size:13px; color:var(--bu-muted); padding-left:18px; margin:10px 0 14px;">
+              <div class="bu-c7">
+                <div style="font-size:11px; font-weight:700; text-transform:uppercase; color:var(--bu-gold);">Abstract Guidelines</div>
+                <h3 style="font-size:1.25rem; margin-top:4px;">How to Submit Your Manuscript</h3>
+                <ul style="font-size:12px; color:var(--bu-muted); padding-left:16px; margin:10px 0 14px;">
                   <li><strong>Word Limit:</strong> Max 250 words (objective, method &amp; impact)</li>
-                  <li><strong>Format:</strong> Times New Roman, 12pt (.doc or .docx)</li>
-                  <li><strong>Benefit:</strong> Free IJFI double-blind peer review</li>
+                  <li><strong>Typography:</strong> Times New Roman, 12pt (.doc or .docx)</li>
+                  <li><strong>Review Benefit:</strong> Qualifies for free IJFI peer review</li>
                 </ul>
-                <div style="display:flex; flex-wrap:wrap; align-items:center; gap:12px;">
-                  <a href="mailto:icfi@babcock.edu.ng?subject=7th%20ICFI%202027%20Abstract%20Submission" class="bu-icfi-btn bu-icfi-btn--primary">Email icfi@babcock.edu.ng &rarr;</a>
-                  <span style="font-size:12px; color:var(--bu-muted);">Dr. O. Olomojobi • 08082334427</span>
+                <div style="display:flex; flex-wrap:wrap; align-items:center; gap:10px;">
+                  <a href="mailto:icfi@babcock.edu.ng?subject=7th%20ICFI%202027%20Abstract%20Submission" class="bu-btn bu-btn-navy bu-btn-pill" style="min-height:40px; padding:8px 18px; font-size:12px;">Email icfi@babcock.edu.ng &rarr;</a>
+                  <span style="font-size:11px; color:var(--bu-muted);">Dr. O. Olomojobi • 08082334427</span>
                 </div>
               </div>
             </div>
@@ -1010,192 +742,121 @@
     </div>
   </div>
 
-  <!-- ================= BAND 4: CONVENER'S DESK & CONFERENCE LEADERSHIP (NAVY) ================= -->
-  <div class="bu-icfi-band bu-icfi-band--navy" id="bu-icfi-convener">
-    <div class="bu-icfi-inner">
-      <div class="bu-icfi-grid-2" style="padding-bottom:48px; border-bottom:1px solid rgba(255,255,255,0.14);">
-        <div class="bu-icfi-col-5">
-          <div style="border-radius:var(--bu-radius-card); overflow:hidden; border:1px solid var(--bu-gold-border); background:var(--bu-navy-dark);">
-            <img src="https://babcock-icfi-2027.netlify.app/img/welcome.jpg" alt="Prof. Constance C. Nwosu" style="width:100%; aspect-ratio:4/4.3; object-fit:cover; object-position:top;">
-          </div>
-        </div>
-        <div class="bu-icfi-col-7">
-          <span class="bu-icfi-eyebrow">Convener’s Welcome</span>
-          <h2 class="bu-icfi-h2" style="margin-top:14px;">From the Convener’s Desk</h2>
-          <p class="bu-icfi-lead" style="color:#e2e8f0; margin-top:14px;">
-            Organized by the <strong>Institute for Faith Integration</strong> at Babcock University, ICFI brings together scholars and practitioners uniting rigorous scholarship, professional ethics, and living faith.
-          </p>
-          <p style="font-family:var(--bu-font-heading); font-style:italic; font-size:1.25rem; color:var(--bu-gold); margin:18px 0;">
-            “Positioned as a tower and edifice of truth to advance faith integration beyond campus walls — grounded in Isaiah 58:12.”
-          </p>
-          <div style="padding-top:14px; border-top:1px solid rgba(255,255,255,0.15); display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px;">
-            <div>
-              <div style="font-family:var(--bu-font-heading); font-weight:700; font-size:1.1rem; color:#ffffff;">Prof. Constance C. Nwosu</div>
-              <div style="font-size:12.5px; color:#cbd5e1; margin-top:2px;">Organizer &amp; Convener • Special Advisor to the President/VC on AAA, IBE/IBMTE, and IFL/IFS, Babcock University</div>
-            </div>
-            <div style="font-size:12px; font-weight:700; color:var(--bu-gold);">+234 806 463 8207 • +234 805 829 9031</div>
-          </div>
-        </div>
-      </div>
-
-      <div style="padding-top:44px;">
-        <div class="bu-icfi-sec-head" style="margin-bottom:24px;">
-          <div>
-            <span class="bu-icfi-eyebrow">Conference Leadership</span>
-            <h3 class="bu-icfi-h2" style="font-size:clamp(1.5rem, 2.8vw, 2.1rem); margin-top:10px;">Chief Host, Host &amp; Convener</h3>
-          </div>
-          <span style="font-size:13px; color:#cbd5e1;">Babcock University, Ilishan-Remo, Nigeria</span>
-        </div>
-
-        <div class="bu-icfi-bento">
-          <div class="bu-icfi-bento__third bu-icfi-card bu-icfi-card--glass" style="border-color:var(--bu-gold-border);">
-            <img src="https://babcock-icfi-2027.netlify.app/img/host_vc.jpg" alt="Prof. Afolarin Olutunde Ojewole" style="width:100%; aspect-ratio:6/5; object-fit:cover; object-position:top; border-radius:14px; margin-bottom:14px;">
-            <span style="font-size:11px; font-weight:700; color:var(--bu-gold); text-transform:uppercase;">Chief Host</span>
-            <h4 style="font-size:1.2rem; margin-top:6px;">Prof. Afolarin Olutunde Ojewole</h4>
-            <p style="font-size:12.5px; color:#cbd5e1; margin:6px 0 0;">President / Vice Chancellor, Babcock University</p>
-          </div>
-          <div class="bu-icfi-bento__third bu-icfi-card bu-icfi-card--glass">
-            <img src="https://babcock-icfi-2027.netlify.app/img/host_amanze.jpg" alt="Prof. Jonathan C. Nwosu" style="width:100%; aspect-ratio:6/5; object-fit:cover; object-position:top; border-radius:14px; margin-bottom:14px;">
-            <span style="font-size:11px; font-weight:700; color:var(--bu-gold); text-transform:uppercase;">Host</span>
-            <h4 style="font-size:1.2rem; margin-top:6px;">Prof. Jonathan C. Nwosu</h4>
-            <p style="font-size:12.5px; color:#cbd5e1; margin:6px 0 0;">Senior Vice President, Babcock University</p>
-          </div>
-          <div class="bu-icfi-bento__third bu-icfi-card bu-icfi-card--glass">
-            <img src="https://babcock-icfi-2027.netlify.app/img/host_nwosu.jpg" alt="Prof. Constance C. Nwosu" style="width:100%; aspect-ratio:6/5; object-fit:cover; object-position:top; border-radius:14px; margin-bottom:14px;">
-            <span style="font-size:11px; font-weight:700; color:var(--bu-gold); text-transform:uppercase;">Organizer &amp; Convener</span>
-            <h4 style="font-size:1.2rem; margin-top:6px;">Prof. Constance C. Nwosu</h4>
-            <p style="font-size:12.5px; color:#cbd5e1; margin:6px 0 0;">Special Advisor to the President/VC on AAA, IBE/IBMTE, and IFL/IFS, Babcock University</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ================= BAND 5: PASS OPTIONS & ON-SITE REGISTRATION + MEMBERSHIP PORTAL (WHITE) ================= -->
-  <div class="bu-icfi-band" id="bu-icfi-registration">
-    <div class="bu-icfi-inner">
-      <div class="bu-icfi-sec-head">
+  <!-- 7. CONFERENCE PASSES, BANKING & FULL ON-SITE REGISTRATION + MEMBERSHIP PORTAL (WHITE) -->
+  <div class="bu-icfi-band-white" id="bu-icfi-registration">
+    <div class="bu-icfi-container">
+      <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-end; gap:16px; margin-bottom:34px;">
         <div>
-          <span class="bu-icfi-eyebrow">Registration &amp; Fees</span>
-          <h2 class="bu-icfi-h2" style="margin-top:12px;">Simple, Transparent Pass Options</h2>
-          <p class="bu-icfi-lead">Switch currency between Local (NGN) and International (USD), then complete registration below.</p>
+          <span style="font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.12em; color:var(--bu-gold-band);">Registration &amp; Fees</span>
+          <h2 style="font-size:clamp(1.75rem, 3.2vw, 2.35rem); color:var(--bu-navy) !important; margin-top:4px;">Simple, Transparent Pass Options</h2>
+          <p style="font-size:14px; color:var(--bu-muted); margin:4px 0 0;">Switch currency between Local (NGN) and International (USD).</p>
         </div>
-        <div class="bu-icfi-tab-row" role="group" aria-label="Currency display toggle">
-          <button type="button" id="bu-cur-ngn" class="bu-icfi-tab-btn is-active" onclick="buIcfiSetCurrency('NGN')">Local (₦ NGN)</button>
-          <button type="button" id="bu-cur-usd" class="bu-icfi-tab-btn" onclick="buIcfiSetCurrency('USD')">International ($ USD)</button>
+        <div style="display:inline-flex; background:var(--bu-mist); padding:4px; border-radius:999px; border:1px solid var(--bu-border);">
+          <button type="button" id="bu-cur-ngn" class="bu-tab-btn is-active" onclick="buIcfiSetCurrency('NGN')">Local (₦ NGN)</button>
+          <button type="button" id="bu-cur-usd" class="bu-tab-btn" onclick="buIcfiSetCurrency('USD')">International ($ USD)</button>
         </div>
       </div>
 
-      <div class="bu-icfi-bento" style="margin-bottom:24px;">
-        <div class="bu-icfi-bento__third bu-icfi-card" style="display:flex; flex-direction:column; justify-content:space-between;">
+      <div class="bu-g3" style="margin-bottom:26px;">
+        <div class="bu-card-box" style="display:flex; flex-direction:column; justify-content:space-between;">
           <div>
             <div style="font-size:11px; font-weight:700; text-transform:uppercase; color:var(--bu-muted);">In-Person Attendance</div>
-            <h3 style="font-size:1.35rem; margin-top:4px;">Conference Fee</h3>
+            <h3 style="font-size:1.4rem; color:var(--bu-navy) !important; margin-top:4px;">Conference Fee</h3>
             <div style="margin:14px 0; padding-bottom:14px; border-bottom:1px solid var(--bu-border);">
-              <span class="bu-icfi-fee-num" data-ngn="₦50,000" data-usd="$100" style="font-family:var(--bu-font-heading); font-size:2.2rem; font-weight:700;">₦50,000</span>
+              <span class="bu-icfi-fee-num" data-ngn="₦50,000" data-usd="$100" style="font-family:var(--bu-font-serif); font-size:2.2rem; font-weight:700; color:var(--bu-navy);">₦50,000</span>
               <span class="bu-icfi-fee-sub" data-ngn=" ($100 International)" data-usd=" (₦50,000 Local)" style="font-size:12px; color:var(--bu-muted);"> ($100 International)</span>
             </div>
-            <ul style="font-size:12.5px; color:var(--bu-muted); padding-left:18px; margin:0;">
+            <ul style="font-size:12.5px; color:var(--bu-muted); padding-left:16px; margin:0;">
               <li>Full plenary &amp; parallel track sessions</li>
-              <li>Delegate kit, folder &amp; lunch</li>
+              <li>Delegate kit, folder &amp; daily lunch</li>
               <li>Free IJFI peer-reviewed publication</li>
             </ul>
           </div>
-          <button type="button" class="bu-icfi-btn bu-icfi-btn--outline" style="width:100%; margin-top:20px;" onclick="buIcfiPresetReg('Physical / In-person', 'non-member')">
-            Register Standard Seat
-          </button>
+          <button type="button" class="bu-btn bu-btn-mist bu-btn-pill" style="width:100%; margin-top:22px; min-height:42px; font-size:12.5px;" onclick="buIcfiPresetReg('Physical / In-person', 'non-member')">Register Standard Seat</button>
         </div>
 
-        <div class="bu-icfi-bento__third bu-icfi-card bu-icfi-card--navy" style="display:flex; flex-direction:column; justify-content:space-between;">
+        <div class="bu-icfi-card-dark" style="display:flex; flex-direction:column; justify-content:space-between;">
           <div>
-            <div style="font-size:11px; font-weight:700; text-transform:uppercase; color:var(--bu-gold);">★ Until April 23, 2027</div>
-            <h3 style="font-size:1.35rem; margin-top:4px;">Early Bird &amp; Member</h3>
+            <div style="font-size:11px; font-weight:700; text-transform:uppercase; color:var(--bu-gold-accent);">★ Until April 23, 2027</div>
+            <h3 style="font-size:1.4rem; margin-top:4px;">Early Bird &amp; Member</h3>
             <div style="margin:14px 0; padding-bottom:14px; border-bottom:1px solid rgba(255,255,255,0.16);">
-              <span class="bu-icfi-fee-num" data-ngn="₦40,000" data-usd="$80" style="font-family:var(--bu-font-heading); font-size:2.2rem; font-weight:700; color:var(--bu-gold);">₦40,000</span>
+              <span class="bu-icfi-fee-num" data-ngn="₦40,000" data-usd="$80" style="font-family:var(--bu-font-serif); font-size:2.2rem; font-weight:700; color:var(--bu-gold-accent);">₦40,000</span>
               <span class="bu-icfi-fee-sub" data-ngn=" ($80 International)" data-usd=" (₦40,000 Local)" style="font-size:12px; color:#cbd5e1;"> ($80 International)</span>
             </div>
-            <ul style="font-size:12.5px; color:#e2e8f0; padding-left:18px; margin:0;">
-              <li>Full delegate materials &amp; daily lunch</li>
+            <ul style="font-size:12.5px; color:#e2e8f0; padding-left:16px; margin:0;">
+              <li>Full delegate materials &amp; lunch</li>
               <li>Free IJFI peer-reviewed publication</li>
-              <li><strong>₦10,000 off for Registered Members</strong></li>
+              <li style="color:var(--bu-gold-accent); font-weight:700;">₦10,000 off for Registered ICFI Members</li>
             </ul>
           </div>
-          <button type="button" class="bu-icfi-btn bu-icfi-btn--gold" style="width:100%; margin-top:20px;" onclick="buIcfiPresetReg('Physical / In-person', 'early-bird')">
-            Reserve Early Bird Seat &rarr;
-          </button>
+          <button type="button" class="bu-btn bu-btn-gold-bright bu-btn-pill" style="width:100%; margin-top:22px; min-height:42px; font-size:12.5px;" onclick="buIcfiPresetReg('Physical / In-person', 'early-bird')">Reserve Early Bird Seat &rarr;</button>
         </div>
 
-        <div class="bu-icfi-bento__third bu-icfi-card" style="display:flex; flex-direction:column; justify-content:space-between;">
+        <div class="bu-card-box" style="display:flex; flex-direction:column; justify-content:space-between;">
           <div>
             <div style="font-size:11px; font-weight:700; text-transform:uppercase; color:var(--bu-muted);">Remote Global Participation</div>
-            <h3 style="font-size:1.35rem; margin-top:4px;">Online / Virtual</h3>
+            <h3 style="font-size:1.4rem; color:var(--bu-navy) !important; margin-top:4px;">Online / Virtual</h3>
             <div style="margin:14px 0; padding-bottom:14px; border-bottom:1px solid var(--bu-border);">
-              <span class="bu-icfi-fee-num" data-ngn="₦25,000" data-usd="$50" style="font-family:var(--bu-font-heading); font-size:2.2rem; font-weight:700;">₦25,000</span>
+              <span class="bu-icfi-fee-num" data-ngn="₦25,000" data-usd="$50" style="font-family:var(--bu-font-serif); font-size:2.2rem; font-weight:700; color:var(--bu-navy);">₦25,000</span>
               <span class="bu-icfi-fee-sub" data-ngn=" ($50 International)" data-usd=" (₦25,000 Local)" style="font-size:12px; color:var(--bu-muted);"> ($50 International)</span>
             </div>
-            <ul style="font-size:12.5px; color:var(--bu-muted); padding-left:18px; margin:0;">
+            <ul style="font-size:12.5px; color:var(--bu-muted); padding-left:16px; margin:0;">
               <li>Live Zoom streaming &amp; paper presentation</li>
               <li>Free IJFI peer review &amp; publication</li>
               <li>Digital proceedings &amp; e-certificate</li>
             </ul>
           </div>
-          <button type="button" class="bu-icfi-btn bu-icfi-btn--outline" style="width:100%; margin-top:20px;" onclick="buIcfiPresetReg('Virtual / Online', 'non-member')">
-            Register Online Pass
-          </button>
+          <button type="button" class="bu-btn bu-btn-mist bu-btn-pill" style="width:100%; margin-top:22px; min-height:42px; font-size:12.5px;" onclick="buIcfiPresetReg('Virtual / Online', 'non-member')">Register Online Pass</button>
         </div>
       </div>
 
-      <div class="bu-icfi-bento">
-        <div class="bu-icfi-bento__half bu-icfi-card bu-icfi-card--tint" style="display:flex; justify-content:space-between; align-items:center; gap:14px;">
+      <div class="bu-g2">
+        <div class="bu-card-box" style="background:var(--bu-tint); padding:18px 20px; display:flex; justify-content:space-between; align-items:center; gap:12px;">
           <div>
-            <div style="font-size:11px; font-weight:700; text-transform:uppercase; color:var(--bu-gold-deep);">Local Transfers (NGN)</div>
-            <div style="font-weight:700; font-size:14px; margin-top:2px;">UBA Plc • Babcock MFB</div>
-            <div style="font-size:12.5px; color:var(--bu-muted);">Account: <strong>1020069501</strong></div>
+            <div style="font-size:11px; font-weight:700; text-transform:uppercase; color:var(--bu-gold);">Local Transfers (NGN)</div>
+            <div style="font-size:14px; font-weight:700; color:var(--bu-navy);">UBA Plc • Babcock MFB</div>
+            <div style="font-size:12px; color:var(--bu-muted);">Account: <strong>1020069501</strong></div>
           </div>
-          <button type="button" class="bu-icfi-btn bu-icfi-btn--outline" style="min-height:40px; padding:8px 16px; font-size:12px;" onclick="buIcfiCopyAcct(this, '1020069501')">Copy Acct</button>
+          <button type="button" class="bu-btn bu-btn-outline bu-btn-pill" style="min-height:38px; padding:6px 14px; font-size:12px;" onclick="buIcfiCopyAcct(this, '1020069501')">Copy Acct</button>
         </div>
-        <div class="bu-icfi-bento__half bu-icfi-card bu-icfi-card--tint" style="display:flex; justify-content:space-between; align-items:center; gap:14px;">
+        <div class="bu-card-box" style="background:var(--bu-tint); padding:18px 20px; display:flex; justify-content:space-between; align-items:center; gap:12px;">
           <div>
-            <div style="font-size:11px; font-weight:700; text-transform:uppercase; color:var(--bu-gold-deep);">International Transfers (USD)</div>
-            <div style="font-weight:700; font-size:14px; margin-top:2px;">GTBank • B.U-Op./Inst. For Faith Integr</div>
-            <div style="font-size:12.5px; color:var(--bu-muted);">Account: <strong>0829898610</strong></div>
+            <div style="font-size:11px; font-weight:700; text-transform:uppercase; color:var(--bu-gold);">International Transfers (USD)</div>
+            <div style="font-size:14px; font-weight:700; color:var(--bu-navy);">GTBank • B.U-Op./Inst. For Faith Integr</div>
+            <div style="font-size:12px; color:var(--bu-muted);">Account: <strong>0829898610</strong></div>
           </div>
-          <button type="button" class="bu-icfi-btn bu-icfi-btn--outline" style="min-height:40px; padding:8px 16px; font-size:12px;" onclick="buIcfiCopyAcct(this, '0829898610')">Copy Acct</button>
+          <button type="button" class="bu-btn bu-btn-outline bu-btn-pill" style="min-height:38px; padding:6px 14px; font-size:12px;" onclick="buIcfiCopyAcct(this, '0829898610')">Copy Acct</button>
         </div>
       </div>
 
-      <!-- EMBEDDED PORTAL: CONFERENCE REGISTRATION & ICFI MEMBERSHIP -->
-      <div class="bu-icfi-portal-shell" id="bu-icfi-portal">
+      <!-- FULL ON-SITE REGISTRATION + ICFI MEMBERSHIP PORTAL -->
+      <div class="bu-portal-shell" id="bu-icfi-portal">
         <div id="bu-icfi-membership"></div>
         <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-start; gap:16px; padding-bottom:20px; border-bottom:1px solid var(--bu-border);">
           <div>
-            <span class="bu-icfi-eyebrow">Official On-Site Portal</span>
-            <h3 id="bu-portal-heading" style="font-size:clamp(1.5rem, 2.6vw, 2rem); margin-top:10px;">Conference Registration &amp; ICFI Membership</h3>
-            <p style="font-size:13.5px; color:var(--bu-muted); margin:6px 0 0;">Complete either your 7th ICFI 2027 conference registration or ICFI annual membership directly on this page.</p>
+            <span style="display:inline-block; padding:4px 12px; border-radius:999px; background:#ffffff; border:1px solid var(--bu-border); font-size:11px; font-weight:700; color:var(--bu-gold-band); text-transform:uppercase;">Official On-Site Portal</span>
+            <h3 id="bu-portal-heading" style="font-size:clamp(1.45rem, 2.6vw, 1.95rem); color:var(--bu-navy) !important; margin-top:8px;">Conference Registration &amp; ICFI Membership</h3>
+            <p style="font-size:13px; color:var(--bu-muted); margin:4px 0 0;">Register directly below without signing into Google. Complete transfer first, attach receipt, and get an instant reference ID.</p>
           </div>
-          <div class="bu-icfi-card" style="padding:14px 18px; border-radius:16px;">
+          <div style="background:#ffffff; border:1px solid var(--bu-border); border-radius:14px; padding:12px 16px;">
             <div style="font-size:10px; font-weight:700; text-transform:uppercase; color:var(--bu-muted);">Accommodation Inquiries</div>
-            <div style="font-size:13px; font-weight:700; margin-top:2px;">Dr. Nnenna Nwobi</div>
-            <a href="tel:+2348135388049" class="bu-icfi-link" style="font-size:12.5px;">+234 813 538 8049</a>
+            <div style="font-size:12.5px; font-weight:700; color:var(--bu-navy);">Dr. Nnenna Nwobi</div>
+            <a href="tel:+2348135388049" style="font-size:12px; font-weight:700; color:var(--bu-blue);">+234 813 538 8049</a>
           </div>
         </div>
 
-        <div class="bu-icfi-portal-tabs" role="tablist" aria-label="On-site forms">
-          <button type="button" id="bu-tab-conf" role="tab" aria-selected="true" aria-controls="bu-panel-conf" class="bu-icfi-portal-tab" onclick="buIcfiOpenTab('conference')">
-            1. Conference Registration (ICFI 2027)
-          </button>
-          <button type="button" id="bu-tab-mem" role="tab" aria-selected="false" aria-controls="bu-panel-mem" class="bu-icfi-portal-tab" onclick="buIcfiOpenTab('membership')">
-            2. ICFI Membership Form (US$5 / ₦7,000)
-          </button>
+        <div class="bu-portal-tablist" role="tablist" aria-label="Registration Forms">
+          <button type="button" id="bu-tab-conf" role="tab" aria-selected="true" aria-controls="bu-panel-conf" class="bu-portal-tab" onclick="buIcfiOpenTab('conference')">1. Conference Registration (ICFI 2027)</button>
+          <button type="button" id="bu-tab-mem" role="tab" aria-selected="false" aria-controls="bu-panel-mem" class="bu-portal-tab" onclick="buIcfiOpenTab('membership')">2. ICFI Membership Form (US$5 / ₦7,000)</button>
         </div>
 
-        <!-- TAB PANEL 1: CONFERENCE REGISTRATION -->
+        <!-- TAB 1: CONFERENCE REGISTRATION -->
         <div id="bu-panel-conf" role="tabpanel" aria-labelledby="bu-tab-conf">
-          <ol class="bu-icfi-steps" aria-label="Conference registration progress">
-            <li class="bu-icfi-step-pill" data-reg-pill="1" aria-current="step">Step 1: Category &amp; Fee</li>
-            <li class="bu-icfi-step-pill" data-reg-pill="2">Step 2: Personal Info</li>
-            <li class="bu-icfi-step-pill" data-reg-pill="3">Step 3: Payment Proof</li>
-            <li class="bu-icfi-step-pill" data-reg-pill="4">Step 4: Declaration</li>
+          <ol class="bu-steps-row" aria-label="Conference registration progress">
+            <li class="bu-step-pill" data-reg-pill="1" aria-current="step">Step 1: Category &amp; Fee</li>
+            <li class="bu-step-pill" data-reg-pill="2">Step 2: Personal Info</li>
+            <li class="bu-step-pill" data-reg-pill="3">Step 3: Payment Proof</li>
+            <li class="bu-step-pill" data-reg-pill="4">Step 4: Declaration</li>
           </ol>
 
           <form id="bu-reg-form" aria-labelledby="bu-portal-heading" method="POST" novalidate>
@@ -1204,269 +865,232 @@
               <input type="text" id="bu-reg-hp" name="websiteUrl" tabindex="-1" autocomplete="off">
             </div>
 
-            <!-- STEP 1 -->
             <div data-reg-step="1">
-              <h4 tabindex="-1" style="font-size:1.25rem; margin-bottom:18px;">1. Participant Category, Mode &amp; Membership</h4>
-              <div class="bu-icfi-bento">
-                <div class="bu-icfi-bento__wide">
-                  <fieldset class="bu-icfi-fieldset">
-                    <legend class="bu-icfi-legend">Participant Category Based on Location *</legend>
-                    <div class="bu-icfi-choice-group bu-icfi-choice-grid" data-group-required="participantCategory">
+              <h4 tabindex="-1" style="font-size:1.25rem; color:var(--bu-navy) !important; margin-bottom:16px;">1. Participant Category, Mode &amp; Membership</h4>
+              <div class="bu-g12" style="align-items:start;">
+                <div class="bu-c8">
+                  <fieldset class="bu-fieldset">
+                    <legend class="bu-legend">Participant Category Based on Location *</legend>
+                    <div class="bu-choice-group bu-g2" style="gap:12px;" data-group-required="participantCategory">
                       <div>
-                        <input class="bu-icfi-choice" type="radio" name="participantCategory" id="bu-cat-local" value="Local Participant (within Nigeria)" required>
-                        <label for="bu-cat-local" class="bu-icfi-choice-card">
-                          <span class="bu-icfi-radio-dot"></span>
-                          <span><strong>Local Participant</strong><br><span style="font-size:12px; color:var(--bu-muted);">Within Nigeria (₦ NGN)</span></span>
-                        </label>
+                        <input class="bu-choice" type="radio" name="participantCategory" id="bu-cat-local" value="Local Participant (within Nigeria)" required>
+                        <label for="bu-cat-local" class="bu-choice-card"><span class="bu-radio-dot"></span><span><strong>Local Participant</strong><br><span style="font-size:12px; color:var(--bu-muted);">Within Nigeria (₦ NGN)</span></span></label>
                       </div>
                       <div>
-                        <input class="bu-icfi-choice" type="radio" name="participantCategory" id="bu-cat-intl" value="International Participant (outside Nigeria)" required>
-                        <label for="bu-cat-intl" class="bu-icfi-choice-card">
-                          <span class="bu-icfi-radio-dot"></span>
-                          <span><strong>International Participant</strong><br><span style="font-size:12px; color:var(--bu-muted);">Outside Nigeria ($ USD)</span></span>
-                        </label>
+                        <input class="bu-choice" type="radio" name="participantCategory" id="bu-cat-intl" value="International Participant (outside Nigeria)" required>
+                        <label for="bu-cat-intl" class="bu-choice-card"><span class="bu-radio-dot"></span><span><strong>International Participant</strong><br><span style="font-size:12px; color:var(--bu-muted);">Outside Nigeria ($ USD)</span></span></label>
                       </div>
                     </div>
-                    <div class="bu-icfi-error" id="bu-err-cat">&#10060; Please select Local or International participant.</div>
+                    <div class="bu-error-msg">&#10060; Please select Local or International participant.</div>
                   </fieldset>
 
-                  <fieldset class="bu-icfi-fieldset">
-                    <legend class="bu-icfi-legend">How would you like to participate? *</legend>
-                    <div class="bu-icfi-choice-group bu-icfi-choice-grid" data-group-required="participationMode">
+                  <fieldset class="bu-fieldset">
+                    <legend class="bu-legend">How would you like to participate in the conference? *</legend>
+                    <div class="bu-choice-group bu-g2" style="gap:12px;" data-group-required="participationMode">
                       <div>
-                        <input class="bu-icfi-choice" type="radio" name="participationMode" id="bu-mode-phys" value="Physical / In-person" required>
-                        <label for="bu-mode-phys" class="bu-icfi-choice-card">
-                          <span class="bu-icfi-radio-dot"></span>
-                          <span><strong>Physical / In-person</strong><br><span style="font-size:12px; color:var(--bu-muted);">Babcock University Campus</span></span>
-                        </label>
+                        <input class="bu-choice" type="radio" name="participationMode" id="bu-mode-phys" value="Physical / In-person" required>
+                        <label for="bu-mode-phys" class="bu-choice-card"><span class="bu-radio-dot"></span><span><strong>Physical / In-person</strong><br><span style="font-size:12px; color:var(--bu-muted);">Babcock University Campus</span></span></label>
                       </div>
                       <div>
-                        <input class="bu-icfi-choice" type="radio" name="participationMode" id="bu-mode-virt" value="Virtual / Online" required>
-                        <label for="bu-mode-virt" class="bu-icfi-choice-card">
-                          <span class="bu-icfi-radio-dot"></span>
-                          <span><strong>Virtual / Online</strong><br><span style="font-size:12px; color:var(--bu-muted);">Live Zoom Plenaries &amp; Q&amp;A</span></span>
-                        </label>
+                        <input class="bu-choice" type="radio" name="participationMode" id="bu-mode-virt" value="Virtual / Online" required>
+                        <label for="bu-mode-virt" class="bu-choice-card"><span class="bu-radio-dot"></span><span><strong>Virtual / Online</strong><br><span style="font-size:12px; color:var(--bu-muted);">Live Zoom Plenaries &amp; Q&amp;A</span></span></label>
                       </div>
                     </div>
-                    <div class="bu-icfi-error" id="bu-err-mode">&#10060; Please choose your participation mode.</div>
+                    <div class="bu-error-msg">&#10060; Please choose your participation mode.</div>
                   </fieldset>
 
-                  <fieldset class="bu-icfi-fieldset">
-                    <legend class="bu-icfi-legend">Are you a registered member of ICFI? *</legend>
-                    <div class="bu-icfi-choice-group bu-icfi-choice-stack" data-group-required="membershipStatus">
+                  <fieldset class="bu-fieldset">
+                    <legend class="bu-legend">Are you a registered member of the International Community for Faith Integration (ICFI)? *</legend>
+                    <div class="bu-choice-group" style="display:grid; gap:10px;" data-group-required="membershipStatus">
                       <div>
-                        <input class="bu-icfi-choice" type="radio" name="membershipStatus" id="bu-mem-yes" value="Registered Member" required>
-                        <label for="bu-mem-yes" class="bu-icfi-choice-card">
-                          <span class="bu-icfi-radio-dot"></span>
-                          <span><strong>Yes, I am a registered member</strong><br><span style="font-size:12px; color:var(--bu-muted);">Members retain Early Bird rates (₦10,000 off). Proof upload required.</span></span>
-                        </label>
+                        <input class="bu-choice" type="radio" name="membershipStatus" id="bu-mem-yes" value="Registered Member" required>
+                        <label for="bu-mem-yes" class="bu-choice-card"><span class="bu-radio-dot"></span><span><strong>Yes, I am a registered member</strong><br><span style="font-size:12px; color:var(--bu-muted);">Members retain Early Bird rates (₦10,000 off). Proof upload required.</span></span></label>
                       </div>
                       <div>
-                        <input class="bu-icfi-choice" type="radio" name="membershipStatus" id="bu-mem-new" value="New Member Applicant" required>
-                        <label for="bu-mem-new" class="bu-icfi-choice-card">
-                          <span class="bu-icfi-radio-dot"></span>
-                          <span><strong>No, but I would like to become a member</strong><br><span style="font-size:12px; color:var(--bu-muted);">Annual fee: US$5 (₦7,000). Apply directly in Tab 2.</span></span>
-                        </label>
+                        <input class="bu-choice" type="radio" name="membershipStatus" id="bu-mem-new" value="New Member Applicant" required>
+                        <label for="bu-mem-new" class="bu-choice-card"><span class="bu-radio-dot"></span><span><strong>No, but I would like to become a member</strong><br><span style="font-size:12px; color:var(--bu-muted);">Local: ₦7,000 • International: US$5 (Apply directly in Tab 2).</span></span></label>
                       </div>
                       <div>
-                        <input class="bu-icfi-choice" type="radio" name="membershipStatus" id="bu-mem-no" value="Non-Member (Conference Only)" required>
-                        <label for="bu-mem-no" class="bu-icfi-choice-card">
-                          <span class="bu-icfi-radio-dot"></span>
-                          <span><strong>No, I only wish to register for the conference</strong><br><span style="font-size:12px; color:var(--bu-muted);">Proceed directly with applicable pass rate.</span></span>
-                        </label>
+                        <input class="bu-choice" type="radio" name="membershipStatus" id="bu-mem-no" value="Non-Member (Conference Only)" required>
+                        <label for="bu-mem-no" class="bu-choice-card"><span class="bu-radio-dot"></span><span><strong>No, I only wish to register for the conference</strong><br><span style="font-size:12px; color:var(--bu-muted);">Proceed directly with applicable pass rate.</span></span></label>
                       </div>
                     </div>
-                    <div class="bu-icfi-error" id="bu-err-mem">&#10060; Please select your membership status.</div>
+                    <div class="bu-error-msg">&#10060; Please select your ICFI membership status.</div>
                   </fieldset>
 
-                  <div id="bu-mem-proof-box" hidden class="bu-icfi-card" style="padding:18px; border-radius:16px; margin-bottom:16px;">
-                    <label for="bu-reg-mem-file" class="bu-icfi-label">Upload evidence of membership registration/payment *</label>
-                    <span id="bu-hint-mem-file" class="bu-icfi-hint">PDF, DOC, DOCX, or image. Max 10 MB.</span>
-                    <div class="bu-icfi-file-wrap">
-                      <input type="file" id="bu-reg-mem-file" name="membershipProof" accept=".pdf,.doc,.docx,image/*" aria-describedby="bu-hint-mem-file" class="bu-icfi-file">
-                    </div>
+                  <div id="bu-mem-proof-box" hidden class="bu-card-box" style="padding:18px; border-radius:16px; margin-bottom:14px;">
+                    <label for="bu-reg-mem-file" class="bu-label">Upload evidence of membership registration/payment *</label>
+                    <span id="bu-hint-mem-file" class="bu-hint">PDF, DOC, DOCX, or image. Max 10 MB.</span>
+                    <div class="bu-file-wrap"><input type="file" id="bu-reg-mem-file" name="membershipProof" accept=".pdf,.doc,.docx,image/*" aria-describedby="bu-hint-mem-file" class="bu-file"></div>
                     <div id="bu-prev-mem-file" style="font-size:12px; color:#047857; margin-top:6px;" hidden></div>
-                    <div class="bu-icfi-error">&#10060; Please attach membership payment evidence (max 10 MB).</div>
+                    <div class="bu-error-msg">&#10060; Please attach membership payment evidence (max 10 MB).</div>
                   </div>
 
-                  <div id="bu-mem-join-box" hidden class="bu-icfi-card" style="padding:18px; border-radius:16px; background:#fffbeb; border-color:var(--bu-gold); margin-bottom:16px;">
-                    <div style="font-size:11px; font-weight:700; text-transform:uppercase; color:var(--bu-gold-deep);">ICFI Membership Application</div>
-                    <p style="font-size:12.5px; margin:6px 0 12px;">Membership costs <strong>₦7,000</strong> (Local) or <strong>US$5</strong> (International). Apply on-site below, or continue conference registration now.</p>
-                    <button type="button" class="bu-icfi-btn bu-icfi-btn--gold" style="min-height:40px; padding:8px 16px; font-size:12px;" onclick="buIcfiOpenTab('membership')">Apply for ICFI Membership Here &rarr;</button>
+                  <div id="bu-mem-join-box" hidden class="bu-card-box" style="padding:18px; border-radius:16px; background:#fffbeb; border-color:#f59e0b; margin-bottom:14px;">
+                    <div style="font-size:11px; font-weight:700; text-transform:uppercase; color:var(--bu-gold-band);">Association Membership Registration</div>
+                    <p style="font-size:12.5px; margin:6px 0 12px;">Membership costs <strong>₦7,000</strong> (Local) or <strong>$5</strong> (International). Complete your membership form on-site below and return to conference registration.</p>
+                    <button type="button" class="bu-btn bu-btn-gold bu-btn-pill" style="min-height:40px; padding:8px 16px; font-size:12px;" onclick="buIcfiOpenTab('membership')">Apply for ICFI Membership Here &rarr;</button>
                   </div>
                 </div>
 
-                <aside class="bu-icfi-bento__narrow bu-icfi-aside-sticky">
+                <aside class="bu-c4 bu-aside-sticky">
                   <div style="display:flex; justify-content:space-between; align-items:center;">
-                    <span style="font-size:11px; font-weight:700; color:var(--bu-gold); text-transform:uppercase;">Applicable Fee</span>
-                    <span id="bu-sum-period" style="font-size:11px; padding:3px 10px; border-radius:999px; background:rgba(255,255,255,0.12); font-weight:700;">Early Bird</span>
+                    <span style="font-size:11px; font-weight:700; color:var(--bu-gold-accent); text-transform:uppercase;">Applicable Fee Summary</span>
+                    <span id="bu-sum-period" style="font-size:10.5px; padding:3px 10px; border-radius:999px; background:rgba(255,255,255,0.12); font-weight:700;">Early Bird</span>
                   </div>
-                  <div id="bu-sum-amount" style="font-family:var(--bu-font-heading); font-size:2.3rem; font-weight:700; color:var(--bu-gold); margin-top:10px;">Select options</div>
-                  <div id="bu-sum-note" style="font-size:12.5px; color:#e2e8f0; margin-top:4px;">Choose category, mode &amp; membership.</div>
-                  <div style="margin-top:16px; padding-top:14px; border-top:1px solid rgba(255,255,255,0.16); font-size:12.5px; color:#cbd5e1;">
-                    <strong style="color:var(--bu-gold); display:block; margin-bottom:4px;">Remittance Account</strong>
+                  <div id="bu-sum-amount" style="font-family:var(--bu-font-serif); font-size:2.3rem; font-weight:700; color:var(--bu-gold-accent); margin-top:10px;">Select options</div>
+                  <div id="bu-sum-note" style="font-size:12px; color:#e2e8f0; margin-top:4px;">Choose category, mode &amp; membership.</div>
+                  <div style="margin-top:14px; padding-top:14px; border-top:1px solid rgba(255,255,255,0.16); font-size:12px; color:#cbd5e1;">
+                    <strong style="color:var(--bu-gold-accent); display:block; margin-bottom:4px;">Transfer Instructions</strong>
                     <span id="bu-sum-bank">UBA Plc (NGN: 1020069501) or GTBank (USD: 0829898610)</span>
                   </div>
                 </aside>
               </div>
-              <div style="display:flex; justify-content:flex-end; margin-top:20px;">
-                <button type="button" class="bu-icfi-btn bu-icfi-btn--primary" onclick="buIcfiRegNext(1)">Continue to Personal Info &rarr;</button>
+              <div style="display:flex; justify-content:flex-end; margin-top:18px;">
+                <button type="button" class="bu-btn bu-btn-navy bu-btn-pill" onclick="buIcfiRegNext(1)">Continue to Personal Info &rarr;</button>
               </div>
             </div>
 
-            <!-- STEP 2 -->
             <div data-reg-step="2" hidden>
-              <h4 tabindex="-1" style="font-size:1.25rem; margin-bottom:18px;">2. Personal Information</h4>
-              <div class="bu-icfi-field-grid">
-                <div class="bu-icfi-field--full">
-                  <label for="bu-r-name" class="bu-icfi-label">Full name *</label>
-                  <span id="bu-rh-name" class="bu-icfi-hint">Include title if desired (e.g., Prof., Dr., Rev., Mr., Mrs.).</span>
-                  <input type="text" id="bu-r-name" name="fullName" required autocomplete="name" aria-describedby="bu-rh-name" data-error="bu-re-name" class="bu-icfi-input">
-                  <div id="bu-re-name" class="bu-icfi-error">&#10060; Please enter your full name.</div>
+              <h4 tabindex="-1" style="font-size:1.25rem; color:var(--bu-navy) !important; margin-bottom:16px;">2. Personal Information</h4>
+              <div class="bu-field-grid">
+                <div class="bu-full">
+                  <label for="bu-r-name" class="bu-label">Full name *</label>
+                  <span id="bu-rh-name" class="bu-hint">Include title if desired (e.g., Prof., Dr., Rev., Mr., Mrs.).</span>
+                  <input type="text" id="bu-r-name" name="fullName" required autocomplete="name" aria-describedby="bu-rh-name" class="bu-reg-input">
+                  <div class="bu-error-msg">&#10060; Please enter your full name.</div>
                 </div>
                 <div>
-                  <label for="bu-r-email" class="bu-icfi-label">Email address *</label>
-                  <span id="bu-rh-email" class="bu-icfi-hint">Format: name@institution.edu</span>
-                  <input type="email" id="bu-r-email" name="email" required autocomplete="email" autocorrect="off" autocapitalize="none" spellcheck="false" aria-describedby="bu-rh-email" data-error="bu-re-email" class="bu-icfi-input">
-                  <div id="bu-re-email" class="bu-icfi-error">&#10060; Enter a valid email address.</div>
+                  <label for="bu-r-email" class="bu-label">Email address *</label>
+                  <span id="bu-rh-email" class="bu-hint">Format: name@institution.edu</span>
+                  <input type="email" id="bu-r-email" name="email" required autocomplete="email" autocorrect="off" autocapitalize="none" spellcheck="false" aria-describedby="bu-rh-email" class="bu-reg-input">
+                  <div class="bu-error-msg">&#10060; Enter a valid email address.</div>
                 </div>
                 <div>
-                  <label for="bu-r-phone" class="bu-icfi-label">Phone number (with country code) *</label>
-                  <span id="bu-rh-phone" class="bu-icfi-hint">Format: +234 806 000 0000</span>
-                  <input type="tel" id="bu-r-phone" name="phone" required autocomplete="tel" aria-describedby="bu-rh-phone" data-error="bu-re-phone" class="bu-icfi-input">
-                  <div id="bu-re-phone" class="bu-icfi-error">&#10060; Please enter your phone number.</div>
+                  <label for="bu-r-phone" class="bu-label">Phone number (with country code) *</label>
+                  <span id="bu-rh-phone" class="bu-hint">Format: +234 806 000 0000</span>
+                  <input type="tel" id="bu-r-phone" name="phone" required autocomplete="tel" aria-describedby="bu-rh-phone" class="bu-reg-input">
+                  <div class="bu-error-msg">&#10060; Please enter your phone number.</div>
                 </div>
                 <div>
-                  <label for="bu-r-country" class="bu-icfi-label">Country of residence *</label>
-                  <input type="text" id="bu-r-country" name="country" required autocomplete="country-name" data-error="bu-re-country" class="bu-icfi-input">
-                  <div id="bu-re-country" class="bu-icfi-error">&#10060; Please enter your country.</div>
+                  <label for="bu-r-country" class="bu-label">Country of residence *</label>
+                  <input type="text" id="bu-r-country" name="country" required autocomplete="country-name" class="bu-reg-input">
+                  <div class="bu-error-msg">&#10060; Please enter your country.</div>
                 </div>
                 <div>
-                  <label for="bu-r-state" class="bu-icfi-label">State of residence (Nigeria only)</label>
-                  <input type="text" id="bu-r-state" name="stateOfResidence" autocomplete="address-level1" class="bu-icfi-input">
+                  <label for="bu-r-state" class="bu-label">State of residence (for Nigerian participants only)</label>
+                  <input type="text" id="bu-r-state" name="stateOfResidence" autocomplete="address-level1" class="bu-reg-input">
                 </div>
                 <div>
-                  <label for="bu-r-org" class="bu-icfi-label">Organisation / Institution</label>
-                  <input type="text" id="bu-r-org" name="organisation" autocomplete="organization" class="bu-icfi-input">
+                  <label for="bu-r-org" class="bu-label">Organisation / Institution</label>
+                  <input type="text" id="bu-r-org" name="organisation" autocomplete="organization" class="bu-reg-input">
                 </div>
                 <div>
-                  <label for="bu-r-role" class="bu-icfi-label">Professional designation</label>
-                  <input type="text" id="bu-r-role" name="designation" autocomplete="organization-title" class="bu-icfi-input">
+                  <label for="bu-r-role" class="bu-label">Professional designation</label>
+                  <input type="text" id="bu-r-role" name="designation" autocomplete="organization-title" class="bu-reg-input">
                 </div>
-                <div class="bu-icfi-field--full">
-                  <label for="bu-r-spec" class="bu-icfi-label">Area of Specialisation</label>
-                  <input type="text" id="bu-r-spec" name="specialisation" class="bu-icfi-input">
+                <div class="bu-full">
+                  <label for="bu-r-spec" class="bu-label">Area of Specialisation</label>
+                  <input type="text" id="bu-r-spec" name="specialisation" class="bu-reg-input">
                 </div>
               </div>
-              <div style="display:flex; justify-content:space-between; margin-top:22px; gap:12px;">
-                <button type="button" class="bu-icfi-btn bu-icfi-btn--outline" onclick="buIcfiRegGo(1)">&larr; Back</button>
-                <button type="button" class="bu-icfi-btn bu-icfi-btn--primary" onclick="buIcfiRegNext(2)">Continue to Payment Proof &rarr;</button>
+              <div style="display:flex; justify-content:space-between; margin-top:20px; gap:12px;">
+                <button type="button" class="bu-btn bu-btn-outline bu-btn-pill" onclick="buIcfiRegGo(1)">&larr; Back</button>
+                <button type="button" class="bu-btn bu-btn-navy bu-btn-pill" onclick="buIcfiRegNext(2)">Continue to Payment Proof &rarr;</button>
               </div>
             </div>
 
-            <!-- STEP 3 -->
             <div data-reg-step="3" hidden>
-              <h4 tabindex="-1" style="font-size:1.25rem; margin-bottom:14px;">3. Payment Confirmation</h4>
-              <div class="bu-icfi-card" style="padding:16px 20px; border-radius:16px; display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:12px; margin-bottom:20px;">
+              <h4 tabindex="-1" style="font-size:1.25rem; color:var(--bu-navy) !important; margin-bottom:14px;">3. Payment Confirmation</h4>
+              <div class="bu-card-box" style="padding:16px 20px; border-radius:16px; display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:12px; margin-bottom:18px;">
                 <div>
-                  <div style="font-size:11px; font-weight:700; text-transform:uppercase; color:var(--bu-gold-deep);">Transfer Details</div>
+                  <div style="font-size:11px; font-weight:700; text-transform:uppercase; color:var(--bu-gold-band);">Applicable Fee &amp; Account</div>
                   <div id="bu-pay-summary" style="font-size:14px; font-weight:700;">—</div>
                   <div id="bu-pay-acct" style="font-size:12px; color:var(--bu-muted);">—</div>
                 </div>
-                <button type="button" class="bu-icfi-btn bu-icfi-btn--outline" style="min-height:40px; padding:8px 16px; font-size:12px;" onclick="buIcfiCopyActiveAcct(this)">Copy Account Number</button>
+                <button type="button" class="bu-btn bu-btn-mist bu-btn-pill" style="min-height:40px; padding:8px 16px; font-size:12px;" onclick="buIcfiCopyActiveAcct(this)">Copy Account Number</button>
               </div>
 
-              <div class="bu-icfi-field-grid">
+              <div class="bu-field-grid">
                 <div>
-                  <label for="bu-r-amt" class="bu-icfi-label">Amount paid *</label>
-                  <input type="text" id="bu-r-amt" name="amountPaid" required data-error="bu-re-amt" class="bu-icfi-input">
-                  <div id="bu-re-amt" class="bu-icfi-error">&#10060; Enter amount transferred.</div>
+                  <label for="bu-r-amt" class="bu-label">Amount paid *</label>
+                  <input type="text" id="bu-r-amt" name="amountPaid" required class="bu-reg-input">
+                  <div class="bu-error-msg">&#10060; Enter amount transferred.</div>
                 </div>
                 <div>
-                  <label for="bu-r-date" class="bu-icfi-label">Date of payment *</label>
-                  <input type="date" id="bu-r-date" name="paymentDate" required data-error="bu-re-date" class="bu-icfi-input">
-                  <div id="bu-re-date" class="bu-icfi-error">&#10060; Select payment date.</div>
+                  <label for="bu-r-date" class="bu-label">Date of payment *</label>
+                  <input type="date" id="bu-r-date" name="paymentDate" required class="bu-reg-input">
+                  <div class="bu-error-msg">&#10060; Select payment date.</div>
                 </div>
                 <div>
-                  <label for="bu-r-ref" class="bu-icfi-label">Payment transaction reference (Optional)</label>
-                  <input type="text" id="bu-r-ref" name="transactionRef" autocorrect="off" spellcheck="false" class="bu-icfi-input">
+                  <label for="bu-r-ref" class="bu-label">Payment transaction reference (Optional)</label>
+                  <input type="text" id="bu-r-ref" name="transactionRef" autocorrect="off" spellcheck="false" class="bu-reg-input">
                 </div>
                 <div>
-                  <label for="bu-r-holder" class="bu-icfi-label">Name of account holder *</label>
-                  <input type="text" id="bu-r-holder" name="accountHolderName" required data-error="bu-re-holder" class="bu-icfi-input">
-                  <div id="bu-re-holder" class="bu-icfi-error">&#10060; Enter bank account holder name.</div>
+                  <label for="bu-r-holder" class="bu-label">Name of account holder *</label>
+                  <input type="text" id="bu-r-holder" name="accountHolderName" required class="bu-reg-input">
+                  <div class="bu-error-msg">&#10060; Enter bank account holder name.</div>
                 </div>
-                <div class="bu-icfi-field--full bu-icfi-card" style="padding:18px; border-radius:16px;">
-                  <label for="bu-reg-rec-file" class="bu-icfi-label">Upload conference registration payment receipt *</label>
-                  <span id="bu-hint-rec-file" class="bu-icfi-hint">Upload 1 supported file: PDF, DOC, DOCX, or image. Max 10 MB.</span>
-                  <div class="bu-icfi-file-wrap">
-                    <input type="file" id="bu-reg-rec-file" name="paymentReceipt" required accept=".pdf,.doc,.docx,image/*" aria-describedby="bu-hint-rec-file" class="bu-icfi-file">
-                  </div>
+                <div class="bu-full bu-card-box" style="padding:18px; border-radius:16px;">
+                  <label for="bu-reg-rec-file" class="bu-label">Upload conference registration payment receipt *</label>
+                  <span id="bu-hint-rec-file" class="bu-hint">Upload 1 supported file: PDF, DOC, DOCX, or image. Max 10 MB.</span>
+                  <div class="bu-file-wrap"><input type="file" id="bu-reg-rec-file" name="paymentReceipt" required accept=".pdf,.doc,.docx,image/*" aria-describedby="bu-hint-rec-file" class="bu-file"></div>
                   <div id="bu-prev-rec-file" style="font-size:12px; color:#047857; margin-top:6px;" hidden></div>
-                  <div class="bu-icfi-error">&#10060; Payment receipt file is required (max 10 MB).</div>
+                  <div class="bu-error-msg">&#10060; Payment receipt file is required (max 10 MB).</div>
                 </div>
               </div>
-              <div style="display:flex; justify-content:space-between; margin-top:22px; gap:12px;">
-                <button type="button" class="bu-icfi-btn bu-icfi-btn--outline" onclick="buIcfiRegGo(2)">&larr; Back</button>
-                <button type="button" class="bu-icfi-btn bu-icfi-btn--primary" onclick="buIcfiRegNext(3)">Review &amp; Declaration &rarr;</button>
+              <div style="display:flex; justify-content:space-between; margin-top:20px; gap:12px;">
+                <button type="button" class="bu-btn bu-btn-outline bu-btn-pill" onclick="buIcfiRegGo(2)">&larr; Back</button>
+                <button type="button" class="bu-btn bu-btn-navy bu-btn-pill" onclick="buIcfiRegNext(3)">Review &amp; Declaration &rarr;</button>
               </div>
             </div>
 
-            <!-- STEP 4 -->
             <div data-reg-step="4" hidden>
-              <h4 tabindex="-1" style="font-size:1.25rem; margin-bottom:14px;">4. Review &amp; Declaration</h4>
-              <div id="bu-reg-review" class="bu-icfi-card" style="padding:18px; border-radius:16px; display:grid; grid-template-columns:repeat(auto-fit, minmax(190px, 1fr)); gap:12px; font-size:12.5px; margin-bottom:16px;"></div>
-
-              <div class="bu-icfi-card" style="padding:20px; border-radius:16px; font-size:12.5px; color:var(--bu-muted); margin-bottom:16px;">
-                <div style="font-weight:700; color:var(--bu-navy); font-size:14px; margin-bottom:8px;">DECLARATION</div>
-                <ol style="padding-left:18px; margin:0; line-height:1.6;">
+              <h4 tabindex="-1" style="font-size:1.25rem; color:var(--bu-navy) !important; margin-bottom:14px;">4. Review &amp; Declaration</h4>
+              <div id="bu-reg-review" class="bu-card-box" style="padding:18px; border-radius:16px; display:grid; grid-template-columns:repeat(auto-fit, minmax(190px, 1fr)); gap:12px; font-size:12.5px; margin-bottom:14px;"></div>
+              <div class="bu-card-box" style="padding:20px; border-radius:16px; font-size:12.5px; color:var(--bu-muted); margin-bottom:14px;">
+                <div style="font-weight:700; color:var(--bu-canonical); font-size:14px; margin-bottom:8px;">DECLARATION</div>
+                <ol style="padding-left:18px; margin:0;">
                   <li>The information provided in this form is true, accurate and complete to the best of my knowledge.</li>
                   <li>I have carefully reviewed my selected participant category, participation mode and applicable registration fee.</li>
                   <li>I understand that my conference registration is subject to the payment of the appropriate registration fee and subsequent verification by the Conference Organising Committee.</li>
-                  <li>Where I have indicated that I am a registered member of the Association, I confirm that the membership information and supporting evidence provided are genuine and accurate. I understand that my eligibility for the applicable membership discount is subject to verification by the Association.</li>
-                  <li>Where I have indicated my intention to become a member of the Association, I understand that membership registration and payment are subject to the Association's membership requirements and verification procedures.</li>
-                  <li>I understand that submitting this form does not automatically constitute confirmation of my conference registration. My registration will be confirmed upon successful verification of the required payment and registration details.</li>
+                  <li>Where I have indicated that I am a registered member of the Association, I confirm that the membership information and supporting evidence provided are genuine and accurate.</li>
+                  <li>Where I have indicated my intention to become a member of the Association, I understand that membership registration and payment are subject to verification procedures.</li>
+                  <li>I understand that submitting this form does not automatically constitute confirmation of my conference registration until verification is completed.</li>
                   <li>I agree to abide by the rules, regulations and guidelines established by the Conference Organising Committee.</li>
-                  <li>I consent to the collection and use of the information provided in this form for conference registration, communication, membership verification (where applicable) and other legitimate administrative purposes relating to the conference.</li>
+                  <li>I consent to the collection and use of the information provided in this form for conference administration and communication.</li>
                 </ol>
               </div>
-
-              <div class="bu-icfi-card" style="padding:16px 18px; border-radius:16px;">
+              <div class="bu-card-box" style="padding:16px 18px; border-radius:16px;">
                 <label style="display:flex; align-items:flex-start; gap:10px; font-size:13.5px; font-weight:700; cursor:pointer;">
-                  <input type="checkbox" id="bu-r-decl" name="declarationAgreed" value="Yes" required data-error="bu-re-decl" style="width:20px; height:20px; accent-color:#1B2D5B; margin-top:2px;">
+                  <input type="checkbox" id="bu-r-decl" name="declarationAgreed" value="Yes" required style="width:20px; height:20px; accent-color:#004182; margin-top:2px;">
                   <span>I have read and understood the declaration above *</span>
                 </label>
-                <div id="bu-re-decl" class="bu-icfi-error">&#10060; Please confirm the declaration before submitting.</div>
+                <div class="bu-error-msg">&#10060; Please confirm the declaration before submitting.</div>
               </div>
-
               <div id="bu-reg-feedback" role="alert" hidden style="margin-top:14px; padding:12px 16px; border-radius:12px; font-size:12.5px; font-weight:600;"></div>
-
               <div style="display:flex; justify-content:space-between; margin-top:20px; gap:12px;">
-                <button type="button" class="bu-icfi-btn bu-icfi-btn--outline" onclick="buIcfiRegGo(3)">&larr; Back</button>
-                <button type="submit" id="bu-reg-submit" class="bu-icfi-btn bu-icfi-btn--gold">Submit Registration &rarr;</button>
+                <button type="button" class="bu-btn bu-btn-outline bu-btn-pill" onclick="buIcfiRegGo(3)">&larr; Back</button>
+                <button type="submit" id="bu-reg-submit" class="bu-btn bu-btn-gold bu-btn-pill">Submit Registration &rarr;</button>
               </div>
             </div>
           </form>
 
-          <div id="bu-reg-success" hidden role="status" class="bu-icfi-card" style="text-align:center; border-color:#10b981;">
+          <div id="bu-reg-success" hidden role="status" class="bu-card-box" style="text-align:center; border-color:#10b981;">
             <div style="font-size:28px; color:#047857; font-weight:700;">&#10003;</div>
-            <h4 tabindex="-1" id="bu-reg-suc-h" style="font-size:1.5rem; margin-top:8px;">Registration Received</h4>
-            <p style="font-size:13.5px; color:var(--bu-muted); margin:8px auto;">Your conference registration and payment receipt have been logged for verification.</p>
-            <div style="display:inline-block; background:var(--bu-card-tint); padding:8px 16px; border-radius:10px; font-size:13px; margin:8px 0;">
-              Reference ID: <strong id="bu-reg-suc-id">—</strong>
-            </div>
+            <h4 tabindex="-1" id="bu-reg-suc-h" style="font-size:1.5rem; margin-top:8px;">Registration Received!</h4>
+            <p style="font-size:13.5px; color:var(--bu-muted); margin:8px auto;">Your registration details and payment receipt have been recorded for verification by the 7th ICFI 2027 Committee.</p>
+            <div style="display:inline-block; background:var(--bu-tint); padding:8px 16px; border-radius:10px; font-size:13px; margin:8px 0;">Reference ID: <strong id="bu-reg-suc-id">—</strong></div>
             <div id="bu-reg-suc-sum" style="font-size:12.5px; color:var(--bu-muted);"></div>
-            <div style="margin-top:16px;">
-              <button type="button" class="bu-icfi-btn bu-icfi-btn--outline" onclick="buIcfiResetReg()">Register Another Participant</button>
-            </div>
+            <div style="margin-top:16px;"><button type="button" class="bu-btn bu-btn-mist bu-btn-pill" onclick="buIcfiResetReg()">Register Another Participant</button></div>
           </div>
         </div>
 
-        <!-- TAB PANEL 2: ICFI ASSOCIATION MEMBERSHIP FORM -->
+        <!-- TAB 2: ICFI MEMBERSHIP -->
         <div id="bu-panel-mem" role="tabpanel" aria-labelledby="bu-tab-mem" hidden>
-          <ol class="bu-icfi-steps bu-icfi-steps--2" aria-label="Membership progress">
-            <li class="bu-icfi-step-pill" data-mem-pill="1" aria-current="step">Step 1: Membership Conditions</li>
-            <li class="bu-icfi-step-pill" data-mem-pill="2">Step 2: Biodata &amp; Payment</li>
+          <ol class="bu-steps-row bu-steps-row--2" aria-label="Membership progress">
+            <li class="bu-step-pill" data-mem-pill="1" aria-current="step">Step 1: Conditions</li>
+            <li class="bu-step-pill" data-mem-pill="2">Step 2: Biodata &amp; Payment</li>
           </ol>
 
           <form id="bu-mem-form" aria-labelledby="bu-tab-mem" method="POST" novalidate>
@@ -1475,126 +1099,97 @@
               <input type="text" id="bu-mem-hp" name="websiteUrl" tabindex="-1" autocomplete="off">
             </div>
 
-            <!-- STEP 1 -->
             <div data-mem-step="1">
-              <h4 tabindex="-1" style="font-size:1.25rem; margin-bottom:16px;">1. Important Membership Information and Conditions</h4>
-              <div class="bu-icfi-bento">
-                <div class="bu-icfi-bento__wide">
-                  <div class="bu-icfi-card" style="padding:20px; font-size:12.5px; color:var(--bu-muted); line-height:1.65; margin-bottom:18px;">
-                    <div style="font-weight:700; color:var(--bu-navy); font-size:14px; margin-bottom:8px;">IMPORTANT MEMBERSHIP INFORMATION AND CONDITIONS</div>
-                    <p style="margin:0 0 8px;"><strong>Annual Membership Fee:</strong> US$5 (approximately ₦7,000), payable upon registration and renewable annually.</p>
-                    <p style="margin:0 0 8px;"><strong>Membership Renewal:</strong> Valid for one year from registration date and renewed annually to retain active privileges.</p>
-                    <p style="margin:0 0 8px;"><strong>Voting Rights &amp; Virtual Meetings:</strong> Active members hold voting rights on Community matters and participate in virtual meetings.</p>
-                    <p style="margin:0 0 8px;"><strong>Concessions on Paid Events:</strong> Active members receive concessions (including ₦10,000 off ICFI conference fees).</p>
-                    <p style="margin:0;"><strong>Commitment &amp; Communication:</strong> Members uphold ICFI values and provide reachable official contact details.</p>
+              <h4 tabindex="-1" style="font-size:1.25rem; color:var(--bu-navy) !important; margin-bottom:16px;">1. Important Membership Information and Conditions</h4>
+              <div class="bu-g12" style="align-items:start;">
+                <div class="bu-c8">
+                  <div class="bu-card-box" style="padding:20px; font-size:12.5px; color:var(--bu-muted); margin-bottom:16px;">
+                    <div style="font-weight:700; color:var(--bu-canonical); font-size:14px; margin-bottom:8px;">IMPORTANT MEMBERSHIP INFORMATION AND CONDITIONS</div>
+                    <p style="margin:0 0 8px;"><strong style="color:var(--bu-navy);">Annual Membership Fee:</strong> US$5 (approximately ₦7,000), payable upon registration and renewable annually.</p>
+                    <p style="margin:0 0 8px;"><strong style="color:var(--bu-navy);">Membership Renewal:</strong> Valid for one year from registration date and renewed annually to retain active privileges.</p>
+                    <p style="margin:0 0 8px;"><strong style="color:var(--bu-navy);">Voting Rights &amp; Virtual Meetings:</strong> Active members hold voting rights on Community matters and participate in virtual meetings.</p>
+                    <p style="margin:0 0 8px;"><strong style="color:var(--bu-navy);">Concessions on Paid Events:</strong> Active members receive discounted registration fees (up to ₦10,000 off ICFI fees).</p>
+                    <p style="margin:0;"><strong style="color:var(--bu-navy);">Commitment &amp; Communication:</strong> Members uphold ICFI values and provide reachable official contact details.</p>
                   </div>
 
-                  <fieldset class="bu-icfi-fieldset">
-                    <legend class="bu-icfi-legend">Do you agree to the ICFI membership conditions above? *</legend>
-                    <div class="bu-icfi-choice-group bu-icfi-choice-grid" data-group-required="conditionsChoice">
+                  <fieldset class="bu-fieldset">
+                    <legend class="bu-legend">Do you agree to the ICFI membership conditions above? *</legend>
+                    <div class="bu-choice-group bu-g2" style="gap:12px;" data-group-required="conditionsChoice">
                       <div>
-                        <input class="bu-icfi-choice" type="radio" name="conditionsChoice" id="bu-m-agree" value="I agree" required>
-                        <label for="bu-m-agree" class="bu-icfi-choice-card"><span class="bu-icfi-radio-dot"></span><strong>I agree</strong></label>
+                        <input class="bu-choice" type="radio" name="conditionsChoice" id="bu-m-agree" value="I agree" required>
+                        <label for="bu-m-agree" class="bu-choice-card"><span class="bu-radio-dot"></span><strong>I agree</strong></label>
                       </div>
                       <div>
-                        <input class="bu-icfi-choice" type="radio" name="conditionsChoice" id="bu-m-disagree" value="I disagree" required>
-                        <label for="bu-m-disagree" class="bu-icfi-choice-card"><span class="bu-icfi-radio-dot"></span><strong>I disagree</strong></label>
+                        <input class="bu-choice" type="radio" name="conditionsChoice" id="bu-m-disagree" value="I disagree" required>
+                        <label for="bu-m-disagree" class="bu-choice-card"><span class="bu-radio-dot"></span><strong>I disagree</strong></label>
                       </div>
                     </div>
-                    <div class="bu-icfi-error">&#10060; Please choose I agree or I disagree.</div>
+                    <div class="bu-error-msg">&#10060; Please choose I agree or I disagree.</div>
                   </fieldset>
 
-                  <div id="bu-mem-disagree-box" hidden class="bu-icfi-card" style="padding:16px; background:#fffbeb; border-color:var(--bu-gold); margin-bottom:14px; font-size:13px;">
+                  <div id="bu-mem-disagree-box" hidden class="bu-card-box" style="padding:16px; background:#fffbeb; border-color:#f59e0b; margin-bottom:14px; font-size:13px;">
                     <strong>Agreement is required to join ICFI.</strong> You can still register for the 7th ICFI 2027 Conference as a non-member.
-                    <div style="margin-top:10px;"><button type="button" class="bu-icfi-btn bu-icfi-btn--primary" onclick="buIcfiOpenTab('conference')">Go to Conference Registration &rarr;</button></div>
+                    <div style="margin-top:10px;"><button type="button" class="bu-btn bu-btn-navy bu-btn-pill" onclick="buIcfiOpenTab('conference')">Go to Conference Registration &rarr;</button></div>
                   </div>
                 </div>
-
-                <aside class="bu-icfi-bento__narrow bu-icfi-aside-sticky">
-                  <div style="font-size:11px; font-weight:700; color:var(--bu-gold); text-transform:uppercase;">Annual Subscription</div>
-                  <div style="font-family:var(--bu-font-heading); font-size:2rem; font-weight:700; color:var(--bu-gold); margin-top:8px;">US$5 / ₦7,000</div>
-                  <div style="font-size:12.5px; color:#e2e8f0; margin-top:6px;">Local (NGN): UBA Plc • Babcock MFB <strong>1020069501</strong><br>Intl (USD): GTBank <strong>0829898610</strong></div>
+                <aside class="bu-c4 bu-aside-sticky">
+                  <div style="font-size:11px; font-weight:700; color:var(--bu-gold-accent); text-transform:uppercase;">Annual Subscription</div>
+                  <div style="font-family:var(--bu-font-serif); font-size:2rem; font-weight:700; color:var(--bu-gold-accent); margin-top:8px;">US$5 / ₦7,000</div>
+                  <div style="font-size:12px; color:#e2e8f0; margin-top:6px;">Local (NGN): UBA Plc • Babcock MFB <strong>1020069501</strong><br>Intl (USD): GTBank <strong>0829898610</strong></div>
                 </aside>
               </div>
               <div style="display:flex; justify-content:flex-end;">
-                <button type="button" id="bu-mem-next-btn" class="bu-icfi-btn bu-icfi-btn--primary" onclick="buIcfiMemNext()">Continue to Biodata &rarr;</button>
+                <button type="button" id="bu-mem-next-btn" class="bu-btn bu-btn-navy bu-btn-pill" onclick="buIcfiMemNext()">Continue to Biodata &rarr;</button>
               </div>
             </div>
 
-            <!-- STEP 2 -->
             <div data-mem-step="2" hidden>
-              <h4 tabindex="-1" style="font-size:1.25rem; margin-bottom:16px;">2. Biodata &amp; Evidence of Payment</h4>
-              <div class="bu-icfi-field-grid">
-                <div>
-                  <label for="bu-m-name" class="bu-icfi-label">Name *</label>
-                  <input type="text" id="bu-m-name" name="fullName" required autocomplete="name" data-error="bu-me-name" class="bu-icfi-input">
-                  <div id="bu-me-name" class="bu-icfi-error">&#10060; Please enter your full name.</div>
+              <h4 tabindex="-1" style="font-size:1.25rem; color:var(--bu-navy) !important; margin-bottom:16px;">2. Biodata &amp; Evidence of Payment</h4>
+              <div class="bu-field-grid">
+                <div><label for="bu-m-name" class="bu-label">Name *</label><input type="text" id="bu-m-name" name="fullName" required autocomplete="name" class="bu-reg-input"><div class="bu-error-msg">&#10060; Enter your full name.</div></div>
+                <div><label for="bu-m-prof" class="bu-label">Profession *</label><input type="text" id="bu-m-prof" name="profession" required autocomplete="organization-title" class="bu-reg-input"><div class="bu-error-msg">&#10060; Enter your profession.</div></div>
+                <div class="bu-full">
+                  <label for="bu-m-addr" class="bu-label">Full Institutional Address *</label>
+                  <span id="bu-mh-addr" class="bu-hint">e.g., Babcock University, Ilishan-Remo, Ogun State, Nigeria.</span>
+                  <input type="text" id="bu-m-addr" name="institutionalAddress" required autocomplete="street-address" aria-describedby="bu-mh-addr" class="bu-reg-input">
+                  <div class="bu-error-msg">&#10060; Enter full institutional address.</div>
                 </div>
-                <div>
-                  <label for="bu-m-prof" class="bu-icfi-label">Profession *</label>
-                  <input type="text" id="bu-m-prof" name="profession" required autocomplete="organization-title" data-error="bu-me-prof" class="bu-icfi-input">
-                  <div id="bu-me-prof" class="bu-icfi-error">&#10060; Please enter your profession.</div>
-                </div>
-                <div class="bu-icfi-field--full">
-                  <label for="bu-m-addr" class="bu-icfi-label">Full Institutional Address *</label>
-                  <span id="bu-mh-addr" class="bu-icfi-hint">e.g., Babcock University, Ilishan-Remo, Ogun State, Nigeria.</span>
-                  <input type="text" id="bu-m-addr" name="institutionalAddress" required autocomplete="street-address" aria-describedby="bu-mh-addr" data-error="bu-me-addr" class="bu-icfi-input">
-                  <div id="bu-me-addr" class="bu-icfi-error">&#10060; Please enter your full institutional address.</div>
-                </div>
-                <div>
-                  <label for="bu-m-cell" class="bu-icfi-label">Cell Phone *</label>
-                  <input type="tel" id="bu-m-cell" name="cellPhone" required autocomplete="tel" data-error="bu-me-cell" class="bu-icfi-input">
-                  <div id="bu-me-cell" class="bu-icfi-error">&#10060; Enter cell phone number.</div>
-                </div>
+                <div><label for="bu-m-cell" class="bu-label">Cell Phone *</label><input type="tel" id="bu-m-cell" name="cellPhone" required autocomplete="tel" class="bu-reg-input"><div class="bu-error-msg">&#10060; Enter cell phone number.</div></div>
                 <div>
                   <div style="display:flex; justify-content:space-between; align-items:center;">
-                    <label for="bu-m-wa" class="bu-icfi-label">WhatsApp Contact *</label>
-                    <button type="button" onclick="buIcfiCopyCell()" style="border:0; background:none; color:var(--bu-gold-deep); font-size:11.5px; font-weight:700; cursor:pointer; padding:0;">Same as Cell</button>
+                    <label for="bu-m-wa" class="bu-label">WhatsApp Contact *</label>
+                    <button type="button" onclick="buIcfiCopyCell()" style="border:0; background:none; color:var(--bu-blue); font-size:11.5px; font-weight:700; cursor:pointer; padding:0;">Same as Cell</button>
                   </div>
-                  <input type="tel" id="bu-m-wa" name="whatsappContact" required autocomplete="tel" data-error="bu-me-wa" class="bu-icfi-input">
-                  <div id="bu-me-wa" class="bu-icfi-error">&#10060; Enter WhatsApp contact number.</div>
+                  <input type="tel" id="bu-m-wa" name="whatsappContact" required autocomplete="tel" class="bu-reg-input">
+                  <div class="bu-error-msg">&#10060; Enter WhatsApp contact number.</div>
                 </div>
-                <div>
-                  <label for="bu-m-email" class="bu-icfi-label">E-mail Address *</label>
-                  <input type="email" id="bu-m-email" name="email" required autocomplete="email" autocorrect="off" autocapitalize="none" spellcheck="false" data-error="bu-me-email" class="bu-icfi-input">
-                  <div id="bu-me-email" class="bu-icfi-error">&#10060; Enter valid e-mail address.</div>
-                </div>
-                <div>
-                  <label for="bu-m-date" class="bu-icfi-label">Registration Date *</label>
-                  <input type="date" id="bu-m-date" name="registrationDate" required data-error="bu-me-date" class="bu-icfi-input">
-                  <div id="bu-me-date" class="bu-icfi-error">&#10060; Select registration date.</div>
-                </div>
-                <div class="bu-icfi-field--full bu-icfi-card" style="padding:18px; border-radius:16px;">
-                  <label for="bu-mem-file" class="bu-icfi-label">Attach evidence of payment *</label>
-                  <span id="bu-hint-m-file" class="bu-icfi-hint">Upload 1 supported file: PDF or image. Max 10 MB.</span>
-                  <div class="bu-icfi-file-wrap">
-                    <input type="file" id="bu-mem-file" name="paymentEvidence" required accept=".pdf,image/*" aria-describedby="bu-hint-m-file" class="bu-icfi-file">
-                  </div>
+                <div><label for="bu-m-email" class="bu-label">E-mail Address *</label><input type="email" id="bu-m-email" name="email" required autocomplete="email" autocorrect="off" autocapitalize="none" spellcheck="false" class="bu-reg-input"><div class="bu-error-msg">&#10060; Enter valid e-mail address.</div></div>
+                <div><label for="bu-m-date" class="bu-label">Registration Date *</label><input type="date" id="bu-m-date" name="registrationDate" required class="bu-reg-input"><div class="bu-error-msg">&#10060; Select registration date.</div></div>
+                <div class="bu-full bu-card-box" style="padding:18px; border-radius:16px;">
+                  <label for="bu-mem-file" class="bu-label">Attach evidence of payment *</label>
+                  <span id="bu-hint-m-file" class="bu-hint">Upload 1 supported file: PDF or image. Max 10 MB.</span>
+                  <div class="bu-file-wrap"><input type="file" id="bu-mem-file" name="paymentEvidence" required accept=".pdf,image/*" aria-describedby="bu-hint-m-file" class="bu-file"></div>
                   <div id="bu-prev-m-file" style="font-size:12px; color:#047857; margin-top:6px;" hidden></div>
-                  <div class="bu-icfi-error">&#10060; Please attach membership payment evidence (max 10 MB).</div>
+                  <div class="bu-error-msg">&#10060; Please attach membership payment evidence (max 10 MB).</div>
                 </div>
               </div>
-
               <div id="bu-mem-feedback" role="alert" hidden style="margin-top:14px; padding:12px 16px; border-radius:12px; font-size:12.5px; font-weight:600;"></div>
-
-              <div style="display:flex; justify-content:space-between; margin-top:22px; gap:12px;">
-                <button type="button" class="bu-icfi-btn bu-icfi-btn--outline" onclick="buIcfiMemGo(1)">&larr; Back</button>
-                <button type="submit" id="bu-mem-submit" class="bu-icfi-btn bu-icfi-btn--gold">Submit Membership Application &rarr;</button>
+              <div style="display:flex; justify-content:space-between; margin-top:20px; gap:12px;">
+                <button type="button" class="bu-btn bu-btn-outline bu-btn-pill" onclick="buIcfiMemGo(1)">&larr; Back</button>
+                <button type="submit" id="bu-mem-submit" class="bu-btn bu-btn-gold bu-btn-pill">Submit Membership Application &rarr;</button>
               </div>
             </div>
           </form>
 
-          <div id="bu-mem-success" hidden role="status" class="bu-icfi-card" style="text-align:center; border-color:#10b981;">
+          <div id="bu-mem-success" hidden role="status" class="bu-card-box" style="text-align:center; border-color:#10b981;">
             <div style="font-size:28px; color:#047857; font-weight:700;">&#10003;</div>
-            <h4 tabindex="-1" id="bu-mem-suc-h" style="font-size:1.5rem; margin-top:8px;">Membership Application Received</h4>
-            <p style="font-size:13.5px; color:var(--bu-muted); margin:8px auto;">Your ICFI membership biodata and payment evidence have been recorded.</p>
-            <div style="display:inline-block; background:var(--bu-card-tint); padding:8px 16px; border-radius:10px; font-size:13px; margin:8px 0;">
-              Membership Ref ID: <strong id="bu-mem-suc-id">—</strong>
-            </div>
+            <h4 tabindex="-1" id="bu-mem-suc-h" style="font-size:1.5rem; margin-top:8px;">Membership Application Received!</h4>
+            <p style="font-size:13.5px; color:var(--bu-muted); margin:8px auto;">Your ICFI membership biodata and payment evidence have been recorded for verification.</p>
+            <div style="display:inline-block; background:var(--bu-tint); padding:8px 16px; border-radius:10px; font-size:13px; margin:8px 0;">Membership Ref ID: <strong id="bu-mem-suc-id">—</strong></div>
             <div id="bu-mem-suc-sum" style="font-size:12.5px; color:var(--bu-muted);"></div>
             <div style="margin-top:16px; display:flex; flex-wrap:wrap; justify-content:center; gap:10px;">
-              <button type="button" class="bu-icfi-btn bu-icfi-btn--primary" onclick="buIcfiOpenTab('conference')">Continue to Conference Registration &rarr;</button>
-              <button type="button" class="bu-icfi-btn bu-icfi-btn--outline" onclick="buIcfiResetMem()">Submit Another</button>
+              <button type="button" class="bu-btn bu-btn-navy bu-btn-pill" onclick="buIcfiOpenTab('conference')">Continue to 7th ICFI Registration &rarr;</button>
+              <button type="button" class="bu-btn bu-btn-mist bu-btn-pill" onclick="buIcfiResetMem()">Submit Another</button>
             </div>
           </div>
         </div>
@@ -1602,72 +1197,146 @@
     </div>
   </div>
 
-  <!-- ================= BAND 6: IJFI JOURNAL & ARCHIVE STORIES (MIST) ================= -->
-  <div class="bu-icfi-band bu-icfi-band--mist" id="bu-icfi-ijfi">
-    <div class="bu-icfi-inner">
-      <div class="bu-icfi-sec-head">
-        <div>
-          <span class="bu-icfi-eyebrow">Official Journal &amp; Highlights</span>
-          <h2 class="bu-icfi-h2" style="margin-top:12px;">From our IJFI Journal &amp; Past Papers</h2>
-          <p class="bu-icfi-lead">Peer-reviewed scholarship, 5th ICFI video highlights, and alumni conference moments.</p>
+  <!-- 8. IJFI JOURNAL, VIDEO RECAP, PAST PAPERS, PHOTO GALLERY, FAQS & SECRETARIAT (MIST) -->
+  <div class="bu-icfi-band-mist" id="bu-icfi-ijfi">
+    <div class="bu-icfi-container" style="display:grid; gap:48px;">
+      <div>
+        <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-end; gap:14px; margin-bottom:28px;">
+          <div>
+            <span style="display:inline-flex; align-items:center; gap:8px; padding:4px 12px; border-radius:999px; background:#ffffff; border:1px solid var(--bu-border); font-size:11px; font-weight:700; text-transform:uppercase;">
+              <span style="width:8px; height:8px; border-radius:50%; background:#dc2626;"></span> Official Journal &amp; Broadcasts
+            </span>
+            <h2 style="font-size:clamp(1.75rem, 3.2vw, 2.35rem); margin-top:10px;">From our IJFI Journal &amp; Past Papers</h2>
+            <p style="font-size:14px; color:var(--bu-muted); margin:4px 0 0;">Peer-reviewed scholarship, conference highlights, and downloadable proceedings.</p>
+          </div>
+          <span style="padding:7px 14px; border-radius:999px; background:#ffffff; border:1px solid var(--bu-border); font-size:12px; font-weight:700;">4 Peer-Reviewed Papers • IJFI Portal</span>
         </div>
-        <button type="button" class="bu-icfi-btn bu-icfi-btn--gold" onclick="buIcfiOpenTab('membership')">Join Community &rarr;</button>
-      </div>
 
-      <div class="bu-icfi-bento">
-        <div class="bu-icfi-bento__half bu-icfi-card">
-          <img src="https://babcock-icfi-2027.netlify.app/img/journal.jpg" alt="International Journal for Faith Integration" style="width:100%; border-radius:16px; aspect-ratio:16/9; object-fit:cover; margin-bottom:16px;">
-          <h3 style="font-size:1.3rem;">International Journal for Faith Integration (IJFI)</h3>
-          <p style="font-size:13px; color:var(--bu-muted); margin:8px 0 16px;">Every accepted ICFI 2027 paper qualifies for free double-blind peer-reviewed publication in IJFI.</p>
-          <div style="display:flex; flex-wrap:wrap; gap:12px;">
-            <a href="https://babcock-icfi-2027.netlify.app/ijml.html" target="_blank" rel="noopener" class="bu-icfi-link">Open Journal Portal &rarr;</a>
-            <button type="button" onclick="buIcfiOpenTab('membership')" style="border:0; background:none; cursor:pointer;" class="bu-icfi-link">Apply for Membership &rarr;</button>
+        <div class="bu-g2" style="margin-bottom:26px;">
+          <div class="bu-card-box" style="padding:0; overflow:hidden; display:flex; flex-direction:column; justify-content:space-between;">
+            <div>
+              <img src="https://babcock.edu.ng/storage/media/95e43907-6bd3-4594-888c-b569f92cbe26.jpg" alt="International Journal for Faith Integration volumes" style="width:100%; aspect-ratio:16/9; object-fit:cover;">
+              <div style="padding:22px;">
+                <h3 style="font-size:1.25rem;">International Journal for Faith Integration (IJFI)</h3>
+                <p style="font-size:12.5px; color:var(--bu-muted); margin:8px 0 12px;">Every accepted ICFI 2027 paper qualifies for free double-blind peer-reviewed publication in IJFI. Join the ICFI community for year-round member rates.</p>
+                <div style="display:flex; align-items:center; gap:8px; font-size:12px; color:var(--bu-muted);">
+                  <img src="https://babcock.edu.ng/storage/media/01010f22-27ad-4a14-a87a-4f22b8e01798.png" alt="ICFI" style="width:20px; height:20px; border-radius:50%; object-fit:cover;">
+                  <span>@BabcockICFI • Bi-Annual Journal</span>
+                </div>
+              </div>
+            </div>
+            <div style="padding:0 22px 22px; display:flex; gap:10px;">
+              <a href="https://babcock-icfi-2027.netlify.app/ijml.html" target="_blank" rel="noopener" class="bu-btn bu-btn-outline bu-btn-pill" style="flex:1; min-height:40px; padding:8px 14px; font-size:12px;">Journal Portal &rarr;</a>
+              <button type="button" class="bu-btn bu-btn-gold bu-btn-pill" style="min-height:40px; padding:8px 16px; font-size:12px;" onclick="buIcfiOpenTab('membership')">Join Community</button>
+            </div>
+          </div>
+
+          <div class="bu-card-box" style="padding:0; overflow:hidden; display:flex; flex-direction:column; justify-content:space-between;">
+            <div>
+              <div style="position:relative; aspect-ratio:16/9; background:#e2e8f0;">
+                <img src="https://babcock.edu.ng/storage/media/697a75eb-5574-41f9-a5e2-39d82efba2a9.jpg" alt="Keynote Session at Babcock University" style="width:100%; height:100%; object-fit:cover;">
+                <div style="position:absolute; inset:0; background:rgba(0,0,0,0.2); display:flex; align-items:center; justify-content:center;">
+                  <div style="width:48px; height:48px; border-radius:50%; background:#dc2626; color:#ffffff; display:flex; align-items:center; justify-content:center; font-size:14px;">&#9654;</div>
+                </div>
+              </div>
+              <div style="padding:22px;">
+                <h3 style="font-size:1.25rem;">5th ICFI Conference Video Recap (2023)</h3>
+                <p style="font-size:12.5px; color:var(--bu-muted); margin:8px 0 12px;">Watch highlights from plenary sessions, panel discussions, and international fellowship on campus at Babcock University, Ilishan-Remo.</p>
+                <div style="display:flex; align-items:center; gap:8px; font-size:12px; color:var(--bu-muted);">
+                  <img src="https://babcock.edu.ng/storage/media/9d0ee291-0129-4905-9534-5c36f84e7e8c.jpg" alt="BU" style="width:20px; height:20px; border-radius:4px; object-fit:contain; background:#ffffff;">
+                  <span>@BabcockUniversityTV • Highlight Film</span>
+                </div>
+              </div>
+            </div>
+            <div style="padding:0 22px 22px;">
+              <a href="https://youtu.be/QnzxBpBPwrc" target="_blank" rel="noopener" class="bu-btn bu-btn-outline bu-btn-pill" style="width:100%; min-height:40px; padding:8px 14px; font-size:12px;">Watch Video &rarr;</a>
+            </div>
           </div>
         </div>
-        <div class="bu-icfi-bento__half bu-icfi-card">
-          <img src="https://babcock-icfi-2027.netlify.app/img/gal_2.jpg" alt="5th ICFI Keynote Session" style="width:100%; border-radius:16px; aspect-ratio:16/9; object-fit:cover; margin-bottom:16px;">
-          <h3 style="font-size:1.3rem;">5th ICFI Conference Video Recap (2023)</h3>
-          <p style="font-size:13px; color:var(--bu-muted); margin:8px 0 16px;">Plenary highlights, panel discussions, and international fellowship on campus at Babcock University.</p>
-          <a href="https://youtu.be/QnzxBpBPwrc" target="_blank" rel="noopener" class="bu-icfi-link">Watch Full Video Recap &rarr;</a>
+
+        <div class="bu-g4">
+          <a href="https://babcock-icfi-2027.netlify.app/FIPP%20Conference/INTEGRATING%20FAITH%20INTO%20LEARNING-SOCIAL%20WORK%20CLASS%20EXPERIENCES%20IN%20BABCOCK%20UNIVERSITY.pdf" target="_blank" rel="noopener" class="bu-card-box" style="padding:18px; display:flex; flex-direction:column; justify-content:space-between;">
+            <div><span style="font-size:10px; font-weight:700; color:var(--bu-gold); text-transform:uppercase;">Social Work • PDF</span><h4 style="font-size:14px; font-family:var(--bu-font-sans); margin-top:6px;">Integrating Faith into Learning: Social Work Class Experiences</h4></div>
+            <span style="margin-top:14px; text-align:center; padding:8px; border-radius:999px; border:1px solid var(--bu-border); font-size:12px; font-weight:700;">Download PDF &rarr;</span>
+          </a>
+          <a href="https://babcock-icfi-2027.netlify.app/FIPP%20Conference/FAITH%20INTEGRATION%20IN%20INTERNAL%20AUDIT%20AND%20COMPLIANCE%20FUNCTIONS%20OF%20PRIVATE%20UNIVERSITIES%20IN%20NIGERIA-%20THE%20CASE%20OF%20BABCOCK%20UNIVERSITY.pdf" target="_blank" rel="noopener" class="bu-card-box" style="padding:18px; display:flex; flex-direction:column; justify-content:space-between;">
+            <div><span style="font-size:10px; font-weight:700; color:var(--bu-gold); text-transform:uppercase;">Audit &amp; QA • PDF</span><h4 style="font-size:14px; font-family:var(--bu-font-sans); margin-top:6px;">Faith Integration in Internal Audit &amp; Compliance Functions</h4></div>
+            <span style="margin-top:14px; text-align:center; padding:8px; border-radius:999px; border:1px solid var(--bu-border); font-size:12px; font-weight:700;">Download PDF &rarr;</span>
+          </a>
+          <a href="https://babcock-icfi-2027.netlify.app/FIPP%20Conference/2017%20PAPER%20ON%20INTEGRATION%20OF%20FAITH%20IN%20INNOVATIVE%20QUALITY%20EDUCATION%20MANAGEMENT.pdf" target="_blank" rel="noopener" class="bu-card-box" style="padding:18px; display:flex; flex-direction:column; justify-content:space-between;">
+            <div><span style="font-size:10px; font-weight:700; color:var(--bu-gold); text-transform:uppercase;">Education • PDF</span><h4 style="font-size:14px; font-family:var(--bu-font-sans); margin-top:6px;">Integration of Faith in Innovative Quality Education Management</h4></div>
+            <span style="margin-top:14px; text-align:center; padding:8px; border-radius:999px; border:1px solid var(--bu-border); font-size:12px; font-weight:700;">Download PDF &rarr;</span>
+          </a>
+          <a href="https://babcock-icfi-2027.netlify.app/FIPP%20Conference/UNDERSTANDING%20THE%20BIBLICAL%20GRAPH%20REPRESENTATION%20OF%20MATHEW%2022-34-40%20AS%20BASIS%20FOR%20RELATIONAL%20PRINCIPLES%20IN%20NIGERIA%20SOCIO-POLITICAL%20SITUATION.pdf" target="_blank" rel="noopener" class="bu-card-box" style="padding:18px; display:flex; flex-direction:column; justify-content:space-between;">
+            <div><span style="font-size:10px; font-weight:700; color:var(--bu-gold); text-transform:uppercase;">Policy • PDF</span><h4 style="font-size:14px; font-family:var(--bu-font-sans); margin-top:6px;">Biblical Graph Representation of Matthew 22:34–40 in Nigeria</h4></div>
+            <span style="margin-top:14px; text-align:center; padding:8px; border-radius:999px; border:1px solid var(--bu-border); font-size:12px; font-weight:700;">Download PDF &rarr;</span>
+          </a>
         </div>
       </div>
-    </div>
-  </div>
 
-  <!-- ================= BAND 7: FAQ & SECRETARIAT CONTACTS (WHITE) ================= -->
-  <div class="bu-icfi-band" id="bu-icfi-faq">
-    <div class="bu-icfi-inner">
-      <div class="bu-icfi-bento">
-        <div class="bu-icfi-bento__wide">
-          <span class="bu-icfi-eyebrow">Quick Answers</span>
-          <h2 class="bu-icfi-h2" style="margin:12px 0 24px;">Frequently Asked Questions</h2>
+      <!-- Gallery Mosaic -->
+      <div id="bu-icfi-gallery" style="padding-top:24px; border-top:1px solid var(--bu-border);">
+        <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-end; gap:14px; margin-bottom:20px;">
+          <div>
+            <h3 style="font-size:clamp(1.5rem, 2.5vw, 1.9rem);">Campus Gatherings Gallery</h3>
+            <p style="font-size:12.5px; color:var(--bu-muted); margin:4px 0 0;">Moments from earlier ICFI editions at Babcock University.</p>
+          </div>
+          <div style="display:flex; gap:10px; font-size:12px;">
+            <a href="https://babcock-icfi-2027.netlify.app/gallery%202019.html" target="_blank" rel="noopener" class="bu-btn bu-btn-outline bu-btn-pill" style="min-height:38px; padding:6px 14px; font-size:12px;">2019 Gallery &rarr;</a>
+            <a href="https://babcock-icfi-2027.netlify.app/gallery.html" target="_blank" rel="noopener" class="bu-btn bu-btn-outline bu-btn-pill" style="min-height:38px; padding:6px 14px; font-size:12px;">2017 Gallery &rarr;</a>
+          </div>
+        </div>
 
-          <details class="bu-icfi-faq" open>
-            <summary><span>How do I submit my abstract and full paper?</span><span class="bu-icfi-faq-plus">+</span></summary>
-            <div class="bu-icfi-faq-body">Send your 250-word abstract in Times New Roman 12pt (.doc or .docx) to <strong>icfi@babcock.edu.ng</strong> by March 24, 2027. Full papers are due May 9, 2027.</div>
+        <div class="bu-g12">
+          <div class="bu-c6 bu-card-box" style="padding:8px;">
+            <img src="https://babcock.edu.ng/storage/media/5b13e6f7-b132-47ff-a03d-9f229521d297.jpg" alt="University leadership outside hall" style="width:100%; height:316px; object-fit:cover; border-radius:14px;">
+          </div>
+          <div class="bu-c6 bu-g2" style="gap:14px;">
+            <div class="bu-card-box" style="padding:6px; border-radius:16px;"><img src="https://babcock.edu.ng/storage/media/249345b6-cf7c-45a0-ac32-1cee970ce21a.jpg" alt="Delegates seated in session" style="width:100%; height:148px; object-fit:cover; border-radius:12px;"></div>
+            <div class="bu-card-box" style="padding:6px; border-radius:16px;"><img src="https://babcock.edu.ng/storage/media/697a75eb-5574-41f9-a5e2-39d82efba2a9.jpg" alt="Speaker at ICFI podium" style="width:100%; height:148px; object-fit:cover; border-radius:12px;"></div>
+            <div class="bu-card-box" style="padding:6px; border-radius:16px;"><img src="https://babcock.edu.ng/storage/media/4399208c-2bc4-4709-bd8a-712f27647d9e.jpg" alt="Engaged scholars" style="width:100%; height:148px; object-fit:cover; border-radius:12px;"></div>
+            <div class="bu-card-box" style="padding:6px; border-radius:16px;"><img src="https://babcock.edu.ng/storage/media/a03fc8f8-a2e2-4fb4-849c-58688ec3c68a.jpg" alt="Parallel workshop" style="width:100%; height:148px; object-fit:cover; border-radius:12px;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQs & Conference Secretariat -->
+      <div class="bu-g12" style="align-items:start;" id="bu-icfi-faq">
+        <div class="bu-c7">
+          <h3 style="font-size:1.55rem; margin-bottom:16px;">Frequently Asked Questions</h3>
+          <details class="bu-faq-item" open>
+            <summary><span>How do I arrange campus accommodation?</span><span class="bu-faq-plus" style="color:var(--bu-gold); font-size:18px;">+</span></summary>
+            <p style="font-size:12.5px; color:var(--bu-muted); margin:10px 0 0;">On-campus lodging (Babcock Guest House, Havillah Cottage, or Royal Cream Suite) is available for an additional fee. Contact <strong style="color:var(--bu-navy);">Dr. Nnenna Nwobi at +234 813 538 8049</strong>.</p>
           </details>
-          <details class="bu-icfi-faq">
-            <summary><span>How does the ICFI Member ₦10,000 discount work?</span><span class="bu-icfi-faq-plus">+</span></summary>
-            <div class="bu-icfi-faq-body">Registered ICFI community members receive ₦10,000 off the standard ₦50,000 fee and retain Early Bird rates (₦40,000 / $80) year-round, including after April 23, 2027.</div>
+          <details class="bu-faq-item">
+            <summary><span>How does the ₦10,000 community member discount work?</span><span class="bu-faq-plus" style="color:var(--bu-gold); font-size:18px;">+</span></summary>
+            <p style="font-size:12.5px; color:var(--bu-muted); margin:10px 0 0;">Registered members of ICFI receive ₦10,000 off the standard ₦50,000 fee and retain Early Bird rates (₦40,000 / $80) even after April 23, 2027.</p>
           </details>
-          <details class="bu-icfi-faq">
-            <summary><span>Is campus accommodation available for visiting delegates?</span><span class="bu-icfi-faq-plus">+</span></summary>
-            <div class="bu-icfi-faq-body">Yes—campus and partner accommodation is available for an additional fee. Contact <strong>Dr. Nnenna Nwobi</strong> at <strong>+234 813 538 8049</strong> for room arrangements.</div>
+          <details class="bu-faq-item">
+            <summary><span>Can international or remote scholars present online?</span><span class="bu-faq-plus" style="color:var(--bu-gold); font-size:18px;">+</span></summary>
+            <p style="font-size:12.5px; color:var(--bu-muted); margin:10px 0 0;">Yes. Full hybrid participation lets online delegates present live via Zoom, receive digital certificates, and qualify for free IJFI publication.</p>
           </details>
         </div>
 
-        <div class="bu-icfi-bento__narrow">
-          <div class="bu-icfi-card bu-icfi-card--navy">
-            <span style="font-size:11px; font-weight:700; color:var(--bu-gold); text-transform:uppercase; letter-spacing:0.1em;">Secretariat Desk</span>
-            <h3 style="font-size:1.4rem; margin-top:8px;">Need Direct Assistance?</h3>
-            <div style="font-size:13px; color:#cbd5e1; margin-top:14px; display:grid; gap:12px;">
-              <div><strong style="color:#ffffff;">Prof. Constance C. Nwosu</strong><br>Convener • +234 806 463 8207</div>
-              <div><strong style="color:#ffffff;">Dr. O. Olomojobi</strong><br>Manuscripts • 08082334427</div>
-              <div><strong style="color:#ffffff;">Miss Deborah Caleb</strong><br>Registration • 08064007567</div>
-              <div><strong style="color:#ffffff;">Dr. Nnenna Nwobi</strong><br>Accommodation • +234 813 538 8049</div>
+        <div class="bu-c5" style="background:var(--bu-navy); color:#ffffff; border-radius:20px; padding:26px; box-shadow:0 12px 26px rgba(0,48,104,0.2);">
+          <div style="font-size:11px; font-weight:700; text-transform:uppercase; color:var(--bu-gold-accent);">Speak With Our Coordinators</div>
+          <h3 style="font-size:1.5rem; color:#ffffff !important; margin:4px 0 16px;">Conference Secretariat</h3>
+          <div style="display:grid; gap:10px; font-size:12px;">
+            <div style="padding:12px; border-radius:12px; background:rgba(255,255,255,0.1); display:flex; justify-content:space-between; align-items:center; gap:8px;">
+              <div><strong>Dr. Nnenna Nwobi</strong><div style="color:#bfdbfe;">Accommodation Arrangements</div></div>
+              <span style="color:var(--bu-gold-accent); font-weight:700;">+234 813 538 8049</span>
             </div>
-            <div style="margin-top:18px; padding-top:14px; border-top:1px solid rgba(255,255,255,0.16);">
-              <a href="mailto:icfi@babcock.edu.ng" class="bu-icfi-btn bu-icfi-btn--gold" style="width:100%;">Email icfi@babcock.edu.ng &rarr;</a>
+            <div style="padding:12px; border-radius:12px; background:rgba(255,255,255,0.1); display:flex; justify-content:space-between; align-items:center; gap:8px;">
+              <div><strong>Dr. Oluwafemi Olomojobi</strong><div style="color:#bfdbfe;">Abstract Submissions</div></div>
+              <span style="color:var(--bu-gold-accent); font-weight:700;">08082334427</span>
+            </div>
+            <div style="padding:12px; border-radius:12px; background:rgba(255,255,255,0.1); display:flex; justify-content:space-between; align-items:center; gap:8px;">
+              <div><strong>Miss Deborah Caleb</strong><div style="color:#bfdbfe;">Registration &amp; Inquiries</div></div>
+              <span style="color:var(--bu-gold-accent); font-weight:700;">08064007567</span>
+            </div>
+            <div style="padding:12px; border-radius:12px; background:rgba(255,255,255,0.1); display:flex; justify-content:space-between; align-items:center; gap:8px;">
+              <div><strong>Dr. Chinaka Emmanuel</strong><div style="color:#bfdbfe;">Public Relations (PRO)</div></div>
+              <span style="color:var(--bu-gold-accent); font-weight:700;">07089324791</span>
             </div>
           </div>
         </div>
@@ -1677,49 +1346,68 @@
 
 </div>
 
-<!-- ================= 7. VANILLA JS (FILAMENT CMS SAFE, ZERO EXTERNAL SCRIPTS) ================= -->
 <script>
   (function () {
-    const REGISTRATION_ENDPOINT = 'https://script.google.com/macros/s/AKfycbz9qh1-DU-HUGtX924Z2I-82QIpZ119KZYWPvP4IISY9X259M3pU1CnhcyxPKCco8PQ8w/exec';
-    const EARLY_BIRD_MS = new Date('2027-04-23T23:59:59+01:00').getTime();
-    const MAX_BYTES = 10 * 1024 * 1024;
-    const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var REGISTRATION_ENDPOINT = 'https://script.google.com/macros/s/AKfycbz9qh1-DU-HUGtX924Z2I-82QIpZ119KZYWPvP4IISY9X259M3pU1CnhcyxPKCco8PQ8w/exec';
+    var EARLY_BIRD_MS = new Date('2027-04-23T23:59:59+01:00').getTime();
+    var MAX_BYTES = 10 * 1024 * 1024;
+    var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    const daysData = {
+    /* Ticking Countdown Timer */
+    function updateCountdown() {
+      var target = new Date('2027-07-27T09:00:00+01:00').getTime();
+      var diff = Math.max(0, target - Date.now());
+      var d = document.getElementById('bu-cd-days');
+      var h = document.getElementById('bu-cd-hours');
+      var m = document.getElementById('bu-cd-mins');
+      var s = document.getElementById('bu-cd-secs');
+      if (d) d.textContent = Math.floor(diff / 86400000);
+      if (h) h.textContent = String(Math.floor((diff / 3600000) % 24)).padStart(2, '0');
+      if (m) m.textContent = String(Math.floor((diff / 60000) % 60)).padStart(2, '0');
+      if (s) s.textContent = String(Math.floor((diff / 1000) % 60)).padStart(2, '0');
+    }
+    updateCountdown();
+    if (!reduceMotion) setInterval(updateCountdown, 1000);
+
+    /* 6-Day Programme Tabs */
+    var daysData = {
       1: [
-        { time: '09:00 – 13:00', mode: 'Campus & Zoom', title: 'Arrival, Registration & Kit Collection', desc: 'Campus check-in and virtual welcome desk.' },
-        { time: '14:00 – 17:00', mode: 'Plenary', title: 'Opening Ceremony & Keynote Address', desc: 'Chief Host Prof. Afolarin Olutunde Ojewole, Host Prof. Jonathan C. Nwosu, and Convener Prof. Constance C. Nwosu.' }
+        { time: '09:00 – 13:00', mode: 'Campus & Zoom', title: 'Arrival, Registration & Conference Kit Collection', desc: 'Check-in at Babcock University campus or connect through our remote welcome desk.' },
+        { time: '14:00 – 17:00', mode: 'Plenary', title: 'Opening Ceremony & Theme Keynote Address', desc: 'Addresses by Chief Host Prof. Afolarin Olutunde Ojewole, Host Prof. Jonathan C. Nwosu, and Convener Prof. Constance C. Nwosu.' },
+        { time: '18:00 – 19:30', mode: 'Campus', title: 'Welcome Fellowship & Networking Dinner', desc: 'Collegial introductions and interdisciplinary table conversations.' }
       ],
       2: [
-        { time: '08:30 – 10:30', mode: 'Plenary', title: 'Plenary I: Science, Technology & Faith', desc: 'AI ethics, creation stewardship, and living faith.' },
-        { time: '11:00 – 16:30', mode: 'Hybrid + Clinic', title: 'Parallel Tracks & IJFI Publishing Clinic', desc: 'Research presentations and peer-review prep.' }
+        { time: '08:30 – 10:30', mode: 'Plenary', title: 'Plenary I: Science, Technology & Faith Ecosystems', desc: 'Dialogue on artificial intelligence, creation stewardship, and enduring faith values.' },
+        { time: '11:00 – 13:30', mode: 'Hybrid Tracks', title: 'Parallel Sessions: Science, Arts & Technology', desc: 'Research paper presentations with live audience Q&A across Auditorium and Zoom.' },
+        { time: '15:00 – 16:30', mode: 'IJFI Clinic', title: 'IJFI Author & Peer-Review Publishing Clinic', desc: 'Practical preparation for free double-blind peer-reviewed publication in IJFI.' }
       ],
       3: [
-        { time: '08:30 – 13:30', mode: 'Plenary & Tracks', title: 'Plenary II: Leadership, Business & Institutions', desc: 'Ethical finance, governance, and curriculum design.' }
+        { time: '08:30 – 10:30', mode: 'Plenary', title: 'Plenary II: Servant Leadership, Business & Institutional Integrity', desc: 'Cultivating ethical ecosystems across higher education, finance, and governance.' },
+        { time: '11:00 – 13:30', mode: 'Hybrid Tracks', title: 'Parallel Sessions: Leadership, Business & Institutions', desc: 'Case studies in faith-integrated curriculum, management, and compliance audit.' }
       ],
       4: [
-        { time: '09:00 – 16:00', mode: 'Hybrid Tracks', title: 'Religion, Politics & Conference Communique', desc: 'Multicultural community, public policy, and synthesis.' }
+        { time: '09:00 – 11:30', mode: 'Plenary', title: 'Plenary III: Religion, Politics & Public Policy', desc: 'Biblical relational principles, civic duty, justice, and multicultural community.' },
+        { time: '13:00 – 16:00', mode: 'Hybrid Tracks', title: 'Parallel Sessions & Conference Communiqué', desc: 'Research synthesis and collaborative institutional commitments.' }
       ],
       5: [
-        { time: 'Jul 31 – Aug 1', mode: 'Worship & Close', title: 'Sabbath Service, Awards & Farewell', desc: 'Certificate presentation and delegate departures.' }
+        { time: 'Jul 31 · Sat', mode: 'Worship', title: 'Sabbath Worship, Thanksgiving & Closing Awards', desc: 'Inspirational Sabbath service at Babcock University and presentation of certificates.' },
+        { time: 'Aug 1 · Sun', mode: 'Departure', title: 'Farewell Breakfast & Departures', desc: 'Safe journeys for local and international delegates.' }
       ]
     };
 
     window.buIcfiSetDay = function (d, btn) {
-      document.querySelectorAll('#bu-icfi-roadmap .bu-icfi-tab-btn').forEach(function (b) {
-        b.classList.toggle('is-active', b === btn);
-      });
+      document.querySelectorAll('#bu-icfi-roadmap .bu-tab-btn').forEach(function (b) { b.classList.toggle('is-active', b === btn); });
       var list = document.getElementById('bu-icfi-prog-list');
       if (!list) return;
       list.innerHTML = daysData[d].map(function (r) {
-        return '<div class="bu-icfi-prog-item">'
-          + '<div style="font-size:12px; font-weight:700; color:var(--bu-gold-deep);">' + r.time + '</div>'
-          + '<div><div style="font-weight:700; font-size:14px;">' + r.title + '</div><div style="font-size:12.5px; color:var(--bu-muted);">' + r.desc + '</div></div>'
+        return '<div class="bu-prog-row">'
+          + '<div style="font-size:12px; font-weight:700; color:var(--bu-gold-band);">' + r.time + '</div>'
+          + '<div><div style="font-weight:700; font-size:14px;">' + r.title + '</div><div style="font-size:12px; color:var(--bu-muted);">' + r.desc + '</div></div>'
           + '<div style="font-size:11px; font-weight:700; text-transform:uppercase; color:var(--bu-navy);">' + r.mode + '</div>'
           + '</div>';
       }).join('');
     };
-    window.buIcfiSetDay(1, document.querySelector('#bu-icfi-roadmap .bu-icfi-tab-btn'));
+    window.buIcfiSetDay(1, document.querySelector('#bu-icfi-roadmap .bu-tab-btn'));
 
     var activeCur = 'NGN';
     window.buIcfiSetCurrency = function (cur) {
@@ -1738,19 +1426,7 @@
       setTimeout(function () { btn.textContent = orig; }, 1600);
     };
 
-    function updateCountdown() {
-      var target = new Date('2027-07-27T09:00:00+01:00').getTime();
-      var diff = Math.max(0, target - Date.now());
-      var d = document.getElementById('bu-cd-days');
-      var h = document.getElementById('bu-cd-hours');
-      var m = document.getElementById('bu-cd-mins');
-      if (d) d.textContent = Math.floor(diff / 86400000);
-      if (h) h.textContent = String(Math.floor((diff / 3600000) % 24)).padStart(2, '0');
-      if (m) m.textContent = String(Math.floor((diff / 60000) % 60)).padStart(2, '0');
-    }
-    updateCountdown();
-    if (!reduceMotion) setInterval(updateCountdown, 60000);
-
+    /* Accessible Forms & Google Sheet Portal Logic */
     var regForm = document.getElementById('bu-reg-form');
     var memForm = document.getElementById('bu-mem-form');
     if (!regForm || !memForm) return;
@@ -1776,24 +1452,16 @@
 
     function wireA11y(formEl) {
       formEl.querySelectorAll('input:not([type="radio"]):not([type="file"]), select, textarea').forEach(syncField);
-      formEl.addEventListener('blur', function (e) {
-        dirty.set(e.target, { blurred: true });
-        syncField(e.target);
-      }, true);
-      formEl.addEventListener('input', function (e) {
-        if (e.target.hasAttribute('aria-invalid')) syncField(e.target);
-      });
-      formEl.addEventListener('invalid', function (e) {
-        dirty.set(e.target, { blurred: true });
-        syncField(e.target);
-      }, true);
+      formEl.addEventListener('blur', function (e) { dirty.set(e.target, { blurred: true }); syncField(e.target); }, true);
+      formEl.addEventListener('input', function (e) { if (e.target.hasAttribute('aria-invalid')) syncField(e.target); });
+      formEl.addEventListener('invalid', function (e) { dirty.set(e.target, { blurred: true }); syncField(e.target); }, true);
     }
     wireA11y(regForm);
     wireA11y(memForm);
 
     function wireFile(inputEl, previewId, store, key) {
       var prev = document.getElementById(previewId);
-      var wrap = inputEl.closest('.bu-icfi-file-wrap');
+      var wrap = inputEl.closest('.bu-file-wrap');
       inputEl.addEventListener('change', function () {
         if (wrap) wrap.classList.remove('has-error');
         var file = inputEl.files && inputEl.files[0];
@@ -1835,17 +1503,13 @@
       stepEl.querySelectorAll('input[type="file"]').forEach(function (f) {
         if (f.closest('[hidden]')) return;
         var ok = !f.required || Boolean(files[f.name]);
-        var w = f.closest('.bu-icfi-file-wrap');
+        var w = f.closest('.bu-file-wrap');
         if (w) w.classList.toggle('has-error', !ok);
         if (!ok && !first) first = f;
       });
       stepEl.querySelectorAll('input:not([type="radio"]):not([type="file"]), select, textarea').forEach(function (el) {
         if (el.closest('[hidden]')) return;
-        if (!el.checkValidity()) {
-          dirty.set(el, { blurred: true });
-          syncField(el);
-          if (!first) first = el;
-        }
+        if (!el.checkValidity()) { dirty.set(el, { blurred: true }); syncField(el); if (!first) first = el; }
       });
       if (first) { first.focus(); announcer.textContent = 'Please check highlighted required fields.'; return false; }
       return true;
@@ -1896,9 +1560,8 @@
     function syncRegUI() {
       var p = computePricing();
       var proofBox = document.getElementById('bu-mem-proof-box');
-      var proofInput = document.getElementById('bu-reg-mem-file');
       proofBox.hidden = p.mem !== 'Registered Member';
-      proofInput.required = p.mem === 'Registered Member';
+      document.getElementById('bu-reg-mem-file').required = p.mem === 'Registered Member';
       document.getElementById('bu-mem-join-box').hidden = p.mem !== 'New Member Applicant';
       var cInput = document.getElementById('bu-r-country');
       if (p.isLocal && !cInput.dataset.edited) cInput.value = 'Nigeria';
@@ -1916,7 +1579,7 @@
     document.getElementById('bu-r-amt').addEventListener('input', function (e) { e.target.dataset.edited = '1'; });
     regForm.querySelectorAll('input[type="radio"]').forEach(function (r) {
       r.addEventListener('change', function () {
-        var g = r.closest('.bu-icfi-choice-group');
+        var g = r.closest('.bu-choice-group');
         if (g) g.classList.remove('has-error');
         syncRegUI();
       });
@@ -1950,9 +1613,7 @@
     };
 
     window.buIcfiRegNext = function (step) {
-      if (validateStep(regForm, regForm.querySelector('[data-reg-step="' + step + '"]'), regFiles)) {
-        window.buIcfiRegGo(step + 1);
-      }
+      if (validateStep(regForm, regForm.querySelector('[data-reg-step="' + step + '"]'), regFiles)) window.buIcfiRegGo(step + 1);
     };
 
     window.buIcfiCopyActiveAcct = function (btn) { window.buIcfiCopyAcct(btn, computePricing().acct); };
@@ -2039,13 +1700,12 @@
       document.getElementById('bu-reg-suc-h').focus();
     });
 
-    /* Membership Form Controller */
     var mDate = document.getElementById('bu-m-date');
     if (mDate && !mDate.value) mDate.value = new Date().toISOString().slice(0, 10);
 
     memForm.querySelectorAll('input[name="conditionsChoice"]').forEach(function (r) {
       r.addEventListener('change', function () {
-        var g = r.closest('.bu-icfi-choice-group');
+        var g = r.closest('.bu-choice-group');
         if (g) g.classList.remove('has-error');
         var dis = r.value === 'I disagree';
         document.getElementById('bu-mem-disagree-box').hidden = !dis;
