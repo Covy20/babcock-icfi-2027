@@ -102,6 +102,22 @@
     var MAX_BYTES = ICFI_STAFF_CONFIG.maxUploadMb * 1024 * 1024;
     var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+    /* --- Sticky ICFI Mobile Menu Toggle --- */
+    window.buIcfiToggleMenu = function () {
+      var drawer = document.getElementById('bu-icfi-mobile-drawer');
+      var btn = document.getElementById('bu-icfi-menu-btn');
+      if (!drawer || !btn) return;
+      var open = drawer.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    };
+    window.buIcfiCloseMenu = function () {
+      var drawer = document.getElementById('bu-icfi-mobile-drawer');
+      var btn = document.getElementById('bu-icfi-menu-btn');
+      if (drawer) drawer.classList.remove('is-open');
+      if (btn) btn.setAttribute('aria-expanded', 'false');
+    };
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') window.buIcfiCloseMenu(); });
+
     /* --- Live Ticking Countdown Timer --- */
     function updateCountdown() {
       var target = new Date(ICFI_STAFF_CONFIG.conferenceStartIso).getTime();

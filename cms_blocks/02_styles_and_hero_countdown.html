@@ -71,12 +71,71 @@
     margin: 0;
   }
 
+  /* Hide Babcock's generic IFI navbar wrapper so our dedicated 2-tier ICFI navbar replaces it cleanly */
+  html { scroll-behavior: smooth; }
+  body.filament-fabricator-body { overflow-x: clip; }
+  div.bu-nav-block-wrapper[data-bu-nav-block] { display: none !important; }
+  .bu-icfi-wrap [id^="bu-icfi-"] { scroll-margin-top: 80px; }
+
+  /* Two-Tier ICFI Navbar (Top Gold Utility Bar + Sticky Navy ICFI Header) */
+  .bu-top-strip { background: var(--bu-gold); color: #ffffff; height: 38px; overflow: hidden; }
+  .bu-top-strip-inner { max-width: 1380px; margin: 0 auto; padding: 0 16px; height: 100%; display: flex; align-items: center; justify-content: flex-start; overflow-x: auto; scrollbar-width: none; }
+  .bu-top-strip-inner::-webkit-scrollbar { display: none; }
+  .bu-top-link { display: inline-flex; align-items: center; gap: 6px; padding: 0 12px; height: 100%; font-size: 12px; font-weight: 500; color: #ffffff; white-space: nowrap; flex-shrink: 0; position: relative; transition: background-color 0.2s ease; }
+  .bu-top-link--home { font-weight: 700; }
+  .bu-top-link:hover, .bu-top-link:focus-visible { background: rgba(0, 0, 0, 0.14); color: #ffffff; }
+  .bu-top-link + .bu-top-link::before { content: ""; position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 1px; height: 14px; background: rgba(255, 255, 255, 0.42); }
+  @media (min-width: 980px) { .bu-top-strip-inner { justify-content: center; padding: 0 24px; } .bu-top-link { padding: 0 14px; } }
+
+  .bu-site-header { position: sticky; top: 0; z-index: 9999; background: var(--bu-navy); border-bottom: 1px solid rgba(255, 255, 255, 0.15); box-shadow: 0 8px 24px rgba(0, 24, 58, 0.18); }
+  .bu-site-nav-inner { max-width: 1380px; margin: 0 auto; padding: 0 16px; min-height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  @media (min-width: 640px) { .bu-site-nav-inner { padding: 0 28px; } }
+  .bu-nav-brand { display: inline-flex; align-items: center; gap: 10px; color: #ffffff; flex-shrink: 0; }
+  .bu-nav-brand:hover, .bu-nav-brand:focus-visible { color: #ffffff; }
+  .bu-nav-emblem { width: 38px; height: 38px; border-radius: 50%; padding: 2px; background: #ffffff; object-fit: cover; box-shadow: 0 2px 8px rgba(0,0,0,0.2); flex-shrink: 0; }
+  .bu-nav-sep { width: 1px; height: 28px; background: rgba(255, 255, 255, 0.28); flex-shrink: 0; }
+  .bu-nav-bu-logo { height: 32px; width: auto; object-fit: contain; flex-shrink: 0; }
+  .bu-nav-icfi-tag { display: none; padding: 3px 9px; border-radius: 999px; background: rgba(255,255,255,0.12); border: 1px solid rgba(238,194,90,0.45); font-size: 11px; font-weight: 700; letter-spacing: 0.06em; color: var(--bu-gold-accent); white-space: nowrap; }
+  @media (min-width: 480px) { .bu-nav-icfi-tag { display: inline-flex; } }
+
+  .bu-site-menu { display: none; list-style: none; margin: 0; padding: 0; align-items: center; gap: 2px; }
+  .bu-site-nav-link { position: relative; display: inline-flex; align-items: center; padding: 8px 10px; border-radius: 6px; font-size: 12px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: rgba(255, 255, 255, 0.92); white-space: nowrap; transition: background-color 0.2s ease, color 0.2s ease; }
+  .bu-site-nav-link:hover, .bu-site-nav-link:focus-visible { background: rgba(255, 255, 255, 0.12); color: #ffffff; }
+  .bu-site-nav-link::after { content: ""; position: absolute; left: 10px; right: 10px; bottom: 3px; height: 2px; background: var(--bu-gold-accent); transform: scaleX(0); transform-origin: center; transition: transform 0.22s ease; }
+  .bu-site-nav-link:hover::after, .bu-site-nav-link:focus-visible::after { transform: scaleX(1); }
+
+  .bu-nav-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+  .bu-nav-cta-btn { display: inline-flex; align-items: center; gap: 6px; padding: 9px 14px; min-height: 40px; border-radius: 6px; background: var(--bu-gold); color: #ffffff; font-size: 11.5px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap; transition: background-color 0.2s ease; }
+  .bu-nav-cta-btn:hover, .bu-nav-cta-btn:focus-visible { background: var(--bu-gold-light); color: #ffffff; }
+  .bu-nav-cta-more { display: none; }
+  .bu-nav-mail-btn { display: none; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.24); color: #ffffff; transition: border-color 0.2s ease, background-color 0.2s ease; }
+  .bu-nav-mail-btn:hover, .bu-nav-mail-btn:focus-visible { border-color: var(--bu-gold-accent); background: rgba(255, 255, 255, 0.18); color: #ffffff; }
+  .bu-nav-menu-btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 12px; min-height: 40px; border-radius: 6px; background: rgba(255, 255, 255, 0.12); border: 1px solid rgba(255, 255, 255, 0.26); color: #ffffff; font-family: var(--bu-font-sans); font-size: 12px; font-weight: 700; cursor: pointer; }
+  .bu-nav-menu-btn:hover { background: rgba(255, 255, 255, 0.2); }
+
+  .bu-mobile-panel { display: none; background: var(--bu-navy-dark); border-top: 1px solid rgba(255,255,255,0.14); padding: 14px 16px 18px; }
+  .bu-mobile-panel.is-open { display: block; }
+  .bu-mob-return-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.14); }
+  .bu-mob-return-btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 9px 10px; border-radius: 8px; background: var(--bu-gold); color: #ffffff; font-size: 12px; font-weight: 700; text-align: center; }
+  .bu-mob-return-btn--alt { background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.24); }
+  .bu-mob-return-btn:hover, .bu-mob-return-btn:focus-visible { opacity: 0.92; color: #ffffff; }
+  .bu-mob-links { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 6px; }
+  .bu-mob-item { display: flex; align-items: center; padding: 10px 12px; border-radius: 8px; background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.94); font-size: 12.5px; font-weight: 600; }
+  .bu-mob-item:hover, .bu-mob-item:focus-visible { background: rgba(238,194,90,0.18); color: #ffffff; }
+
+  @media (min-width: 480px) { .bu-nav-cta-more { display: inline; } }
+  @media (min-width: 640px) { .bu-nav-mail-btn { display: inline-flex; } }
+  @media (min-width: 1120px) {
+    .bu-site-menu { display: flex; }
+    .bu-nav-menu-btn, .bu-mobile-panel { display: none !important; }
+  }
+
   /* Page Background Bands (White, Mist, Light Gray, Dark Navy, Sky Hero Gradient) */
   .bu-icfi-band-white { background: #ffffff; padding: 68px 24px; }
   .bu-icfi-band-mist  { background: var(--bu-mist); padding: 68px 24px; }
   .bu-icfi-band-gray  { background: #f2f2f2; padding: 58px 24px; }
   .bu-icfi-band-navy  { background: var(--bu-band); color: #ffffff; padding: 68px 24px; }
-  .bu-icfi-band-hero  { background: var(--bu-hero-bg); padding: clamp(76px, 7.5vw, 112px) 24px clamp(58px, 6vw, 88px); }
+  .bu-icfi-band-hero  { background: var(--bu-hero-bg); padding: clamp(44px, 5vw, 72px) 24px clamp(58px, 6vw, 88px); }
 
   .bu-icfi-band-navy h2,
   .bu-icfi-band-navy h3,
@@ -157,11 +216,8 @@
   .bu-btn-row { display: flex; flex-wrap: wrap; gap: 12px; }
 
   /* Hero Elements */
-  .bu-hero-brand { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; }
-  .bu-hero-emblem { width: 58px; height: 58px; border-radius: 50%; padding: 3px; background: #ffffff; border: 1px solid rgba(0,65,130,0.18); box-shadow: 0 8px 18px rgba(11,37,69,0.12); object-fit: cover; flex-shrink: 0; }
-  .bu-hero-brand-kicker { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--bu-navy); margin-bottom: 5px; }
-  .bu-hero-pill { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; border-radius: 999px; background: rgba(255,255,255,0.85); border: 1px solid rgba(0,65,130,0.16); font-size: 12px; font-weight: 700; color: var(--bu-canonical); }
-  .bu-hero-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--bu-gold); }
+  .bu-hero-pill { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; border-radius: 999px; background: rgba(255,255,255,0.85); border: 1px solid rgba(0,65,130,0.16); font-size: 12px; font-weight: 700; color: var(--bu-canonical); max-width: 100%; }
+  .bu-hero-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--bu-gold); flex-shrink: 0; }
   /* EDIT: Main Hero Headline — uses --bu-hero-title above, or replace with any hex/color name right here */
   .bu-hero-h1 { font-size: clamp(2.15rem, 1.4rem + 2.4vw, 3.35rem); font-weight: 700; font-style: italic; color: var(--bu-hero-title); line-height: 1.1; margin: 18px 0 16px; }
   .bu-hero-sub { font-size: 1.08rem; color: var(--bu-hero-sub); max-width: 52ch; margin: 0 0 22px; }
@@ -302,23 +358,91 @@
 
 <div class="bu-icfi-wrap" id="bu-icfi-root">
 
+  <!-- SECTION 0: ICFI NAVIGATION BAR (Top Gold Return Strip + Sticky Navy ICFI Header) -->
+  <div class="bu-top-strip" aria-label="Quick portal navigation">
+    <div class="bu-top-strip-inner">
+      <!-- EDIT: Return links back to IFI & Babcock main website -->
+      <a href="https://babcock.edu.ng/ifi" class="bu-top-link bu-top-link--home">&larr; IFI Main Page</a>
+      <a href="https://babcock.edu.ng/" class="bu-top-link">Babcock Main Page</a>
+      <a href="#bu-icfi-abstracts" class="bu-top-link">Submit Abstract</a>
+      <a href="https://babcock-icfi-2027.netlify.app/ijml.html" target="_blank" rel="noopener" class="bu-top-link">IJFI Journal Portal</a>
+      <a href="#bu-icfi-roadmap" class="bu-top-link">Key Dates (Mar 24)</a>
+      <a href="#bu-icfi-registration" class="bu-top-link">Fees &amp; Banking</a>
+      <a href="mailto:icfi@babcock.edu.ng" class="bu-top-link">icfi@babcock.edu.ng</a>
+    </div>
+  </div>
+
+  <header class="bu-site-header" id="bu-icfi-header">
+    <div class="bu-site-nav-inner">
+      <!-- Left: ICFI Circular Emblem + Babcock University Crest -->
+      <a href="#bu-icfi-root" class="bu-nav-brand" aria-label="ICFI 2027 Home">
+        <img src="https://babcock.edu.ng/storage/media/01010f22-27ad-4a14-a87a-4f22b8e01798.png" alt="ICFI Logo" class="bu-nav-emblem">
+        <span class="bu-nav-sep" aria-hidden="true"></span>
+        <img src="https://babcock.edu.ng/curator/media/6981e3ee-aac8-48e8-882e-57bc104e7a8b.png?h=50&w=150&s=0341f68fd37c03d968cc0ace7cfe86d5" alt="Babcock University Logo" class="bu-nav-bu-logo">
+        <span class="bu-nav-icfi-tag">ICFI 2027</span>
+      </a>
+
+      <!-- Center: Desktop Conference Navigation Links -->
+      <nav aria-label="Primary ICFI navigation">
+        <ul class="bu-site-menu">
+          <li><a href="#bu-icfi-convener" class="bu-site-nav-link">About</a></li>
+          <li><a href="#bu-icfi-fields" class="bu-site-nav-link">8 Fields</a></li>
+          <li><a href="#bu-icfi-speakers" class="bu-site-nav-link">Speakers</a></li>
+          <li><a href="#bu-icfi-values" class="bu-site-nav-link">Pillars</a></li>
+          <li><a href="#bu-icfi-roadmap" class="bu-site-nav-link">Programme</a></li>
+          <li><a href="#bu-icfi-registration" class="bu-site-nav-link">Registration</a></li>
+          <li><a href="#bu-icfi-portal" onclick="buIcfiOpenTab('membership');" class="bu-site-nav-link">Membership</a></li>
+          <li><a href="#bu-icfi-ijfi" class="bu-site-nav-link">IJFI &amp; Papers</a></li>
+        </ul>
+      </nav>
+
+      <!-- Right: Register CTA, Email Icon & Mobile Menu Button -->
+      <div class="bu-nav-actions">
+        <a href="#bu-icfi-portal" onclick="buIcfiOpenTab('conference'); buIcfiCloseMenu();" class="bu-nav-cta-btn">
+          <span>Register<span class="bu-nav-cta-more"> Now</span></span>
+          <span aria-hidden="true">&rarr;</span>
+        </a>
+        <a href="#bu-icfi-abstracts" title="Submit Abstract" aria-label="Submit Abstract" class="bu-nav-mail-btn">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </a>
+        <button type="button" id="bu-icfi-menu-btn" class="bu-nav-menu-btn" aria-expanded="false" aria-controls="bu-icfi-mobile-drawer" onclick="buIcfiToggleMenu()">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          <span>Menu</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer (Includes Return to IFI & Babcock + Section Jump Links) -->
+    <div id="bu-icfi-mobile-drawer" class="bu-mobile-panel" aria-label="Mobile navigation menu">
+      <div class="bu-mob-return-row">
+        <a href="https://babcock.edu.ng/ifi" class="bu-mob-return-btn">&larr; IFI Main Page</a>
+        <a href="https://babcock.edu.ng/" class="bu-mob-return-btn bu-mob-return-btn--alt">Babcock Main Page</a>
+      </div>
+      <div class="bu-mob-links">
+        <a href="#bu-icfi-convener" onclick="buIcfiCloseMenu()" class="bu-mob-item">About</a>
+        <a href="#bu-icfi-fields" onclick="buIcfiCloseMenu()" class="bu-mob-item">8 Fields</a>
+        <a href="#bu-icfi-speakers" onclick="buIcfiCloseMenu()" class="bu-mob-item">Speakers</a>
+        <a href="#bu-icfi-values" onclick="buIcfiCloseMenu()" class="bu-mob-item">Pillars</a>
+        <a href="#bu-icfi-roadmap" onclick="buIcfiCloseMenu()" class="bu-mob-item">Programme</a>
+        <a href="#bu-icfi-registration" onclick="buIcfiCloseMenu()" class="bu-mob-item">Registration</a>
+        <a href="#bu-icfi-portal" onclick="buIcfiOpenTab('membership'); buIcfiCloseMenu();" class="bu-mob-item">Membership</a>
+        <a href="#bu-icfi-ijfi" onclick="buIcfiCloseMenu()" class="bu-mob-item">IJFI &amp; Papers</a>
+        <a href="#bu-icfi-abstracts" onclick="buIcfiCloseMenu()" class="bu-mob-item">Submit Abstract</a>
+      </div>
+    </div>
+  </header>
+
   <!-- SECTION 1: HERO BANNER (Edit headline, dates pill, intro copy, and 4 hero portraits below) -->
   <div class="bu-icfi-band-hero">
     <div class="bu-icfi-container-lg">
       <div class="bu-g12 bu-hero-grid">
 
-        <!-- Left Column: ICFI Emblem, Title & Buttons -->
+        <!-- Left Column: Dates Pill, Title & Buttons -->
         <div class="bu-c6">
-          <!-- EDIT: ICFI Emblem & Top Dates Pill -->
-          <div class="bu-hero-brand">
-            <img src="https://babcock.edu.ng/storage/media/01010f22-27ad-4a14-a87a-4f22b8e01798.png" alt="International Conference on Faith Integration (ICFI) Emblem" class="bu-hero-emblem">
-            <div>
-              <div class="bu-hero-brand-kicker">International Community for Faith Integration</div>
-              <div class="bu-hero-pill">
-                <span class="bu-hero-dot"></span>
-                <span>7th Biennial International Conference • July 27 – August 1, 2027</span>
-              </div>
-            </div>
+          <div class="bu-hero-pill">
+            <span class="bu-hero-dot"></span>
+            <!-- EDIT: Top Dates Pill -->
+            <span>7th Biennial International Conference • July 27 – August 1, 2027</span>
           </div>
 
           <!-- EDIT: Main Hero Headline (kept in 3 lines on desktop for readability) -->
