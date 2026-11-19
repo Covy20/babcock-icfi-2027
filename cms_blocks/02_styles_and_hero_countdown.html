@@ -55,8 +55,11 @@
   .bu-icfi-wrap *,
   .bu-icfi-wrap *::before,
   .bu-icfi-wrap *::after { box-sizing: border-box; }
-  /* :where() keeps base link & heading rules low-specificity so any class or style="" overrides them easily */
-  :where(.bu-icfi-wrap) a { color: inherit; text-decoration: none; }
+  /* :where() keeps base link & heading rules low-specificity so any class or style="" overrides them easily,
+     while overriding Babcock Canvas's a:hover (#222) and bootstrap link hover colors cleanly */
+  :where(.bu-icfi-wrap) a,
+  :where(.bu-icfi-wrap) a:hover,
+  :where(.bu-icfi-wrap) a:focus-visible { color: inherit; text-decoration: none; }
   .bu-icfi-wrap img { display: block; max-width: 100%; }
 
   /* Base heading defaults (overrides Babcock Canvas defaults without !important locks) */
@@ -138,19 +141,19 @@
   .bu-btn-xs { min-height: 38px; padding: 6px 14px; font-size: 12px; }
   .bu-btn-pill { border-radius: 999px; }
   .bu-btn-blue { background: var(--bu-blue); color: #ffffff; }
-  .bu-btn-blue:hover { background: #1d4ed8; }
+  .bu-btn-blue:hover, .bu-btn-blue:focus-visible { background: #1d4ed8; color: #ffffff; }
   .bu-btn-navy { background: var(--bu-canonical); color: #ffffff; }
-  .bu-btn-navy:hover { background: var(--bu-canon-dark); }
+  .bu-btn-navy:hover, .bu-btn-navy:focus-visible { background: var(--bu-canon-dark); color: #ffffff; }
   .bu-btn-charcoal { background: #383c42; color: #ffffff; }
-  .bu-btn-charcoal:hover { background: #212121; }
+  .bu-btn-charcoal:hover, .bu-btn-charcoal:focus-visible { background: #212121; color: #ffffff; }
   .bu-btn-gold { background: var(--bu-gold-band); color: #ffffff; }
-  .bu-btn-gold:hover { background: var(--bu-gold); }
+  .bu-btn-gold:hover, .bu-btn-gold:focus-visible { background: var(--bu-bronze); color: #ffffff; }
   .bu-btn-gold-bright { background: var(--bu-gold-accent); color: var(--bu-band); }
-  .bu-btn-gold-bright:hover { background: #fcd34d; }
+  .bu-btn-gold-bright:hover, .bu-btn-gold-bright:focus-visible { background: #fcd34d; color: var(--bu-band); }
   .bu-btn-mist { background: var(--bu-mist); color: var(--bu-canonical); }
-  .bu-btn-mist:hover { background: #dbeafe; }
+  .bu-btn-mist:hover, .bu-btn-mist:focus-visible { background: #dbeafe; color: var(--bu-canonical); }
   .bu-btn-outline { background: #ffffff; border-color: var(--bu-border-mid); color: var(--bu-canonical); }
-  .bu-btn-outline:hover { border-color: var(--bu-navy); }
+  .bu-btn-outline:hover, .bu-btn-outline:focus-visible { background: #f8fafc; border-color: var(--bu-navy); color: var(--bu-navy); }
   .bu-btn-row { display: flex; flex-wrap: wrap; gap: 12px; }
 
   /* Hero Elements */
@@ -219,7 +222,8 @@
   .bu-bank-card { background: var(--bu-tint); padding: 18px 20px; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
 
   .bu-pdf-card { padding: 18px; display: flex; flex-direction: column; justify-content: space-between; }
-  .bu-pdf-dl { margin-top: 14px; text-align: center; padding: 8px; border-radius: 999px; border: 1px solid var(--bu-border); font-size: 12px; font-weight: 700; }
+  .bu-pdf-dl { margin-top: 14px; text-align: center; padding: 8px; border-radius: 999px; border: 1px solid var(--bu-border); font-size: 12px; font-weight: 700; color: var(--bu-navy); transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease; }
+  .bu-pdf-card:hover .bu-pdf-dl { background: var(--bu-navy); color: #ffffff; border-color: var(--bu-navy); }
   .bu-gal-frame { padding: 6px; border-radius: 16px; }
   .bu-gal-frame img { width: 100%; height: 148px; object-fit: cover; border-radius: 12px; }
   .bu-coord-row { padding: 12px; border-radius: 12px; background: rgba(255,255,255,0.1); display: flex; justify-content: space-between; align-items: center; gap: 8px; }
@@ -227,8 +231,9 @@
   .bu-coord-phone { color: var(--bu-gold-accent); font-weight: 700; }
 
   /* Tabs & Programme Rows */
-  .bu-tab-btn { padding: 7px 14px; border-radius: 999px; border: 0; font-size: 12px; font-weight: 700; cursor: pointer; background: var(--bu-mist); color: var(--bu-canonical); }
-  .bu-tab-btn.is-active { background: var(--bu-canonical); color: #ffffff; }
+  .bu-tab-btn { padding: 7px 14px; border-radius: 999px; border: 0; font-size: 12px; font-weight: 700; cursor: pointer; background: var(--bu-mist); color: var(--bu-canonical); transition: background-color 0.2s ease, color 0.2s ease; }
+  .bu-tab-btn:hover { background: #dbeafe; color: var(--bu-canonical); }
+  .bu-tab-btn.is-active, .bu-tab-btn.is-active:hover { background: var(--bu-canonical); color: #ffffff; }
   .bu-prog-row { display: grid; grid-template-columns: 150px 1fr auto; gap: 12px; padding: 13px 0; border-top: 1px solid var(--bu-border); align-items: baseline; }
 
   /* Registration & Membership Portal Styles */
@@ -238,8 +243,9 @@
   }
   .bu-portal-shell { margin-top: 32px; background: var(--bu-tint); border: 1px solid rgba(27, 45, 91, 0.16); border-radius: 24px; padding: clamp(20px, 3vw, 40px); }
   .bu-portal-tablist { display: inline-flex; flex-wrap: wrap; gap: 8px; background: #ffffff; padding: 6px; border-radius: 16px; border: 1px solid var(--bu-border); margin: 22px 0 26px; }
-  .bu-portal-tab { padding: 10px 18px; min-height: 44px; border-radius: 12px; border: 0; background: transparent; color: var(--bu-canonical); font-family: var(--bu-font-sans); font-size: 13px; font-weight: 700; cursor: pointer; }
-  .bu-portal-tab[aria-selected="true"] { background: var(--bu-canonical); color: #ffffff; }
+  .bu-portal-tab { padding: 10px 18px; min-height: 44px; border-radius: 12px; border: 0; background: transparent; color: var(--bu-canonical); font-family: var(--bu-font-sans); font-size: 13px; font-weight: 700; cursor: pointer; transition: background-color 0.2s ease, color 0.2s ease; }
+  .bu-portal-tab:hover { background: var(--bu-tint); color: var(--bu-navy); }
+  .bu-portal-tab[aria-selected="true"], .bu-portal-tab[aria-selected="true"]:hover { background: var(--bu-canonical); color: #ffffff; }
   .bu-steps-row { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; list-style: none; padding: 0; margin: 0 0 26px; }
   .bu-steps-row--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 440px; }
   .bu-step-pill { padding: 10px 14px; border-radius: 12px; border: 1px solid var(--bu-border); background: #ffffff; color: var(--bu-muted); font-size: 12px; font-weight: 600; }
