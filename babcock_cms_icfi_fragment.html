@@ -1,7 +1,8 @@
 <!-- =========================================================================
      7TH ICFI 2027 — FULL DESIGN FOR BABCOCK UNIVERSITY FILAMENT CMS (CANVAS 2)
-     Zero <!DOCTYPE>/<html>/<body>, zero external scripts, zero .section clash.
-     Includes full sections + ticking countdown + Conference & Membership forms.
+     Strict Babcock Visual Style Spec (v0.2) palette: #1B2D5B navy, #C8A951 gold,
+     #ffffff white, #eef2f9 mist, #f3f6fb card tint. Zero external scripts.
+     Includes all sections + ticking countdown + Conference & Membership forms.
      ========================================================================= -->
 <style>
   @import url('https://api.fontshare.com/v2/css?f[]=sentient@400,500&display=swap');
@@ -9,22 +10,23 @@
   @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&family=Inter:wght@400;500;600;700&display=swap');
 
   .bu-icfi-wrap {
-    --bu-navy:        #004182;
-    --bu-navy-dark:   #003068;
-    --bu-band:        #0b2545;
+    --bu-navy:        #1B2D5B;
+    --bu-navy-dark:   #121F40;
+    --bu-band:        #1B2D5B;
     --bu-canonical:   #1B2D5B;
     --bu-canon-dark:  #121F40;
-    --bu-gold:        #B58C0D;
-    --bu-gold-light:  #d4a722;
-    --bu-gold-band:   #b98d3b;
-    --bu-gold-accent: #eec25a;
-    --bu-bronze:      #9d7533;
-    --bu-blue:        #2f6fed;
+    --bu-gold:        #C8A951;
+    --bu-gold-light:  #C8A951;
+    --bu-gold-band:   #C8A951;
+    --bu-gold-accent: #C8A951;
+    --bu-gold-text:   #8C6D1F;
+    --bu-bronze:      #C8A951;
     --bu-mist:        #eef2f9;
     --bu-tint:        #f3f6fb;
     --bu-muted:       #475569;
-    --bu-border:      rgba(27, 45, 91, 0.10);
+    --bu-border:      rgba(27, 45, 91, 0.08);
     --bu-border-mid:  rgba(27, 45, 91, 0.18);
+    --bu-radius-card: 24px;
     --bu-font-serif:  'Sentient', Georgia, serif;
     --bu-font-sans:   'DM Sans', 'Inter', system-ui, -apple-system, sans-serif;
 
@@ -63,11 +65,11 @@
     margin: 0;
   }
 
-  .bu-icfi-band-white { background: #ffffff; padding: 68px 24px; }
-  .bu-icfi-band-mist  { background: var(--bu-mist); padding: 68px 24px; }
-  .bu-icfi-band-gray  { background: #f2f2f2; padding: 58px 24px; }
-  .bu-icfi-band-navy  { background: var(--bu-band); color: #ffffff; padding: 68px 24px; }
-  .bu-icfi-band-hero  { background: linear-gradient(135deg, #d7e7fb 0%, #eef5fe 55%, #ffffff 100%); padding: clamp(44px, 6vw, 68px) 24px; }
+  .bu-icfi-band-white { background: #ffffff; padding: clamp(56px, 7vw, 84px) 24px; }
+  .bu-icfi-band-mist  { background: var(--bu-mist); padding: clamp(56px, 7vw, 84px) 24px; }
+  .bu-icfi-band-gray  { background: var(--bu-mist); padding: clamp(56px, 7vw, 84px) 24px; }
+  .bu-icfi-band-navy  { background: var(--bu-navy); color: #ffffff; padding: clamp(56px, 7vw, 84px) 24px; }
+  .bu-icfi-band-hero  { background: #ffffff; padding: clamp(44px, 6vw, 72px) 24px; }
 
   .bu-icfi-band-navy h2,
   .bu-icfi-band-navy h3,
@@ -78,16 +80,16 @@
   }
 
   .bu-icfi-wrap .bu-icfi-text-navy { color: var(--bu-navy) !important; }
-  .bu-icfi-wrap .bu-icfi-text-gold { color: var(--bu-gold-accent) !important; }
+  .bu-icfi-wrap .bu-icfi-text-gold { color: var(--bu-gold) !important; }
 
-  .bu-icfi-container { max-width: 1200px; margin: 0 auto; }
-  .bu-icfi-container-lg { max-width: 1280px; margin: 0 auto; }
+  .bu-icfi-container { max-width: 1100px; margin: 0 auto; }
+  .bu-icfi-container-lg { max-width: 1140px; margin: 0 auto; }
 
   /* Grid Helpers */
   .bu-g12 { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 28px; align-items: center; }
   .bu-g4  { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
-  .bu-g3  { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
-  .bu-g2  { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+  .bu-g3  { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+  .bu-g2  { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
   .bu-g6  { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 16px; }
   .bu-c5  { grid-column: span 5; }
   .bu-c6  { grid-column: span 6; }
@@ -98,24 +100,24 @@
   /* Cards & Buttons */
   .bu-card-box {
     background: #ffffff;
-    border: 1px solid rgba(27, 45, 91, 0.08);
-    border-radius: 20px;
-    padding: 24px;
-    box-shadow: 0 4px 14px rgba(27, 45, 91, 0.06);
-    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    border: 1px solid var(--bu-border);
+    border-radius: var(--bu-radius-card);
+    padding: clamp(20px, 2.5vw, 28px);
+    transition: transform 0.25s ease, border-color 0.25s ease;
   }
   .bu-card-box:hover {
     transform: translateY(-2px);
-    box-shadow: 0 12px 26px rgba(27, 45, 91, 0.11);
-    border-color: rgba(27, 45, 91, 0.16);
+    border-color: var(--bu-gold);
+  }
+  .bu-card-box--tint {
+    background: var(--bu-tint);
   }
   .bu-icfi-card-dark {
-    background: var(--bu-band);
+    background: var(--bu-navy);
     color: #ffffff;
-    border: 2px solid var(--bu-gold-accent);
-    border-radius: 20px;
-    padding: 26px;
-    box-shadow: 0 12px 28px rgba(11, 37, 69, 0.22);
+    border: 2px solid var(--bu-gold);
+    border-radius: var(--bu-radius-card);
+    padding: clamp(22px, 2.5vw, 30px);
   }
   .bu-btn {
     display: inline-flex;
@@ -124,32 +126,28 @@
     gap: 8px;
     min-height: 46px;
     padding: 11px 24px;
-    border-radius: 12px;
+    border-radius: 999px;
     border: 1px solid transparent;
     font-family: var(--bu-font-sans);
     font-size: 14px;
     font-weight: 700;
     cursor: pointer;
-    transition: background-color 0.2s ease, border-color 0.2s ease;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
   }
   .bu-btn-pill { border-radius: 999px; }
-  .bu-btn-blue { background: var(--bu-blue); color: #ffffff !important; }
-  .bu-btn-blue:hover { background: #1d4ed8; }
-  .bu-btn-navy { background: var(--bu-canonical); color: #ffffff !important; }
-  .bu-btn-navy:hover { background: var(--bu-canon-dark); }
-  .bu-btn-charcoal { background: #383c42; color: #ffffff !important; }
-  .bu-btn-charcoal:hover { background: #212121; }
-  .bu-btn-gold { background: var(--bu-gold-band); color: #ffffff !important; }
-  .bu-btn-gold:hover { background: var(--bu-gold); }
-  .bu-btn-gold-bright { background: var(--bu-gold-accent); color: var(--bu-band) !important; }
-  .bu-btn-gold-bright:hover { background: #fcd34d; }
-  .bu-btn-mist { background: var(--bu-mist); color: var(--bu-canonical) !important; }
-  .bu-btn-mist:hover { background: #dbeafe; }
-  .bu-btn-outline { background: #ffffff; border-color: var(--bu-border-mid); color: var(--bu-canonical) !important; }
-  .bu-btn-outline:hover { border-color: var(--bu-navy); }
+  .bu-btn-navy { background: var(--bu-navy); color: #ffffff !important; }
+  .bu-btn-navy:hover { background: var(--bu-navy-dark); }
+  .bu-btn-gold { background: var(--bu-gold); color: var(--bu-navy) !important; }
+  .bu-btn-gold:hover { background: #d4b862; }
+  .bu-btn-gold-bright { background: var(--bu-gold); color: var(--bu-navy) !important; }
+  .bu-btn-gold-bright:hover { background: #d4b862; }
+  .bu-btn-mist { background: var(--bu-mist); color: var(--bu-navy) !important; border-color: var(--bu-border); }
+  .bu-btn-mist:hover { border-color: var(--bu-gold); background: #e3eaf5; }
+  .bu-btn-outline { background: #ffffff; border-color: var(--bu-border-mid); color: var(--bu-navy) !important; }
+  .bu-btn-outline:hover { border-color: var(--bu-gold); }
 
   /* Key Figures Bar */
-  .bu-quick-strip { background: var(--bu-gold-band); color: #ffffff; padding: 14px 24px; border-top: 1px solid rgba(255,255,255,0.22); border-bottom: 1px solid rgba(255,255,255,0.22); }
+  .bu-quick-strip { background: var(--bu-gold); color: var(--bu-navy); padding: 14px 24px; border-top: 1px solid rgba(27,45,91,0.12); border-bottom: 1px solid rgba(27,45,91,0.12); }
   .bu-metrics-grid {
     display: grid;
     grid-template-columns: 1.55fr 1fr 1fr 1fr 1fr;
@@ -194,8 +192,8 @@
   }
   .bu-portal-shell {
     margin-top: 32px;
-    background: var(--bu-tint);
-    border: 1px solid rgba(27, 45, 91, 0.16);
+    background: #ffffff;
+    border: 1px solid var(--bu-border-mid);
     border-radius: 24px;
     padding: clamp(20px, 3vw, 40px);
   }
@@ -270,7 +268,7 @@
   .bu-choice:focus-visible + .bu-choice-card,
   .bu-reg-input:focus-visible,
   .bu-file:focus-visible,
-  .bu-btn:focus-visible { outline: 3px solid #0b57d0; outline-offset: 2px; }
+  .bu-btn:focus-visible { outline: 3px solid var(--bu-navy); outline-offset: 2px; }
   .bu-radio-dot {
     width: 16px;
     height: 16px;
@@ -305,13 +303,13 @@
   .bu-aside-sticky {
     position: sticky;
     top: 24px;
-    background: var(--bu-band);
+    background: var(--bu-navy);
     color: #ffffff;
-    border-radius: 20px;
+    border: 1px solid var(--bu-border);
+    border-radius: 24px;
     padding: 24px;
-    box-shadow: 0 10px 26px rgba(11, 37, 69, 0.22);
   }
-  .bu-faq-item { background: #ffffff; border: 1px solid var(--bu-border); border-radius: 16px; padding: 18px 20px; margin-bottom: 12px; }
+  .bu-faq-item { background: var(--bu-tint); border: 1px solid var(--bu-border); border-radius: 20px; padding: 18px 20px; margin-bottom: 12px; }
   .bu-faq-item summary { display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-weight: 700; font-size: 14px; list-style: none; }
   .bu-faq-item summary::-webkit-details-marker { display: none; }
   .bu-faq-item[open] .bu-faq-plus { transform: rotate(45deg); }
@@ -337,63 +335,63 @@
 
 <div class="bu-icfi-wrap" id="bu-icfi-root">
 
-  <!-- 1. SKY-BLUE SPLIT HERO -->
+  <!-- 1. SPLIT HERO (WHITE) -->
   <div class="bu-icfi-band-hero">
     <div class="bu-icfi-container-lg">
       <div class="bu-g12">
         <div class="bu-c6">
-          <div style="display:inline-flex; align-items:center; gap:8px; padding:6px 14px; border-radius:999px; background:rgba(255,255,255,0.85); border:1px solid rgba(0,65,130,0.16); font-size:12px; font-weight:700; color:var(--bu-canonical);">
+          <div style="display:inline-flex; align-items:center; gap:8px; padding:6px 14px; border-radius:999px; background:var(--bu-mist); border:1px solid var(--bu-border); font-size:12px; font-weight:700; color:var(--bu-navy);">
             <span style="width:8px; height:8px; border-radius:50%; background:var(--bu-gold);"></span>
             <span>7th Biennial International Conference • July 27 – August 1, 2027</span>
           </div>
-          <h1 style="font-size:clamp(2rem, 3.8vw, 3.15rem); font-weight:700; font-style:italic; color:#212121 !important; margin:18px 0 14px;">
+          <h1 style="font-size:clamp(2rem, 3.8vw, 3.15rem); font-weight:700; font-style:italic; color:var(--bu-navy) !important; margin:18px 0 14px;">
             International Conference on Faith Integration 2027
           </h1>
-          <p style="font-size:1.08rem; color:#2d3748; max-width:52ch; margin:0 0 22px;">
+          <p style="font-size:1.08rem; color:var(--bu-muted); max-width:52ch; margin:0 0 22px;">
             <strong style="color:var(--bu-navy);">“Driving a Sustainable Faith-Based Ecosystem in a Changing World.”</strong> Hosted by the International Community for Faith Integration &amp; Babcock University.
           </p>
           <div style="display:flex; flex-wrap:wrap; gap:12px;">
-            <a href="#bu-icfi-portal" class="bu-btn bu-btn-blue" onclick="buIcfiOpenTab('conference'); return true;">Reserve Your Seat</a>
+            <a href="#bu-icfi-portal" class="bu-btn bu-btn-navy" onclick="buIcfiOpenTab('conference'); return true;">Reserve Your Seat</a>
             <button type="button" class="bu-btn bu-btn-gold" onclick="buIcfiOpenTab('membership')">Join ICFI Membership</button>
-            <a href="#bu-icfi-abstracts" class="bu-btn bu-btn-charcoal">Submit 250-Word Abstract</a>
+            <a href="#bu-icfi-abstracts" class="bu-btn bu-btn-outline">Submit 250-Word Abstract</a>
           </div>
         </div>
 
         <div class="bu-c6">
-          <div style="border-radius:22px; overflow:hidden; background:#ffffff; border:1px solid rgba(0,65,130,0.16); box-shadow:0 20px 44px rgba(11,37,69,0.16);">
-            <div style="position:relative; aspect-ratio:16/10; background:#e2e8f0;">
+          <div style="border-radius:var(--bu-radius-card); overflow:hidden; background:#ffffff; border:1px solid var(--bu-border-mid);">
+            <div style="position:relative; aspect-ratio:16/10; background:var(--bu-mist);">
               <img src="https://babcock.edu.ng/storage/media/830ab974-1035-4dba-a233-fed1746b1b84.jpg" alt="Main Plenary Amphitheater in session at Babcock University" style="width:100%; height:100%; object-fit:cover;">
               <div style="position:absolute; top:12px; left:12px; right:12px; display:flex; flex-wrap:wrap; justify-content:space-between; gap:8px;">
-                <span style="padding:5px 12px; border-radius:999px; background:rgba(255,255,255,0.95); color:var(--bu-navy); font-size:11px; font-weight:700;">Main Plenary Amphitheater • Ilishan-Remo</span>
-                <a href="https://youtu.be/QnzxBpBPwrc" target="_blank" rel="noopener" style="padding:5px 12px; border-radius:999px; background:var(--bu-gold); color:#ffffff; font-size:11px; font-weight:700;">&#9654; 2023 Video Recap</a>
+                <span style="padding:5px 12px; border-radius:999px; background:rgba(255,255,255,0.96); color:var(--bu-navy); font-size:11px; font-weight:700;">Main Plenary Amphitheater • Ilishan-Remo</span>
+                <a href="https://youtu.be/QnzxBpBPwrc" target="_blank" rel="noopener" style="padding:5px 12px; border-radius:999px; background:var(--bu-gold); color:var(--bu-navy); font-size:11px; font-weight:700;">&#9654; 2023 Video Recap</a>
               </div>
             </div>
-            <div style="padding:16px; background:linear-gradient(180deg,#eef4fc 0%,#ffffff 100%); border-top:1px solid rgba(0,65,130,0.1);">
+            <div style="padding:16px; background:var(--bu-tint); border-top:1px solid var(--bu-border);">
               <div class="bu-icfi-mini-grid" style="display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:10px; text-align:center;">
-                <div style="background:#ffffff; border-radius:10px; padding:6px; border:1px solid rgba(0,65,130,0.1);">
-                  <img src="https://babcock.edu.ng/storage/media/5ad4f5d8-c9e9-486a-9b7b-32e10cb7e728.jpg" alt="Prof. Afolarin Olutunde Ojewole" style="width:100%; aspect-ratio:6/5; object-fit:cover; object-position:top; border-radius:6px;">
+                <div style="background:#ffffff; border-radius:12px; padding:6px; border:1px solid var(--bu-border);">
+                  <img src="https://babcock.edu.ng/storage/media/5ad4f5d8-c9e9-486a-9b7b-32e10cb7e728.jpg" alt="Prof. Afolarin Olutunde Ojewole" style="width:100%; aspect-ratio:6/5; object-fit:cover; object-position:top; border-radius:8px;">
                   <div style="font-size:10px; font-weight:700; color:var(--bu-navy); margin-top:5px;">Prof. A. Ojewole</div>
-                  <div style="font-size:9px; color:#8A6D22; font-weight:700; text-transform:uppercase;">Chief Host</div>
+                  <div style="font-size:9px; color:var(--bu-gold-text); font-weight:700; text-transform:uppercase;">Chief Host</div>
                 </div>
-                <div style="background:#ffffff; border-radius:10px; padding:6px; border:1px solid rgba(0,65,130,0.1);">
-                  <img src="https://babcock.edu.ng/storage/media/968e1947-5b11-4fcb-9dcb-9e5b7035246f.jpg" alt="Prof. Jonathan C. Nwosu" style="width:100%; aspect-ratio:6/5; object-fit:cover; object-position:top; border-radius:6px;">
+                <div style="background:#ffffff; border-radius:12px; padding:6px; border:1px solid var(--bu-border);">
+                  <img src="https://babcock.edu.ng/storage/media/968e1947-5b11-4fcb-9dcb-9e5b7035246f.jpg" alt="Prof. Jonathan C. Nwosu" style="width:100%; aspect-ratio:6/5; object-fit:cover; object-position:top; border-radius:8px;">
                   <div style="font-size:10px; font-weight:700; color:var(--bu-navy); margin-top:5px;">Prof. J. C. Nwosu</div>
-                  <div style="font-size:9px; color:#8A6D22; font-weight:700; text-transform:uppercase;">Host • SVP</div>
+                  <div style="font-size:9px; color:var(--bu-gold-text); font-weight:700; text-transform:uppercase;">Host • SVP</div>
                 </div>
-                <div style="background:#ffffff; border-radius:10px; padding:6px; border:1px solid rgba(0,65,130,0.1);">
-                  <img src="https://babcock.edu.ng/storage/media/46b5ce14-3ba8-4ca7-8164-8c33d5b9a76d.jpg" alt="Prof. Constance C. Nwosu" style="width:100%; aspect-ratio:6/5; object-fit:cover; object-position:top; border-radius:6px;">
+                <div style="background:#ffffff; border-radius:12px; padding:6px; border:1px solid var(--bu-border);">
+                  <img src="https://babcock.edu.ng/storage/media/46b5ce14-3ba8-4ca7-8164-8c33d5b9a76d.jpg" alt="Prof. Constance C. Nwosu" style="width:100%; aspect-ratio:6/5; object-fit:cover; object-position:top; border-radius:8px;">
                   <div style="font-size:10px; font-weight:700; color:var(--bu-navy); margin-top:5px;">Prof. C. Nwosu</div>
-                  <div style="font-size:9px; color:#8A6D22; font-weight:700; text-transform:uppercase;">Convener</div>
+                  <div style="font-size:9px; color:var(--bu-gold-text); font-weight:700; text-transform:uppercase;">Convener</div>
                 </div>
-                <div style="background:#ffffff; border-radius:10px; padding:6px; border:1px solid rgba(0,65,130,0.1);">
-                  <img src="https://babcock.edu.ng/storage/media/e9545d58-8a9d-4181-9ddb-730f7fa91f3e.jpg" alt="Prof. John Wesley Taylor V" style="width:100%; aspect-ratio:6/5; object-fit:cover; object-position:top; border-radius:6px;">
+                <div style="background:#ffffff; border-radius:12px; padding:6px; border:1px solid var(--bu-border);">
+                  <img src="https://babcock.edu.ng/storage/media/e9545d58-8a9d-4181-9ddb-730f7fa91f3e.jpg" alt="Prof. John Wesley Taylor V" style="width:100%; aspect-ratio:6/5; object-fit:cover; object-position:top; border-radius:8px;">
                   <div style="font-size:10px; font-weight:700; color:var(--bu-navy); margin-top:5px;">Prof. J. Taylor V</div>
-                  <div style="font-size:9px; color:#8A6D22; font-weight:700; text-transform:uppercase;">Global Keynote</div>
+                  <div style="font-size:9px; color:var(--bu-gold-text); font-weight:700; text-transform:uppercase;">Global Keynote</div>
                 </div>
               </div>
             </div>
-            <div style="background:var(--bu-navy-dark); color:#ffffff; padding:12px 18px; display:flex; flex-wrap:wrap; justify-content:space-between; gap:8px; font-size:12px;">
-              <strong style="color:var(--bu-gold-accent); text-transform:uppercase;">Physical &amp; Virtual • July 27 – August 1, 2027</strong>
+            <div style="background:var(--bu-navy); color:#ffffff; padding:12px 18px; display:flex; flex-wrap:wrap; justify-content:space-between; gap:8px; font-size:12px;">
+              <strong style="color:var(--bu-gold); text-transform:uppercase;">Physical &amp; Virtual • July 27 – August 1, 2027</strong>
               <span>Ilishan-Remo &amp; Zoom Worldwide</span>
             </div>
           </div>
@@ -440,25 +438,25 @@
     </div>
   </div>
 
-  <!-- 3. 8 ACADEMIC FIELDS GRID (WHITE) -->
-  <div class="bu-icfi-band-white" id="bu-icfi-fields">
+  <!-- 3. 8 ACADEMIC FIELDS GRID (MIST) -->
+  <div class="bu-icfi-band-mist" id="bu-icfi-fields">
     <div class="bu-icfi-container">
       <div class="bu-g12" style="margin-bottom:44px;">
         <div class="bu-c4">
-          <div style="font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.12em; color:var(--bu-gold-band);">Call for Papers !!</div>
+          <div style="font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.12em; color:var(--bu-gold-text);">Call for Papers</div>
           <h2 style="font-size:clamp(1.75rem, 3vw, 2.35rem); color:var(--bu-navy) !important; margin:8px 0 12px;">An Opportunity To Integrate Faith &amp; Learning</h2>
           <p style="font-size:14px; color:var(--bu-muted); margin:0 0 18px;">Submit empirical research, theoretical frameworks, or workplace case studies across any of these eight interdisciplinary conference tracks.</p>
           <a href="#bu-icfi-abstracts" class="bu-btn bu-btn-gold">Submit Abstract</a>
         </div>
         <div class="bu-c8">
           <div class="bu-g2">
-            <div style="position:relative; border-radius:20px; overflow:hidden; aspect-ratio:16/10; box-shadow:0 10px 24px rgba(0,0,0,0.1);">
+            <div style="position:relative; border-radius:24px; overflow:hidden; aspect-ratio:16/10; border:1px solid var(--bu-border);">
               <img src="https://babcock.edu.ng/storage/media/4f1bd9fd-7221-450b-8509-5041d6df2d24.jpg" alt="International & Local Scholars in Session" style="width:100%; height:100%; object-fit:cover;">
-              <span style="position:absolute; bottom:14px; left:14px; background:#ffffff; color:var(--bu-canonical); padding:7px 14px; border-radius:10px; font-size:12px; font-weight:700;">Hybrid Amphitheater &amp; Zoom</span>
+              <span style="position:absolute; bottom:14px; left:14px; background:#ffffff; color:var(--bu-navy); padding:7px 14px; border-radius:999px; font-size:12px; font-weight:700; border:1px solid var(--bu-border);">Hybrid Amphitheater &amp; Zoom</span>
             </div>
-            <div style="position:relative; border-radius:20px; overflow:hidden; aspect-ratio:16/10; box-shadow:0 10px 24px rgba(0,0,0,0.1);">
+            <div style="position:relative; border-radius:24px; overflow:hidden; aspect-ratio:16/10; border:1px solid var(--bu-border);">
               <img src="https://babcock.edu.ng/storage/media/4399208c-2bc4-4709-bd8a-712f27647d9e.jpg" alt="Collegial Academic Dialogue" style="width:100%; height:100%; object-fit:cover;">
-              <span style="position:absolute; bottom:14px; left:14px; background:#ffffff; color:var(--bu-canonical); padding:7px 14px; border-radius:10px; font-size:12px; font-weight:700;">IJFI Double-Blind Peer Review</span>
+              <span style="position:absolute; bottom:14px; left:14px; background:#ffffff; color:var(--bu-navy); padding:7px 14px; border-radius:999px; font-size:12px; font-weight:700; border:1px solid var(--bu-border);">IJFI Double-Blind Peer Review</span>
             </div>
           </div>
         </div>
@@ -481,7 +479,7 @@
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;"><span style="font-size:11px; font-weight:700; color:var(--bu-gold);">TRACK 03</span></div>
           <h3 style="font-size:1.2rem; color:var(--bu-navy) !important;">Technology</h3>
           <p style="font-size:12.5px; color:var(--bu-muted); margin:8px 0 0;">Artificial intelligence ethics, social media in modern society, and digital responsibility.</p>
-          <div style="margin-top:14px; padding-top:10px; border-top:1px solid var(--bu-border); font-size:11px; font-weight:700; color:#8A6D22;">AI &amp; Faith · Social Media</div>
+          <div style="margin-top:14px; padding-top:10px; border-top:1px solid var(--bu-border); font-size:11px; font-weight:700; color:var(--bu-gold-text);">AI &amp; Faith · Social Media</div>
         </div>
         <div class="bu-card-box" style="border-top:4px solid var(--bu-gold);">
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;"><span style="font-size:11px; font-weight:700; color:var(--bu-gold);">TRACK 04</span></div>
@@ -505,7 +503,7 @@
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;"><span style="font-size:11px; font-weight:700; color:var(--bu-gold);">TRACK 07</span></div>
           <h3 style="font-size:1.2rem; color:var(--bu-navy) !important;">Religion</h3>
           <p style="font-size:12.5px; color:var(--bu-muted); margin:8px 0 0;">Biblical worldview, Adventist education, relational principles, and evangelism.</p>
-          <div style="margin-top:14px; padding-top:10px; border-top:1px solid var(--bu-border); font-size:11px; font-weight:700; color:#8A6D22;">Faith · Biblical Praxis</div>
+          <div style="margin-top:14px; padding-top:10px; border-top:1px solid var(--bu-border); font-size:11px; font-weight:700; color:var(--bu-gold-text);">Faith · Biblical Praxis</div>
         </div>
         <div class="bu-card-box" style="border-top:4px solid var(--bu-gold);">
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;"><span style="font-size:11px; font-weight:700; color:var(--bu-gold);">TRACK 08</span></div>
@@ -517,30 +515,30 @@
     </div>
   </div>
 
-  <!-- 4. FROM THE CONVENER'S DESK, LEADERSHIP & DISTINGUISHED SCHOLARS (NAVY BAND) -->
-  <div class="bu-icfi-band-navy" id="bu-icfi-convener">
+  <!-- 4. FROM THE CONVENER'S DESK, LEADERSHIP & DISTINGUISHED SCHOLARS (WHITE BAND) -->
+  <div class="bu-icfi-band-white" id="bu-icfi-convener">
     <div class="bu-icfi-container">
-      <div class="bu-g12" style="padding-bottom:48px; border-bottom:1px solid rgba(255,255,255,0.16);">
+      <div class="bu-g12" style="padding-bottom:48px; border-bottom:1px solid var(--bu-border);">
         <div class="bu-c5">
-          <div style="border-radius:18px; overflow:hidden; border:1px solid rgba(238,194,90,0.35); background:var(--bu-navy-dark);">
+          <div style="border-radius:var(--bu-radius-card); overflow:hidden; border:2px solid var(--bu-gold); background:var(--bu-tint);">
             <img src="https://babcock.edu.ng/storage/media/2d5687e3-943b-44cd-b49e-e2db325b3c76.jpg" alt="Prof. Constance C. Nwosu" style="width:100%; aspect-ratio:4/4.3; object-fit:cover; object-position:top;">
           </div>
         </div>
         <div class="bu-c7">
-          <div style="font-family:var(--bu-font-serif); font-size:52px; color:var(--bu-gold-accent); line-height:1;">“</div>
+          <div style="font-family:var(--bu-font-serif); font-size:52px; color:var(--bu-gold); line-height:1;">“</div>
           <h2 style="font-size:clamp(1.75rem, 3vw, 2.4rem);">From the Convener’s Desk</h2>
-          <p style="font-size:15.5px; color:#e2e8f0; margin:16px 0; max-width:58ch;">
-            Organized by the <strong style="color:#ffffff;">Institute for Faith Integration</strong> at Babcock University, ICFI brings together scholars and practitioners uniting rigorous scholarship, professional ethics, and living faith.
+          <p style="font-size:15.5px; color:var(--bu-muted); margin:16px 0; max-width:58ch;">
+            Organized by the <strong style="color:var(--bu-navy);">Institute for Faith Integration</strong> at Babcock University, ICFI brings together scholars and practitioners uniting rigorous scholarship, professional ethics, and living faith.
           </p>
-          <blockquote style="font-family:var(--bu-font-serif); font-style:italic; font-size:1.25rem; color:var(--bu-gold-accent); margin:0 0 18px; border:0; padding:0;">
+          <blockquote style="font-family:var(--bu-font-serif); font-style:italic; font-size:1.25rem; color:var(--bu-navy); margin:0 0 18px; border-left:3px solid var(--bu-gold); padding-left:16px;">
             “Positioned as a tower and edifice of truth to advance faith integration beyond campus walls — grounded in Isaiah 58:12.”
           </blockquote>
-          <div style="padding-top:14px; border-top:1px solid rgba(255,255,255,0.15); display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px;">
+          <div style="padding-top:14px; border-top:1px solid var(--bu-border); display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px;">
             <div>
-              <div style="font-family:var(--bu-font-serif); font-weight:700; font-size:1.1rem;">Prof. Constance C. Nwosu</div>
-              <div style="font-size:12px; color:#cbd5e1;">Organizer &amp; Convener • Special Advisor to the President/VC on AAA, IBE/IBMTE, and IFL/IFS, Babcock University</div>
+              <div style="font-family:var(--bu-font-serif); font-weight:700; font-size:1.1rem; color:var(--bu-navy);">Prof. Constance C. Nwosu</div>
+              <div style="font-size:12px; color:var(--bu-muted);">Organizer &amp; Convener • Special Advisor to the President/VC on AAA, IBE/IBMTE, and IFL/IFS, Babcock University</div>
             </div>
-            <div style="font-size:12px; color:var(--bu-gold-accent); font-weight:700;">+234 806 463 8207 • +234 805 829 9031</div>
+            <div style="font-size:12px; color:var(--bu-navy); border-bottom:2px solid var(--bu-gold); padding-bottom:2px; font-weight:700; align-self:flex-start;">+234 806 463 8207 • +234 805 829 9031</div>
           </div>
         </div>
       </div>
@@ -548,74 +546,74 @@
       <div id="bu-icfi-speakers" style="padding-top:46px;">
         <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-end; gap:10px; margin-bottom:24px;">
           <div>
-            <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.14em; color:var(--bu-gold-accent);">Conference Leadership</div>
+            <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.14em; color:var(--bu-gold-text);">Conference Leadership</div>
             <h3 style="font-size:clamp(1.5rem, 2.5vw, 2rem); margin-top:4px;">Chief Host, Host &amp; Convener</h3>
           </div>
-          <span style="font-size:12px; color:#cbd5e1;">Babcock University, Ilishan-Remo, Nigeria</span>
+          <span style="font-size:12px; color:var(--bu-muted);">Babcock University, Ilishan-Remo, Nigeria</span>
         </div>
 
         <div class="bu-g3" style="margin-bottom:44px;">
-          <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(238,194,90,0.35); border-radius:18px; padding:20px;">
-            <img src="https://babcock.edu.ng/storage/media/5ad4f5d8-c9e9-486a-9b7b-32e10cb7e728.jpg" alt="Prof. Afolarin Olutunde Ojewole" style="width:100%; aspect-ratio:6/5; object-fit:cover; object-position:top; border-radius:12px; margin-bottom:14px;">
-            <span style="display:inline-block; padding:4px 12px; border-radius:999px; background:rgba(238,194,90,0.2); color:var(--bu-gold-accent); font-size:11px; font-weight:700; text-transform:uppercase;">Chief Host</span>
+          <div style="background:var(--bu-tint); border:1px solid var(--bu-gold); border-radius:var(--bu-radius-card); padding:20px;">
+            <img src="https://babcock.edu.ng/storage/media/5ad4f5d8-c9e9-486a-9b7b-32e10cb7e728.jpg" alt="Prof. Afolarin Olutunde Ojewole" style="width:100%; aspect-ratio:6/5; object-fit:cover; object-position:top; border-radius:14px; margin-bottom:14px;">
+            <span style="display:inline-block; padding:4px 12px; border-radius:999px; background:var(--bu-navy); color:var(--bu-gold); font-size:11px; font-weight:700; text-transform:uppercase;">Chief Host</span>
             <h4 style="font-size:1.2rem; margin-top:10px;">Prof. Afolarin Olutunde Ojewole</h4>
-            <p style="font-size:12px; color:#cbd5e1; margin:4px 0 0;">President / Vice Chancellor, Babcock University</p>
+            <p style="font-size:12px; color:var(--bu-muted); margin:4px 0 0;">President / Vice Chancellor, Babcock University</p>
           </div>
-          <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.16); border-radius:18px; padding:20px;">
-            <img src="https://babcock.edu.ng/storage/media/968e1947-5b11-4fcb-9dcb-9e5b7035246f.jpg" alt="Prof. Jonathan C. Nwosu" style="width:100%; aspect-ratio:6/5; object-fit:cover; object-position:top; border-radius:12px; margin-bottom:14px;">
-            <span style="display:inline-block; padding:4px 12px; border-radius:999px; background:rgba(255,255,255,0.12); color:var(--bu-gold-accent); font-size:11px; font-weight:700; text-transform:uppercase;">Host</span>
+          <div style="background:var(--bu-tint); border:1px solid var(--bu-border); border-radius:var(--bu-radius-card); padding:20px;">
+            <img src="https://babcock.edu.ng/storage/media/968e1947-5b11-4fcb-9dcb-9e5b7035246f.jpg" alt="Prof. Jonathan C. Nwosu" style="width:100%; aspect-ratio:6/5; object-fit:cover; object-position:top; border-radius:14px; margin-bottom:14px;">
+            <span style="display:inline-block; padding:4px 12px; border-radius:999px; background:var(--bu-mist); border:1px solid var(--bu-border); color:var(--bu-navy); font-size:11px; font-weight:700; text-transform:uppercase;">Host</span>
             <h4 style="font-size:1.2rem; margin-top:10px;">Prof. Jonathan C. Nwosu</h4>
-            <p style="font-size:12px; color:#cbd5e1; margin:4px 0 0;">Senior Vice President, Babcock University</p>
+            <p style="font-size:12px; color:var(--bu-muted); margin:4px 0 0;">Senior Vice President, Babcock University</p>
           </div>
-          <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.16); border-radius:18px; padding:20px;">
-            <img src="https://babcock.edu.ng/storage/media/46b5ce14-3ba8-4ca7-8164-8c33d5b9a76d.jpg" alt="Prof. Constance C. Nwosu" style="width:100%; aspect-ratio:6/5; object-fit:cover; object-position:top; border-radius:12px; margin-bottom:14px;">
-            <span style="display:inline-block; padding:4px 12px; border-radius:999px; background:rgba(255,255,255,0.12); color:var(--bu-gold-accent); font-size:11px; font-weight:700; text-transform:uppercase;">Organizer &amp; Convener</span>
+          <div style="background:var(--bu-tint); border:1px solid var(--bu-border); border-radius:var(--bu-radius-card); padding:20px;">
+            <img src="https://babcock.edu.ng/storage/media/46b5ce14-3ba8-4ca7-8164-8c33d5b9a76d.jpg" alt="Prof. Constance C. Nwosu" style="width:100%; aspect-ratio:6/5; object-fit:cover; object-position:top; border-radius:14px; margin-bottom:14px;">
+            <span style="display:inline-block; padding:4px 12px; border-radius:999px; background:var(--bu-gold); color:var(--bu-navy); font-size:11px; font-weight:700; text-transform:uppercase;">Organizer &amp; Convener</span>
             <h4 style="font-size:1.2rem; margin-top:10px;">Prof. Constance C. Nwosu</h4>
-            <p style="font-size:12px; color:#cbd5e1; margin:4px 0 0;">Special Advisor to the President/VC on AAA, IBE/IBMTE, and IFL/IFS, Babcock University</p>
+            <p style="font-size:12px; color:var(--bu-muted); margin:4px 0 0;">Special Advisor to the President/VC on AAA, IBE/IBMTE, and IFL/IFS, Babcock University</p>
           </div>
         </div>
 
         <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-end; gap:10px; margin-bottom:22px;">
           <h3 style="font-size:1.55rem;">Distinguished Keynote &amp; Invited Scholars</h3>
-          <span style="font-size:12px; color:var(--bu-gold-accent); font-weight:600;">Global Faith Integration Voices</span>
+          <span style="font-size:12px; color:var(--bu-gold-text); font-weight:700;">Global Faith Integration Voices</span>
         </div>
 
         <div class="bu-g4">
-          <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.16); border-radius:16px; padding:20px; text-align:center;">
-            <img src="https://babcock.edu.ng/storage/media/e9545d58-8a9d-4181-9ddb-730f7fa91f3e.jpg" alt="Prof. John Wesley Taylor V" style="width:80px; height:80px; border-radius:50%; object-fit:cover; object-position:top; margin:0 auto; border:2px solid rgba(238,194,90,0.65);">
-            <div style="font-size:10px; font-weight:700; color:var(--bu-gold-accent); text-transform:uppercase; margin-top:12px;">USA</div>
+          <div style="background:var(--bu-tint); border:1px solid var(--bu-border); border-radius:var(--bu-radius-card); padding:20px; text-align:center;">
+            <img src="https://babcock.edu.ng/storage/media/e9545d58-8a9d-4181-9ddb-730f7fa91f3e.jpg" alt="Prof. John Wesley Taylor V" style="width:80px; height:80px; border-radius:50%; object-fit:cover; object-position:top; margin:0 auto; border:2px solid var(--bu-gold);">
+            <div style="font-size:10px; font-weight:700; color:var(--bu-gold-text); text-transform:uppercase; margin-top:12px;">USA</div>
             <h4 style="font-size:14px; font-family:var(--bu-font-sans); margin-top:4px;">Prof. John Wesley Taylor V</h4>
-            <p style="font-size:12px; color:#cbd5e1; margin:6px 0 0;">Associate Director of Education, General Conference of SDA</p>
+            <p style="font-size:12px; color:var(--bu-muted); margin:6px 0 0;">Associate Director of Education, General Conference of SDA</p>
           </div>
-          <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.16); border-radius:16px; padding:20px; text-align:center;">
-            <img src="https://babcock.edu.ng/storage/media/2039d94b-3618-4412-b70f-01e755c4016a.jpg" alt="Dr. Juvenal Balisasa" style="width:80px; height:80px; border-radius:50%; object-fit:cover; object-position:top; margin:0 auto; border:2px solid rgba(255,255,255,0.35);">
-            <div style="font-size:10px; font-weight:700; color:var(--bu-gold-accent); text-transform:uppercase; margin-top:12px;">Côte d'Ivoire</div>
+          <div style="background:var(--bu-tint); border:1px solid var(--bu-border); border-radius:var(--bu-radius-card); padding:20px; text-align:center;">
+            <img src="https://babcock.edu.ng/storage/media/2039d94b-3618-4412-b70f-01e755c4016a.jpg" alt="Dr. Juvenal Balisasa" style="width:80px; height:80px; border-radius:50%; object-fit:cover; object-position:top; margin:0 auto; border:2px solid var(--bu-border-mid);">
+            <div style="font-size:10px; font-weight:700; color:var(--bu-gold-text); text-transform:uppercase; margin-top:12px;">Côte d'Ivoire</div>
             <h4 style="font-size:14px; font-family:var(--bu-font-sans); margin-top:4px;">Dr. Juvenal Balisasa, Ph.D</h4>
-            <p style="font-size:12px; color:#cbd5e1; margin:6px 0 0;">Education Director, West-Central Africa Division (WAD)</p>
+            <p style="font-size:12px; color:var(--bu-muted); margin:6px 0 0;">Education Director, West-Central Africa Division (WAD)</p>
           </div>
-          <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.16); border-radius:16px; padding:20px; text-align:center;">
-            <img src="https://babcock.edu.ng/storage/media/6629ee2d-b026-4a61-b8d0-9ed1f8dcb5ec.jpg" alt="Mrs. Barbara Fisher" style="width:80px; height:80px; border-radius:50%; object-fit:cover; object-position:top; margin:0 auto; border:2px solid rgba(255,255,255,0.35);">
-            <div style="font-size:10px; font-weight:700; color:var(--bu-gold-accent); text-transform:uppercase; margin-top:12px;">Australia</div>
+          <div style="background:var(--bu-tint); border:1px solid var(--bu-border); border-radius:var(--bu-radius-card); padding:20px; text-align:center;">
+            <img src="https://babcock.edu.ng/storage/media/6629ee2d-b026-4a61-b8d0-9ed1f8dcb5ec.jpg" alt="Mrs. Barbara Fisher" style="width:80px; height:80px; border-radius:50%; object-fit:cover; object-position:top; margin:0 auto; border:2px solid var(--bu-border-mid);">
+            <div style="font-size:10px; font-weight:700; color:var(--bu-gold-text); text-transform:uppercase; margin-top:12px;">Australia</div>
             <h4 style="font-size:14px; font-family:var(--bu-font-sans); margin-top:4px;">Mrs. Barbara Fisher</h4>
-            <p style="font-size:12px; color:#cbd5e1; margin:6px 0 0;">Faith Integration &amp; Bible Curriculum Specialist</p>
+            <p style="font-size:12px; color:var(--bu-muted); margin:6px 0 0;">Faith Integration &amp; Bible Curriculum Specialist</p>
           </div>
-          <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.16); border-radius:16px; padding:20px; text-align:center;">
-            <img src="https://babcock.edu.ng/storage/media/457a0baa-a6a6-4255-be26-be4b31d96f74.jpg" alt="Dr. Oluwole A. Oyedeji" style="width:80px; height:80px; border-radius:50%; object-fit:cover; object-position:top; margin:0 auto; border:2px solid rgba(255,255,255,0.35);">
-            <div style="font-size:10px; font-weight:700; color:var(--bu-gold-accent); text-transform:uppercase; margin-top:12px;">Nigeria</div>
+          <div style="background:var(--bu-tint); border:1px solid var(--bu-border); border-radius:var(--bu-radius-card); padding:20px; text-align:center;">
+            <img src="https://babcock.edu.ng/storage/media/457a0baa-a6a6-4255-be26-be4b31d96f74.jpg" alt="Dr. Oluwole A. Oyedeji" style="width:80px; height:80px; border-radius:50%; object-fit:cover; object-position:top; margin:0 auto; border:2px solid var(--bu-border-mid);">
+            <div style="font-size:10px; font-weight:700; color:var(--bu-gold-text); text-transform:uppercase; margin-top:12px;">Nigeria</div>
             <h4 style="font-size:14px; font-family:var(--bu-font-sans); margin-top:4px;">Dr. Oluwole A. Oyedeji, Ph.D</h4>
-            <p style="font-size:12px; color:#cbd5e1; margin:6px 0 0;">Consultant Geoscientist &amp; Faith-Science Scholar, Abuja</p>
+            <p style="font-size:12px; color:var(--bu-muted); margin:6px 0 0;">Consultant Geoscientist &amp; Faith-Science Scholar, Abuja</p>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- 5. CORE VALUES AGENDA (E-I-A-S-T-H + VISION/MISSION) -->
-  <div class="bu-icfi-band-gray" id="bu-icfi-values">
+  <!-- 5. CORE VALUES AGENDA (E-I-A-S-T-H + VISION/MISSION) (MIST) -->
+  <div class="bu-icfi-band-mist" id="bu-icfi-values">
     <div class="bu-icfi-container">
       <div style="margin-bottom:28px;">
         <h2 style="font-size:clamp(1.75rem, 3vw, 2.25rem);">The Faith Integration &amp; Core Values Agenda</h2>
-        <div style="width:56px; height:4px; background:#cbd5e1; border-radius:4px; margin-top:10px;"></div>
+        <div style="width:56px; height:4px; background:var(--bu-gold); border-radius:4px; margin-top:10px;"></div>
       </div>
       <div class="bu-g6">
         <div class="bu-card-box" style="padding:18px; border-radius:16px;">
@@ -662,45 +660,45 @@
           <p style="font-size:12.5px; color:var(--bu-muted); margin:0;">“A first-class Seventh-day Adventist institution, building servant-leaders for a better world.”</p>
         </div>
         <div class="bu-card-box" style="padding:16px 22px; border-radius:14px; display:flex; gap:12px; align-items:flex-start;">
-          <strong style="font-size:12px; color:var(--bu-gold-band); text-transform:uppercase;">Mission:</strong>
+          <strong style="font-size:12px; color:var(--bu-gold-text); text-transform:uppercase;">Mission:</strong>
           <p style="font-size:12.5px; color:var(--bu-muted); margin:0;">Building leadership through Christian education; transforming lives and impacting society for positive change.</p>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- 6. ROADMAP, 6-DAY HYBRID PROGRAMME & ABSTRACT SUBMISSION (MIST) -->
-  <div class="bu-icfi-band-mist" id="bu-icfi-roadmap">
+  <!-- 6. ROADMAP, 6-DAY HYBRID PROGRAMME & ABSTRACT SUBMISSION (WHITE) -->
+  <div class="bu-icfi-band-white" id="bu-icfi-roadmap">
     <div class="bu-icfi-container">
       <div style="margin-bottom:36px;">
-        <span style="display:inline-block; padding:6px 14px; border-radius:999px; background:#ffffff; border:1px solid var(--bu-border); font-size:12px; font-weight:600; color:var(--bu-muted); margin-bottom:14px;">Conference Roadmap • 2026 / 2027</span>
-        <h2 style="font-size:clamp(1.85rem, 3.6vw, 2.75rem);">Welcome to ICFI 2027. <span style="color:var(--bu-gold-band);">Here’s what’s next.</span></h2>
+        <span style="display:inline-block; padding:6px 14px; border-radius:999px; background:var(--bu-mist); border:1px solid var(--bu-border); font-size:12px; font-weight:600; color:var(--bu-muted); margin-bottom:14px;">Conference Roadmap • 2026 / 2027</span>
+        <h2 style="font-size:clamp(1.85rem, 3.6vw, 2.75rem);">Welcome to ICFI 2027. <span style="color:var(--bu-gold-text);">Here’s what’s next.</span></h2>
         <p style="font-size:15px; color:var(--bu-muted); margin:8px 0 0; max-width:60ch;">Every key date, submission guideline, and daily session itinerary for campus and online delegates in one clear place.</p>
       </div>
 
       <div class="bu-g12" style="align-items:start;">
         <div class="bu-c5" style="display:grid; gap:14px;">
           <div><a href="#bu-icfi-portal" class="bu-btn bu-btn-navy bu-btn-pill" onclick="buIcfiOpenTab('conference'); return true;">Start here &rarr;</a></div>
-          <div class="bu-card-box" style="padding:16px 20px; border-radius:18px;">
+          <div class="bu-card-box bu-card-box--tint" style="padding:16px 20px; border-radius:18px;">
             <strong style="font-size:14px;">Nov 02, 2026</strong>
             <div style="font-size:12px; color:var(--bu-muted);">Registration &amp; Seat Booking Opens</div>
           </div>
-          <div class="bu-card-box" style="padding:16px 20px; border-radius:18px;">
-            <strong style="font-size:14px;">Mar 24, 2027 <span style="color:var(--bu-bronze);">• Priority</span></strong>
+          <div class="bu-card-box bu-card-box--tint" style="padding:16px 20px; border-radius:18px;">
+            <strong style="font-size:14px;">Mar 24, 2027 <span style="color:var(--bu-gold-text);">• Priority</span></strong>
             <div style="font-size:12px; color:var(--bu-muted);">Abstract Submission Deadline (icfi@babcock.edu.ng)</div>
           </div>
-          <div class="bu-card-box" style="padding:16px 20px; border-radius:18px;">
+          <div class="bu-card-box bu-card-box--tint" style="padding:16px 20px; border-radius:18px;">
             <strong style="font-size:14px;">Apr 23, 2027</strong>
             <div style="font-size:12px; color:var(--bu-muted);">Early Bird Closes (ICFI Members keep ₦40,000 year-round)</div>
           </div>
-          <div class="bu-card-box" style="padding:16px 20px; border-radius:18px;">
+          <div class="bu-card-box bu-card-box--tint" style="padding:16px 20px; border-radius:18px;">
             <strong style="font-size:14px;">May 09 &amp; May 31, 2027</strong>
             <div style="font-size:12px; color:var(--bu-muted);">Full Paper Due (May 9) • Final Seat Reservation (May 31)</div>
           </div>
         </div>
 
         <div class="bu-c7" style="display:grid; gap:20px;">
-          <div class="bu-card-box">
+          <div class="bu-card-box bu-card-box--tint">
             <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:12px; margin-bottom:16px;">
               <div>
                 <h3 style="font-size:1.35rem;">6-Day Hybrid Programme</h3>
@@ -717,13 +715,13 @@
             <div id="bu-icfi-prog-list"></div>
           </div>
 
-          <div class="bu-card-box" id="bu-icfi-abstracts">
+          <div class="bu-card-box bu-card-box--tint" id="bu-icfi-abstracts">
             <div class="bu-g12">
               <div class="bu-c5">
                 <img src="https://babcock.edu.ng/storage/media/ed349bd4-ec0b-4071-af83-7879c9c5218c.jpg" alt="Scholars seated in ICFI conference session" style="width:100%; border-radius:14px; aspect-ratio:4/3; object-fit:cover;">
               </div>
               <div class="bu-c7">
-                <div style="font-size:11px; font-weight:700; text-transform:uppercase; color:var(--bu-gold);">Abstract Guidelines</div>
+                <div style="font-size:11px; font-weight:700; text-transform:uppercase; color:var(--bu-gold-text);">Abstract Guidelines</div>
                 <h3 style="font-size:1.25rem; margin-top:4px;">How to Submit Your Manuscript</h3>
                 <ul style="font-size:12px; color:var(--bu-muted); padding-left:16px; margin:10px 0 14px;">
                   <li><strong>Word Limit:</strong> Max 250 words (objective, method &amp; impact)</li>
@@ -742,16 +740,16 @@
     </div>
   </div>
 
-  <!-- 7. CONFERENCE PASSES, BANKING & FULL ON-SITE REGISTRATION + MEMBERSHIP PORTAL (WHITE) -->
-  <div class="bu-icfi-band-white" id="bu-icfi-registration">
+  <!-- 7. CONFERENCE PASSES, BANKING & FULL ON-SITE REGISTRATION + MEMBERSHIP PORTAL (MIST) -->
+  <div class="bu-icfi-band-mist" id="bu-icfi-registration">
     <div class="bu-icfi-container">
       <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-end; gap:16px; margin-bottom:34px;">
         <div>
-          <span style="font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.12em; color:var(--bu-gold-band);">Registration &amp; Fees</span>
+          <span style="font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.12em; color:var(--bu-gold-text);">Registration &amp; Fees</span>
           <h2 style="font-size:clamp(1.75rem, 3.2vw, 2.35rem); color:var(--bu-navy) !important; margin-top:4px;">Simple, Transparent Pass Options</h2>
           <p style="font-size:14px; color:var(--bu-muted); margin:4px 0 0;">Switch currency between Local (NGN) and International (USD).</p>
         </div>
-        <div style="display:inline-flex; background:var(--bu-mist); padding:4px; border-radius:999px; border:1px solid var(--bu-border);">
+        <div style="display:inline-flex; background:#ffffff; padding:4px; border-radius:999px; border:1px solid var(--bu-border);">
           <button type="button" id="bu-cur-ngn" class="bu-tab-btn is-active" onclick="buIcfiSetCurrency('NGN')">Local (₦ NGN)</button>
           <button type="button" id="bu-cur-usd" class="bu-tab-btn" onclick="buIcfiSetCurrency('USD')">International ($ USD)</button>
         </div>
@@ -775,21 +773,21 @@
           <button type="button" class="bu-btn bu-btn-mist bu-btn-pill" style="width:100%; margin-top:22px; min-height:42px; font-size:12.5px;" onclick="buIcfiPresetReg('Physical / In-person', 'non-member')">Register Standard Seat</button>
         </div>
 
-        <div class="bu-icfi-card-dark" style="display:flex; flex-direction:column; justify-content:space-between;">
+        <div class="bu-card-box" style="border:2px solid var(--bu-gold); display:flex; flex-direction:column; justify-content:space-between;">
           <div>
-            <div style="font-size:11px; font-weight:700; text-transform:uppercase; color:var(--bu-gold-accent);">★ Until April 23, 2027</div>
-            <h3 style="font-size:1.4rem; margin-top:4px;">Early Bird &amp; Member</h3>
-            <div style="margin:14px 0; padding-bottom:14px; border-bottom:1px solid rgba(255,255,255,0.16);">
-              <span class="bu-icfi-fee-num" data-ngn="₦40,000" data-usd="$80" style="font-family:var(--bu-font-serif); font-size:2.2rem; font-weight:700; color:var(--bu-gold-accent);">₦40,000</span>
-              <span class="bu-icfi-fee-sub" data-ngn=" ($80 International)" data-usd=" (₦40,000 Local)" style="font-size:12px; color:#cbd5e1;"> ($80 International)</span>
+            <div style="font-size:11px; font-weight:700; text-transform:uppercase; color:var(--bu-gold-text);">★ Until April 23, 2027</div>
+            <h3 style="font-size:1.4rem; color:var(--bu-navy) !important; margin-top:4px;">Early Bird &amp; Member</h3>
+            <div style="margin:14px 0; padding-bottom:14px; border-bottom:1px solid var(--bu-border);">
+              <span class="bu-icfi-fee-num" data-ngn="₦40,000" data-usd="$80" style="font-family:var(--bu-font-serif); font-size:2.2rem; font-weight:700; color:var(--bu-navy);">₦40,000</span>
+              <span class="bu-icfi-fee-sub" data-ngn=" ($80 International)" data-usd=" (₦40,000 Local)" style="font-size:12px; color:var(--bu-muted);"> ($80 International)</span>
             </div>
-            <ul style="font-size:12.5px; color:#e2e8f0; padding-left:16px; margin:0;">
+            <ul style="font-size:12.5px; color:var(--bu-muted); padding-left:16px; margin:0;">
               <li>Full delegate materials &amp; lunch</li>
               <li>Free IJFI peer-reviewed publication</li>
-              <li style="color:var(--bu-gold-accent); font-weight:700;">₦10,000 off for Registered ICFI Members</li>
+              <li style="color:var(--bu-navy); font-weight:700;">₦10,000 off for Registered ICFI Members</li>
             </ul>
           </div>
-          <button type="button" class="bu-btn bu-btn-gold-bright bu-btn-pill" style="width:100%; margin-top:22px; min-height:42px; font-size:12.5px;" onclick="buIcfiPresetReg('Physical / In-person', 'early-bird')">Reserve Early Bird Seat &rarr;</button>
+          <button type="button" class="bu-btn bu-btn-gold bu-btn-pill" style="width:100%; margin-top:22px; min-height:42px; font-size:12.5px;" onclick="buIcfiPresetReg('Physical / In-person', 'early-bird')">Reserve Early Bird Seat &rarr;</button>
         </div>
 
         <div class="bu-card-box" style="display:flex; flex-direction:column; justify-content:space-between;">
@@ -811,17 +809,17 @@
       </div>
 
       <div class="bu-g2">
-        <div class="bu-card-box" style="background:var(--bu-tint); padding:18px 20px; display:flex; justify-content:space-between; align-items:center; gap:12px;">
+        <div class="bu-card-box" style="padding:18px 20px; display:flex; justify-content:space-between; align-items:center; gap:12px;">
           <div>
-            <div style="font-size:11px; font-weight:700; text-transform:uppercase; color:var(--bu-gold);">Local Transfers (NGN)</div>
+            <div style="font-size:11px; font-weight:700; text-transform:uppercase; color:var(--bu-gold-text);">Local Transfers (NGN)</div>
             <div style="font-size:14px; font-weight:700; color:var(--bu-navy);">UBA Plc • Babcock MFB</div>
             <div style="font-size:12px; color:var(--bu-muted);">Account: <strong>1020069501</strong></div>
           </div>
           <button type="button" class="bu-btn bu-btn-outline bu-btn-pill" style="min-height:38px; padding:6px 14px; font-size:12px;" onclick="buIcfiCopyAcct(this, '1020069501')">Copy Acct</button>
         </div>
-        <div class="bu-card-box" style="background:var(--bu-tint); padding:18px 20px; display:flex; justify-content:space-between; align-items:center; gap:12px;">
+        <div class="bu-card-box" style="padding:18px 20px; display:flex; justify-content:space-between; align-items:center; gap:12px;">
           <div>
-            <div style="font-size:11px; font-weight:700; text-transform:uppercase; color:var(--bu-gold);">International Transfers (USD)</div>
+            <div style="font-size:11px; font-weight:700; text-transform:uppercase; color:var(--bu-gold-text);">International Transfers (USD)</div>
             <div style="font-size:14px; font-weight:700; color:var(--bu-navy);">GTBank • B.U-Op./Inst. For Faith Integr</div>
             <div style="font-size:12px; color:var(--bu-muted);">Account: <strong>0829898610</strong></div>
           </div>
@@ -834,14 +832,14 @@
         <div id="bu-icfi-membership"></div>
         <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-start; gap:16px; padding-bottom:20px; border-bottom:1px solid var(--bu-border);">
           <div>
-            <span style="display:inline-block; padding:4px 12px; border-radius:999px; background:#ffffff; border:1px solid var(--bu-border); font-size:11px; font-weight:700; color:var(--bu-gold-band); text-transform:uppercase;">Official On-Site Portal</span>
+            <span style="display:inline-block; padding:4px 12px; border-radius:999px; background:var(--bu-tint); border:1px solid var(--bu-border); font-size:11px; font-weight:700; color:var(--bu-gold-text); text-transform:uppercase;">Official On-Site Portal</span>
             <h3 id="bu-portal-heading" style="font-size:clamp(1.45rem, 2.6vw, 1.95rem); color:var(--bu-navy) !important; margin-top:8px;">Conference Registration &amp; ICFI Membership</h3>
             <p style="font-size:13px; color:var(--bu-muted); margin:4px 0 0;">Register directly below without signing into Google. Complete transfer first, attach receipt, and get an instant reference ID.</p>
           </div>
-          <div style="background:#ffffff; border:1px solid var(--bu-border); border-radius:14px; padding:12px 16px;">
+          <div style="background:var(--bu-tint); border:1px solid var(--bu-border); border-radius:16px; padding:12px 16px;">
             <div style="font-size:10px; font-weight:700; text-transform:uppercase; color:var(--bu-muted);">Accommodation Inquiries</div>
             <div style="font-size:12.5px; font-weight:700; color:var(--bu-navy);">Dr. Nnenna Nwobi</div>
-            <a href="tel:+2348135388049" style="font-size:12px; font-weight:700; color:var(--bu-blue);">+234 813 538 8049</a>
+            <a href="tel:+2348135388049" style="font-size:12px; font-weight:700; color:var(--bu-navy); border-bottom:2px solid var(--bu-gold);">+234 813 538 8049</a>
           </div>
         </div>
 
@@ -1063,7 +1061,7 @@
               </div>
               <div class="bu-card-box" style="padding:16px 18px; border-radius:16px;">
                 <label style="display:flex; align-items:flex-start; gap:10px; font-size:13.5px; font-weight:700; cursor:pointer;">
-                  <input type="checkbox" id="bu-r-decl" name="declarationAgreed" value="Yes" required style="width:20px; height:20px; accent-color:#004182; margin-top:2px;">
+                  <input type="checkbox" id="bu-r-decl" name="declarationAgreed" value="Yes" required style="width:20px; height:20px; accent-color:#1B2D5B; margin-top:2px;">
                   <span>I have read and understood the declaration above *</span>
                 </label>
                 <div class="bu-error-msg">&#10060; Please confirm the declaration before submitting.</div>
@@ -1158,7 +1156,7 @@
                 <div>
                   <div style="display:flex; justify-content:space-between; align-items:center;">
                     <label for="bu-m-wa" class="bu-label">WhatsApp Contact *</label>
-                    <button type="button" onclick="buIcfiCopyCell()" style="border:0; background:none; color:var(--bu-blue); font-size:11.5px; font-weight:700; cursor:pointer; padding:0;">Same as Cell</button>
+                    <button type="button" onclick="buIcfiCopyCell()" style="border:0; background:none; color:var(--bu-navy); text-decoration:underline; text-decoration-color:var(--bu-gold); font-size:11.5px; font-weight:700; cursor:pointer; padding:0;">Same as Cell</button>
                   </div>
                   <input type="tel" id="bu-m-wa" name="whatsappContact" required autocomplete="tel" class="bu-reg-input">
                   <div class="bu-error-msg">&#10060; Enter WhatsApp contact number.</div>
@@ -1197,23 +1195,23 @@
     </div>
   </div>
 
-  <!-- 8. IJFI JOURNAL, VIDEO RECAP, PAST PAPERS, PHOTO GALLERY, FAQS & SECRETARIAT (MIST) -->
-  <div class="bu-icfi-band-mist" id="bu-icfi-ijfi">
+  <!-- 8. IJFI JOURNAL, VIDEO RECAP, PAST PAPERS, PHOTO GALLERY, FAQS & SECRETARIAT (WHITE) -->
+  <div class="bu-icfi-band-white" id="bu-icfi-ijfi">
     <div class="bu-icfi-container" style="display:grid; gap:48px;">
       <div>
         <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-end; gap:14px; margin-bottom:28px;">
           <div>
-            <span style="display:inline-flex; align-items:center; gap:8px; padding:4px 12px; border-radius:999px; background:#ffffff; border:1px solid var(--bu-border); font-size:11px; font-weight:700; text-transform:uppercase;">
-              <span style="width:8px; height:8px; border-radius:50%; background:#dc2626;"></span> Official Journal &amp; Broadcasts
+            <span style="display:inline-flex; align-items:center; gap:8px; padding:4px 12px; border-radius:999px; background:var(--bu-mist); border:1px solid var(--bu-border); font-size:11px; font-weight:700; text-transform:uppercase; color:var(--bu-navy);">
+              <span style="width:8px; height:8px; border-radius:50%; background:var(--bu-gold);"></span> Official Journal &amp; Broadcasts
             </span>
             <h2 style="font-size:clamp(1.75rem, 3.2vw, 2.35rem); margin-top:10px;">From our IJFI Journal &amp; Past Papers</h2>
             <p style="font-size:14px; color:var(--bu-muted); margin:4px 0 0;">Peer-reviewed scholarship, conference highlights, and downloadable proceedings.</p>
           </div>
-          <span style="padding:7px 14px; border-radius:999px; background:#ffffff; border:1px solid var(--bu-border); font-size:12px; font-weight:700;">4 Peer-Reviewed Papers • IJFI Portal</span>
+          <span style="padding:7px 14px; border-radius:999px; background:var(--bu-mist); border:1px solid var(--bu-border); font-size:12px; font-weight:700; color:var(--bu-navy);">4 Peer-Reviewed Papers • IJFI Portal</span>
         </div>
 
         <div class="bu-g2" style="margin-bottom:26px;">
-          <div class="bu-card-box" style="padding:0; overflow:hidden; display:flex; flex-direction:column; justify-content:space-between;">
+          <div class="bu-card-box bu-card-box--tint" style="padding:0; overflow:hidden; display:flex; flex-direction:column; justify-content:space-between;">
             <div>
               <img src="https://babcock.edu.ng/storage/media/95e43907-6bd3-4594-888c-b569f92cbe26.jpg" alt="International Journal for Faith Integration volumes" style="width:100%; aspect-ratio:16/9; object-fit:cover;">
               <div style="padding:22px;">
@@ -1231,12 +1229,12 @@
             </div>
           </div>
 
-          <div class="bu-card-box" style="padding:0; overflow:hidden; display:flex; flex-direction:column; justify-content:space-between;">
+          <div class="bu-card-box bu-card-box--tint" style="padding:0; overflow:hidden; display:flex; flex-direction:column; justify-content:space-between;">
             <div>
-              <div style="position:relative; aspect-ratio:16/9; background:#e2e8f0;">
+              <div style="position:relative; aspect-ratio:16/9; background:var(--bu-mist);">
                 <img src="https://babcock.edu.ng/storage/media/697a75eb-5574-41f9-a5e2-39d82efba2a9.jpg" alt="Keynote Session at Babcock University" style="width:100%; height:100%; object-fit:cover;">
-                <div style="position:absolute; inset:0; background:rgba(0,0,0,0.2); display:flex; align-items:center; justify-content:center;">
-                  <div style="width:48px; height:48px; border-radius:50%; background:#dc2626; color:#ffffff; display:flex; align-items:center; justify-content:center; font-size:14px;">&#9654;</div>
+                <div style="position:absolute; inset:0; background:rgba(27,45,91,0.22); display:flex; align-items:center; justify-content:center;">
+                  <div style="width:52px; height:52px; border-radius:50%; background:var(--bu-navy); border:2px solid var(--bu-gold); color:var(--bu-gold); display:flex; align-items:center; justify-content:center; font-size:15px;">&#9654;</div>
                 </div>
               </div>
               <div style="padding:22px;">
@@ -1255,21 +1253,21 @@
         </div>
 
         <div class="bu-g4">
-          <a href="https://babcock-icfi-2027.netlify.app/FIPP%20Conference/INTEGRATING%20FAITH%20INTO%20LEARNING-SOCIAL%20WORK%20CLASS%20EXPERIENCES%20IN%20BABCOCK%20UNIVERSITY.pdf" target="_blank" rel="noopener" class="bu-card-box" style="padding:18px; display:flex; flex-direction:column; justify-content:space-between;">
-            <div><span style="font-size:10px; font-weight:700; color:var(--bu-gold); text-transform:uppercase;">Social Work • PDF</span><h4 style="font-size:14px; font-family:var(--bu-font-sans); margin-top:6px;">Integrating Faith into Learning: Social Work Class Experiences</h4></div>
-            <span style="margin-top:14px; text-align:center; padding:8px; border-radius:999px; border:1px solid var(--bu-border); font-size:12px; font-weight:700;">Download PDF &rarr;</span>
+          <a href="https://babcock-icfi-2027.netlify.app/FIPP%20Conference/INTEGRATING%20FAITH%20INTO%20LEARNING-SOCIAL%20WORK%20CLASS%20EXPERIENCES%20IN%20BABCOCK%20UNIVERSITY.pdf" target="_blank" rel="noopener" class="bu-card-box bu-card-box--tint" style="padding:18px; display:flex; flex-direction:column; justify-content:space-between;">
+            <div><span style="font-size:10px; font-weight:700; color:var(--bu-gold-text); text-transform:uppercase;">Social Work • PDF</span><h4 style="font-size:14px; font-family:var(--bu-font-sans); margin-top:6px;">Integrating Faith into Learning: Social Work Class Experiences</h4></div>
+            <span style="margin-top:14px; text-align:center; padding:8px; border-radius:999px; background:#ffffff; border:1px solid var(--bu-border); font-size:12px; font-weight:700; color:var(--bu-navy);">Download PDF &rarr;</span>
           </a>
-          <a href="https://babcock-icfi-2027.netlify.app/FIPP%20Conference/FAITH%20INTEGRATION%20IN%20INTERNAL%20AUDIT%20AND%20COMPLIANCE%20FUNCTIONS%20OF%20PRIVATE%20UNIVERSITIES%20IN%20NIGERIA-%20THE%20CASE%20OF%20BABCOCK%20UNIVERSITY.pdf" target="_blank" rel="noopener" class="bu-card-box" style="padding:18px; display:flex; flex-direction:column; justify-content:space-between;">
-            <div><span style="font-size:10px; font-weight:700; color:var(--bu-gold); text-transform:uppercase;">Audit &amp; QA • PDF</span><h4 style="font-size:14px; font-family:var(--bu-font-sans); margin-top:6px;">Faith Integration in Internal Audit &amp; Compliance Functions</h4></div>
-            <span style="margin-top:14px; text-align:center; padding:8px; border-radius:999px; border:1px solid var(--bu-border); font-size:12px; font-weight:700;">Download PDF &rarr;</span>
+          <a href="https://babcock-icfi-2027.netlify.app/FIPP%20Conference/FAITH%20INTEGRATION%20IN%20INTERNAL%20AUDIT%20AND%20COMPLIANCE%20FUNCTIONS%20OF%20PRIVATE%20UNIVERSITIES%20IN%20NIGERIA-%20THE%20CASE%20OF%20BABCOCK%20UNIVERSITY.pdf" target="_blank" rel="noopener" class="bu-card-box bu-card-box--tint" style="padding:18px; display:flex; flex-direction:column; justify-content:space-between;">
+            <div><span style="font-size:10px; font-weight:700; color:var(--bu-gold-text); text-transform:uppercase;">Audit &amp; QA • PDF</span><h4 style="font-size:14px; font-family:var(--bu-font-sans); margin-top:6px;">Faith Integration in Internal Audit &amp; Compliance Functions</h4></div>
+            <span style="margin-top:14px; text-align:center; padding:8px; border-radius:999px; background:#ffffff; border:1px solid var(--bu-border); font-size:12px; font-weight:700; color:var(--bu-navy);">Download PDF &rarr;</span>
           </a>
-          <a href="https://babcock-icfi-2027.netlify.app/FIPP%20Conference/2017%20PAPER%20ON%20INTEGRATION%20OF%20FAITH%20IN%20INNOVATIVE%20QUALITY%20EDUCATION%20MANAGEMENT.pdf" target="_blank" rel="noopener" class="bu-card-box" style="padding:18px; display:flex; flex-direction:column; justify-content:space-between;">
-            <div><span style="font-size:10px; font-weight:700; color:var(--bu-gold); text-transform:uppercase;">Education • PDF</span><h4 style="font-size:14px; font-family:var(--bu-font-sans); margin-top:6px;">Integration of Faith in Innovative Quality Education Management</h4></div>
-            <span style="margin-top:14px; text-align:center; padding:8px; border-radius:999px; border:1px solid var(--bu-border); font-size:12px; font-weight:700;">Download PDF &rarr;</span>
+          <a href="https://babcock-icfi-2027.netlify.app/FIPP%20Conference/2017%20PAPER%20ON%20INTEGRATION%20OF%20FAITH%20IN%20INNOVATIVE%20QUALITY%20EDUCATION%20MANAGEMENT.pdf" target="_blank" rel="noopener" class="bu-card-box bu-card-box--tint" style="padding:18px; display:flex; flex-direction:column; justify-content:space-between;">
+            <div><span style="font-size:10px; font-weight:700; color:var(--bu-gold-text); text-transform:uppercase;">Education • PDF</span><h4 style="font-size:14px; font-family:var(--bu-font-sans); margin-top:6px;">Integration of Faith in Innovative Quality Education Management</h4></div>
+            <span style="margin-top:14px; text-align:center; padding:8px; border-radius:999px; background:#ffffff; border:1px solid var(--bu-border); font-size:12px; font-weight:700; color:var(--bu-navy);">Download PDF &rarr;</span>
           </a>
-          <a href="https://babcock-icfi-2027.netlify.app/FIPP%20Conference/UNDERSTANDING%20THE%20BIBLICAL%20GRAPH%20REPRESENTATION%20OF%20MATHEW%2022-34-40%20AS%20BASIS%20FOR%20RELATIONAL%20PRINCIPLES%20IN%20NIGERIA%20SOCIO-POLITICAL%20SITUATION.pdf" target="_blank" rel="noopener" class="bu-card-box" style="padding:18px; display:flex; flex-direction:column; justify-content:space-between;">
-            <div><span style="font-size:10px; font-weight:700; color:var(--bu-gold); text-transform:uppercase;">Policy • PDF</span><h4 style="font-size:14px; font-family:var(--bu-font-sans); margin-top:6px;">Biblical Graph Representation of Matthew 22:34–40 in Nigeria</h4></div>
-            <span style="margin-top:14px; text-align:center; padding:8px; border-radius:999px; border:1px solid var(--bu-border); font-size:12px; font-weight:700;">Download PDF &rarr;</span>
+          <a href="https://babcock-icfi-2027.netlify.app/FIPP%20Conference/UNDERSTANDING%20THE%20BIBLICAL%20GRAPH%20REPRESENTATION%20OF%20MATHEW%2022-34-40%20AS%20BASIS%20FOR%20RELATIONAL%20PRINCIPLES%20IN%20NIGERIA%20SOCIO-POLITICAL%20SITUATION.pdf" target="_blank" rel="noopener" class="bu-card-box bu-card-box--tint" style="padding:18px; display:flex; flex-direction:column; justify-content:space-between;">
+            <div><span style="font-size:10px; font-weight:700; color:var(--bu-gold-text); text-transform:uppercase;">Policy • PDF</span><h4 style="font-size:14px; font-family:var(--bu-font-sans); margin-top:6px;">Biblical Graph Representation of Matthew 22:34–40 in Nigeria</h4></div>
+            <span style="margin-top:14px; text-align:center; padding:8px; border-radius:999px; background:#ffffff; border:1px solid var(--bu-border); font-size:12px; font-weight:700; color:var(--bu-navy);">Download PDF &rarr;</span>
           </a>
         </div>
       </div>
@@ -1288,14 +1286,14 @@
         </div>
 
         <div class="bu-g12">
-          <div class="bu-c6 bu-card-box" style="padding:8px;">
-            <img src="https://babcock.edu.ng/storage/media/5b13e6f7-b132-47ff-a03d-9f229521d297.jpg" alt="University leadership outside hall" style="width:100%; height:316px; object-fit:cover; border-radius:14px;">
+          <div class="bu-c6 bu-card-box bu-card-box--tint" style="padding:8px;">
+            <img src="https://babcock.edu.ng/storage/media/5b13e6f7-b132-47ff-a03d-9f229521d297.jpg" alt="University leadership outside hall" style="width:100%; height:316px; object-fit:cover; border-radius:16px;">
           </div>
           <div class="bu-c6 bu-g2" style="gap:14px;">
-            <div class="bu-card-box" style="padding:6px; border-radius:16px;"><img src="https://babcock.edu.ng/storage/media/249345b6-cf7c-45a0-ac32-1cee970ce21a.jpg" alt="Delegates seated in session" style="width:100%; height:148px; object-fit:cover; border-radius:12px;"></div>
-            <div class="bu-card-box" style="padding:6px; border-radius:16px;"><img src="https://babcock.edu.ng/storage/media/697a75eb-5574-41f9-a5e2-39d82efba2a9.jpg" alt="Speaker at ICFI podium" style="width:100%; height:148px; object-fit:cover; border-radius:12px;"></div>
-            <div class="bu-card-box" style="padding:6px; border-radius:16px;"><img src="https://babcock.edu.ng/storage/media/4399208c-2bc4-4709-bd8a-712f27647d9e.jpg" alt="Engaged scholars" style="width:100%; height:148px; object-fit:cover; border-radius:12px;"></div>
-            <div class="bu-card-box" style="padding:6px; border-radius:16px;"><img src="https://babcock.edu.ng/storage/media/a03fc8f8-a2e2-4fb4-849c-58688ec3c68a.jpg" alt="Parallel workshop" style="width:100%; height:148px; object-fit:cover; border-radius:12px;"></div>
+            <div class="bu-card-box bu-card-box--tint" style="padding:6px; border-radius:18px;"><img src="https://babcock.edu.ng/storage/media/249345b6-cf7c-45a0-ac32-1cee970ce21a.jpg" alt="Delegates seated in session" style="width:100%; height:148px; object-fit:cover; border-radius:14px;"></div>
+            <div class="bu-card-box bu-card-box--tint" style="padding:6px; border-radius:18px;"><img src="https://babcock.edu.ng/storage/media/697a75eb-5574-41f9-a5e2-39d82efba2a9.jpg" alt="Speaker at ICFI podium" style="width:100%; height:148px; object-fit:cover; border-radius:14px;"></div>
+            <div class="bu-card-box bu-card-box--tint" style="padding:6px; border-radius:18px;"><img src="https://babcock.edu.ng/storage/media/4399208c-2bc4-4709-bd8a-712f27647d9e.jpg" alt="Engaged scholars" style="width:100%; height:148px; object-fit:cover; border-radius:14px;"></div>
+            <div class="bu-card-box bu-card-box--tint" style="padding:6px; border-radius:18px;"><img src="https://babcock.edu.ng/storage/media/a03fc8f8-a2e2-4fb4-849c-58688ec3c68a.jpg" alt="Parallel workshop" style="width:100%; height:148px; object-fit:cover; border-radius:14px;"></div>
           </div>
         </div>
       </div>
@@ -1305,38 +1303,38 @@
         <div class="bu-c7">
           <h3 style="font-size:1.55rem; margin-bottom:16px;">Frequently Asked Questions</h3>
           <details class="bu-faq-item" open>
-            <summary><span>How do I arrange campus accommodation?</span><span class="bu-faq-plus" style="color:var(--bu-gold); font-size:18px;">+</span></summary>
+            <summary><span>How do I arrange campus accommodation?</span><span class="bu-faq-plus" style="color:var(--bu-gold-text); font-size:18px;">+</span></summary>
             <p style="font-size:12.5px; color:var(--bu-muted); margin:10px 0 0;">On-campus lodging (Babcock Guest House, Havillah Cottage, or Royal Cream Suite) is available for an additional fee. Contact <strong style="color:var(--bu-navy);">Dr. Nnenna Nwobi at +234 813 538 8049</strong>.</p>
           </details>
           <details class="bu-faq-item">
-            <summary><span>How does the ₦10,000 community member discount work?</span><span class="bu-faq-plus" style="color:var(--bu-gold); font-size:18px;">+</span></summary>
+            <summary><span>How does the ₦10,000 community member discount work?</span><span class="bu-faq-plus" style="color:var(--bu-gold-text); font-size:18px;">+</span></summary>
             <p style="font-size:12.5px; color:var(--bu-muted); margin:10px 0 0;">Registered members of ICFI receive ₦10,000 off the standard ₦50,000 fee and retain Early Bird rates (₦40,000 / $80) even after April 23, 2027.</p>
           </details>
           <details class="bu-faq-item">
-            <summary><span>Can international or remote scholars present online?</span><span class="bu-faq-plus" style="color:var(--bu-gold); font-size:18px;">+</span></summary>
+            <summary><span>Can international or remote scholars present online?</span><span class="bu-faq-plus" style="color:var(--bu-gold-text); font-size:18px;">+</span></summary>
             <p style="font-size:12.5px; color:var(--bu-muted); margin:10px 0 0;">Yes. Full hybrid participation lets online delegates present live via Zoom, receive digital certificates, and qualify for free IJFI publication.</p>
           </details>
         </div>
 
-        <div class="bu-c5" style="background:var(--bu-navy); color:#ffffff; border-radius:20px; padding:26px; box-shadow:0 12px 26px rgba(0,48,104,0.2);">
-          <div style="font-size:11px; font-weight:700; text-transform:uppercase; color:var(--bu-gold-accent);">Speak With Our Coordinators</div>
-          <h3 style="font-size:1.5rem; color:#ffffff !important; margin:4px 0 16px;">Conference Secretariat</h3>
+        <div class="bu-c5" style="background:var(--bu-tint); color:var(--bu-navy); border:1px solid var(--bu-border); border-top:4px solid var(--bu-gold); border-radius:var(--bu-radius-card); padding:26px;">
+          <div style="font-size:11px; font-weight:700; text-transform:uppercase; color:var(--bu-gold-text);">Speak With Our Coordinators</div>
+          <h3 style="font-size:1.5rem; margin:4px 0 16px;">Conference Secretariat</h3>
           <div style="display:grid; gap:10px; font-size:12px;">
-            <div style="padding:12px; border-radius:12px; background:rgba(255,255,255,0.1); display:flex; justify-content:space-between; align-items:center; gap:8px;">
-              <div><strong>Dr. Nnenna Nwobi</strong><div style="color:#bfdbfe;">Accommodation Arrangements</div></div>
-              <span style="color:var(--bu-gold-accent); font-weight:700;">+234 813 538 8049</span>
+            <div style="padding:12px 14px; border-radius:14px; background:#ffffff; border:1px solid var(--bu-border); display:flex; justify-content:space-between; align-items:center; gap:8px;">
+              <div><strong>Dr. Nnenna Nwobi</strong><div style="color:var(--bu-muted);">Accommodation Arrangements</div></div>
+              <span style="color:var(--bu-navy); border-bottom:2px solid var(--bu-gold); font-weight:700;">+234 813 538 8049</span>
             </div>
-            <div style="padding:12px; border-radius:12px; background:rgba(255,255,255,0.1); display:flex; justify-content:space-between; align-items:center; gap:8px;">
-              <div><strong>Dr. Oluwafemi Olomojobi</strong><div style="color:#bfdbfe;">Abstract Submissions</div></div>
-              <span style="color:var(--bu-gold-accent); font-weight:700;">08082334427</span>
+            <div style="padding:12px 14px; border-radius:14px; background:#ffffff; border:1px solid var(--bu-border); display:flex; justify-content:space-between; align-items:center; gap:8px;">
+              <div><strong>Dr. Oluwafemi Olomojobi</strong><div style="color:var(--bu-muted);">Abstract Submissions</div></div>
+              <span style="color:var(--bu-navy); border-bottom:2px solid var(--bu-gold); font-weight:700;">08082334427</span>
             </div>
-            <div style="padding:12px; border-radius:12px; background:rgba(255,255,255,0.1); display:flex; justify-content:space-between; align-items:center; gap:8px;">
-              <div><strong>Miss Deborah Caleb</strong><div style="color:#bfdbfe;">Registration &amp; Inquiries</div></div>
-              <span style="color:var(--bu-gold-accent); font-weight:700;">08064007567</span>
+            <div style="padding:12px 14px; border-radius:14px; background:#ffffff; border:1px solid var(--bu-border); display:flex; justify-content:space-between; align-items:center; gap:8px;">
+              <div><strong>Miss Deborah Caleb</strong><div style="color:var(--bu-muted);">Registration &amp; Inquiries</div></div>
+              <span style="color:var(--bu-navy); border-bottom:2px solid var(--bu-gold); font-weight:700;">08064007567</span>
             </div>
-            <div style="padding:12px; border-radius:12px; background:rgba(255,255,255,0.1); display:flex; justify-content:space-between; align-items:center; gap:8px;">
-              <div><strong>Dr. Chinaka Emmanuel</strong><div style="color:#bfdbfe;">Public Relations (PRO)</div></div>
-              <span style="color:var(--bu-gold-accent); font-weight:700;">07089324791</span>
+            <div style="padding:12px 14px; border-radius:14px; background:#ffffff; border:1px solid var(--bu-border); display:flex; justify-content:space-between; align-items:center; gap:8px;">
+              <div><strong>Dr. Chinaka Emmanuel</strong><div style="color:var(--bu-muted);">Public Relations (PRO)</div></div>
+              <span style="color:var(--bu-navy); border-bottom:2px solid var(--bu-gold); font-weight:700;">07089324791</span>
             </div>
           </div>
         </div>
