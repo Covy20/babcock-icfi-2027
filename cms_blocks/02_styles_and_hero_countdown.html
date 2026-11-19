@@ -1,0 +1,406 @@
+<!-- =========================================================================
+     FILAMENT BLOCK 2 OF 9: PAGE DESIGN STYLES, HERO BANNER & LIVE COUNTDOWN
+     =========================================================================
+     HOW TO EDIT THIS BLOCK:
+     - Keep Filament's "Header" field BLANK (leaving it blank avoids an extra
+       white gap above the hero).
+     - To update the main title, dates badge, quote, or buttons: scroll below the
+       </style> line to the "SECTION 1: HERO BANNER" comment.
+     - To change any photo: upload it in Web Admin -> Media, copy its File URL,
+       and replace only the URL inside src="...".
+     ========================================================================= -->
+<style>
+  /* Load Babcock Fonts (Sentient serif for headings + DM Sans/Inter for body text) */
+  @import url('https://api.fontshare.com/v2/css?f[]=sentient@400,500&display=swap');
+  @import url('https://api.fontshare.com/v2/css?f[]=sentient@600,700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&family=Inter:wght@400;500;600;700&display=swap');
+
+  /* Wrapper locks all CSS to ICFI sections so Babcock's top navbar & footer never break */
+  .bu-icfi-wrap {
+    --bu-navy:        #004182;
+    --bu-navy-dark:   #003068;
+    --bu-band:        #0b2545;
+    --bu-canonical:   #1B2D5B;
+    --bu-canon-dark:  #121F40;
+    --bu-gold:        #B58C0D;
+    --bu-gold-light:  #d4a722;
+    --bu-gold-band:   #b98d3b;
+    --bu-gold-accent: #eec25a;
+    --bu-bronze:      #9d7533;
+    --bu-blue:        #2f6fed;
+    --bu-mist:        #eef2f9;
+    --bu-tint:        #f3f6fb;
+    --bu-muted:       #475569;
+    --bu-border:      rgba(27, 45, 91, 0.10);
+    --bu-border-mid:  rgba(27, 45, 91, 0.18);
+    --bu-font-serif:  'Sentient', Georgia, serif;
+    --bu-font-sans:   'DM Sans', 'Inter', system-ui, -apple-system, sans-serif;
+
+    font-family: var(--bu-font-sans);
+    color: var(--bu-canonical);
+    background: #ffffff;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: clip;
+  }
+
+  .bu-icfi-wrap *,
+  .bu-icfi-wrap *::before,
+  .bu-icfi-wrap *::after { box-sizing: border-box; }
+  .bu-icfi-wrap a { color: inherit; text-decoration: none; }
+  .bu-icfi-wrap img { display: block; max-width: 100%; }
+
+  /* Explicit heading color overrides Babcock Canvas CSS resets */
+  .bu-icfi-wrap h1,
+  .bu-icfi-wrap h2,
+  .bu-icfi-wrap h3,
+  .bu-icfi-wrap h4 {
+    font-family: var(--bu-font-serif);
+    color: var(--bu-canonical) !important;
+    letter-spacing: -0.02em;
+    line-height: 1.14;
+    margin: 0;
+  }
+
+  /* Page Background Bands (White, Mist, Light Gray, Dark Navy, Sky Hero Gradient) */
+  .bu-icfi-band-white { background: #ffffff; padding: 68px 24px; }
+  .bu-icfi-band-mist  { background: var(--bu-mist); padding: 68px 24px; }
+  .bu-icfi-band-gray  { background: #f2f2f2; padding: 58px 24px; }
+  .bu-icfi-band-navy  { background: var(--bu-band); color: #ffffff; padding: 68px 24px; }
+  .bu-icfi-band-hero  { background: linear-gradient(135deg, #cde2fe 0%, #e4f0fe 55%, #f2f7ff 100%); padding: clamp(76px, 7.5vw, 112px) 24px clamp(58px, 6vw, 88px); }
+
+  .bu-icfi-band-navy h2,
+  .bu-icfi-band-navy h3,
+  .bu-icfi-band-navy h4,
+  .bu-icfi-card-dark h3,
+  .bu-icfi-card-dark h4 { color: #ffffff !important; }
+
+  .bu-icfi-wrap .bu-icfi-text-navy { color: var(--bu-navy) !important; }
+  .bu-icfi-wrap .bu-icfi-text-gold { color: var(--bu-gold-accent) !important; }
+
+  .bu-icfi-container { max-width: 1200px; margin: 0 auto; }
+  .bu-icfi-container-lg { max-width: 1300px; margin: 0 auto; }
+  @media (max-width: 600px) { .bu-hero-br { display: none; } }
+
+  /* Reusable Grid Helpers */
+  .bu-g12 { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 28px; align-items: center; }
+  .bu-g12--top { align-items: start; }
+  .bu-hero-grid { gap: 36px; }
+  .bu-g4  { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
+  .bu-g3  { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+  .bu-g2  { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+  .bu-g6  { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 16px; }
+  .bu-c4  { grid-column: span 4; }
+  .bu-c5  { grid-column: span 5; }
+  .bu-c6  { grid-column: span 6; }
+  .bu-c7  { grid-column: span 7; }
+  .bu-c8  { grid-column: span 8; }
+
+  /* Reusable Typography & Section Header Helpers (keeps HTML easy to read) */
+  .bu-eyebrow { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--bu-gold-band); display: block; }
+  .bu-lead    { font-size: 14px; color: var(--bu-muted); margin: 6px 0 0; }
+  .bu-section-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 14px; margin-bottom: 28px; }
+  .bu-section-h2 { font-size: clamp(1.75rem, 3.2vw, 2.35rem); color: var(--bu-navy) !important; margin-top: 4px; }
+
+  /* Reusable Card & Button Styles */
+  .bu-card-box {
+    background: #ffffff;
+    border: 1px solid rgba(27, 45, 91, 0.08);
+    border-radius: 20px;
+    padding: 24px;
+    box-shadow: 0 4px 14px rgba(27, 45, 91, 0.06);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  }
+  .bu-card-box:hover { transform: translateY(-2px); box-shadow: 0 12px 26px rgba(27, 45, 91, 0.11); border-color: rgba(27, 45, 91, 0.16); }
+  .bu-icfi-card-dark {
+    background: var(--bu-band);
+    color: #ffffff;
+    border: 2px solid var(--bu-gold-accent);
+    border-radius: 20px;
+    padding: 26px;
+    box-shadow: 0 12px 28px rgba(11, 37, 69, 0.22);
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+
+  .bu-btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    min-height: 46px; padding: 11px 24px; border-radius: 12px; border: 1px solid transparent;
+    font-family: var(--bu-font-sans); font-size: 14px; font-weight: 700; cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+  }
+  .bu-btn-sm { min-height: 40px; padding: 8px 16px; font-size: 12px; }
+  .bu-btn-xs { min-height: 38px; padding: 6px 14px; font-size: 12px; }
+  .bu-btn-pill { border-radius: 999px; }
+  .bu-btn-blue { background: var(--bu-blue); color: #ffffff !important; }
+  .bu-btn-blue:hover { background: #1d4ed8; }
+  .bu-btn-navy { background: var(--bu-canonical); color: #ffffff !important; }
+  .bu-btn-navy:hover { background: var(--bu-canon-dark); }
+  .bu-btn-charcoal { background: #383c42; color: #ffffff !important; }
+  .bu-btn-charcoal:hover { background: #212121; }
+  .bu-btn-gold { background: var(--bu-gold-band); color: #ffffff !important; }
+  .bu-btn-gold:hover { background: var(--bu-gold); }
+  .bu-btn-gold-bright { background: var(--bu-gold-accent); color: var(--bu-band) !important; }
+  .bu-btn-gold-bright:hover { background: #fcd34d; }
+  .bu-btn-mist { background: var(--bu-mist); color: var(--bu-canonical) !important; }
+  .bu-btn-mist:hover { background: #dbeafe; }
+  .bu-btn-outline { background: #ffffff; border-color: var(--bu-border-mid); color: var(--bu-canonical) !important; }
+  .bu-btn-outline:hover { border-color: var(--bu-navy); }
+  .bu-btn-row { display: flex; flex-wrap: wrap; gap: 12px; }
+
+  /* Hero Elements */
+  .bu-hero-pill { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; border-radius: 999px; background: rgba(255,255,255,0.85); border: 1px solid rgba(0,65,130,0.16); font-size: 12px; font-weight: 700; color: var(--bu-canonical); }
+  .bu-hero-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--bu-gold); }
+  .bu-hero-h1 { font-size: clamp(2.15rem, 1.4rem + 2.4vw, 3.35rem); font-weight: 700; font-style: italic; color: #212121 !important; line-height: 1.1; margin: 18px 0 16px; }
+  .bu-hero-sub { font-size: 1.08rem; color: #2d3748; max-width: 52ch; margin: 0 0 22px; }
+  .bu-hero-card { border-radius: 22px; overflow: hidden; background: #ffffff; border: 1px solid rgba(0,65,130,0.16); box-shadow: 0 20px 44px rgba(11,37,69,0.16); }
+  .bu-hero-photo { position: relative; aspect-ratio: 16/10; background: #e2e8f0; }
+  .bu-hero-photo img { width: 100%; height: 100%; object-fit: cover; }
+  .bu-hero-badges { position: absolute; top: 12px; left: 12px; right: 12px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; }
+  .bu-hero-chip-white { padding: 5px 12px; border-radius: 999px; background: rgba(255,255,255,0.95); color: var(--bu-navy); font-size: 11px; font-weight: 700; }
+  .bu-hero-chip-gold  { padding: 5px 12px; border-radius: 999px; background: var(--bu-gold); color: #ffffff; font-size: 11px; font-weight: 700; }
+  .bu-hero-portraits-wrap { padding: 16px; background: linear-gradient(180deg, #eef4fc 0%, #ffffff 100%); border-top: 1px solid rgba(0,65,130,0.1); }
+  .bu-icfi-mini-grid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 10px; text-align: center; }
+  .bu-mini-card { background: #ffffff; border-radius: 10px; padding: 6px; border: 1px solid rgba(0,65,130,0.1); }
+  .bu-mini-card img { width: 100%; aspect-ratio: 6/5; object-fit: cover; object-position: top; border-radius: 6px; }
+  .bu-mini-name { font-size: 10px; font-weight: 700; color: var(--bu-navy); margin-top: 5px; }
+  .bu-mini-role { font-size: 9px; color: #8A6D22; font-weight: 700; text-transform: uppercase; }
+  .bu-hero-card-foot { background: var(--bu-navy-dark); color: #ffffff; padding: 12px 18px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; font-size: 12px; }
+
+  /* Quick Information Bar & Key Figures Countdown */
+  .bu-quick-strip { background: var(--bu-gold-band); color: #ffffff; padding: 14px 24px; border-top: 1px solid rgba(255,255,255,0.22); border-bottom: 1px solid rgba(255,255,255,0.22); }
+  .bu-quick-inner { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px; }
+  .bu-metrics-grid { display: grid; grid-template-columns: 1.55fr 1fr 1fr 1fr 1fr; align-items: start; }
+  .bu-metric-cell { padding: 0 24px; border-left: 1px solid rgba(255,255,255,0.16); }
+  .bu-metric-cell:first-child { padding-left: 0; border-left: 0; }
+  .bu-metric-cell:last-child { padding-right: 0; }
+  .bu-metric-val { font-family: var(--bu-font-serif); font-size: 1.75rem; font-weight: 700; color: var(--bu-gold-accent); }
+  .bu-metric-val--cd { font-size: clamp(1.35rem, 2vw, 1.65rem); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .bu-metric-desc { font-size: 12px; color: #cbd5e1; margin: 8px 0 0; }
+
+  /* Tracks, Speakers, Core Values, Journal & Gallery Cards */
+  .bu-photo-badge-card { position: relative; border-radius: 20px; overflow: hidden; aspect-ratio: 16/10; box-shadow: 0 10px 24px rgba(0,0,0,0.1); }
+  .bu-photo-badge-card img { width: 100%; height: 100%; object-fit: cover; }
+  .bu-photo-badge-label { position: absolute; bottom: 14px; left: 14px; background: #ffffff; color: var(--bu-canonical); padding: 7px 14px; border-radius: 10px; font-size: 12px; font-weight: 700; }
+  .bu-track-card { border-top: 4px solid var(--bu-navy); }
+  .bu-track-card--gold { border-top-color: var(--bu-gold); }
+  .bu-track-num { font-size: 11px; font-weight: 700; color: var(--bu-gold); display: block; margin-bottom: 10px; }
+  .bu-track-card h3 { font-size: 1.2rem; color: var(--bu-navy) !important; }
+  .bu-track-card p { font-size: 12.5px; color: var(--bu-muted); margin: 8px 0 0; }
+  .bu-track-tag { margin-top: 14px; padding-top: 10px; border-top: 1px solid var(--bu-border); font-size: 11px; font-weight: 700; color: var(--bu-navy); }
+  .bu-track-tag--amber { color: #8A6D22; }
+
+  .bu-host-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.16); border-radius: 18px; padding: 20px; }
+  .bu-host-card--featured { border-color: rgba(238,194,90,0.35); }
+  .bu-host-card img { width: 100%; aspect-ratio: 6/5; object-fit: cover; object-position: top; border-radius: 12px; margin-bottom: 14px; }
+  .bu-host-badge { display: inline-block; padding: 4px 12px; border-radius: 999px; background: rgba(255,255,255,0.12); color: var(--bu-gold-accent); font-size: 11px; font-weight: 700; text-transform: uppercase; }
+  .bu-host-badge--gold { background: rgba(238,194,90,0.2); }
+  .bu-scholar-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.16); border-radius: 16px; padding: 20px; text-align: center; }
+  .bu-scholar-card img { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; object-position: top; margin: 0 auto; border: 2px solid rgba(255,255,255,0.35); }
+  .bu-scholar-card--lead img { border-color: rgba(238,194,90,0.65); }
+
+  .bu-pillar-card { padding: 18px; border-radius: 16px; }
+  .bu-pillar-letter { font-family: var(--bu-font-serif); font-weight: 700; font-size: 2rem; color: var(--bu-navy-dark); }
+  .bu-pillar-rule { width: 24px; height: 2px; background: var(--bu-bronze); margin: 8px 0; }
+  .bu-pillar-card h3 { font-size: 14px; font-family: var(--bu-font-sans); }
+  .bu-pillar-card p { font-size: 12px; color: var(--bu-muted); margin: 6px 0 0; }
+
+  .bu-pass-card { display: flex; flex-direction: column; justify-content: space-between; }
+  .bu-pass-price-row { margin: 14px 0; padding-bottom: 14px; border-bottom: 1px solid var(--bu-border); }
+  .bu-pass-price { font-family: var(--bu-font-serif); font-size: 2.2rem; font-weight: 700; color: var(--bu-navy); }
+  .bu-pass-list { font-size: 12.5px; color: var(--bu-muted); padding-left: 16px; margin: 0; }
+  .bu-bank-card { background: var(--bu-tint); padding: 18px 20px; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+
+  .bu-pdf-card { padding: 18px; display: flex; flex-direction: column; justify-content: space-between; }
+  .bu-pdf-dl { margin-top: 14px; text-align: center; padding: 8px; border-radius: 999px; border: 1px solid var(--bu-border); font-size: 12px; font-weight: 700; }
+  .bu-gal-frame { padding: 6px; border-radius: 16px; }
+  .bu-gal-frame img { width: 100%; height: 148px; object-fit: cover; border-radius: 12px; }
+  .bu-coord-row { padding: 12px; border-radius: 12px; background: rgba(255,255,255,0.1); display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .bu-coord-role { color: #bfdbfe; }
+  .bu-coord-phone { color: var(--bu-gold-accent); font-weight: 700; }
+
+  /* Tabs & Programme Rows */
+  .bu-tab-btn { padding: 7px 14px; border-radius: 999px; border: 0; font-size: 12px; font-weight: 700; cursor: pointer; background: var(--bu-mist); color: var(--bu-canonical); }
+  .bu-tab-btn.is-active { background: var(--bu-canonical); color: #ffffff; }
+  .bu-prog-row { display: grid; grid-template-columns: 150px 1fr auto; gap: 12px; padding: 13px 0; border-top: 1px solid var(--bu-border); align-items: baseline; }
+
+  /* Registration & Membership Portal Styles */
+  .bu-icfi-visually-hidden:where(:not(:focus-within, :active)) {
+    position: absolute !important; clip-path: inset(50%) !important; overflow: hidden !important;
+    width: 1px !important; height: 1px !important; margin: -1px !important; padding: 0 !important; border: 0 !important; white-space: nowrap !important;
+  }
+  .bu-portal-shell { margin-top: 32px; background: var(--bu-tint); border: 1px solid rgba(27, 45, 91, 0.16); border-radius: 24px; padding: clamp(20px, 3vw, 40px); }
+  .bu-portal-tablist { display: inline-flex; flex-wrap: wrap; gap: 8px; background: #ffffff; padding: 6px; border-radius: 16px; border: 1px solid var(--bu-border); margin: 22px 0 26px; }
+  .bu-portal-tab { padding: 10px 18px; min-height: 44px; border-radius: 12px; border: 0; background: transparent; color: var(--bu-canonical); font-family: var(--bu-font-sans); font-size: 13px; font-weight: 700; cursor: pointer; }
+  .bu-portal-tab[aria-selected="true"] { background: var(--bu-canonical); color: #ffffff; }
+  .bu-steps-row { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; list-style: none; padding: 0; margin: 0 0 26px; }
+  .bu-steps-row--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 440px; }
+  .bu-step-pill { padding: 10px 14px; border-radius: 12px; border: 1px solid var(--bu-border); background: #ffffff; color: var(--bu-muted); font-size: 12px; font-weight: 600; }
+  .bu-step-pill[aria-current="step"] { background: var(--bu-canonical); border-color: var(--bu-canonical); color: #ffffff; font-weight: 700; }
+  .bu-step-pill.is-done { background: #ecfdf5; border-color: #a7f3d0; color: #065f46; }
+  .bu-fieldset { border: 0; padding: 0; margin: 0 0 20px; }
+  .bu-legend { font-size: 14px; font-weight: 700; color: var(--bu-navy); margin-bottom: 10px; }
+  .bu-choice { position: absolute !important; clip-path: inset(50%) !important; overflow: hidden !important; width: 1px !important; height: 1px !important; margin: 0 !important; opacity: 0 !important; pointer-events: none !important; }
+  .bu-choice-card { display: flex; align-items: flex-start; gap: 12px; min-height: 48px; padding: 14px 16px; border-radius: 14px; border: 1.5px solid var(--bu-border-mid); background: #ffffff; cursor: pointer; transition: border-color 0.2s ease, background-color 0.2s ease; }
+  .bu-choice:checked + .bu-choice-card { border-color: var(--bu-navy); background: var(--bu-mist); box-shadow: 0 0 0 1px var(--bu-navy); }
+  .bu-choice:focus-visible + .bu-choice-card, .bu-reg-input:focus-visible, .bu-file:focus-visible, .bu-btn:focus-visible { outline: 3px solid #0b57d0; outline-offset: 2px; }
+  .bu-radio-dot { width: 16px; height: 16px; margin-top: 3px; border-radius: 50%; border: 2px solid var(--bu-canonical); flex-shrink: 0; }
+  .bu-choice:checked + .bu-choice-card .bu-radio-dot { background: var(--bu-navy); box-shadow: inset 0 0 0 3px var(--bu-mist); }
+  .bu-field-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+  .bu-full { grid-column: 1 / -1; }
+  .bu-label { display: block; font-size: 13.5px; font-weight: 700; color: var(--bu-navy); margin-bottom: 4px; }
+  .bu-hint { display: block; font-size: 12px; color: var(--bu-muted); margin-bottom: 6px; }
+  .bu-reg-input { width: 100%; font: inherit; font-size: max(1rem, 1em); min-height: 48px; padding: 10px 14px; border-radius: 12px; border: 1.5px solid #94a3b8; background: #ffffff; color: var(--bu-canonical); }
+  .bu-reg-input:is(:user-invalid, .user-invalid-fallback) { border-color: #d93025; background: #fef2f2; }
+  .bu-reg-input:is(:user-valid, .user-valid-fallback) { border-color: #188038; }
+  .bu-error-msg { display: none; color: #b91c1c; font-size: 13px; font-weight: 600; margin-top: 6px; align-items: center; gap: 6px; }
+  .bu-reg-input:is(:user-invalid, .user-invalid-fallback) ~ .bu-error-msg,
+  .bu-choice-group.has-error ~ .bu-error-msg,
+  .bu-file-wrap.has-error ~ .bu-error-msg { display: flex; }
+  .bu-aside-sticky { position: sticky; top: 24px; background: var(--bu-band); color: #ffffff; border-radius: 20px; padding: 24px; box-shadow: 0 10px 26px rgba(11, 37, 69, 0.22); }
+  .bu-terms-box { padding: 22px 24px; font-size: 12.5px; line-height: 1.65; color: var(--bu-muted); margin-bottom: 18px; }
+  .bu-faq-item { background: #ffffff; border: 1px solid var(--bu-border); border-radius: 16px; padding: 18px 20px; margin-bottom: 12px; }
+  .bu-faq-item summary { display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-weight: 700; font-size: 14px; list-style: none; }
+  .bu-faq-item summary::-webkit-details-marker { display: none; }
+  .bu-faq-item[open] .bu-faq-plus { transform: rotate(45deg); }
+
+  /* Responsive Breakpoints (Tablet & Mobile) */
+  @media (max-width: 960px) {
+    .bu-g12, .bu-g4, .bu-g3, .bu-g2, .bu-g6, .bu-field-grid { grid-template-columns: 1fr; }
+    .bu-c4, .bu-c5, .bu-c6, .bu-c7, .bu-c8 { grid-column: 1 / -1; }
+    .bu-metrics-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+    .bu-metric-cell:first-child { grid-column: 1 / -1; }
+    .bu-metric-cell { border-left: 0; padding: 0; }
+    .bu-aside-sticky { position: static; }
+    .bu-steps-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .bu-prog-row { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    .bu-icfi-mini-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+    .bu-icfi-band-white, .bu-icfi-band-mist, .bu-icfi-band-navy, .bu-icfi-band-gray { padding: 48px 18px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .bu-icfi-wrap * { transition: none !important; animation: none !important; }
+  }
+</style>
+
+<div class="bu-icfi-wrap" id="bu-icfi-root">
+
+  <!-- SECTION 1: HERO BANNER (Edit headline, dates pill, intro copy, and 4 hero portraits below) -->
+  <div class="bu-icfi-band-hero">
+    <div class="bu-icfi-container-lg">
+      <div class="bu-g12 bu-hero-grid">
+
+        <!-- Left Column: Title & Buttons -->
+        <div class="bu-c6">
+          <div class="bu-hero-pill">
+            <span class="bu-hero-dot"></span>
+            <!-- EDIT: Top Dates Pill -->
+            <span>7th Biennial International Conference • July 27 – August 1, 2027</span>
+          </div>
+
+          <!-- EDIT: Main Hero Headline (kept in 3 lines on desktop for readability) -->
+          <h1 class="bu-hero-h1">
+            International<br class="bu-hero-br"> Conference on Faith<br class="bu-hero-br"> Integration 2027
+          </h1>
+
+          <!-- EDIT: Theme Quote & Host Sentence -->
+          <p class="bu-hero-sub">
+            <strong style="color:var(--bu-navy);">“Driving a Sustainable Faith-Based Ecosystem in a Changing World.”</strong> Hosted by the International Community for Faith Integration &amp; Babcock University.
+          </p>
+
+          <div class="bu-btn-row">
+            <a href="#bu-icfi-portal" class="bu-btn bu-btn-blue" onclick="buIcfiOpenTab('conference'); return true;">Reserve Your Seat</a>
+            <button type="button" class="bu-btn bu-btn-gold" onclick="buIcfiOpenTab('membership')">Join ICFI Membership</button>
+            <a href="#bu-icfi-abstracts" class="bu-btn bu-btn-charcoal">Submit 250-Word Abstract</a>
+          </div>
+        </div>
+
+        <!-- Right Column: Plenary Photo Card & 4 Mini Portraits -->
+        <div class="bu-c6">
+          <div class="bu-hero-card">
+            <div class="bu-hero-photo">
+              <!-- EDIT: Hero Plenary Photo (upload in Web Admin -> Media, then paste File URL here) -->
+              <img src="https://babcock.edu.ng/storage/media/830ab974-1035-4dba-a233-fed1746b1b84.jpg" alt="Main Plenary Amphitheater in session at Babcock University">
+              <div class="bu-hero-badges">
+                <span class="bu-hero-chip-white">Main Plenary Amphitheater • Ilishan-Remo</span>
+                <a href="https://youtu.be/QnzxBpBPwrc" target="_blank" rel="noopener" class="bu-hero-chip-gold">&#9654; 2023 Video Recap</a>
+              </div>
+            </div>
+
+            <div class="bu-hero-portraits-wrap">
+              <div class="bu-icfi-mini-grid">
+                <div class="bu-mini-card">
+                  <img src="https://babcock.edu.ng/storage/media/5ad4f5d8-c9e9-486a-9b7b-32e10cb7e728.jpg" alt="Prof. Afolarin Olutunde Ojewole">
+                  <div class="bu-mini-name">Prof. A. Ojewole</div>
+                  <div class="bu-mini-role">Chief Host</div>
+                </div>
+                <div class="bu-mini-card">
+                  <img src="https://babcock.edu.ng/storage/media/968e1947-5b11-4fcb-9dcb-9e5b7035246f.jpg" alt="Prof. Jonathan C. Nwosu">
+                  <div class="bu-mini-name">Prof. J. C. Nwosu</div>
+                  <div class="bu-mini-role">Host • SVP</div>
+                </div>
+                <div class="bu-mini-card">
+                  <img src="https://babcock.edu.ng/storage/media/46b5ce14-3ba8-4ca7-8164-8c33d5b9a76d.jpg" alt="Prof. Constance C. Nwosu">
+                  <div class="bu-mini-name">Prof. C. Nwosu</div>
+                  <div class="bu-mini-role">Convener</div>
+                </div>
+                <div class="bu-mini-card">
+                  <img src="https://babcock.edu.ng/storage/media/e9545d58-8a9d-4181-9ddb-730f7fa91f3e.jpg" alt="Prof. John Wesley Taylor V">
+                  <div class="bu-mini-name">Prof. J. Taylor V</div>
+                  <div class="bu-mini-role">Global Keynote</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="bu-hero-card-foot">
+              <strong style="color:var(--bu-gold-accent); text-transform:uppercase;">Physical &amp; Virtual • July 27 – August 1, 2027</strong>
+              <span>Ilishan-Remo &amp; Zoom Worldwide</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2: GOLD ANNOUNCEMENT BAR & NAVY KEY FIGURES COUNTDOWN -->
+  <div class="bu-quick-strip">
+    <div class="bu-icfi-container-lg bu-quick-inner">
+      <strong style="font-family:var(--bu-font-serif); font-size:18px; text-transform:uppercase;">Quick Information</strong>
+      <!-- EDIT: Quick Info Banner Text -->
+      <span style="font-size:12.5px; font-weight:700; text-transform:uppercase; letter-spacing:0.04em;">Call for Abstracts Open Until March 24, 2027 • Email 250-Word Abstracts to icfi@babcock.edu.ng • Free IJFI Publication</span>
+    </div>
+  </div>
+
+  <div class="bu-icfi-band-navy" style="padding:44px 24px;">
+    <div class="bu-icfi-container-lg">
+      <h2 style="font-size:clamp(1.5rem, 2.5vw, 2rem); margin-bottom:26px;">7th ICFI 2027 in key figures</h2>
+      <div class="bu-metrics-grid">
+        <!-- Countdown numbers update automatically from ICFI_STAFF_CONFIG in Block 9 -->
+        <div class="bu-metric-cell">
+          <div class="bu-metric-val bu-metric-val--cd">
+            <span id="bu-cd-days">250</span>d : <span id="bu-cd-hours">00</span>h : <span id="bu-cd-mins">00</span>m : <span id="bu-cd-secs">00</span>s
+          </div>
+          <p class="bu-metric-desc">Countdown to July 27, 2027 opening plenary at Babcock University</p>
+        </div>
+        <div class="bu-metric-cell">
+          <div class="bu-metric-val">8 Tracks</div>
+          <p class="bu-metric-desc">Interdisciplinary academic &amp; professional fields</p>
+        </div>
+        <div class="bu-metric-cell">
+          <div class="bu-metric-val">₦40,000</div>
+          <p class="bu-metric-desc">Early Bird &amp; ICFI Member Rate ($80 International)</p>
+        </div>
+        <div class="bu-metric-cell">
+          <div class="bu-metric-val">₦10,000 Off</div>
+          <p class="bu-metric-desc">Year-round member discount on standard ₦50,000 fee</p>
+        </div>
+        <div class="bu-metric-cell">
+          <div class="bu-metric-val">Free IJFI</div>
+          <p class="bu-metric-desc">Double-blind peer-reviewed publication for accepted papers</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

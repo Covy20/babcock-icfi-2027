@@ -1,0 +1,461 @@
+<!-- =========================================================================
+     FILAMENT BLOCK 9 OF 9: EASY STAFF SETTINGS & PAGE INTERACTION SCRIPT
+     =========================================================================
+     HOW TO EDIT THIS BLOCK (NON-DEVELOPER FRIENDLY):
+     - Keep Filament's "Header" field BLANK.
+     - Only change values inside "STEP 1: EASY STAFF CONFIGURATION" below
+       (keep quotation marks '' around text).
+     - Leave "STEP 2: CORE ENGINE CODE" untouched—it runs the countdown, tabs,
+       currency toggle, and Google Sheet form uploads automatically.
+     ========================================================================= -->
+<script>
+  (function () {
+    /* =====================================================================
+       STEP 1: EASY STAFF CONFIGURATION (SAFE TO EDIT VALUES INSIDE QUOTES)
+       ===================================================================== */
+    var ICFI_STAFF_CONFIG = {
+      /* Date the conference begins (drives the live ticking countdown timer) */
+      conferenceStartIso: '2027-07-27T09:00:00+01:00',
+
+      /* Last day for Early Bird pricing (used automatically by fee calculator) */
+      earlyBirdDeadlineIso: '2027-04-23T23:59:59+01:00',
+
+      /* Max receipt file upload size in MB */
+      maxUploadMb: 10,
+
+      /* Google Apps Script web app URL connected to your ICFI Google Sheet */
+      googleSheetEndpoint: 'https://script.google.com/macros/s/AKfycbz9qh1-DU-HUGtX924Z2I-82QIpZ119KZYWPvP4IISY9X259M3pU1CnhcyxPKCco8PQ8w/exec',
+
+      /* 6-Day Conference Schedule rows displayed under Block 6 ("6-Day Hybrid Programme") */
+      programmeDays: {
+        1: [
+          { time: '09:00 – 13:00', mode: 'Campus & Zoom', title: 'Arrival, Registration & Conference Kit Collection', desc: 'Check-in at Babcock University campus or connect through our remote welcome desk.' },
+          { time: '14:00 – 17:00', mode: 'Plenary', title: 'Opening Ceremony & Theme Keynote Address', desc: 'Addresses by Chief Host Prof. Afolarin Olutunde Ojewole, Host Prof. Jonathan C. Nwosu, and Convener Prof. Constance C. Nwosu.' },
+          { time: '18:00 – 19:30', mode: 'Campus', title: 'Welcome Fellowship & Networking Dinner', desc: 'Collegial introductions and interdisciplinary table conversations.' }
+        ],
+        2: [
+          { time: '08:30 – 10:30', mode: 'Plenary', title: 'Plenary I: Science, Technology & Faith Ecosystems', desc: 'Dialogue on artificial intelligence, creation stewardship, and enduring faith values.' },
+          { time: '11:00 – 13:30', mode: 'Hybrid Tracks', title: 'Parallel Sessions: Science, Arts & Technology', desc: 'Research paper presentations with live audience Q&A across Auditorium and Zoom.' },
+          { time: '15:00 – 16:30', mode: 'IJFI Clinic', title: 'IJFI Author & Peer-Review Publishing Clinic', desc: 'Practical preparation for free double-blind peer-reviewed publication in IJFI.' }
+        ],
+        3: [
+          { time: '08:30 – 10:30', mode: 'Plenary', title: 'Plenary II: Servant Leadership, Business & Institutional Integrity', desc: 'Cultivating ethical ecosystems across higher education, finance, and governance.' },
+          { time: '11:00 – 13:30', mode: 'Hybrid Tracks', title: 'Parallel Sessions: Leadership, Business & Institutions', desc: 'Case studies in faith-integrated curriculum, management, and compliance audit.' }
+        ],
+        4: [
+          { time: '09:00 – 11:30', mode: 'Plenary', title: 'Plenary III: Religion, Politics & Public Policy', desc: 'Biblical relational principles, civic duty, justice, and multicultural community.' },
+          { time: '13:00 – 16:00', mode: 'Hybrid Tracks', title: 'Parallel Sessions & Conference Communiqué', desc: 'Research synthesis and collaborative institutional commitments.' }
+        ],
+        5: [
+          { time: 'Jul 31 · Sat', mode: 'Worship', title: 'Sabbath Worship, Thanksgiving & Closing Awards', desc: 'Inspirational Sabbath service at Babcock University and presentation of certificates.' },
+          { time: 'Aug 1 · Sun', mode: 'Departure', title: 'Farewell Breakfast & Departures', desc: 'Safe journeys for local and international delegates.' }
+        ]
+      }
+    };
+
+    /* =====================================================================
+       STEP 2: CORE ENGINE CODE (DO NOT EDIT BELOW UNLESS DEVELOPER)
+       ===================================================================== */
+    var REGISTRATION_ENDPOINT = ICFI_STAFF_CONFIG.googleSheetEndpoint;
+    var EARLY_BIRD_MS = new Date(ICFI_STAFF_CONFIG.earlyBirdDeadlineIso).getTime();
+    var MAX_BYTES = ICFI_STAFF_CONFIG.maxUploadMb * 1024 * 1024;
+    var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* --- Live Ticking Countdown Timer --- */
+    function updateCountdown() {
+      var target = new Date(ICFI_STAFF_CONFIG.conferenceStartIso).getTime();
+      var diff = Math.max(0, target - Date.now());
+      var d = document.getElementById('bu-cd-days');
+      var h = document.getElementById('bu-cd-hours');
+      var m = document.getElementById('bu-cd-mins');
+      var s = document.getElementById('bu-cd-secs');
+      if (d) d.textContent = Math.floor(diff / 86400000);
+      if (h) h.textContent = String(Math.floor((diff / 3600000) % 24)).padStart(2, '0');
+      if (m) m.textContent = String(Math.floor((diff / 60000) % 60)).padStart(2, '0');
+      if (s) s.textContent = String(Math.floor((diff / 1000) % 60)).padStart(2, '0');
+    }
+    updateCountdown();
+    if (!reduceMotion) setInterval(updateCountdown, 1000);
+
+    /* --- 6-Day Programme Tab Switcher --- */
+    window.buIcfiSetDay = function (d, btn) {
+      document.querySelectorAll('#bu-icfi-roadmap .bu-tab-btn').forEach(function (b) { b.classList.toggle('is-active', b === btn); });
+      var list = document.getElementById('bu-icfi-prog-list');
+      if (!list) return;
+      var rows = ICFI_STAFF_CONFIG.programmeDays[d] || [];
+      list.innerHTML = rows.map(function (r) {
+        return '<div class="bu-prog-row">'
+          + '<div style="font-size:12px; font-weight:700; color:var(--bu-gold-band);">' + r.time + '</div>'
+          + '<div><div style="font-weight:700; font-size:14px;">' + r.title + '</div><div style="font-size:12px; color:var(--bu-muted);">' + r.desc + '</div></div>'
+          + '<div style="font-size:11px; font-weight:700; text-transform:uppercase; color:var(--bu-navy);">' + r.mode + '</div>'
+          + '</div>';
+      }).join('');
+    };
+    window.buIcfiSetDay(1, document.querySelector('#bu-icfi-roadmap .bu-tab-btn'));
+
+    /* --- NGN / USD Currency Switcher & Bank Copy Helper --- */
+    var activeCur = 'NGN';
+    window.buIcfiSetCurrency = function (cur) {
+      activeCur = cur;
+      document.getElementById('bu-cur-ngn').classList.toggle('is-active', cur === 'NGN');
+      document.getElementById('bu-cur-usd').classList.toggle('is-active', cur === 'USD');
+      document.querySelectorAll('.bu-icfi-fee-num, .bu-icfi-fee-sub').forEach(function (el) {
+        el.textContent = cur === 'NGN' ? el.dataset.ngn : el.dataset.usd;
+      });
+    };
+
+    window.buIcfiCopyAcct = function (btn, acct) {
+      if (navigator.clipboard) navigator.clipboard.writeText(acct);
+      var orig = btn.textContent;
+      btn.textContent = 'Copied ✓';
+      setTimeout(function () { btn.textContent = orig; }, 1600);
+    };
+
+    /* --- On-Site Registration & Membership Forms Setup --- */
+    var regForm = document.getElementById('bu-reg-form');
+    var memForm = document.getElementById('bu-mem-form');
+    if (!regForm || !memForm) return;
+
+    var announcer = document.createElement('div');
+    announcer.setAttribute('aria-live', 'polite');
+    announcer.className = 'bu-icfi-visually-hidden';
+    document.body.appendChild(announcer);
+
+    var dirty = new WeakMap();
+    var hasUserInvalid = typeof CSS !== 'undefined' && CSS.supports && CSS.supports('selector(:user-invalid)');
+
+    function syncField(el) {
+      if (!el.matches || !el.matches('input, select, textarea') || el.type === 'radio' || el.type === 'file') return;
+      var st = dirty.get(el);
+      var invalid = hasUserInvalid ? el.matches(':user-invalid') : Boolean(st && st.blurred && !el.validity.valid);
+      if (!hasUserInvalid && st && st.blurred) {
+        el.classList.toggle('user-invalid-fallback', !el.validity.valid);
+        el.classList.toggle('user-valid-fallback', el.validity.valid);
+      }
+      el.setAttribute('aria-invalid', invalid ? 'true' : 'false');
+    }
+
+    function wireA11y(formEl) {
+      formEl.querySelectorAll('input:not([type="radio"]):not([type="file"]), select, textarea').forEach(syncField);
+      formEl.addEventListener('blur', function (e) { dirty.set(e.target, { blurred: true }); syncField(e.target); }, true);
+      formEl.addEventListener('input', function (e) { if (e.target.hasAttribute('aria-invalid')) syncField(e.target); });
+      formEl.addEventListener('invalid', function (e) { dirty.set(e.target, { blurred: true }); syncField(e.target); }, true);
+    }
+    wireA11y(regForm);
+    wireA11y(memForm);
+
+    function wireFile(inputEl, previewId, store, key) {
+      var prev = document.getElementById(previewId);
+      var wrap = inputEl.closest('.bu-file-wrap');
+      inputEl.addEventListener('change', function () {
+        if (wrap) wrap.classList.remove('has-error');
+        var file = inputEl.files && inputEl.files[0];
+        if (!file) { store[key] = null; prev.hidden = true; return; }
+        if (file.size > MAX_BYTES) {
+          store[key] = null;
+          inputEl.value = '';
+          if (wrap) wrap.classList.add('has-error');
+          prev.hidden = false;
+          prev.style.color = '#b91c1c';
+          prev.textContent = 'File exceeds ' + ICFI_STAFF_CONFIG.maxUploadMb + ' MB limit.';
+          return;
+        }
+        var reader = new FileReader();
+        reader.onload = function () {
+          var res = String(reader.result || '');
+          store[key] = { name: file.name, mimeType: file.type || 'application/octet-stream', size: file.size, base64: res.split(',')[1] || res };
+          prev.hidden = false;
+          prev.style.color = '#047857';
+          prev.textContent = 'Attached: ' + file.name + ' (' + Math.max(1, Math.round(file.size / 1024)) + ' KB)';
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+
+    var regFiles = { membershipProof: null, paymentReceipt: null };
+    var memFiles = { paymentEvidence: null };
+    wireFile(document.getElementById('bu-reg-mem-file'), 'bu-prev-mem-file', regFiles, 'membershipProof');
+    wireFile(document.getElementById('bu-reg-rec-file'), 'bu-prev-rec-file', regFiles, 'paymentReceipt');
+    wireFile(document.getElementById('bu-mem-file'), 'bu-prev-m-file', memFiles, 'paymentEvidence');
+
+    function validateStep(formEl, stepEl, files) {
+      var first = null;
+      stepEl.querySelectorAll('[data-group-required]').forEach(function (g) {
+        var ok = Boolean(formEl.querySelector('input[name="' + g.dataset.groupRequired + '"]:checked'));
+        g.classList.toggle('has-error', !ok);
+        if (!ok && !first) first = g.querySelector('input');
+      });
+      stepEl.querySelectorAll('input[type="file"]').forEach(function (f) {
+        if (f.closest('[hidden]')) return;
+        var ok = !f.required || Boolean(files[f.name]);
+        var w = f.closest('.bu-file-wrap');
+        if (w) w.classList.toggle('has-error', !ok);
+        if (!ok && !first) first = f;
+      });
+      stepEl.querySelectorAll('input:not([type="radio"]):not([type="file"]), select, textarea').forEach(function (el) {
+        if (el.closest('[hidden]')) return;
+        if (!el.checkValidity()) { dirty.set(el, { blurred: true }); syncField(el); if (!first) first = el; }
+      });
+      if (first) { first.focus(); announcer.textContent = 'Please check highlighted required fields.'; return false; }
+      return true;
+    }
+
+    window.buIcfiOpenTab = function (tab) {
+      var isMem = tab === 'membership';
+      document.getElementById('bu-tab-conf').setAttribute('aria-selected', String(!isMem));
+      document.getElementById('bu-tab-mem').setAttribute('aria-selected', String(isMem));
+      document.getElementById('bu-panel-conf').hidden = isMem;
+      document.getElementById('bu-panel-mem').hidden = !isMem;
+      document.getElementById('bu-icfi-portal').scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+    };
+
+    function getRadio(formEl, name) {
+      var c = formEl.querySelector('input[name="' + name + '"]:checked');
+      return c ? c.value : '';
+    }
+
+    /* --- Fee & Bank Calculator --- */
+    function computePricing() {
+      var cat = getRadio(regForm, 'participantCategory');
+      var mode = getRadio(regForm, 'participationMode');
+      var mem = getRadio(regForm, 'membershipStatus');
+      var early = Date.now() <= EARLY_BIRD_MS;
+      var period = early ? 'Early Bird' : 'Standard';
+      var isLocal = cat.indexOf('Local') === 0;
+      var isIntl = cat.indexOf('International') === 0;
+      var cur = isIntl ? 'USD' : 'NGN';
+      var acct = isIntl ? '0829898610' : '1020069501';
+      var bank = isIntl ? 'GTBank • B.U-Op./Inst. For Faith Integr (USD: 0829898610)' : 'UBA Plc • Babcock MFB (NGN: 1020069501)';
+      var fee = 'Select options';
+      var note = 'Choose category, mode & membership.';
+      if ((isLocal || isIntl) && mode) {
+        if (mode === 'Virtual / Online') {
+          fee = isLocal ? '₦25,000' : '$50';
+          note = (isLocal ? 'Local' : 'International') + ' • Virtual / Online';
+        } else if (early || mem === 'Registered Member') {
+          fee = isLocal ? '₦40,000' : '$80';
+          note = (isLocal ? 'Local' : 'International') + ' • In-person (' + (mem === 'Registered Member' ? 'Member Rate' : 'Early Bird') + ')';
+        } else {
+          fee = isLocal ? '₦50,000' : '$100';
+          note = (isLocal ? 'Local' : 'International') + ' • In-person (Standard Fee)';
+        }
+      }
+      return { cat: cat, mode: mode, mem: mem, period: period, isLocal: isLocal, isIntl: isIntl, cur: cur, acct: acct, bank: bank, fee: fee, note: note };
+    }
+
+    function syncRegUI() {
+      var p = computePricing();
+      var proofBox = document.getElementById('bu-mem-proof-box');
+      proofBox.hidden = p.mem !== 'Registered Member';
+      document.getElementById('bu-reg-mem-file').required = p.mem === 'Registered Member';
+      document.getElementById('bu-mem-join-box').hidden = p.mem !== 'New Member Applicant';
+      var cInput = document.getElementById('bu-r-country');
+      if (p.isLocal && !cInput.dataset.edited) cInput.value = 'Nigeria';
+      document.getElementById('bu-sum-period').textContent = p.period;
+      document.getElementById('bu-sum-amount').textContent = p.fee;
+      document.getElementById('bu-sum-note').textContent = p.note;
+      document.getElementById('bu-sum-bank').textContent = p.cat ? p.bank : 'UBA Plc (NGN: 1020069501) or GTBank (USD: 0829898610)';
+      document.getElementById('bu-pay-summary').textContent = p.cat && p.mode ? p.fee + ' — ' + p.note : 'Select options in Step 1';
+      document.getElementById('bu-pay-acct').textContent = p.bank;
+      var amt = document.getElementById('bu-r-amt');
+      if (p.fee !== 'Select options' && !amt.dataset.edited) amt.value = p.fee;
+    }
+
+    document.getElementById('bu-r-country').addEventListener('input', function (e) { e.target.dataset.edited = '1'; });
+    document.getElementById('bu-r-amt').addEventListener('input', function (e) { e.target.dataset.edited = '1'; });
+    regForm.querySelectorAll('input[type="radio"]').forEach(function (r) {
+      r.addEventListener('change', function () {
+        var g = r.closest('.bu-choice-group');
+        if (g) g.classList.remove('has-error');
+        syncRegUI();
+      });
+    });
+
+    function setPills(selector, attr, active) {
+      document.querySelectorAll(selector).forEach(function (el) {
+        var n = Number(el.getAttribute(attr));
+        el.classList.toggle('is-done', n < active);
+        if (n === active) el.setAttribute('aria-current', 'step');
+        else el.removeAttribute('aria-current');
+      });
+    }
+
+    function esc(s) {
+      return String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    window.buIcfiRegGo = function (step) {
+      regForm.querySelectorAll('[data-reg-step]').forEach(function (s) { s.hidden = Number(s.dataset.regStep) !== step; });
+      setPills('[data-reg-pill]', 'data-reg-pill', step);
+      if (step === 4) {
+        var p = computePricing();
+        var rows = [['Category', p.cat], ['Mode', p.mode], ['Fee', p.fee], ['Membership', p.mem], ['Name', regForm.fullName.value], ['Email', regForm.email.value], ['Amount', regForm.amountPaid.value], ['Receipt', regFiles.paymentReceipt ? regFiles.paymentReceipt.name : '—']];
+        document.getElementById('bu-reg-review').innerHTML = rows.map(function (kv) {
+          return '<div><div style="font-size:10px; font-weight:700; text-transform:uppercase; color:var(--bu-muted);">' + esc(kv[0]) + '</div><div style="font-weight:700;">' + esc(kv[1]) + '</div></div>';
+        }).join('');
+      }
+      var h = regForm.querySelector('[data-reg-step="' + step + '"] h4');
+      if (h) h.focus();
+    };
+
+    window.buIcfiRegNext = function (step) {
+      if (validateStep(regForm, regForm.querySelector('[data-reg-step="' + step + '"]'), regFiles)) window.buIcfiRegGo(step + 1);
+    };
+
+    window.buIcfiCopyActiveAcct = function (btn) { window.buIcfiCopyAcct(btn, computePricing().acct); };
+
+    window.buIcfiPresetReg = function (modeVal, hint) {
+      window.buIcfiOpenTab('conference');
+      document.getElementById(activeCur === 'USD' ? 'bu-cat-intl' : 'bu-cat-local').checked = true;
+      regForm.querySelector('input[name="participationMode"][value="' + modeVal + '"]').checked = true;
+      document.getElementById(hint === 'early-bird' && Date.now() > EARLY_BIRD_MS ? 'bu-mem-yes' : 'bu-mem-no').checked = true;
+      syncRegUI();
+      window.buIcfiRegGo(1);
+    };
+
+    window.buIcfiResetReg = function () {
+      regForm.reset();
+      regFiles.membershipProof = null;
+      regFiles.paymentReceipt = null;
+      document.getElementById('bu-reg-success').hidden = true;
+      regForm.hidden = false;
+      syncRegUI();
+      window.buIcfiRegGo(1);
+    };
+
+    /* --- Send Form Payload + Files to Google Apps Script --- */
+    async function sendToEndpoint(payload, btn, busyLabel, readyLabel, fb) {
+      btn.disabled = true;
+      btn.textContent = busyLabel;
+      fb.hidden = true;
+      try {
+        var r = await fetch(REGISTRATION_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(payload)
+        });
+        var j = await r.json();
+        if (!j || !j.ok) throw new Error((j && j.error) || 'Could not save submission.');
+        return j;
+      } catch (err) {
+        fb.hidden = false;
+        fb.style.background = '#fef2f2';
+        fb.style.color = '#991b1b';
+        fb.textContent = 'Submission failed: ' + err.message;
+        return null;
+      } finally {
+        btn.disabled = false;
+        btn.textContent = readyLabel;
+      }
+    }
+
+    regForm.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      if (!validateStep(regForm, regForm.querySelector('[data-reg-step="4"]'), regFiles)) return;
+      var p = computePricing();
+      var payload = {
+        formType: 'conference',
+        websiteUrl: regForm.websiteUrl.value,
+        participantCategory: p.cat,
+        participationMode: p.mode,
+        registrationPeriod: p.period,
+        membershipStatus: p.mem,
+        currency: p.cur,
+        applicableFee: p.fee,
+        fullName: regForm.fullName.value.trim(),
+        email: regForm.email.value.trim(),
+        phone: regForm.phone.value.trim(),
+        country: regForm.country.value.trim(),
+        stateOfResidence: regForm.stateOfResidence.value.trim(),
+        organisation: regForm.organisation.value.trim(),
+        designation: regForm.designation.value.trim(),
+        specialisation: regForm.specialisation.value.trim(),
+        amountPaid: regForm.amountPaid.value.trim(),
+        paymentDate: regForm.paymentDate.value,
+        transactionRef: regForm.transactionRef.value.trim(),
+        accountHolderName: regForm.accountHolderName.value.trim(),
+        declarationAgreed: document.getElementById('bu-r-decl').checked,
+        membershipProof: regFiles.membershipProof,
+        paymentReceipt: regFiles.paymentReceipt
+      };
+      var res = await sendToEndpoint(payload, document.getElementById('bu-reg-submit'), 'Submitting Registration...', 'Submit Registration →', document.getElementById('bu-reg-feedback'));
+      if (!res) return;
+      regForm.hidden = true;
+      document.getElementById('bu-reg-success').hidden = false;
+      document.getElementById('bu-reg-suc-id').textContent = res.registrationId || 'Recorded';
+      document.getElementById('bu-reg-suc-sum').textContent = payload.fullName + ' • ' + payload.participantCategory + ' • ' + payload.participationMode + ' (' + payload.applicableFee + ')';
+      document.getElementById('bu-reg-suc-h').focus();
+    });
+
+    /* --- Membership Form Logic --- */
+    var mDate = document.getElementById('bu-m-date');
+    if (mDate && !mDate.value) mDate.value = new Date().toISOString().slice(0, 10);
+
+    memForm.querySelectorAll('input[name="conditionsChoice"]').forEach(function (r) {
+      r.addEventListener('change', function () {
+        var g = r.closest('.bu-choice-group');
+        if (g) g.classList.remove('has-error');
+        var dis = r.value === 'I disagree';
+        document.getElementById('bu-mem-disagree-box').hidden = !dis;
+        document.getElementById('bu-mem-next-btn').disabled = dis;
+      });
+    });
+
+    window.buIcfiMemGo = function (step) {
+      memForm.querySelectorAll('[data-mem-step]').forEach(function (s) { s.hidden = Number(s.dataset.memStep) !== step; });
+      setPills('[data-mem-pill]', 'data-mem-pill', step);
+      var h = memForm.querySelector('[data-mem-step="' + step + '"] h4');
+      if (h) h.focus();
+    };
+
+    window.buIcfiMemNext = function () {
+      if (validateStep(memForm, memForm.querySelector('[data-mem-step="1"]'), memFiles)) {
+        if (getRadio(memForm, 'conditionsChoice') === 'I agree') window.buIcfiMemGo(2);
+      }
+    };
+
+    window.buIcfiCopyCell = function () {
+      var c = document.getElementById('bu-m-cell').value.trim();
+      var w = document.getElementById('bu-m-wa');
+      if (c) { w.value = c; syncField(w); }
+      w.focus();
+    };
+
+    window.buIcfiResetMem = function () {
+      memForm.reset();
+      memFiles.paymentEvidence = null;
+      if (mDate) mDate.value = new Date().toISOString().slice(0, 10);
+      document.getElementById('bu-mem-success').hidden = true;
+      memForm.hidden = false;
+      window.buIcfiMemGo(1);
+    };
+
+    memForm.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      if (!validateStep(memForm, memForm.querySelector('[data-mem-step="2"]'), memFiles)) return;
+      var payload = {
+        formType: 'membership',
+        websiteUrl: memForm.websiteUrl.value,
+        conditionsAgreed: 'I agree',
+        fullName: memForm.fullName.value.trim(),
+        profession: memForm.profession.value.trim(),
+        institutionalAddress: memForm.institutionalAddress.value.trim(),
+        cellPhone: memForm.cellPhone.value.trim(),
+        whatsappContact: memForm.whatsappContact.value.trim(),
+        email: memForm.email.value.trim(),
+        registrationDate: memForm.registrationDate.value,
+        annualFee: 'US$5 / ₦7,000',
+        paymentEvidence: memFiles.paymentEvidence
+      };
+      var res = await sendToEndpoint(payload, document.getElementById('bu-mem-submit'), 'Submitting Application...', 'Submit Membership Application →', document.getElementById('bu-mem-feedback'));
+      if (!res) return;
+      memForm.hidden = true;
+      document.getElementById('bu-mem-success').hidden = false;
+      document.getElementById('bu-mem-suc-id').textContent = res.membershipId || 'Recorded';
+      document.getElementById('bu-mem-suc-sum').textContent = payload.fullName + ' • ' + payload.profession + ' • ' + payload.email;
+      document.getElementById('bu-mem-suc-h').focus();
+    });
+
+    syncRegUI();
+  })();
+</script>

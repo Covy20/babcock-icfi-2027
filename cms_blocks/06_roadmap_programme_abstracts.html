@@ -1,0 +1,92 @@
+<!-- =========================================================================
+     FILAMENT BLOCK 6 OF 9: CONFERENCE ROADMAP, 6-DAY PROGRAMME & ABSTRACTS
+     =========================================================================
+     HOW TO EDIT THIS BLOCK:
+     - Keep Filament's "Header" field BLANK.
+     - Left column: Edit the 4 key milestone dates below.
+     - Right top card: The Day 1–5 schedule rows load automatically from
+       "programmeDays" in Block 9 (Easy Staff Settings).
+     - Right bottom card: Edit the Abstract Submission guidelines & email link.
+     ========================================================================= -->
+<div class="bu-icfi-wrap">
+  <div class="bu-icfi-band-mist" id="bu-icfi-roadmap">
+    <div class="bu-icfi-container">
+
+      <div style="margin-bottom:36px;">
+        <span style="display:inline-block; padding:6px 14px; border-radius:999px; background:#ffffff; border:1px solid var(--bu-border); font-size:12px; font-weight:600; color:var(--bu-muted); margin-bottom:14px;">Conference Roadmap • 2026 / 2027</span>
+        <h2 style="font-size:clamp(1.85rem, 3.6vw, 2.75rem);">Welcome to ICFI 2027. <span style="color:var(--bu-gold-band);">Here’s what’s next.</span></h2>
+        <p class="bu-lead" style="font-size:15px; max-width:60ch;">Every key date, submission guideline, and daily session itinerary for campus and online delegates in one clear place.</p>
+      </div>
+
+      <div class="bu-g12 bu-g12--top">
+        <!-- Left Column: 4 Milestone Date Cards -->
+        <div class="bu-c5" style="display:grid; gap:14px;">
+          <div><a href="#bu-icfi-portal" class="bu-btn bu-btn-navy bu-btn-pill" onclick="buIcfiOpenTab('conference'); return true;">Start here &rarr;</a></div>
+
+          <div class="bu-card-box" style="padding:16px 20px; border-radius:18px;">
+            <strong style="font-size:14px;">Nov 02, 2026</strong>
+            <div style="font-size:12px; color:var(--bu-muted);">Registration &amp; Seat Booking Opens</div>
+          </div>
+
+          <div class="bu-card-box" style="padding:16px 20px; border-radius:18px;">
+            <strong style="font-size:14px;">Mar 24, 2027 <span style="color:var(--bu-bronze);">• Priority</span></strong>
+            <div style="font-size:12px; color:var(--bu-muted);">Abstract Submission Deadline (icfi@babcock.edu.ng)</div>
+          </div>
+
+          <div class="bu-card-box" style="padding:16px 20px; border-radius:18px;">
+            <strong style="font-size:14px;">Apr 23, 2027</strong>
+            <div style="font-size:12px; color:var(--bu-muted);">Early Bird Closes (ICFI Members keep ₦40,000 year-round)</div>
+          </div>
+
+          <div class="bu-card-box" style="padding:16px 20px; border-radius:18px;">
+            <strong style="font-size:14px;">May 09 &amp; May 31, 2027</strong>
+            <div style="font-size:12px; color:var(--bu-muted);">Full Paper Due (May 9) • Final Seat Reservation (May 31)</div>
+          </div>
+        </div>
+
+        <!-- Right Column: Interactive Schedule + Abstract Guidelines -->
+        <div class="bu-c7" style="display:grid; gap:20px;">
+          <div class="bu-card-box">
+            <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:12px; margin-bottom:16px;">
+              <div>
+                <h3 style="font-size:1.35rem;">6-Day Hybrid Programme</h3>
+                <div style="font-size:12px; color:var(--bu-muted);">July 27 – August 1, 2027 • Campus &amp; Live Zoom</div>
+              </div>
+              <div style="display:flex; flex-wrap:wrap; gap:6px;">
+                <button type="button" class="bu-tab-btn is-active" onclick="buIcfiSetDay(1, this)">Day 1</button>
+                <button type="button" class="bu-tab-btn" onclick="buIcfiSetDay(2, this)">Day 2</button>
+                <button type="button" class="bu-tab-btn" onclick="buIcfiSetDay(3, this)">Day 3</button>
+                <button type="button" class="bu-tab-btn" onclick="buIcfiSetDay(4, this)">Day 4</button>
+                <button type="button" class="bu-tab-btn" onclick="buIcfiSetDay(5, this)">Jul 31–Aug 1</button>
+              </div>
+            </div>
+            <!-- Filled automatically from Block 9 (ICFI_STAFF_CONFIG.programmeDays) -->
+            <div id="bu-icfi-prog-list"></div>
+          </div>
+
+          <div class="bu-card-box" id="bu-icfi-abstracts">
+            <div class="bu-g12">
+              <div class="bu-c5">
+                <img src="https://babcock.edu.ng/storage/media/ed349bd4-ec0b-4071-af83-7879c9c5218c.jpg" alt="Scholars seated in ICFI conference session" style="width:100%; border-radius:14px; aspect-ratio:4/3; object-fit:cover;">
+              </div>
+              <div class="bu-c7">
+                <span class="bu-eyebrow" style="font-size:11px; color:var(--bu-gold);">Abstract Guidelines</span>
+                <h3 style="font-size:1.25rem; margin-top:4px;">How to Submit Your Manuscript</h3>
+                <ul class="bu-pass-list" style="margin:10px 0 14px;">
+                  <li><strong>Word Limit:</strong> Max 250 words (objective, method &amp; impact)</li>
+                  <li><strong>Typography:</strong> Times New Roman, 12pt (.doc or .docx)</li>
+                  <li><strong>Review Benefit:</strong> Qualifies for free IJFI peer review</li>
+                </ul>
+                <div style="display:flex; flex-wrap:wrap; align-items:center; gap:10px;">
+                  <a href="mailto:icfi@babcock.edu.ng?subject=7th%20ICFI%202027%20Abstract%20Submission" class="bu-btn bu-btn-navy bu-btn-sm bu-btn-pill">Email icfi@babcock.edu.ng &rarr;</a>
+                  <span style="font-size:11px; color:var(--bu-muted);">Dr. O. Olomojobi • 08082334427</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

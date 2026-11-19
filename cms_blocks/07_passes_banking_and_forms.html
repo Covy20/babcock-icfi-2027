@@ -1,0 +1,484 @@
+<!-- =========================================================================
+     FILAMENT BLOCK 7 OF 9: PASS FEES, BANKING & REGISTRATION / MEMBERSHIP FORMS
+     =========================================================================
+     HOW TO EDIT THIS BLOCK:
+     - Keep Filament's "Header" field BLANK.
+     - Part A (Top): Pass prices (update data-ngn / data-usd & displayed text)
+       and UBA / GTBank account numbers.
+     - Part B (Tab 1): 4-step Conference Registration Form. Keep every id="" and
+       name="" attribute unchanged so Google Sheet syncing keeps working!
+     - Part C (Tab 2): 2-step ICFI Membership Form (includes full 8-clause
+       membership conditions and Biodata/Receipt upload).
+     ========================================================================= -->
+<div class="bu-icfi-wrap">
+  <div class="bu-icfi-band-white" id="bu-icfi-registration">
+    <div class="bu-icfi-container">
+
+      <!-- PART A: PASS PRICING & BANK ACCOUNT DETAILS -->
+      <div class="bu-section-head">
+        <div>
+          <span class="bu-eyebrow">Registration &amp; Fees</span>
+          <h2 class="bu-section-h2">Simple, Transparent Pass Options</h2>
+          <p class="bu-lead">Switch currency between Local (NGN) and International (USD).</p>
+        </div>
+        <div style="display:inline-flex; background:var(--bu-mist); padding:4px; border-radius:999px; border:1px solid var(--bu-border);">
+          <button type="button" id="bu-cur-ngn" class="bu-tab-btn is-active" onclick="buIcfiSetCurrency('NGN')">Local (₦ NGN)</button>
+          <button type="button" id="bu-cur-usd" class="bu-tab-btn" onclick="buIcfiSetCurrency('USD')">International ($ USD)</button>
+        </div>
+      </div>
+
+      <!-- 3 Pass Fee Cards (Edit rates in data-ngn, data-usd, and visible price text) -->
+      <div class="bu-g3" style="margin-bottom:26px;">
+        <div class="bu-card-box bu-pass-card">
+          <div>
+            <div style="font-size:11px; font-weight:700; text-transform:uppercase; color:var(--bu-muted);">In-Person Attendance</div>
+            <h3 style="font-size:1.4rem; color:var(--bu-navy) !important; margin-top:4px;">Conference Fee</h3>
+            <div class="bu-pass-price-row">
+              <span class="bu-icfi-fee-num bu-pass-price" data-ngn="₦50,000" data-usd="$100">₦50,000</span>
+              <span class="bu-icfi-fee-sub" data-ngn=" ($100 International)" data-usd=" (₦50,000 Local)" style="font-size:12px; color:var(--bu-muted);"> ($100 International)</span>
+            </div>
+            <ul class="bu-pass-list">
+              <li>Full plenary &amp; parallel track sessions</li>
+              <li>Delegate kit, folder &amp; daily lunch</li>
+              <li>Free IJFI peer-reviewed publication</li>
+            </ul>
+          </div>
+          <button type="button" class="bu-btn bu-btn-mist bu-btn-pill" style="width:100%; margin-top:22px; min-height:42px; font-size:12.5px;" onclick="buIcfiPresetReg('Physical / In-person', 'non-member')">Register Standard Seat</button>
+        </div>
+
+        <div class="bu-icfi-card-dark">
+          <div>
+            <div style="font-size:11px; font-weight:700; text-transform:uppercase; color:var(--bu-gold-accent);">★ Until April 23, 2027</div>
+            <h3 style="font-size:1.4rem; margin-top:4px;">Early Bird &amp; Member</h3>
+            <div class="bu-pass-price-row" style="border-bottom-color:rgba(255,255,255,0.16);">
+              <span class="bu-icfi-fee-num bu-pass-price" data-ngn="₦40,000" data-usd="$80" style="color:var(--bu-gold-accent);">₦40,000</span>
+              <span class="bu-icfi-fee-sub" data-ngn=" ($80 International)" data-usd=" (₦40,000 Local)" style="font-size:12px; color:#cbd5e1;"> ($80 International)</span>
+            </div>
+            <ul class="bu-pass-list" style="color:#e2e8f0;">
+              <li>Full delegate materials &amp; lunch</li>
+              <li>Free IJFI peer-reviewed publication</li>
+              <li style="color:var(--bu-gold-accent); font-weight:700;">₦10,000 off for Registered ICFI Members</li>
+            </ul>
+          </div>
+          <button type="button" class="bu-btn bu-btn-gold-bright bu-btn-pill" style="width:100%; margin-top:22px; min-height:42px; font-size:12.5px;" onclick="buIcfiPresetReg('Physical / In-person', 'early-bird')">Reserve Early Bird Seat &rarr;</button>
+        </div>
+
+        <div class="bu-card-box bu-pass-card">
+          <div>
+            <div style="font-size:11px; font-weight:700; text-transform:uppercase; color:var(--bu-muted);">Remote Global Participation</div>
+            <h3 style="font-size:1.4rem; color:var(--bu-navy) !important; margin-top:4px;">Online / Virtual</h3>
+            <div class="bu-pass-price-row">
+              <span class="bu-icfi-fee-num bu-pass-price" data-ngn="₦25,000" data-usd="$50">₦25,000</span>
+              <span class="bu-icfi-fee-sub" data-ngn=" ($50 International)" data-usd=" (₦25,000 Local)" style="font-size:12px; color:var(--bu-muted);"> ($50 International)</span>
+            </div>
+            <ul class="bu-pass-list">
+              <li>Live Zoom streaming &amp; paper presentation</li>
+              <li>Free IJFI peer review &amp; publication</li>
+              <li>Digital proceedings &amp; e-certificate</li>
+            </ul>
+          </div>
+          <button type="button" class="bu-btn bu-btn-mist bu-btn-pill" style="width:100%; margin-top:22px; min-height:42px; font-size:12.5px;" onclick="buIcfiPresetReg('Virtual / Online', 'non-member')">Register Online Pass</button>
+        </div>
+      </div>
+
+      <!-- Bank Accounts -->
+      <div class="bu-g2">
+        <div class="bu-card-box bu-bank-card">
+          <div>
+            <div style="font-size:11px; font-weight:700; text-transform:uppercase; color:var(--bu-gold);">Local Transfers (NGN)</div>
+            <div style="font-size:14px; font-weight:700; color:var(--bu-navy);">UBA Plc • Babcock MFB</div>
+            <div style="font-size:12px; color:var(--bu-muted);">Account: <strong>1020069501</strong></div>
+          </div>
+          <button type="button" class="bu-btn bu-btn-outline bu-btn-xs bu-btn-pill" onclick="buIcfiCopyAcct(this, '1020069501')">Copy Acct</button>
+        </div>
+
+        <div class="bu-card-box bu-bank-card">
+          <div>
+            <div style="font-size:11px; font-weight:700; text-transform:uppercase; color:var(--bu-gold);">International Transfers (USD)</div>
+            <div style="font-size:14px; font-weight:700; color:var(--bu-navy);">GTBank • B.U-Op./Inst. For Faith Integr</div>
+            <div style="font-size:12px; color:var(--bu-muted);">Account: <strong>0829898610</strong></div>
+          </div>
+          <button type="button" class="bu-btn bu-btn-outline bu-btn-xs bu-btn-pill" onclick="buIcfiCopyAcct(this, '0829898610')">Copy Acct</button>
+        </div>
+      </div>
+
+      <!-- ON-SITE REGISTRATION & MEMBERSHIP PORTAL -->
+      <div class="bu-portal-shell" id="bu-icfi-portal">
+        <div id="bu-icfi-membership"></div>
+
+        <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-start; gap:16px; padding-bottom:20px; border-bottom:1px solid var(--bu-border);">
+          <div>
+            <span style="display:inline-block; padding:4px 12px; border-radius:999px; background:#ffffff; border:1px solid var(--bu-border); font-size:11px; font-weight:700; color:var(--bu-gold-band); text-transform:uppercase;">Official On-Site Portal</span>
+            <h3 id="bu-portal-heading" style="font-size:clamp(1.45rem, 2.6vw, 1.95rem); color:var(--bu-navy) !important; margin-top:8px;">Conference Registration &amp; ICFI Membership</h3>
+            <p class="bu-lead" style="font-size:13px;">Register directly below without signing into Google. Complete transfer first, attach receipt, and get an instant reference ID.</p>
+          </div>
+          <div style="background:#ffffff; border:1px solid var(--bu-border); border-radius:14px; padding:12px 16px;">
+            <div style="font-size:10px; font-weight:700; text-transform:uppercase; color:var(--bu-muted);">Accommodation Inquiries</div>
+            <div style="font-size:12.5px; font-weight:700; color:var(--bu-navy);">Dr. Nnenna Nwobi</div>
+            <a href="tel:+2348135388049" style="font-size:12px; font-weight:700; color:var(--bu-blue);">+234 813 538 8049</a>
+          </div>
+        </div>
+
+        <div class="bu-portal-tablist" role="tablist" aria-label="Registration Forms">
+          <button type="button" id="bu-tab-conf" role="tab" aria-selected="true" aria-controls="bu-panel-conf" class="bu-portal-tab" onclick="buIcfiOpenTab('conference')">1. Conference Registration (ICFI 2027)</button>
+          <button type="button" id="bu-tab-mem" role="tab" aria-selected="false" aria-controls="bu-panel-mem" class="bu-portal-tab" onclick="buIcfiOpenTab('membership')">2. ICFI Membership Form (US$5 / ₦7,000)</button>
+        </div>
+
+        <!-- PART B: TAB 1 — 4-STEP CONFERENCE REGISTRATION FORM -->
+        <div id="bu-panel-conf" role="tabpanel" aria-labelledby="bu-tab-conf">
+          <ol class="bu-steps-row" aria-label="Conference registration progress">
+            <li class="bu-step-pill" data-reg-pill="1" aria-current="step">Step 1: Category &amp; Fee</li>
+            <li class="bu-step-pill" data-reg-pill="2">Step 2: Personal Info</li>
+            <li class="bu-step-pill" data-reg-pill="3">Step 3: Payment Proof</li>
+            <li class="bu-step-pill" data-reg-pill="4">Step 4: Declaration</li>
+          </ol>
+
+          <form id="bu-reg-form" aria-labelledby="bu-portal-heading" method="POST" novalidate>
+            <div class="bu-icfi-visually-hidden" aria-hidden="true">
+              <label for="bu-reg-hp">Leave blank</label>
+              <input type="text" id="bu-reg-hp" name="websiteUrl" tabindex="-1" autocomplete="off">
+            </div>
+
+            <!-- Step 1: Category, Mode & Membership -->
+            <div data-reg-step="1">
+              <h4 tabindex="-1" style="font-size:1.25rem; color:var(--bu-navy) !important; margin-bottom:16px;">1. Participant Category, Mode &amp; Membership</h4>
+              <div class="bu-g12 bu-g12--top">
+                <div class="bu-c8">
+                  <fieldset class="bu-fieldset">
+                    <legend class="bu-legend">Participant Category Based on Location *</legend>
+                    <div class="bu-choice-group bu-g2" style="gap:12px;" data-group-required="participantCategory">
+                      <div>
+                        <input class="bu-choice" type="radio" name="participantCategory" id="bu-cat-local" value="Local Participant (within Nigeria)" required>
+                        <label for="bu-cat-local" class="bu-choice-card"><span class="bu-radio-dot"></span><span><strong>Local Participant</strong><br><span style="font-size:12px; color:var(--bu-muted);">Within Nigeria (₦ NGN)</span></span></label>
+                      </div>
+                      <div>
+                        <input class="bu-choice" type="radio" name="participantCategory" id="bu-cat-intl" value="International Participant (outside Nigeria)" required>
+                        <label for="bu-cat-intl" class="bu-choice-card"><span class="bu-radio-dot"></span><span><strong>International Participant</strong><br><span style="font-size:12px; color:var(--bu-muted);">Outside Nigeria ($ USD)</span></span></label>
+                      </div>
+                    </div>
+                    <div class="bu-error-msg">&#10060; Please select Local or International participant.</div>
+                  </fieldset>
+
+                  <fieldset class="bu-fieldset">
+                    <legend class="bu-legend">How would you like to participate in the conference? *</legend>
+                    <div class="bu-choice-group bu-g2" style="gap:12px;" data-group-required="participationMode">
+                      <div>
+                        <input class="bu-choice" type="radio" name="participationMode" id="bu-mode-phys" value="Physical / In-person" required>
+                        <label for="bu-mode-phys" class="bu-choice-card"><span class="bu-radio-dot"></span><span><strong>Physical / In-person</strong><br><span style="font-size:12px; color:var(--bu-muted);">Babcock University Campus</span></span></label>
+                      </div>
+                      <div>
+                        <input class="bu-choice" type="radio" name="participationMode" id="bu-mode-virt" value="Virtual / Online" required>
+                        <label for="bu-mode-virt" class="bu-choice-card"><span class="bu-radio-dot"></span><span><strong>Virtual / Online</strong><br><span style="font-size:12px; color:var(--bu-muted);">Live Zoom Plenaries &amp; Q&amp;A</span></span></label>
+                      </div>
+                    </div>
+                    <div class="bu-error-msg">&#10060; Please choose your participation mode.</div>
+                  </fieldset>
+
+                  <fieldset class="bu-fieldset">
+                    <legend class="bu-legend">Are you a registered member of the International Community for Faith Integration (ICFI)? *</legend>
+                    <div class="bu-choice-group" style="display:grid; gap:10px;" data-group-required="membershipStatus">
+                      <div>
+                        <input class="bu-choice" type="radio" name="membershipStatus" id="bu-mem-yes" value="Registered Member" required>
+                        <label for="bu-mem-yes" class="bu-choice-card"><span class="bu-radio-dot"></span><span><strong>Yes, I am a registered member</strong><br><span style="font-size:12px; color:var(--bu-muted);">Members retain Early Bird rates (₦10,000 off). Proof upload required.</span></span></label>
+                      </div>
+                      <div>
+                        <input class="bu-choice" type="radio" name="membershipStatus" id="bu-mem-new" value="New Member Applicant" required>
+                        <label for="bu-mem-new" class="bu-choice-card"><span class="bu-radio-dot"></span><span><strong>No, but I would like to become a member</strong><br><span style="font-size:12px; color:var(--bu-muted);">Local: ₦7,000 • International: US$5 (Apply directly in Tab 2).</span></span></label>
+                      </div>
+                      <div>
+                        <input class="bu-choice" type="radio" name="membershipStatus" id="bu-mem-no" value="Non-Member (Conference Only)" required>
+                        <label for="bu-mem-no" class="bu-choice-card"><span class="bu-radio-dot"></span><span><strong>No, I only wish to register for the conference</strong><br><span style="font-size:12px; color:var(--bu-muted);">Proceed directly with applicable pass rate.</span></span></label>
+                      </div>
+                    </div>
+                    <div class="bu-error-msg">&#10060; Please select your ICFI membership status.</div>
+                  </fieldset>
+
+                  <div id="bu-mem-proof-box" hidden class="bu-card-box" style="padding:18px; border-radius:16px; margin-bottom:14px;">
+                    <label for="bu-reg-mem-file" class="bu-label">Upload evidence of membership registration/payment *</label>
+                    <span id="bu-hint-mem-file" class="bu-hint">PDF, DOC, DOCX, or image. Max 10 MB.</span>
+                    <div class="bu-file-wrap"><input type="file" id="bu-reg-mem-file" name="membershipProof" accept=".pdf,.doc,.docx,image/*" aria-describedby="bu-hint-mem-file" class="bu-file"></div>
+                    <div id="bu-prev-mem-file" style="font-size:12px; color:#047857; margin-top:6px;" hidden></div>
+                    <div class="bu-error-msg">&#10060; Please attach membership payment evidence (max 10 MB).</div>
+                  </div>
+
+                  <div id="bu-mem-join-box" hidden class="bu-card-box" style="padding:18px; border-radius:16px; background:#fffbeb; border-color:#f59e0b; margin-bottom:14px;">
+                    <div style="font-size:11px; font-weight:700; text-transform:uppercase; color:var(--bu-gold-band);">Association Membership Registration</div>
+                    <p style="font-size:12.5px; margin:6px 0 12px;">Membership costs <strong>₦7,000</strong> (Local) or <strong>$5</strong> (International). Complete your membership form on-site below and return to conference registration.</p>
+                    <button type="button" class="bu-btn bu-btn-gold bu-btn-sm bu-btn-pill" onclick="buIcfiOpenTab('membership')">Apply for ICFI Membership Here &rarr;</button>
+                  </div>
+                </div>
+
+                <aside class="bu-c4 bu-aside-sticky">
+                  <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <span style="font-size:11px; font-weight:700; color:var(--bu-gold-accent); text-transform:uppercase;">Applicable Fee Summary</span>
+                    <span id="bu-sum-period" style="font-size:10.5px; padding:3px 10px; border-radius:999px; background:rgba(255,255,255,0.12); font-weight:700;">Early Bird</span>
+                  </div>
+                  <div id="bu-sum-amount" style="font-family:var(--bu-font-serif); font-size:2.3rem; font-weight:700; color:var(--bu-gold-accent); margin-top:10px;">Select options</div>
+                  <div id="bu-sum-note" style="font-size:12px; color:#e2e8f0; margin-top:4px;">Choose category, mode &amp; membership.</div>
+                  <div style="margin-top:14px; padding-top:14px; border-top:1px solid rgba(255,255,255,0.16); font-size:12px; color:#cbd5e1;">
+                    <strong style="color:var(--bu-gold-accent); display:block; margin-bottom:4px;">Transfer Instructions</strong>
+                    <span id="bu-sum-bank">UBA Plc (NGN: 1020069501) or GTBank (USD: 0829898610)</span>
+                  </div>
+                </aside>
+              </div>
+              <div style="display:flex; justify-content:flex-end; margin-top:18px;">
+                <button type="button" class="bu-btn bu-btn-navy bu-btn-pill" onclick="buIcfiRegNext(1)">Continue to Personal Info &rarr;</button>
+              </div>
+            </div>
+
+            <!-- Step 2: Personal Information -->
+            <div data-reg-step="2" hidden>
+              <h4 tabindex="-1" style="font-size:1.25rem; color:var(--bu-navy) !important; margin-bottom:16px;">2. Personal Information</h4>
+              <div class="bu-field-grid">
+                <div class="bu-full">
+                  <label for="bu-r-name" class="bu-label">Full name *</label>
+                  <span id="bu-rh-name" class="bu-hint">Include title if desired (e.g., Prof., Dr., Rev., Mr., Mrs.).</span>
+                  <input type="text" id="bu-r-name" name="fullName" required autocomplete="name" aria-describedby="bu-rh-name" class="bu-reg-input">
+                  <div class="bu-error-msg">&#10060; Please enter your full name.</div>
+                </div>
+                <div>
+                  <label for="bu-r-email" class="bu-label">Email address *</label>
+                  <span id="bu-rh-email" class="bu-hint">Format: name@institution.edu</span>
+                  <input type="email" id="bu-r-email" name="email" required autocomplete="email" autocorrect="off" autocapitalize="none" spellcheck="false" aria-describedby="bu-rh-email" class="bu-reg-input">
+                  <div class="bu-error-msg">&#10060; Enter a valid email address.</div>
+                </div>
+                <div>
+                  <label for="bu-r-phone" class="bu-label">Phone number (with country code) *</label>
+                  <span id="bu-rh-phone" class="bu-hint">Format: +234 806 000 0000</span>
+                  <input type="tel" id="bu-r-phone" name="phone" required autocomplete="tel" aria-describedby="bu-rh-phone" class="bu-reg-input">
+                  <div class="bu-error-msg">&#10060; Please enter your phone number.</div>
+                </div>
+                <div>
+                  <label for="bu-r-country" class="bu-label">Country of residence *</label>
+                  <input type="text" id="bu-r-country" name="country" required autocomplete="country-name" class="bu-reg-input">
+                  <div class="bu-error-msg">&#10060; Please enter your country.</div>
+                </div>
+                <div>
+                  <label for="bu-r-state" class="bu-label">State of residence (for Nigerian participants only)</label>
+                  <input type="text" id="bu-r-state" name="stateOfResidence" autocomplete="address-level1" class="bu-reg-input">
+                </div>
+                <div>
+                  <label for="bu-r-org" class="bu-label">Organisation / Institution</label>
+                  <input type="text" id="bu-r-org" name="organisation" autocomplete="organization" class="bu-reg-input">
+                </div>
+                <div>
+                  <label for="bu-r-role" class="bu-label">Professional designation</label>
+                  <input type="text" id="bu-r-role" name="designation" autocomplete="organization-title" class="bu-reg-input">
+                </div>
+                <div class="bu-full">
+                  <label for="bu-r-spec" class="bu-label">Area of Specialisation</label>
+                  <input type="text" id="bu-r-spec" name="specialisation" class="bu-reg-input">
+                </div>
+              </div>
+              <div style="display:flex; justify-content:space-between; margin-top:20px; gap:12px;">
+                <button type="button" class="bu-btn bu-btn-outline bu-btn-pill" onclick="buIcfiRegGo(1)">&larr; Back</button>
+                <button type="button" class="bu-btn bu-btn-navy bu-btn-pill" onclick="buIcfiRegNext(2)">Continue to Payment Proof &rarr;</button>
+              </div>
+            </div>
+
+            <!-- Step 3: Payment Proof -->
+            <div data-reg-step="3" hidden>
+              <h4 tabindex="-1" style="font-size:1.25rem; color:var(--bu-navy) !important; margin-bottom:14px;">3. Payment Confirmation</h4>
+              <div class="bu-card-box" style="padding:16px 20px; border-radius:16px; display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:12px; margin-bottom:18px;">
+                <div>
+                  <div style="font-size:11px; font-weight:700; text-transform:uppercase; color:var(--bu-gold-band);">Applicable Fee &amp; Account</div>
+                  <div id="bu-pay-summary" style="font-size:14px; font-weight:700;">—</div>
+                  <div id="bu-pay-acct" style="font-size:12px; color:var(--bu-muted);">—</div>
+                </div>
+                <button type="button" class="bu-btn bu-btn-mist bu-btn-sm bu-btn-pill" onclick="buIcfiCopyActiveAcct(this)">Copy Account Number</button>
+              </div>
+
+              <div class="bu-field-grid">
+                <div>
+                  <label for="bu-r-amt" class="bu-label">Amount paid *</label>
+                  <input type="text" id="bu-r-amt" name="amountPaid" required class="bu-reg-input">
+                  <div class="bu-error-msg">&#10060; Enter amount transferred.</div>
+                </div>
+                <div>
+                  <label for="bu-r-date" class="bu-label">Date of payment *</label>
+                  <input type="date" id="bu-r-date" name="paymentDate" required class="bu-reg-input">
+                  <div class="bu-error-msg">&#10060; Select payment date.</div>
+                </div>
+                <div>
+                  <label for="bu-r-ref" class="bu-label">Payment transaction reference (Optional)</label>
+                  <input type="text" id="bu-r-ref" name="transactionRef" autocorrect="off" spellcheck="false" class="bu-reg-input">
+                </div>
+                <div>
+                  <label for="bu-r-holder" class="bu-label">Name of account holder *</label>
+                  <input type="text" id="bu-r-holder" name="accountHolderName" required class="bu-reg-input">
+                  <div class="bu-error-msg">&#10060; Enter bank account holder name.</div>
+                </div>
+                <div class="bu-full bu-card-box" style="padding:18px; border-radius:16px;">
+                  <label for="bu-reg-rec-file" class="bu-label">Upload conference registration payment receipt *</label>
+                  <span id="bu-hint-rec-file" class="bu-hint">Upload 1 supported file: PDF, DOC, DOCX, or image. Max 10 MB.</span>
+                  <div class="bu-file-wrap"><input type="file" id="bu-reg-rec-file" name="paymentReceipt" required accept=".pdf,.doc,.docx,image/*" aria-describedby="bu-hint-rec-file" class="bu-file"></div>
+                  <div id="bu-prev-rec-file" style="font-size:12px; color:#047857; margin-top:6px;" hidden></div>
+                  <div class="bu-error-msg">&#10060; Payment receipt file is required (max 10 MB).</div>
+                </div>
+              </div>
+              <div style="display:flex; justify-content:space-between; margin-top:20px; gap:12px;">
+                <button type="button" class="bu-btn bu-btn-outline bu-btn-pill" onclick="buIcfiRegGo(2)">&larr; Back</button>
+                <button type="button" class="bu-btn bu-btn-navy bu-btn-pill" onclick="buIcfiRegNext(3)">Review &amp; Declaration &rarr;</button>
+              </div>
+            </div>
+
+            <!-- Step 4: Declaration & Submit -->
+            <div data-reg-step="4" hidden>
+              <h4 tabindex="-1" style="font-size:1.25rem; color:var(--bu-navy) !important; margin-bottom:14px;">4. Review &amp; Declaration</h4>
+              <div id="bu-reg-review" class="bu-card-box" style="padding:18px; border-radius:16px; display:grid; grid-template-columns:repeat(auto-fit, minmax(190px, 1fr)); gap:12px; font-size:12.5px; margin-bottom:14px;"></div>
+              <div class="bu-card-box" style="padding:20px; border-radius:16px; font-size:12.5px; color:var(--bu-muted); margin-bottom:14px;">
+                <div style="font-weight:700; color:var(--bu-canonical); font-size:14px; margin-bottom:8px;">DECLARATION</div>
+                <ol style="padding-left:18px; margin:0;">
+                  <li>The information provided in this form is true, accurate and complete to the best of my knowledge.</li>
+                  <li>I have carefully reviewed my selected participant category, participation mode and applicable registration fee.</li>
+                  <li>I understand that my conference registration is subject to the payment of the appropriate registration fee and subsequent verification by the Conference Organising Committee.</li>
+                  <li>Where I have indicated that I am a registered member of the Association, I confirm that the membership information and supporting evidence provided are genuine and accurate.</li>
+                  <li>Where I have indicated my intention to become a member of the Association, I understand that membership registration and payment are subject to verification procedures.</li>
+                  <li>I understand that submitting this form does not automatically constitute confirmation of my conference registration until verification is completed.</li>
+                  <li>I agree to abide by the rules, regulations and guidelines established by the Conference Organising Committee.</li>
+                  <li>I consent to the collection and use of the information provided in this form for conference administration and communication.</li>
+                </ol>
+              </div>
+              <div class="bu-card-box" style="padding:16px 18px; border-radius:16px;">
+                <label style="display:flex; align-items:flex-start; gap:10px; font-size:13.5px; font-weight:700; cursor:pointer;">
+                  <input type="checkbox" id="bu-r-decl" name="declarationAgreed" value="Yes" required style="width:20px; height:20px; accent-color:#004182; margin-top:2px;">
+                  <span>I have read and understood the declaration above *</span>
+                </label>
+                <div class="bu-error-msg">&#10060; Please confirm the declaration before submitting.</div>
+              </div>
+              <div id="bu-reg-feedback" role="alert" hidden style="margin-top:14px; padding:12px 16px; border-radius:12px; font-size:12.5px; font-weight:600;"></div>
+              <div style="display:flex; justify-content:space-between; margin-top:20px; gap:12px;">
+                <button type="button" class="bu-btn bu-btn-outline bu-btn-pill" onclick="buIcfiRegGo(3)">&larr; Back</button>
+                <button type="submit" id="bu-reg-submit" class="bu-btn bu-btn-gold bu-btn-pill">Submit Registration &rarr;</button>
+              </div>
+            </div>
+          </form>
+
+          <div id="bu-reg-success" hidden role="status" class="bu-card-box" style="text-align:center; border-color:#10b981;">
+            <div style="font-size:28px; color:#047857; font-weight:700;">&#10003;</div>
+            <h4 tabindex="-1" id="bu-reg-suc-h" style="font-size:1.5rem; margin-top:8px;">Registration Received!</h4>
+            <p style="font-size:13.5px; color:var(--bu-muted); margin:8px auto;">Your registration details and payment receipt have been recorded for verification by the 7th ICFI 2027 Committee.</p>
+            <div style="display:inline-block; background:var(--bu-tint); padding:8px 16px; border-radius:10px; font-size:13px; margin:8px 0;">Reference ID: <strong id="bu-reg-suc-id">—</strong></div>
+            <div id="bu-reg-suc-sum" style="font-size:12.5px; color:var(--bu-muted);"></div>
+            <div style="margin-top:16px;"><button type="button" class="bu-btn bu-btn-mist bu-btn-pill" onclick="buIcfiResetReg()">Register Another Participant</button></div>
+          </div>
+        </div>
+
+        <!-- PART C: TAB 2 — 2-STEP ICFI MEMBERSHIP FORM -->
+        <div id="bu-panel-mem" role="tabpanel" aria-labelledby="bu-tab-mem" hidden>
+          <ol class="bu-steps-row bu-steps-row--2" aria-label="Membership progress">
+            <li class="bu-step-pill" data-mem-pill="1" aria-current="step">Step 1: Conditions</li>
+            <li class="bu-step-pill" data-mem-pill="2">Step 2: Biodata &amp; Payment</li>
+          </ol>
+
+          <form id="bu-mem-form" aria-labelledby="bu-tab-mem" method="POST" novalidate>
+            <div class="bu-icfi-visually-hidden" aria-hidden="true">
+              <label for="bu-mem-hp">Leave blank</label>
+              <input type="text" id="bu-mem-hp" name="websiteUrl" tabindex="-1" autocomplete="off">
+            </div>
+
+            <!-- Step 1: Full Verbatim 8 Membership Clauses -->
+            <div data-mem-step="1">
+              <h4 tabindex="-1" style="font-size:1.25rem; color:var(--bu-navy) !important; margin-bottom:16px;">1. Important Membership Information and Conditions</h4>
+              <div class="bu-g12 bu-g12--top">
+                <div class="bu-c8">
+                  <div class="bu-card-box bu-terms-box">
+                    <div style="font-family:var(--bu-font-serif); font-weight:700; color:var(--bu-canonical); font-size:16px; margin-bottom:10px;">IMPORTANT MEMBERSHIP INFORMATION AND CONDITIONS</div>
+                    <p style="font-style:italic; margin:0 0 12px; color:var(--bu-muted);">By registering with the International Community for Faith Integration (ICFI), applicants acknowledge and agree to the following:</p>
+                    <p style="margin:0 0 10px;"><strong style="color:var(--bu-navy);">Annual Membership Fee:</strong> Membership of the International Community for Faith Integration attracts an annual subscription fee of <strong>US$5 (approximately ₦7,000)</strong>. The fee is payable upon registration and is renewable annually to maintain active membership. The applicable Naira equivalent may be adjusted to reflect prevailing exchange rates.</p>
+                    <p style="margin:0 0 10px;"><strong style="color:var(--bu-navy);">Membership Renewal:</strong> Membership is valid for one year from the date of registration and must be renewed annually to retain active membership status and its associated privileges.</p>
+                    <p style="margin:0 0 10px;"><strong style="color:var(--bu-navy);">Voting Rights and Participation in Governance:</strong> Registered members whose memberships are active and up to date are entitled to voting rights in matters requiring decisions by the Community. Members may be called upon to participate in periodic virtual meetings to deliberate on proposals, vote on resolutions, and contribute to decisions concerning the administration, programmes, and general affairs of the Community.</p>
+                    <p style="margin:0 0 10px;"><strong style="color:var(--bu-navy);">Participation in Virtual Meetings:</strong> Members are expected to make reasonable efforts to attend scheduled virtual meetings and participate in the Community’s decision-making processes. The Community will communicate meeting notices, agendas, and relevant information to members in advance.</p>
+                    <p style="margin:0 0 10px;"><strong style="color:var(--bu-navy);">Concessions on Paid Events:</strong> Registered members are entitled to preferential considerations, including discounted registration fees or other applicable concessions, for selected paid programmes and events organised by the Community, such as the International Conference for Faith Integration (ICFI). The nature and extent of such concessions will be communicated ahead of each event.</p>
+                    <p style="margin:0 0 10px;"><strong style="color:var(--bu-navy);">Membership Privileges and Eligibility:</strong> Membership privileges, including voting rights and event concessions, are available only to members whose annual subscriptions are current. Members with expired subscriptions may be required to renew their membership before accessing these privileges.</p>
+                    <p style="margin:0 0 10px;"><strong style="color:var(--bu-navy);">Commitment to the Community’s Objectives:</strong> Members are expected to uphold the vision, mission, values, and objectives of the International Community for Faith Integration and to conduct themselves in a manner consistent with the Community’s commitment to advancing faith integration in scholarship, professional practice, and institutional life.</p>
+                    <p style="margin:0;"><strong style="color:var(--bu-navy);">Communication and Updates:</strong> Members are expected to provide accurate contact information and remain accessible through the official communication channels designated by the Community. The Community will communicate important announcements, meeting invitations, programme updates, and membership-related information through these channels.</p>
+                  </div>
+
+                  <fieldset class="bu-fieldset">
+                    <legend class="bu-legend">By completing this registration, do you agree to the membership conditions above? <span style="color:#dc2626;" aria-hidden="true">*</span></legend>
+                    <div class="bu-choice-group bu-g2" style="gap:12px;" data-group-required="conditionsChoice">
+                      <div>
+                        <input class="bu-choice" type="radio" name="conditionsChoice" id="bu-m-agree" value="I agree" required>
+                        <label for="bu-m-agree" class="bu-choice-card"><span class="bu-radio-dot"></span><strong>I agree</strong></label>
+                      </div>
+                      <div>
+                        <input class="bu-choice" type="radio" name="conditionsChoice" id="bu-m-disagree" value="I disagree" required>
+                        <label for="bu-m-disagree" class="bu-choice-card"><span class="bu-radio-dot"></span><strong>I disagree</strong></label>
+                      </div>
+                    </div>
+                    <div class="bu-error-msg">&#10060; Please choose I agree or I disagree.</div>
+                  </fieldset>
+
+                  <div id="bu-mem-disagree-box" hidden class="bu-card-box" style="padding:16px; background:#fffbeb; border-color:#f59e0b; margin-bottom:14px; font-size:13px;">
+                    <strong>Agreement is required to join ICFI.</strong> You can still register for the 7th ICFI 2027 Conference as a non-member.
+                    <div style="margin-top:10px;"><button type="button" class="bu-btn bu-btn-navy bu-btn-pill" onclick="buIcfiOpenTab('conference')">Go to Conference Registration &rarr;</button></div>
+                  </div>
+                </div>
+                <aside class="bu-c4 bu-aside-sticky">
+                  <div style="font-size:11px; font-weight:700; color:var(--bu-gold-accent); text-transform:uppercase;">Annual Subscription</div>
+                  <div style="font-family:var(--bu-font-serif); font-size:2rem; font-weight:700; color:var(--bu-gold-accent); margin-top:8px;">US$5 / ₦7,000</div>
+                  <div style="font-size:12px; color:#e2e8f0; margin-top:6px;">Local (NGN): UBA Plc • Babcock MFB <strong>1020069501</strong><br>Intl (USD): GTBank <strong>0829898610</strong></div>
+                </aside>
+              </div>
+              <div style="display:flex; justify-content:flex-end;">
+                <button type="button" id="bu-mem-next-btn" class="bu-btn bu-btn-navy bu-btn-pill" onclick="buIcfiMemNext()">Continue to Biodata &rarr;</button>
+              </div>
+            </div>
+
+            <!-- Step 2: Biodata & Payment Receipt -->
+            <div data-mem-step="2" hidden>
+              <h4 tabindex="-1" style="font-size:1.25rem; color:var(--bu-navy) !important; margin-bottom:16px;">2. Biodata &amp; Evidence of Payment</h4>
+              <div class="bu-field-grid">
+                <div><label for="bu-m-name" class="bu-label">Name *</label><input type="text" id="bu-m-name" name="fullName" required autocomplete="name" class="bu-reg-input"><div class="bu-error-msg">&#10060; Enter your full name.</div></div>
+                <div><label for="bu-m-prof" class="bu-label">Profession *</label><input type="text" id="bu-m-prof" name="profession" required autocomplete="organization-title" class="bu-reg-input"><div class="bu-error-msg">&#10060; Enter your profession.</div></div>
+                <div class="bu-full">
+                  <label for="bu-m-addr" class="bu-label">Full Institutional Address *</label>
+                  <span id="bu-mh-addr" class="bu-hint">e.g., Babcock University, Ilishan-Remo, Ogun State, Nigeria.</span>
+                  <input type="text" id="bu-m-addr" name="institutionalAddress" required autocomplete="street-address" aria-describedby="bu-mh-addr" class="bu-reg-input">
+                  <div class="bu-error-msg">&#10060; Enter full institutional address.</div>
+                </div>
+                <div><label for="bu-m-cell" class="bu-label">Cell Phone *</label><input type="tel" id="bu-m-cell" name="cellPhone" required autocomplete="tel" class="bu-reg-input"><div class="bu-error-msg">&#10060; Enter cell phone number.</div></div>
+                <div>
+                  <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <label for="bu-m-wa" class="bu-label">WhatsApp Contact *</label>
+                    <button type="button" onclick="buIcfiCopyCell()" style="border:0; background:none; color:var(--bu-blue); font-size:11.5px; font-weight:700; cursor:pointer; padding:0;">Same as Cell</button>
+                  </div>
+                  <input type="tel" id="bu-m-wa" name="whatsappContact" required autocomplete="tel" class="bu-reg-input">
+                  <div class="bu-error-msg">&#10060; Enter WhatsApp contact number.</div>
+                </div>
+                <div><label for="bu-m-email" class="bu-label">E-mail Address *</label><input type="email" id="bu-m-email" name="email" required autocomplete="email" autocorrect="off" autocapitalize="none" spellcheck="false" class="bu-reg-input"><div class="bu-error-msg">&#10060; Enter valid e-mail address.</div></div>
+                <div><label for="bu-m-date" class="bu-label">Registration Date *</label><input type="date" id="bu-m-date" name="registrationDate" required class="bu-reg-input"><div class="bu-error-msg">&#10060; Select registration date.</div></div>
+                <div class="bu-full bu-card-box" style="padding:18px; border-radius:16px;">
+                  <label for="bu-mem-file" class="bu-label">Attach evidence of payment *</label>
+                  <span id="bu-hint-m-file" class="bu-hint">Upload 1 supported file: PDF or image. Max 10 MB.</span>
+                  <div class="bu-file-wrap"><input type="file" id="bu-mem-file" name="paymentEvidence" required accept=".pdf,image/*" aria-describedby="bu-hint-m-file" class="bu-file"></div>
+                  <div id="bu-prev-m-file" style="font-size:12px; color:#047857; margin-top:6px;" hidden></div>
+                  <div class="bu-error-msg">&#10060; Please attach membership payment evidence (max 10 MB).</div>
+                </div>
+              </div>
+              <div id="bu-mem-feedback" role="alert" hidden style="margin-top:14px; padding:12px 16px; border-radius:12px; font-size:12.5px; font-weight:600;"></div>
+              <div style="display:flex; justify-content:space-between; margin-top:20px; gap:12px;">
+                <button type="button" class="bu-btn bu-btn-outline bu-btn-pill" onclick="buIcfiMemGo(1)">&larr; Back</button>
+                <button type="submit" id="bu-mem-submit" class="bu-btn bu-btn-gold bu-btn-pill">Submit Membership Application &rarr;</button>
+              </div>
+            </div>
+          </form>
+
+          <div id="bu-mem-success" hidden role="status" class="bu-card-box" style="text-align:center; border-color:#10b981;">
+            <div style="font-size:28px; color:#047857; font-weight:700;">&#10003;</div>
+            <h4 tabindex="-1" id="bu-mem-suc-h" style="font-size:1.5rem; margin-top:8px;">Membership Application Received!</h4>
+            <p style="font-size:13.5px; color:var(--bu-muted); margin:8px auto;">Your ICFI membership biodata and payment evidence have been recorded for verification.</p>
+            <div style="display:inline-block; background:var(--bu-tint); padding:8px 16px; border-radius:10px; font-size:13px; margin:8px 0;">Membership Ref ID: <strong id="bu-mem-suc-id">—</strong></div>
+            <div id="bu-mem-suc-sum" style="font-size:12.5px; color:var(--bu-muted);"></div>
+            <div style="margin-top:16px; display:flex; flex-wrap:wrap; justify-content:center; gap:10px;">
+              <button type="button" class="bu-btn bu-btn-navy bu-btn-pill" onclick="buIcfiOpenTab('conference')">Continue to 7th ICFI Registration &rarr;</button>
+              <button type="button" class="bu-btn bu-btn-mist bu-btn-pill" onclick="buIcfiResetMem()">Submit Another</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
