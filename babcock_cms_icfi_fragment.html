@@ -159,6 +159,9 @@
   .bu-btn-row { display: flex; flex-wrap: wrap; gap: 12px; }
 
   /* Hero Elements */
+  .bu-hero-brand { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; }
+  .bu-hero-emblem { width: 58px; height: 58px; border-radius: 50%; padding: 3px; background: #ffffff; border: 1px solid rgba(0,65,130,0.18); box-shadow: 0 8px 18px rgba(11,37,69,0.12); object-fit: cover; flex-shrink: 0; }
+  .bu-hero-brand-kicker { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--bu-navy); margin-bottom: 5px; }
   .bu-hero-pill { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; border-radius: 999px; background: rgba(255,255,255,0.85); border: 1px solid rgba(0,65,130,0.16); font-size: 12px; font-weight: 700; color: var(--bu-canonical); }
   .bu-hero-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--bu-gold); }
   /* EDIT: Main Hero Headline — uses --bu-hero-title above, or replace with any hex/color name right here */
@@ -306,12 +309,18 @@
     <div class="bu-icfi-container-lg">
       <div class="bu-g12 bu-hero-grid">
 
-        <!-- Left Column: Title & Buttons -->
+        <!-- Left Column: ICFI Emblem, Title & Buttons -->
         <div class="bu-c6">
-          <div class="bu-hero-pill">
-            <span class="bu-hero-dot"></span>
-            <!-- EDIT: Top Dates Pill -->
-            <span>7th Biennial International Conference • July 27 – August 1, 2027</span>
+          <!-- EDIT: ICFI Emblem & Top Dates Pill -->
+          <div class="bu-hero-brand">
+            <img src="https://babcock.edu.ng/storage/media/01010f22-27ad-4a14-a87a-4f22b8e01798.png" alt="International Conference on Faith Integration (ICFI) Emblem" class="bu-hero-emblem">
+            <div>
+              <div class="bu-hero-brand-kicker">International Community for Faith Integration</div>
+              <div class="bu-hero-pill">
+                <span class="bu-hero-dot"></span>
+                <span>7th Biennial International Conference • July 27 – August 1, 2027</span>
+              </div>
+            </div>
           </div>
 
           <!-- EDIT: Main Hero Headline (kept in 3 lines on desktop for readability) -->
