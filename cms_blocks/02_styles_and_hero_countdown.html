@@ -346,8 +346,50 @@
   .bu-faq-item summary::-webkit-details-marker { display: none; }
   .bu-faq-item[open] .bu-faq-plus { transform: rotate(45deg); }
 
+  /* Dedicated On-Site Gallery Archive Page & Lightbox */
+  #bu-icfi-root.is-gallery-open > :not(#bu-icfi-gallery-view) { display: none; }
+  .bu-gal-page { min-height: 100vh; background: var(--bu-mist); color: var(--bu-navy); padding-bottom: 64px; }
+  .bu-gal-page[hidden] { display: none; }
+  .bu-gal-topbar { position: sticky; top: 0; z-index: 990; background: var(--bu-navy); color: #ffffff; border-bottom: 3px solid var(--bu-gold-accent); box-shadow: 0 8px 24px rgba(0, 26, 61, 0.2); }
+  .bu-gal-topbar-inner { max-width: 1180px; margin: 0 auto; padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; }
+  .bu-gal-back { display: inline-flex; align-items: center; gap: 8px; padding: 9px 16px; border-radius: 999px; background: rgba(255, 255, 255, 0.14); color: #ffffff; border: 1px solid rgba(255, 255, 255, 0.28); font-size: 13px; font-weight: 700; cursor: pointer; font-family: inherit; transition: background 0.18s ease, transform 0.18s ease; }
+  .bu-gal-back:hover { background: rgba(255, 255, 255, 0.24); transform: translateY(-1px); }
+  .bu-gal-back:focus-visible, .bu-gal-tab:focus-visible, .bu-gal-card:focus-visible, .bu-gal-lb-btn:focus-visible { outline: 3px solid var(--bu-gold-accent); outline-offset: 2px; }
+  .bu-gal-tabs { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .bu-gal-tab { padding: 8px 15px; border-radius: 999px; border: 1px solid rgba(255, 255, 255, 0.26); background: transparent; color: #e2e8f0; font-size: 12.5px; font-weight: 700; cursor: pointer; font-family: inherit; transition: all 0.18s ease; }
+  .bu-gal-tab:hover { background: rgba(255, 255, 255, 0.12); color: #ffffff; }
+  .bu-gal-tab.is-active { background: var(--bu-gold-accent); color: var(--bu-navy-deep); border-color: var(--bu-gold-accent); }
+  .bu-gal-body { max-width: 1180px; margin: 0 auto; padding: 36px 24px 0; }
+  .bu-gal-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 24px; padding-bottom: 18px; border-bottom: 1px solid var(--bu-border); }
+  .bu-gal-title { font-size: clamp(1.65rem, 3vw, 2.25rem); margin: 4px 0 0; color: var(--bu-navy); }
+  .bu-gal-sub { margin: 6px 0 0; font-size: 13.5px; color: var(--bu-muted); max-width: 640px; }
+  .bu-gal-count { font-size: 12px; font-weight: 700; color: var(--bu-navy); background: #ffffff; border: 1px solid var(--bu-border); padding: 7px 14px; border-radius: 999px; }
+  .bu-gal-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+  .bu-gal-card { display: flex; flex-direction: column; padding: 0; margin: 0; border: 1px solid var(--bu-border); border-radius: 16px; background: #ffffff; overflow: hidden; text-align: left; cursor: pointer; font-family: inherit; box-shadow: 0 4px 14px rgba(15, 23, 42, 0.05); transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease; }
+  .bu-gal-card:hover { transform: translateY(-3px); box-shadow: 0 12px 26px rgba(0, 48, 104, 0.12); border-color: var(--bu-gold); }
+  .bu-gal-thumb-wrap { width: 100%; aspect-ratio: 4 / 3; overflow: hidden; background: #e2e8f0; position: relative; }
+  .bu-gal-thumb { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s ease; }
+  .bu-gal-card:hover .bu-gal-thumb { transform: scale(1.03); }
+  .bu-gal-badge { position: absolute; top: 10px; left: 10px; background: rgba(0, 48, 104, 0.88); color: #ffffff; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 999px; letter-spacing: 0.03em; }
+  .bu-gal-cap { padding: 13px 15px 15px; display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; width: 100%; }
+  .bu-gal-cap-text { font-size: 13px; font-weight: 700; color: var(--bu-navy); line-height: 1.4; }
+  .bu-gal-cap-num { font-size: 11px; font-weight: 700; color: var(--bu-muted); white-space: nowrap; margin-top: 2px; }
+  .bu-gal-lightbox { position: fixed; inset: 0; z-index: 9999; background: rgba(8, 17, 36, 0.94); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; }
+  .bu-gal-lightbox[hidden] { display: none; }
+  .bu-gal-lb-dialog { width: 100%; max-width: 980px; display: flex; flex-direction: column; gap: 14px; }
+  .bu-gal-lb-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; color: #ffffff; }
+  .bu-gal-lb-meta { font-size: 12.5px; font-weight: 700; color: var(--bu-gold-accent); }
+  .bu-gal-lb-frame { position: relative; background: #040b18; border-radius: 16px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.14); display: flex; align-items: center; justify-content: center; max-height: 72vh; }
+  .bu-gal-lb-img { max-width: 100%; max-height: 72vh; width: auto; height: auto; display: block; object-fit: contain; }
+  .bu-gal-lb-bar { display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; color: #ffffff; }
+  .bu-gal-lb-caption { font-size: 14.5px; font-weight: 700; color: #ffffff; margin: 0; }
+  .bu-gal-lb-nav { display: flex; align-items: center; gap: 10px; }
+  .bu-gal-lb-btn { padding: 8px 16px; border-radius: 999px; border: 1px solid rgba(255, 255, 255, 0.28); background: rgba(255, 255, 255, 0.12); color: #ffffff; font-size: 12.5px; font-weight: 700; cursor: pointer; font-family: inherit; }
+  .bu-gal-lb-btn:hover { background: var(--bu-gold-accent); color: var(--bu-navy-deep); border-color: var(--bu-gold-accent); }
+
   /* Responsive Breakpoints (Tablet & Mobile) */
   @media (max-width: 960px) {
+    .bu-gal-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .bu-g12, .bu-g4, .bu-g3, .bu-g2, .bu-g6, .bu-field-grid { grid-template-columns: 1fr; }
     .bu-c4, .bu-c5, .bu-c6, .bu-c7, .bu-c8 { grid-column: 1 / -1; }
     .bu-metrics-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
@@ -358,6 +400,8 @@
     .bu-prog-row { grid-template-columns: 1fr; }
   }
   @media (max-width: 600px) {
+    .bu-gal-grid { grid-template-columns: 1fr; }
+    .bu-gal-topbar-inner, .bu-gal-body { padding-left: 16px; padding-right: 16px; }
     .bu-hero-pill { font-size: 11px; padding: 6px 12px; border-radius: 14px; line-height: 1.35; }
     .bu-icfi-mini-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .bu-icfi-band-white, .bu-icfi-band-mist, .bu-icfi-band-navy, .bu-icfi-band-gray { padding: 48px 18px; }

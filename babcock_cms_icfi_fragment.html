@@ -349,8 +349,50 @@
   .bu-faq-item summary::-webkit-details-marker { display: none; }
   .bu-faq-item[open] .bu-faq-plus { transform: rotate(45deg); }
 
+  /* Dedicated On-Site Gallery Archive Page & Lightbox */
+  #bu-icfi-root.is-gallery-open > :not(#bu-icfi-gallery-view) { display: none; }
+  .bu-gal-page { min-height: 100vh; background: var(--bu-mist); color: var(--bu-navy); padding-bottom: 64px; }
+  .bu-gal-page[hidden] { display: none; }
+  .bu-gal-topbar { position: sticky; top: 0; z-index: 990; background: var(--bu-navy); color: #ffffff; border-bottom: 3px solid var(--bu-gold-accent); box-shadow: 0 8px 24px rgba(0, 26, 61, 0.2); }
+  .bu-gal-topbar-inner { max-width: 1180px; margin: 0 auto; padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; }
+  .bu-gal-back { display: inline-flex; align-items: center; gap: 8px; padding: 9px 16px; border-radius: 999px; background: rgba(255, 255, 255, 0.14); color: #ffffff; border: 1px solid rgba(255, 255, 255, 0.28); font-size: 13px; font-weight: 700; cursor: pointer; font-family: inherit; transition: background 0.18s ease, transform 0.18s ease; }
+  .bu-gal-back:hover { background: rgba(255, 255, 255, 0.24); transform: translateY(-1px); }
+  .bu-gal-back:focus-visible, .bu-gal-tab:focus-visible, .bu-gal-card:focus-visible, .bu-gal-lb-btn:focus-visible { outline: 3px solid var(--bu-gold-accent); outline-offset: 2px; }
+  .bu-gal-tabs { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .bu-gal-tab { padding: 8px 15px; border-radius: 999px; border: 1px solid rgba(255, 255, 255, 0.26); background: transparent; color: #e2e8f0; font-size: 12.5px; font-weight: 700; cursor: pointer; font-family: inherit; transition: all 0.18s ease; }
+  .bu-gal-tab:hover { background: rgba(255, 255, 255, 0.12); color: #ffffff; }
+  .bu-gal-tab.is-active { background: var(--bu-gold-accent); color: var(--bu-navy-deep); border-color: var(--bu-gold-accent); }
+  .bu-gal-body { max-width: 1180px; margin: 0 auto; padding: 36px 24px 0; }
+  .bu-gal-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 24px; padding-bottom: 18px; border-bottom: 1px solid var(--bu-border); }
+  .bu-gal-title { font-size: clamp(1.65rem, 3vw, 2.25rem); margin: 4px 0 0; color: var(--bu-navy); }
+  .bu-gal-sub { margin: 6px 0 0; font-size: 13.5px; color: var(--bu-muted); max-width: 640px; }
+  .bu-gal-count { font-size: 12px; font-weight: 700; color: var(--bu-navy); background: #ffffff; border: 1px solid var(--bu-border); padding: 7px 14px; border-radius: 999px; }
+  .bu-gal-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+  .bu-gal-card { display: flex; flex-direction: column; padding: 0; margin: 0; border: 1px solid var(--bu-border); border-radius: 16px; background: #ffffff; overflow: hidden; text-align: left; cursor: pointer; font-family: inherit; box-shadow: 0 4px 14px rgba(15, 23, 42, 0.05); transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease; }
+  .bu-gal-card:hover { transform: translateY(-3px); box-shadow: 0 12px 26px rgba(0, 48, 104, 0.12); border-color: var(--bu-gold); }
+  .bu-gal-thumb-wrap { width: 100%; aspect-ratio: 4 / 3; overflow: hidden; background: #e2e8f0; position: relative; }
+  .bu-gal-thumb { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s ease; }
+  .bu-gal-card:hover .bu-gal-thumb { transform: scale(1.03); }
+  .bu-gal-badge { position: absolute; top: 10px; left: 10px; background: rgba(0, 48, 104, 0.88); color: #ffffff; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 999px; letter-spacing: 0.03em; }
+  .bu-gal-cap { padding: 13px 15px 15px; display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; width: 100%; }
+  .bu-gal-cap-text { font-size: 13px; font-weight: 700; color: var(--bu-navy); line-height: 1.4; }
+  .bu-gal-cap-num { font-size: 11px; font-weight: 700; color: var(--bu-muted); white-space: nowrap; margin-top: 2px; }
+  .bu-gal-lightbox { position: fixed; inset: 0; z-index: 9999; background: rgba(8, 17, 36, 0.94); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; }
+  .bu-gal-lightbox[hidden] { display: none; }
+  .bu-gal-lb-dialog { width: 100%; max-width: 980px; display: flex; flex-direction: column; gap: 14px; }
+  .bu-gal-lb-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; color: #ffffff; }
+  .bu-gal-lb-meta { font-size: 12.5px; font-weight: 700; color: var(--bu-gold-accent); }
+  .bu-gal-lb-frame { position: relative; background: #040b18; border-radius: 16px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.14); display: flex; align-items: center; justify-content: center; max-height: 72vh; }
+  .bu-gal-lb-img { max-width: 100%; max-height: 72vh; width: auto; height: auto; display: block; object-fit: contain; }
+  .bu-gal-lb-bar { display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; color: #ffffff; }
+  .bu-gal-lb-caption { font-size: 14.5px; font-weight: 700; color: #ffffff; margin: 0; }
+  .bu-gal-lb-nav { display: flex; align-items: center; gap: 10px; }
+  .bu-gal-lb-btn { padding: 8px 16px; border-radius: 999px; border: 1px solid rgba(255, 255, 255, 0.28); background: rgba(255, 255, 255, 0.12); color: #ffffff; font-size: 12.5px; font-weight: 700; cursor: pointer; font-family: inherit; }
+  .bu-gal-lb-btn:hover { background: var(--bu-gold-accent); color: var(--bu-navy-deep); border-color: var(--bu-gold-accent); }
+
   /* Responsive Breakpoints (Tablet & Mobile) */
   @media (max-width: 960px) {
+    .bu-gal-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .bu-g12, .bu-g4, .bu-g3, .bu-g2, .bu-g6, .bu-field-grid { grid-template-columns: 1fr; }
     .bu-c4, .bu-c5, .bu-c6, .bu-c7, .bu-c8 { grid-column: 1 / -1; }
     .bu-metrics-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
@@ -361,6 +403,8 @@
     .bu-prog-row { grid-template-columns: 1fr; }
   }
   @media (max-width: 600px) {
+    .bu-gal-grid { grid-template-columns: 1fr; }
+    .bu-gal-topbar-inner, .bu-gal-body { padding-left: 16px; padding-right: 16px; }
     .bu-hero-pill { font-size: 11px; padding: 6px 12px; border-radius: 14px; line-height: 1.35; }
     .bu-icfi-mini-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .bu-icfi-band-white, .bu-icfi-band-mist, .bu-icfi-band-navy, .bu-icfi-band-gray { padding: 48px 18px; }
@@ -1476,8 +1520,8 @@
             <p class="bu-lead" style="font-size:12.5px; margin-top:4px;">Moments from earlier ICFI editions at Babcock University.</p>
           </div>
           <div style="display:flex; gap:10px; font-size:12px;">
-            <a href="https://babcock-icfi-2027.netlify.app/gallery%202019.html" target="_blank" rel="noopener" class="bu-btn bu-btn-outline bu-btn-xs bu-btn-pill">2019 Gallery &rarr;</a>
-            <a href="https://babcock-icfi-2027.netlify.app/gallery.html" target="_blank" rel="noopener" class="bu-btn bu-btn-outline bu-btn-xs bu-btn-pill">2017 Gallery &rarr;</a>
+            <a href="#gallery-2019" onclick="return buIcfiOpenGallery('2019', event);" class="bu-btn bu-btn-outline bu-btn-xs bu-btn-pill">2019 Gallery &rarr;</a>
+            <a href="#gallery-2017" onclick="return buIcfiOpenGallery('2017', event);" class="bu-btn bu-btn-outline bu-btn-xs bu-btn-pill">2017 Gallery &rarr;</a>
           </div>
         </div>
 
@@ -1538,6 +1582,52 @@
 
     </div>
   </div>
+
+  <!-- DEDICATED ON-SITE PHOTO GALLERY ARCHIVE & LIGHTBOX (Replaces External Netlify Gallery) -->
+  <section id="bu-icfi-gallery-view" class="bu-gal-page" hidden aria-label="ICFI Historical Photo Gallery">
+    <div class="bu-gal-topbar">
+      <div class="bu-gal-topbar-inner">
+        <button type="button" id="bu-gal-back-btn" class="bu-gal-back" onclick="buIcfiCloseGallery()">&larr; Back to ICFI 2027</button>
+        <div class="bu-gal-tabs" role="tablist" aria-label="Filter gallery photos by edition">
+          <button type="button" class="bu-gal-tab is-active" data-gal-tab="2019" role="tab" aria-selected="true" onclick="buIcfiFilterGallery('2019')">2019 Edition (16)</button>
+          <button type="button" class="bu-gal-tab" data-gal-tab="2017" role="tab" aria-selected="false" onclick="buIcfiFilterGallery('2017')">2017 Edition (9)</button>
+          <button type="button" class="bu-gal-tab" data-gal-tab="all" role="tab" aria-selected="false" onclick="buIcfiFilterGallery('all')">All Editions (25)</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="bu-gal-body">
+      <div class="bu-gal-head">
+        <div>
+          <span class="bu-eyebrow">Campus Gatherings Archive</span>
+          <h2 id="bu-gal-heading" class="bu-gal-title">ICFI 2019 Photo Gallery</h2>
+          <p id="bu-gal-subtitle" class="bu-gal-sub">Highlights from the 2019 International Conference on Faith Integration at Babcock University.</p>
+        </div>
+        <span id="bu-gal-count" class="bu-gal-count">16 Photos</span>
+      </div>
+
+      <div id="bu-gal-grid" class="bu-gal-grid"></div>
+    </div>
+
+    <div id="bu-gal-lightbox" class="bu-gal-lightbox" hidden role="dialog" aria-modal="true" aria-labelledby="bu-gal-lb-caption">
+      <div class="bu-gal-lb-dialog">
+        <div class="bu-gal-lb-top">
+          <span id="bu-gal-lb-meta" class="bu-gal-lb-meta">2019 Edition &bull; Photo 1 of 16</span>
+          <button type="button" id="bu-gal-lb-close" class="bu-gal-lb-btn" onclick="buIcfiCloseLightbox()" aria-label="Close photo preview">Close &times;</button>
+        </div>
+        <div class="bu-gal-lb-frame">
+          <img id="bu-gal-lb-img" class="bu-gal-lb-img" src="" alt="">
+        </div>
+        <div class="bu-gal-lb-bar">
+          <p id="bu-gal-lb-caption" class="bu-gal-lb-caption"></p>
+          <div class="bu-gal-lb-nav">
+            <button type="button" id="bu-gal-lb-prev" class="bu-gal-lb-btn" onclick="buIcfiStepLightbox(-1)">&larr; Prev</button>
+            <button type="button" id="bu-gal-lb-next" class="bu-gal-lb-btn" onclick="buIcfiStepLightbox(1)">Next &rarr;</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
 </div>
 
@@ -1710,6 +1800,211 @@
       btn.textContent = 'Copied ✓';
       setTimeout(function () { btn.textContent = orig; }, 1600);
     };
+
+    /* --- On-Site Historical Photo Gallery & Lightbox --- */
+    var ICFI_GALLERY_PHOTOS = [
+      { ed: '2019', caption: 'Prof. Ademola S. Tayo (President/Vice-Chancellor)', src: 'https://babcock.edu.ng/storage/media/3a4f29c4-0b81-4ee2-9b22-83ca0f38fb04.jpg' },
+      { ed: '2019', caption: 'Prof. John Wesley Taylor V (Keynote Speaker)', src: 'https://babcock.edu.ng/storage/media/9c213525-ba00-427e-bf5c-438b020b2d47.jpg' },
+      { ed: '2019', caption: 'Prof. Iheanyichukwu Okoro, Prof. John Wesley Taylor V & Barr. L. T. C. Eruba', src: 'https://babcock.edu.ng/storage/media/ca54117a-fbe6-47a9-8343-d3a1373a9458.jpg' },
+      { ed: '2019', caption: 'Prof. C. C. Nwosu, Dr. Oluwole A. Oyedeji & Prof. Iheanyichukwu Okoro', src: 'https://babcock.edu.ng/storage/media/24c3e881-44da-4042-8825-113e0ba75042.jpg' },
+      { ed: '2019', caption: 'Prof. John Wesley Taylor V & Dr. Oluwole A. Oyedeji', src: 'https://babcock.edu.ng/storage/media/eac38645-4d62-4ef5-a96a-0a061056d656.jpg' },
+      { ed: '2019', caption: 'Guest Speakers and Prof. Constance C. Nwosu', src: 'https://babcock.edu.ng/storage/media/dce2cdbf-13fb-4a6f-a8b7-a17cb92b4e8a.jpg' },
+      { ed: '2019', caption: 'Dr. Ngozi Nwogwugwu (Chairman, Local Organizing Committee)', src: 'https://babcock.edu.ng/storage/media/f5687f7f-b747-4f0f-8a2e-f24fd3caee3f.jpg' },
+      { ed: '2019', caption: 'THE CHORD (Singing Group)', src: 'https://babcock.edu.ng/storage/media/df1fa347-8ec2-4400-a88d-48e903787988.jpg' },
+      { ed: '2019', caption: 'Pastor Audu S. Didam (University Pastor)', src: 'https://babcock.edu.ng/storage/media/2aaabdf9-11c8-4e26-92c9-b985eb6467ab.jpg' },
+      { ed: '2019', caption: 'Prof. Constance C. Nwosu (AVP, Institutional Effectiveness)', src: 'https://babcock.edu.ng/storage/media/01291e84-9e87-4e5b-8dc1-a648b762e933.jpg' },
+      { ed: '2019', caption: 'Pastor Juvenal Balisasa, PhD (Invited Guest)', src: 'https://babcock.edu.ng/storage/media/2f6aac23-e763-4a7d-9862-c2e64c3af69e.jpg' },
+      { ed: '2019', caption: 'Dr. Oluwole A. Oyedeji (Invited Guest)', src: 'https://babcock.edu.ng/storage/media/f7eb4433-4859-420a-b4c9-3748677cdc0d.jpg' },
+      { ed: '2019', caption: 'Breakout Session I', src: 'https://babcock.edu.ng/storage/media/3b755e64-ba44-4d33-807e-04e59cf9e6e2.jpg' },
+      { ed: '2019', caption: 'Breakout Session II', src: 'https://babcock.edu.ng/storage/media/4c4ef04a-0800-4ecf-86a5-f33255a6cdd0.jpg' },
+      { ed: '2019', caption: 'BUHS Staff & Delegates', src: 'https://babcock.edu.ng/storage/media/df7b7ad5-4952-4bfd-9610-d722f07d7680.jpg' },
+      { ed: '2019', caption: 'Pastor Theodore U. Dickson', src: 'https://babcock.edu.ng/storage/media/4bb2854b-a48e-432c-be88-5ee092145f60.jpg' },
+      { ed: '2017', caption: 'The Chord', src: 'https://babcock.edu.ng/storage/media/326ef8da-7f85-493b-842d-f0c19ec75af0.jpg' },
+      { ed: '2017', caption: 'Prof. C. C. Nwosu and Prof. Makinde', src: 'https://babcock.edu.ng/storage/media/60b4964d-a035-4d2d-97fa-7b9539e04462.jpg' },
+      { ed: '2017', caption: 'Principal Officers', src: 'https://babcock.edu.ng/storage/media/86057fb0-7974-43fe-bc37-dbc764c98f7e.jpg' },
+      { ed: '2017', caption: 'University Pastor', src: 'https://babcock.edu.ng/storage/media/4f2be40a-5568-4fb3-a85b-8a2052f7e96c.jpg' },
+      { ed: '2017', caption: 'Guests and Youth Corps Members', src: 'https://babcock.edu.ng/storage/media/50e0204a-1ba7-40ea-866e-e7bab5a8502c.jpg' },
+      { ed: '2017', caption: 'Invited Guest', src: 'https://babcock.edu.ng/storage/media/895347b3-1f2d-4f12-9746-6d5787ed339e.jpg' },
+      { ed: '2017', caption: 'Greens, Glynis, Dangana & Rakie', src: 'https://babcock.edu.ng/storage/media/6c279ef5-6a6e-4305-83c6-45f1cc52c4c4.jpg' },
+      { ed: '2017', caption: 'Medical Team', src: 'https://babcock.edu.ng/storage/media/b3ca0394-e7de-4f0f-8e03-aa818a635174.jpg' },
+      { ed: '2017', caption: 'Plenary Session', src: 'https://babcock.edu.ng/storage/media/601891a3-3b69-4f88-8b1c-36d2d9d909d1.jpg' }
+    ];
+    var activeGalEd = '2019';
+    var activeGalList = [];
+    var activeLbIdx = -1;
+    var lastGalCard = null;
+
+    function renderGalleryGrid(ed) {
+      activeGalEd = (ed === '2017' || ed === 'all') ? ed : '2019';
+      activeGalList = activeGalEd === 'all' ? ICFI_GALLERY_PHOTOS.slice() : ICFI_GALLERY_PHOTOS.filter(function (p) { return p.ed === activeGalEd; });
+      document.querySelectorAll('#bu-icfi-gallery-view .bu-gal-tab').forEach(function (tab) {
+        var isMatch = tab.getAttribute('data-gal-tab') === activeGalEd;
+        tab.classList.toggle('is-active', isMatch);
+        tab.setAttribute('aria-selected', isMatch ? 'true' : 'false');
+      });
+      var heading = document.getElementById('bu-gal-heading');
+      var subtitle = document.getElementById('bu-gal-subtitle');
+      var countEl = document.getElementById('bu-gal-count');
+      if (heading) heading.textContent = activeGalEd === 'all' ? 'ICFI 2019 & 2017 Archive' : ('ICFI ' + activeGalEd + ' Photo Gallery');
+      if (subtitle) {
+        subtitle.textContent = activeGalEd === '2017'
+          ? 'Memorable moments from the 2017 International Conference on Faith Integration at Babcock University.'
+          : activeGalEd === 'all'
+            ? 'Combined highlights from the 2019 and 2017 editions of the International Conference on Faith Integration.'
+            : 'Highlights from the 2019 International Conference on Faith Integration at Babcock University.';
+      }
+      if (countEl) countEl.textContent = activeGalList.length + ' Photos';
+      var grid = document.getElementById('bu-gal-grid');
+      if (!grid) return;
+      grid.innerHTML = '';
+      activeGalList.forEach(function (item, idx) {
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'bu-gal-card';
+        btn.setAttribute('aria-label', 'View photo: ' + item.caption);
+        btn.addEventListener('click', function () { lastGalCard = btn; window.buIcfiOpenLightbox(idx); });
+
+        var wrap = document.createElement('span');
+        wrap.className = 'bu-gal-thumb-wrap';
+        var img = document.createElement('img');
+        img.className = 'bu-gal-thumb';
+        img.loading = 'lazy';
+        img.decoding = 'async';
+        img.src = item.src;
+        img.alt = item.caption;
+        var badge = document.createElement('span');
+        badge.className = 'bu-gal-badge';
+        badge.textContent = item.ed + ' Edition';
+        wrap.appendChild(img);
+        wrap.appendChild(badge);
+
+        var cap = document.createElement('span');
+        cap.className = 'bu-gal-cap';
+        var capText = document.createElement('span');
+        capText.className = 'bu-gal-cap-text';
+        capText.textContent = item.caption;
+        var capNum = document.createElement('span');
+        capNum.className = 'bu-gal-cap-num';
+        capNum.textContent = String(idx + 1).padStart(2, '0');
+        cap.appendChild(capText);
+        cap.appendChild(capNum);
+
+        btn.appendChild(wrap);
+        btn.appendChild(cap);
+        grid.appendChild(btn);
+      });
+    }
+
+    window.buIcfiOpenGallery = function (ed, ev, fromHash) {
+      if (ev && ev.preventDefault) ev.preventDefault();
+      renderGalleryGrid(ed || '2019');
+      var root = document.getElementById('bu-icfi-root');
+      var view = document.getElementById('bu-icfi-gallery-view');
+      if (root) root.classList.add('is-gallery-open');
+      if (view) view.hidden = false;
+      if (!fromHash) {
+        var targetHash = '#gallery-' + activeGalEd;
+        if (window.location.hash !== targetHash) {
+          try { history.pushState(null, '', targetHash); } catch (_) { window.location.hash = targetHash; }
+        }
+      }
+      window.scrollTo({ top: 0, behavior: 'auto' });
+      var backBtn = document.getElementById('bu-gal-back-btn');
+      if (backBtn) backBtn.focus({ preventScroll: true });
+      return false;
+    };
+
+    window.buIcfiFilterGallery = function (ed) {
+      renderGalleryGrid(ed);
+      var targetHash = '#gallery-' + activeGalEd;
+      if (window.location.hash !== targetHash) {
+        try { history.replaceState(null, '', targetHash); } catch (_) {}
+      }
+    };
+
+    window.buIcfiCloseGallery = function (fromHash) {
+      window.buIcfiCloseLightbox(true);
+      var root = document.getElementById('bu-icfi-root');
+      var view = document.getElementById('bu-icfi-gallery-view');
+      if (view) view.hidden = true;
+      if (root) root.classList.remove('is-gallery-open');
+      if (!fromHash && window.location.hash.indexOf('#gallery-') === 0) {
+        try { history.pushState(null, '', '#bu-icfi-gallery'); } catch (_) { window.location.hash = '#bu-icfi-gallery'; }
+      }
+      var band = document.getElementById('bu-icfi-gallery');
+      if (band) band.scrollIntoView({ behavior: 'auto', block: 'start' });
+    };
+
+    function updateLightboxUI() {
+      if (activeLbIdx < 0 || activeLbIdx >= activeGalList.length) return;
+      var item = activeGalList[activeLbIdx];
+      var lbImg = document.getElementById('bu-gal-lb-img');
+      var lbCap = document.getElementById('bu-gal-lb-caption');
+      var lbMeta = document.getElementById('bu-gal-lb-meta');
+      if (lbImg) { lbImg.src = item.src; lbImg.alt = item.caption; }
+      if (lbCap) lbCap.textContent = item.caption;
+      if (lbMeta) lbMeta.textContent = item.ed + ' Edition • Photo ' + (activeLbIdx + 1) + ' of ' + activeGalList.length;
+    }
+
+    window.buIcfiOpenLightbox = function (idx) {
+      if (!activeGalList.length) return;
+      activeLbIdx = Math.max(0, Math.min(idx, activeGalList.length - 1));
+      updateLightboxUI();
+      var lb = document.getElementById('bu-gal-lightbox');
+      if (lb) lb.hidden = false;
+      var closeBtn = document.getElementById('bu-gal-lb-close');
+      if (closeBtn) closeBtn.focus();
+    };
+
+    window.buIcfiStepLightbox = function (delta) {
+      if (!activeGalList.length || activeLbIdx < 0) return;
+      activeLbIdx = (activeLbIdx + delta + activeGalList.length) % activeGalList.length;
+      updateLightboxUI();
+    };
+
+    window.buIcfiCloseLightbox = function (skipFocus) {
+      var lb = document.getElementById('bu-gal-lightbox');
+      if (lb && !lb.hidden) {
+        lb.hidden = true;
+        activeLbIdx = -1;
+        if (!skipFocus && lastGalCard) lastGalCard.focus();
+      }
+    };
+
+    var lbBackdrop = document.getElementById('bu-gal-lightbox');
+    if (lbBackdrop) {
+      lbBackdrop.addEventListener('click', function (e) {
+        if (e.target === lbBackdrop) window.buIcfiCloseLightbox();
+      });
+    }
+    document.addEventListener('keydown', function (e) {
+      var lb = document.getElementById('bu-gal-lightbox');
+      if (lb && !lb.hidden) {
+        if (e.key === 'Escape') { e.preventDefault(); window.buIcfiCloseLightbox(); }
+        else if (e.key === 'ArrowLeft') { e.preventDefault(); window.buIcfiStepLightbox(-1); }
+        else if (e.key === 'ArrowRight') { e.preventDefault(); window.buIcfiStepLightbox(1); }
+        return;
+      }
+      var gv = document.getElementById('bu-icfi-gallery-view');
+      if (gv && !gv.hidden && e.key === 'Escape') {
+        e.preventDefault();
+        window.buIcfiCloseGallery();
+      }
+    });
+
+    function syncGalleryHash() {
+      var h = window.location.hash;
+      if (h === '#gallery-2019') window.buIcfiOpenGallery('2019', null, true);
+      else if (h === '#gallery-2017') window.buIcfiOpenGallery('2017', null, true);
+      else if (h === '#gallery-all') window.buIcfiOpenGallery('all', null, true);
+      else {
+        var gv = document.getElementById('bu-icfi-gallery-view');
+        if (gv && !gv.hidden) window.buIcfiCloseGallery(true);
+      }
+    }
+    window.addEventListener('hashchange', syncGalleryHash);
+    window.addEventListener('popstate', syncGalleryHash);
+    syncGalleryHash();
 
     /* --- On-Site Registration & Membership Forms Setup --- */
     var regForm = document.getElementById('bu-reg-form');

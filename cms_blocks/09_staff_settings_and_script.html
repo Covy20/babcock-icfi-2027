@@ -168,6 +168,211 @@
       setTimeout(function () { btn.textContent = orig; }, 1600);
     };
 
+    /* --- On-Site Historical Photo Gallery & Lightbox --- */
+    var ICFI_GALLERY_PHOTOS = [
+      { ed: '2019', caption: 'Prof. Ademola S. Tayo (President/Vice-Chancellor)', src: 'https://babcock.edu.ng/storage/media/3a4f29c4-0b81-4ee2-9b22-83ca0f38fb04.jpg' },
+      { ed: '2019', caption: 'Prof. John Wesley Taylor V (Keynote Speaker)', src: 'https://babcock.edu.ng/storage/media/9c213525-ba00-427e-bf5c-438b020b2d47.jpg' },
+      { ed: '2019', caption: 'Prof. Iheanyichukwu Okoro, Prof. John Wesley Taylor V & Barr. L. T. C. Eruba', src: 'https://babcock.edu.ng/storage/media/ca54117a-fbe6-47a9-8343-d3a1373a9458.jpg' },
+      { ed: '2019', caption: 'Prof. C. C. Nwosu, Dr. Oluwole A. Oyedeji & Prof. Iheanyichukwu Okoro', src: 'https://babcock.edu.ng/storage/media/24c3e881-44da-4042-8825-113e0ba75042.jpg' },
+      { ed: '2019', caption: 'Prof. John Wesley Taylor V & Dr. Oluwole A. Oyedeji', src: 'https://babcock.edu.ng/storage/media/eac38645-4d62-4ef5-a96a-0a061056d656.jpg' },
+      { ed: '2019', caption: 'Guest Speakers and Prof. Constance C. Nwosu', src: 'https://babcock.edu.ng/storage/media/dce2cdbf-13fb-4a6f-a8b7-a17cb92b4e8a.jpg' },
+      { ed: '2019', caption: 'Dr. Ngozi Nwogwugwu (Chairman, Local Organizing Committee)', src: 'https://babcock.edu.ng/storage/media/f5687f7f-b747-4f0f-8a2e-f24fd3caee3f.jpg' },
+      { ed: '2019', caption: 'THE CHORD (Singing Group)', src: 'https://babcock.edu.ng/storage/media/df1fa347-8ec2-4400-a88d-48e903787988.jpg' },
+      { ed: '2019', caption: 'Pastor Audu S. Didam (University Pastor)', src: 'https://babcock.edu.ng/storage/media/2aaabdf9-11c8-4e26-92c9-b985eb6467ab.jpg' },
+      { ed: '2019', caption: 'Prof. Constance C. Nwosu (AVP, Institutional Effectiveness)', src: 'https://babcock.edu.ng/storage/media/01291e84-9e87-4e5b-8dc1-a648b762e933.jpg' },
+      { ed: '2019', caption: 'Pastor Juvenal Balisasa, PhD (Invited Guest)', src: 'https://babcock.edu.ng/storage/media/2f6aac23-e763-4a7d-9862-c2e64c3af69e.jpg' },
+      { ed: '2019', caption: 'Dr. Oluwole A. Oyedeji (Invited Guest)', src: 'https://babcock.edu.ng/storage/media/f7eb4433-4859-420a-b4c9-3748677cdc0d.jpg' },
+      { ed: '2019', caption: 'Breakout Session I', src: 'https://babcock.edu.ng/storage/media/3b755e64-ba44-4d33-807e-04e59cf9e6e2.jpg' },
+      { ed: '2019', caption: 'Breakout Session II', src: 'https://babcock.edu.ng/storage/media/4c4ef04a-0800-4ecf-86a5-f33255a6cdd0.jpg' },
+      { ed: '2019', caption: 'BUHS Staff & Delegates', src: 'https://babcock.edu.ng/storage/media/df7b7ad5-4952-4bfd-9610-d722f07d7680.jpg' },
+      { ed: '2019', caption: 'Pastor Theodore U. Dickson', src: 'https://babcock.edu.ng/storage/media/4bb2854b-a48e-432c-be88-5ee092145f60.jpg' },
+      { ed: '2017', caption: 'The Chord', src: 'https://babcock.edu.ng/storage/media/326ef8da-7f85-493b-842d-f0c19ec75af0.jpg' },
+      { ed: '2017', caption: 'Prof. C. C. Nwosu and Prof. Makinde', src: 'https://babcock.edu.ng/storage/media/60b4964d-a035-4d2d-97fa-7b9539e04462.jpg' },
+      { ed: '2017', caption: 'Principal Officers', src: 'https://babcock.edu.ng/storage/media/86057fb0-7974-43fe-bc37-dbc764c98f7e.jpg' },
+      { ed: '2017', caption: 'University Pastor', src: 'https://babcock.edu.ng/storage/media/4f2be40a-5568-4fb3-a85b-8a2052f7e96c.jpg' },
+      { ed: '2017', caption: 'Guests and Youth Corps Members', src: 'https://babcock.edu.ng/storage/media/50e0204a-1ba7-40ea-866e-e7bab5a8502c.jpg' },
+      { ed: '2017', caption: 'Invited Guest', src: 'https://babcock.edu.ng/storage/media/895347b3-1f2d-4f12-9746-6d5787ed339e.jpg' },
+      { ed: '2017', caption: 'Greens, Glynis, Dangana & Rakie', src: 'https://babcock.edu.ng/storage/media/6c279ef5-6a6e-4305-83c6-45f1cc52c4c4.jpg' },
+      { ed: '2017', caption: 'Medical Team', src: 'https://babcock.edu.ng/storage/media/b3ca0394-e7de-4f0f-8e03-aa818a635174.jpg' },
+      { ed: '2017', caption: 'Plenary Session', src: 'https://babcock.edu.ng/storage/media/601891a3-3b69-4f88-8b1c-36d2d9d909d1.jpg' }
+    ];
+    var activeGalEd = '2019';
+    var activeGalList = [];
+    var activeLbIdx = -1;
+    var lastGalCard = null;
+
+    function renderGalleryGrid(ed) {
+      activeGalEd = (ed === '2017' || ed === 'all') ? ed : '2019';
+      activeGalList = activeGalEd === 'all' ? ICFI_GALLERY_PHOTOS.slice() : ICFI_GALLERY_PHOTOS.filter(function (p) { return p.ed === activeGalEd; });
+      document.querySelectorAll('#bu-icfi-gallery-view .bu-gal-tab').forEach(function (tab) {
+        var isMatch = tab.getAttribute('data-gal-tab') === activeGalEd;
+        tab.classList.toggle('is-active', isMatch);
+        tab.setAttribute('aria-selected', isMatch ? 'true' : 'false');
+      });
+      var heading = document.getElementById('bu-gal-heading');
+      var subtitle = document.getElementById('bu-gal-subtitle');
+      var countEl = document.getElementById('bu-gal-count');
+      if (heading) heading.textContent = activeGalEd === 'all' ? 'ICFI 2019 & 2017 Archive' : ('ICFI ' + activeGalEd + ' Photo Gallery');
+      if (subtitle) {
+        subtitle.textContent = activeGalEd === '2017'
+          ? 'Memorable moments from the 2017 International Conference on Faith Integration at Babcock University.'
+          : activeGalEd === 'all'
+            ? 'Combined highlights from the 2019 and 2017 editions of the International Conference on Faith Integration.'
+            : 'Highlights from the 2019 International Conference on Faith Integration at Babcock University.';
+      }
+      if (countEl) countEl.textContent = activeGalList.length + ' Photos';
+      var grid = document.getElementById('bu-gal-grid');
+      if (!grid) return;
+      grid.innerHTML = '';
+      activeGalList.forEach(function (item, idx) {
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'bu-gal-card';
+        btn.setAttribute('aria-label', 'View photo: ' + item.caption);
+        btn.addEventListener('click', function () { lastGalCard = btn; window.buIcfiOpenLightbox(idx); });
+
+        var wrap = document.createElement('span');
+        wrap.className = 'bu-gal-thumb-wrap';
+        var img = document.createElement('img');
+        img.className = 'bu-gal-thumb';
+        img.loading = 'lazy';
+        img.decoding = 'async';
+        img.src = item.src;
+        img.alt = item.caption;
+        var badge = document.createElement('span');
+        badge.className = 'bu-gal-badge';
+        badge.textContent = item.ed + ' Edition';
+        wrap.appendChild(img);
+        wrap.appendChild(badge);
+
+        var cap = document.createElement('span');
+        cap.className = 'bu-gal-cap';
+        var capText = document.createElement('span');
+        capText.className = 'bu-gal-cap-text';
+        capText.textContent = item.caption;
+        var capNum = document.createElement('span');
+        capNum.className = 'bu-gal-cap-num';
+        capNum.textContent = String(idx + 1).padStart(2, '0');
+        cap.appendChild(capText);
+        cap.appendChild(capNum);
+
+        btn.appendChild(wrap);
+        btn.appendChild(cap);
+        grid.appendChild(btn);
+      });
+    }
+
+    window.buIcfiOpenGallery = function (ed, ev, fromHash) {
+      if (ev && ev.preventDefault) ev.preventDefault();
+      renderGalleryGrid(ed || '2019');
+      var root = document.getElementById('bu-icfi-root');
+      var view = document.getElementById('bu-icfi-gallery-view');
+      if (root) root.classList.add('is-gallery-open');
+      if (view) view.hidden = false;
+      if (!fromHash) {
+        var targetHash = '#gallery-' + activeGalEd;
+        if (window.location.hash !== targetHash) {
+          try { history.pushState(null, '', targetHash); } catch (_) { window.location.hash = targetHash; }
+        }
+      }
+      window.scrollTo({ top: 0, behavior: 'auto' });
+      var backBtn = document.getElementById('bu-gal-back-btn');
+      if (backBtn) backBtn.focus({ preventScroll: true });
+      return false;
+    };
+
+    window.buIcfiFilterGallery = function (ed) {
+      renderGalleryGrid(ed);
+      var targetHash = '#gallery-' + activeGalEd;
+      if (window.location.hash !== targetHash) {
+        try { history.replaceState(null, '', targetHash); } catch (_) {}
+      }
+    };
+
+    window.buIcfiCloseGallery = function (fromHash) {
+      window.buIcfiCloseLightbox(true);
+      var root = document.getElementById('bu-icfi-root');
+      var view = document.getElementById('bu-icfi-gallery-view');
+      if (view) view.hidden = true;
+      if (root) root.classList.remove('is-gallery-open');
+      if (!fromHash && window.location.hash.indexOf('#gallery-') === 0) {
+        try { history.pushState(null, '', '#bu-icfi-gallery'); } catch (_) { window.location.hash = '#bu-icfi-gallery'; }
+      }
+      var band = document.getElementById('bu-icfi-gallery');
+      if (band) band.scrollIntoView({ behavior: 'auto', block: 'start' });
+    };
+
+    function updateLightboxUI() {
+      if (activeLbIdx < 0 || activeLbIdx >= activeGalList.length) return;
+      var item = activeGalList[activeLbIdx];
+      var lbImg = document.getElementById('bu-gal-lb-img');
+      var lbCap = document.getElementById('bu-gal-lb-caption');
+      var lbMeta = document.getElementById('bu-gal-lb-meta');
+      if (lbImg) { lbImg.src = item.src; lbImg.alt = item.caption; }
+      if (lbCap) lbCap.textContent = item.caption;
+      if (lbMeta) lbMeta.textContent = item.ed + ' Edition • Photo ' + (activeLbIdx + 1) + ' of ' + activeGalList.length;
+    }
+
+    window.buIcfiOpenLightbox = function (idx) {
+      if (!activeGalList.length) return;
+      activeLbIdx = Math.max(0, Math.min(idx, activeGalList.length - 1));
+      updateLightboxUI();
+      var lb = document.getElementById('bu-gal-lightbox');
+      if (lb) lb.hidden = false;
+      var closeBtn = document.getElementById('bu-gal-lb-close');
+      if (closeBtn) closeBtn.focus();
+    };
+
+    window.buIcfiStepLightbox = function (delta) {
+      if (!activeGalList.length || activeLbIdx < 0) return;
+      activeLbIdx = (activeLbIdx + delta + activeGalList.length) % activeGalList.length;
+      updateLightboxUI();
+    };
+
+    window.buIcfiCloseLightbox = function (skipFocus) {
+      var lb = document.getElementById('bu-gal-lightbox');
+      if (lb && !lb.hidden) {
+        lb.hidden = true;
+        activeLbIdx = -1;
+        if (!skipFocus && lastGalCard) lastGalCard.focus();
+      }
+    };
+
+    var lbBackdrop = document.getElementById('bu-gal-lightbox');
+    if (lbBackdrop) {
+      lbBackdrop.addEventListener('click', function (e) {
+        if (e.target === lbBackdrop) window.buIcfiCloseLightbox();
+      });
+    }
+    document.addEventListener('keydown', function (e) {
+      var lb = document.getElementById('bu-gal-lightbox');
+      if (lb && !lb.hidden) {
+        if (e.key === 'Escape') { e.preventDefault(); window.buIcfiCloseLightbox(); }
+        else if (e.key === 'ArrowLeft') { e.preventDefault(); window.buIcfiStepLightbox(-1); }
+        else if (e.key === 'ArrowRight') { e.preventDefault(); window.buIcfiStepLightbox(1); }
+        return;
+      }
+      var gv = document.getElementById('bu-icfi-gallery-view');
+      if (gv && !gv.hidden && e.key === 'Escape') {
+        e.preventDefault();
+        window.buIcfiCloseGallery();
+      }
+    });
+
+    function syncGalleryHash() {
+      var h = window.location.hash;
+      if (h === '#gallery-2019') window.buIcfiOpenGallery('2019', null, true);
+      else if (h === '#gallery-2017') window.buIcfiOpenGallery('2017', null, true);
+      else if (h === '#gallery-all') window.buIcfiOpenGallery('all', null, true);
+      else {
+        var gv = document.getElementById('bu-icfi-gallery-view');
+        if (gv && !gv.hidden) window.buIcfiCloseGallery(true);
+      }
+    }
+    window.addEventListener('hashchange', syncGalleryHash);
+    window.addEventListener('popstate', syncGalleryHash);
+    syncGalleryHash();
+
     /* --- On-Site Registration & Membership Forms Setup --- */
     var regForm = document.getElementById('bu-reg-form');
     var memForm = document.getElementById('bu-mem-form');
