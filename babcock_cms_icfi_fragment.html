@@ -1033,16 +1033,16 @@
         <div class="bu-card-box bu-bank-card">
           <div>
             <div style="font-size:11px; font-weight:700; text-transform:uppercase; color:var(--bu-gold);">Local Transfers (NGN)</div>
-            <div style="font-size:14px; font-weight:700; color:var(--bu-navy);">UBA Plc • Babcock MFB</div>
-            <div style="font-size:12px; color:var(--bu-muted);">Account: <strong>1020069501</strong></div>
+            <div style="font-size:14px; font-weight:700; color:var(--bu-navy);">GTBank • Inst. For Faith Integ.</div>
+            <div style="font-size:12px; color:var(--bu-muted);">Account: <strong>0829898603</strong></div>
           </div>
-          <button type="button" class="bu-btn bu-btn-outline bu-btn-xs bu-btn-pill" onclick="buIcfiCopyAcct(this, '1020069501')">Copy Acct</button>
+          <button type="button" class="bu-btn bu-btn-outline bu-btn-xs bu-btn-pill" onclick="buIcfiCopyAcct(this, '0829898603')">Copy Acct</button>
         </div>
 
         <div class="bu-card-box bu-bank-card">
           <div>
             <div style="font-size:11px; font-weight:700; text-transform:uppercase; color:var(--bu-gold);">International Transfers (USD)</div>
-            <div style="font-size:14px; font-weight:700; color:var(--bu-navy);">GTBank • B.U-Op./Inst. For Faith Integr</div>
+            <div style="font-size:14px; font-weight:700; color:var(--bu-navy);">GTBank • B.U-Op.</div>
             <div style="font-size:12px; color:var(--bu-muted);">Account: <strong>0829898610</strong></div>
           </div>
           <button type="button" class="bu-btn bu-btn-outline bu-btn-xs bu-btn-pill" onclick="buIcfiCopyAcct(this, '0829898610')">Copy Acct</button>
@@ -1164,7 +1164,7 @@
                   <div id="bu-sum-note" style="font-size:12px; color:#e2e8f0; margin-top:4px;">Choose category, mode &amp; membership.</div>
                   <div style="margin-top:14px; padding-top:14px; border-top:1px solid rgba(255,255,255,0.16); font-size:12px; color:#cbd5e1;">
                     <strong style="color:var(--bu-gold-accent); display:block; margin-bottom:4px;">Transfer Instructions</strong>
-                    <span id="bu-sum-bank">UBA Plc (NGN: 1020069501) or GTBank (USD: 0829898610)</span>
+                    <span id="bu-sum-bank">GTBank • Inst. For Faith Integ. (NGN: 0829898603) or GTBank • B.U-Op (USD: 0829898610)</span>
                   </div>
                 </aside>
               </div>
@@ -1365,7 +1365,7 @@
                 <aside class="bu-c4 bu-aside-sticky">
                   <div style="font-size:11px; font-weight:700; color:var(--bu-gold-accent); text-transform:uppercase;">Annual Subscription</div>
                   <div style="font-family:var(--bu-font-serif); font-size:2rem; font-weight:700; color:var(--bu-gold-accent); margin-top:8px;">US$5 / ₦7,000</div>
-                  <div style="font-size:12px; color:#e2e8f0; margin-top:6px;">Local (NGN): UBA Plc • Babcock MFB <strong>1020069501</strong><br>Intl (USD): GTBank <strong>0829898610</strong></div>
+                  <div style="font-size:12px; color:#e2e8f0; margin-top:6px;">Local (NGN): GTBank • Inst. For Faith Integ. <strong>0829898603</strong><br>Intl (USD): GTBank • B.U-Op <strong>0829898610</strong></div>
                 </aside>
               </div>
               <div style="display:flex; justify-content:flex-end; margin-top:22px;">
@@ -1698,7 +1698,7 @@
       maxUploadMb: 10,
 
       /* Google Apps Script web app URL connected to your ICFI Google Sheet */
-      googleSheetEndpoint: 'https://script.google.com/macros/s/AKfycbz9qh1-DU-HUGtX924Z2I-82QIpZ119KZYWPvP4IISY9X259M3pU1CnhcyxPKCco8PQ8w/exec',
+      googleSheetEndpoint: 'https://script.google.com/macros/s/AKfycbwc4R8mTq246oahQfYrEUVE6ISh00W9TgcwChYJW-o_cK-CPbdqxiAtJUs55wLVdx8u9w/exec',
 
       /* 6-Day Conference Schedule rows displayed under Block 6 ("6-Day Hybrid Programme") */
       programmeDays: {
@@ -2119,8 +2119,8 @@
       var isLocal = cat.indexOf('Local') === 0;
       var isIntl = cat.indexOf('International') === 0;
       var cur = isIntl ? 'USD' : 'NGN';
-      var acct = isIntl ? '0829898610' : '1020069501';
-      var bank = isIntl ? 'GTBank • B.U-Op./Inst. For Faith Integr (USD: 0829898610)' : 'UBA Plc • Babcock MFB (NGN: 1020069501)';
+      var acct = isIntl ? '0829898610' : '0829898603';
+      var bank = isIntl ? 'GTBank • B.U-Op. (USD: 0829898610)' : 'GTBank • Inst. For Faith Integ. (NGN: 0829898603)';
       var fee = 'Select options';
       var note = 'Choose category, mode & membership.';
       if ((isLocal || isIntl) && mode) {
@@ -2149,7 +2149,7 @@
       document.getElementById('bu-sum-period').textContent = p.period;
       document.getElementById('bu-sum-amount').textContent = p.fee;
       document.getElementById('bu-sum-note').textContent = p.note;
-      document.getElementById('bu-sum-bank').textContent = p.cat ? p.bank : 'UBA Plc (NGN: 1020069501) or GTBank (USD: 0829898610)';
+      document.getElementById('bu-sum-bank').textContent = p.cat ? p.bank : 'GTBank • Inst. For Faith Integ. (NGN: 0829898603) or GTBank • B.U-Op (USD: 0829898610)';
       document.getElementById('bu-pay-summary').textContent = p.cat && p.mode ? p.fee + ' — ' + p.note : 'Select options in Step 1';
       document.getElementById('bu-pay-acct').textContent = p.bank;
       var amt = document.getElementById('bu-r-amt');

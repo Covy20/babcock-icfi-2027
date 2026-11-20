@@ -65,7 +65,7 @@
       maxUploadMb: 10,
 
       /* Google Apps Script web app URL connected to your ICFI Google Sheet */
-      googleSheetEndpoint: 'https://script.google.com/macros/s/AKfycbz9qh1-DU-HUGtX924Z2I-82QIpZ119KZYWPvP4IISY9X259M3pU1CnhcyxPKCco8PQ8w/exec',
+      googleSheetEndpoint: 'https://script.google.com/macros/s/AKfycbwc4R8mTq246oahQfYrEUVE6ISh00W9TgcwChYJW-o_cK-CPbdqxiAtJUs55wLVdx8u9w/exec',
 
       /* 6-Day Conference Schedule rows displayed under Block 6 ("6-Day Hybrid Programme") */
       programmeDays: {
@@ -486,8 +486,8 @@
       var isLocal = cat.indexOf('Local') === 0;
       var isIntl = cat.indexOf('International') === 0;
       var cur = isIntl ? 'USD' : 'NGN';
-      var acct = isIntl ? '0829898610' : '1020069501';
-      var bank = isIntl ? 'GTBank • B.U-Op./Inst. For Faith Integr (USD: 0829898610)' : 'UBA Plc • Babcock MFB (NGN: 1020069501)';
+      var acct = isIntl ? '0829898610' : '0829898603';
+      var bank = isIntl ? 'GTBank • B.U-Op. (USD: 0829898610)' : 'GTBank • Inst. For Faith Integ. (NGN: 0829898603)';
       var fee = 'Select options';
       var note = 'Choose category, mode & membership.';
       if ((isLocal || isIntl) && mode) {
@@ -516,7 +516,7 @@
       document.getElementById('bu-sum-period').textContent = p.period;
       document.getElementById('bu-sum-amount').textContent = p.fee;
       document.getElementById('bu-sum-note').textContent = p.note;
-      document.getElementById('bu-sum-bank').textContent = p.cat ? p.bank : 'UBA Plc (NGN: 1020069501) or GTBank (USD: 0829898610)';
+      document.getElementById('bu-sum-bank').textContent = p.cat ? p.bank : 'GTBank • Inst. For Faith Integ. (NGN: 0829898603) or GTBank • B.U-Op (USD: 0829898610)';
       document.getElementById('bu-pay-summary').textContent = p.cat && p.mode ? p.fee + ' — ' + p.note : 'Select options in Step 1';
       document.getElementById('bu-pay-acct').textContent = p.bank;
       var amt = document.getElementById('bu-r-amt');
